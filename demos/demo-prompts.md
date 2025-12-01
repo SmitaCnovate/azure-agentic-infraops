@@ -12,21 +12,24 @@
 %%{init: {'theme':'neutral'}}%%
 graph LR
     A["Step 1<br/>@plan"] --> B["Step 2<br/>azure-principal-architect"]
-    B --> C["Step 3<br/>bicep-plan"]
-    C --> D["Step 4<br/>bicep-implement"]
+    B --> C["Step 3<br/>diagram-generator"]
+    C --> D["Step 4<br/>bicep-plan"]
+    D --> E["Step 5<br/>bicep-implement"]
 
     style A fill:#e3f2fd
     style B fill:#e8f5e9
-    style C fill:#fff3e0
-    style D fill:#fce4ec
+    style C fill:#f3e5f5
+    style D fill:#fff3e0
+    style E fill:#fce4ec
 ```
 
 | Step | Agent                       | Purpose                      | Output File             |
 | ---- | --------------------------- | ---------------------------- | ----------------------- |
 | 1    | `@plan`                     | Requirements & cost estimate | `00-plan.md`            |
 | 2    | `azure-principal-architect` | WAF assessment               | `01-azure-architect.md` |
-| 3    | `bicep-plan`                | Implementation planning      | `02-bicep-plan.md`      |
-| 4    | `bicep-implement`           | Code generation strategy     | `03-bicep-code-gen.md`  |
+| 3    | `diagram-generator`         | Architecture visualization   | `architecture.py`       |
+| 4    | `bicep-plan`                | Implementation planning      | `02-bicep-plan.md`      |
+| 5    | `bicep-implement`           | Code generation strategy     | `03-bicep-code-gen.md`  |
 
 ---
 
@@ -82,7 +85,20 @@ Provide scores for each pillar and specific recommendations.
 
 ---
 
-## Step 3: Bicep Plan Agent
+## Step 3: Diagram Generator Agent
+
+> **How to invoke:** Press `Ctrl+Shift+A` → Select `diagram-generator`
+
+```text
+Generate a Python architecture diagram for the e-commerce platform using the diagrams library.
+Include all Azure services from the WAF assessment.
+```
+
+**Expected Output:** `docs/diagrams/ecommerce/architecture.py` and PNG file
+
+---
+
+## Step 4: Bicep Plan Agent
 
 > **How to invoke:** Press `Ctrl+Shift+A` → Select `bicep-plan`
 
@@ -148,7 +164,7 @@ Create Bicep implementation plan for Phase 4:
 
 ---
 
-## Step 4: Bicep Implement Agent
+## Step 5: Bicep Implement Agent
 
 > **How to invoke:** Press `Ctrl+Shift+A` → Select `bicep-implement`
 
@@ -222,19 +238,6 @@ Complete the Bicep implementation:
 ```
 
 **Expected Output:** Complete Bicep modules in `infra/bicep/ecommerce/`
-
----
-
-## Optional: Generate Architecture Diagram
-
-> **How to invoke:** Press `Ctrl+Shift+A` → Select `diagram-generator`
-
-```text
-Generate a Python architecture diagram for the e-commerce platform using the diagrams library.
-Include all Azure services from the WAF assessment.
-```
-
-**Expected Output:** `docs/diagrams/ecommerce/architecture.py` and PNG file
 
 ---
 

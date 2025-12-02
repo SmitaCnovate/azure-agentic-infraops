@@ -18,12 +18,22 @@
 
 .PARAMETER SqlAdminGroupObjectId
     The Azure AD group object ID for SQL Server administration.
+    If not provided, the script will use the current signed-in user's object ID.
 
 .PARAMETER SqlAdminGroupName
     The Azure AD group name for SQL Server administration.
+    If not provided and using current user, defaults to the user's display name.
+
+.PARAMETER UseCurrentUser
+    Use the current signed-in user as the SQL admin instead of a group.
+    This is the default behavior when SqlAdminGroupObjectId is not provided.
 
 .PARAMETER SkipValidation
     Skip Bicep validation before deployment.
+
+.EXAMPLE
+    ./deploy.ps1 -ResourceGroupName "rg-ecommerce-prod-swc"
+    # Uses current signed-in user as SQL admin
 
 .EXAMPLE
     ./deploy.ps1 -ResourceGroupName "rg-ecommerce-prod-swc" -SqlAdminGroupObjectId "12345678-1234-1234-1234-123456789012"
@@ -46,12 +56,14 @@ param(
     [ValidateSet('dev', 'staging', 'prod')]
     [string]$Environment = 'prod',
 
-    [Parameter(Mandatory = $true)]
-    [ValidateNotNullOrEmpty()]
+    [Parameter(Mandatory = $false)]
     [string]$SqlAdminGroupObjectId,
 
     [Parameter(Mandatory = $false)]
-    [string]$SqlAdminGroupName = 'sql-admins',
+    [string]$SqlAdminGroupName,
+
+    [Parameter(Mandatory = $false)]
+    [switch]$UseCurrentUser,
 
     [Parameter(Mandatory = $false)]
     [switch]$SkipValidation
@@ -125,6 +137,51 @@ if (-not $account) {
 Write-Success "Prerequisites check passed"
 Write-Host "  Subscription: $($account.name)" -ForegroundColor Gray
 Write-Host "  User: $($account.user.name)" -ForegroundColor Gray
+
+# ============================================================================
+# Resolve SQL Admin Identity
+# ============================================================================
+
+if (-not $SqlAdminGroupObjectId) {
+    Write-Step "Resolving SQL admin identity..."
+    
+    # Get current signed-in user's object ID
+    $signedInUser = az ad signed-in-user show 2>&1 | ConvertFrom-Json -ErrorAction SilentlyContinue
+    
+    if ($signedInUser) {
+        $SqlAdminGroupObjectId = $signedInUser.id
+        if (-not $SqlAdminGroupName) {
+            $SqlAdminGroupName = $signedInUser.displayName
+        }
+        Write-Success "Using current user as SQL admin"
+        Write-Host "  Name: $($signedInUser.displayName)" -ForegroundColor Gray
+        Write-Host "  Object ID: $SqlAdminGroupObjectId" -ForegroundColor Gray
+    } else {
+        Write-Error "Could not determine current user. Please provide -SqlAdminGroupObjectId parameter."
+        exit 1
+    }
+} else {
+    Write-Step "Using provided SQL admin identity"
+    Write-Host "  Object ID: $SqlAdminGroupObjectId" -ForegroundColor Gray
+    if (-not $SqlAdminGroupName) {
+        # Try to resolve the name from the object ID
+        $adObject = az ad group show --group $SqlAdminGroupObjectId 2>&1 | ConvertFrom-Json -ErrorAction SilentlyContinue
+        if ($adObject) {
+            $SqlAdminGroupName = $adObject.displayName
+            Write-Host "  Group Name: $SqlAdminGroupName" -ForegroundColor Gray
+        } else {
+            # Try as user
+            $adObject = az ad user show --id $SqlAdminGroupObjectId 2>&1 | ConvertFrom-Json -ErrorAction SilentlyContinue
+            if ($adObject) {
+                $SqlAdminGroupName = $adObject.displayName
+                Write-Host "  User Name: $SqlAdminGroupName" -ForegroundColor Gray
+            } else {
+                $SqlAdminGroupName = "sql-admin"
+                Write-Host "  Name: $SqlAdminGroupName (default)" -ForegroundColor Gray
+            }
+        }
+    }
+}
 
 # ============================================================================
 # Validate Bicep Templates

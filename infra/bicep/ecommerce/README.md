@@ -54,10 +54,13 @@ az login
 # Set subscription
 az account set --subscription "<subscription-id>"
 
-# Deploy
+# Deploy (uses current signed-in user as SQL admin)
+./deploy.ps1 -ResourceGroupName "rg-ecommerce-prod-swc"
+
+# Or specify a specific Azure AD group
 ./deploy.ps1 \
   -ResourceGroupName "rg-ecommerce-prod-swc" \
-  -SqlAdminGroupObjectId "<your-azure-ad-group-object-id>"
+  -SqlAdminGroupObjectId "<azure-ad-group-object-id>"
 ```
 
 ## Deployment Options
@@ -67,7 +70,6 @@ az account set --subscription "<subscription-id>"
 ```bash
 ./deploy.ps1 \
   -ResourceGroupName "rg-ecommerce-prod-swc" \
-  -SqlAdminGroupObjectId "<group-id>" \
   -WhatIf
 ```
 
@@ -76,8 +78,7 @@ az account set --subscription "<subscription-id>"
 ```bash
 ./deploy.ps1 \
   -ResourceGroupName "rg-ecommerce-dev-swc" \
-  -Environment "dev" \
-  -SqlAdminGroupObjectId "<group-id>"
+  -Environment "dev"
 ```
 
 ### Alternative Region (Germany)
@@ -85,8 +86,16 @@ az account set --subscription "<subscription-id>"
 ```bash
 ./deploy.ps1 \
   -ResourceGroupName "rg-ecommerce-prod-gwc" \
-  -Location "germanywestcentral" \
-  -SqlAdminGroupObjectId "<group-id>"
+  -Location "germanywestcentral"
+```
+
+### With Explicit SQL Admin Group
+
+```bash
+./deploy.ps1 \
+  -ResourceGroupName "rg-ecommerce-prod-swc" \
+  -SqlAdminGroupObjectId "12345678-1234-1234-1234-123456789012" \
+  -SqlAdminGroupName "sql-admins"
 ```
 
 ## File Structure

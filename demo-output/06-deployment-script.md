@@ -171,7 +171,7 @@ Write-Host "  ┌─────────────────────
 Write-Host "  │  ⚡ READY TO DEPLOY                                             │" -ForegroundColor White
 Write-Host "  │                                                                 │" -ForegroundColor Yellow
 Write-Host "  │  This will create Azure resources that incur costs.            │" -ForegroundColor Yellow
-Write-Host "  │  Estimated monthly cost: ~`$1,781 USD                           │" -ForegroundColor Yellow
+Write-Host "  │  Estimated monthly cost: ~`$2,076 USD                           │" -ForegroundColor Yellow
 Write-Host "  └─────────────────────────────────────────────────────────────────┘" -ForegroundColor Yellow
 
 $confirm = Read-Host "  Type 'yes' to proceed with deployment"

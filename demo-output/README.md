@@ -22,7 +22,7 @@
 
 | File                                                         | Description                          |
 | ------------------------------------------------------------ | ------------------------------------ |
-| [`ecommerce-cost-estimate.md`](./ecommerce-cost-estimate.md) | Detailed cost breakdown (~$1,781/mo) |
+| [`ecommerce-cost-estimate.md`](./ecommerce-cost-estimate.md) | Detailed cost breakdown (~$2,076/mo) |
 | [`architecture.py`](./architecture.py)                       | Python diagrams code                 |
 | [`ecommerce_architecture.png`](./ecommerce_architecture.png) | Generated architecture diagram       |
 
@@ -63,7 +63,7 @@ flowchart LR
 | --------------- | ------------------ |
 | Total Resources | 61 Azure resources |
 | Bicep Modules   | 18 modules         |
-| Monthly Cost    | ~$1,781 USD        |
+| Monthly Cost    | ~$2,076 USD        |
 | Region          | Sweden Central     |
 | Compliance      | PCI-DSS aligned    |
 | WAF Score       | 8.0/10             |

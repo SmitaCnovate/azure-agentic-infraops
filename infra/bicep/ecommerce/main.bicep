@@ -66,26 +66,26 @@ var resourceNames = {
   nsgWeb: 'nsg-web-${environment}-${locationShort}-001'
   nsgData: 'nsg-data-${environment}-${locationShort}-001'
   nsgIntegration: 'nsg-integration-${environment}-${locationShort}-001'
-
+  
   // Phase 2 - Platform Services
   keyVault: 'kv-${take(projectName, 4)}-${environment}-${take(uniqueSuffix, 6)}'
   appServicePlan: 'asp-${projectName}-${environment}-${locationShort}-001'
   sqlServer: 'sql-${projectName}-${environment}-${locationShort}-${take(uniqueSuffix, 6)}'
   sqlDatabase: 'sqldb-${projectName}-${environment}'
   redis: 'redis-${projectName}-${environment}-${take(uniqueSuffix, 6)}'
-
+  
   // Phase 3 - Application
   appService: 'app-${projectName}-api-${environment}-${locationShort}-001'
   search: 'srch-${projectName}-${environment}-${take(uniqueSuffix, 6)}'
   serviceBus: 'sb-${projectName}-${environment}-${take(uniqueSuffix, 6)}'
   functionAppPlan: 'asp-func-${projectName}-${environment}-${locationShort}-001'
   functionApp: 'func-${projectName}-orders-${environment}-${locationShort}-001'
-
+  
   // Phase 4 - Edge & Monitoring
   logAnalytics: 'log-${projectName}-${environment}-${locationShort}-001'
   appInsights: 'appi-${projectName}-${environment}-${locationShort}-001'
   frontDoor: 'afd-${projectName}-${environment}-001'
-  wafPolicy: 'waf-${projectName}-${environment}-001'
+  wafPolicy: 'wafpolicy${replace(projectName, '-', '')}${environment}001'  // No hyphens allowed in WAF policy names
   staticWebApp: 'swa-${projectName}-${environment}-${locationShort}-001'
 }
 
@@ -273,14 +273,14 @@ module searchModule 'modules/cognitive-search.bicep' = {
   }
 }
 
-// Service Bus
+// Service Bus (uses data subnet - integration subnet is delegated and can't have PEs)
 module serviceBusModule 'modules/service-bus.bicep' = {
   name: 'service-bus-deployment'
   params: {
     location: location
     tags: tags
     serviceBusName: resourceNames.serviceBus
-    subnetId: networkModule.outputs.integrationSubnetId
+    subnetId: networkModule.outputs.dataSubnetId
     privateDnsZoneId: privateDnsModule.outputs.serviceBusDnsZoneId
   }
 }
@@ -404,7 +404,6 @@ module diagnosticsModule 'modules/diagnostics.bicep' = {
     appServiceName: appServiceModule.outputs.appServiceName
     functionAppName: functionAppModule.outputs.functionAppName
     keyVaultName: keyVaultModule.outputs.keyVaultName
-    sqlServerName: sqlModule.outputs.sqlServerName
     redisCacheName: redisModule.outputs.redisCacheName
     serviceBusName: serviceBusModule.outputs.serviceBusName
     searchServiceName: searchModule.outputs.searchServiceName

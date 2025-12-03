@@ -147,10 +147,10 @@ infra/bicep/ecommerce/
 | Cognitive Search | Standard S1        | $250              |
 | Service Bus      | Premium (1 MU)     | $668              |
 | Functions Plan   | EP1                | $173              |
-| Front Door       | Standard           | $35               |
+| Front Door       | Premium            | $330              |
 | Static Web App   | Standard           | $9                |
 | Log Analytics    | ~5GB/day           | $50               |
-| **Total**        |                    | **~$1,781/month** |
+| **Total**        |                    | **~$2,076/month** |
 
 ## Security Features
 

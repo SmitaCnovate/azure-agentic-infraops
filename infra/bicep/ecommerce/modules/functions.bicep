@@ -2,6 +2,7 @@
 // Azure Functions Module
 // ============================================================================
 // Creates .NET 8 Isolated Function App with VNet integration
+// Uses identity-based storage connections (Azure Policy blocks allowSharedKeyAccess)
 // ============================================================================
 
 @description('Azure region for Functions deployment')
@@ -29,7 +30,7 @@ param serviceBusNamespace string
 param appInsightsConnectionString string
 
 // ============================================================================
-// Storage Account for Functions
+// Storage Account for Functions (identity-based access)
 // ============================================================================
 
 var storageAccountName = 'st${take(replace(functionAppName, '-', ''), 18)}${take(uniqueString(resourceGroup().id), 4)}'
@@ -46,15 +47,35 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2023-05-01' = {
     supportsHttpsTrafficOnly: true
     minimumTlsVersion: 'TLS1_2'
     allowBlobPublicAccess: false
+    allowSharedKeyAccess: false // Azure Policy requires false
+    publicNetworkAccess: 'Enabled' // Required for Functions control plane
     networkAcls: {
       bypass: 'AzureServices'
-      defaultAction: 'Allow' // Required for Functions to access storage
+      defaultAction: 'Allow'
     }
   }
 }
 
+// Blob service for Functions webjobs
+resource blobService 'Microsoft.Storage/storageAccounts/blobServices@2023-05-01' = {
+  parent: storageAccount
+  name: 'default'
+}
+
+// Queue service for durable functions
+resource queueService 'Microsoft.Storage/storageAccounts/queueServices@2023-05-01' = {
+  parent: storageAccount
+  name: 'default'
+}
+
+// Table service for durable functions
+resource tableService 'Microsoft.Storage/storageAccounts/tableServices@2023-05-01' = {
+  parent: storageAccount
+  name: 'default'
+}
+
 // ============================================================================
-// Function App
+// Function App with Identity-Based Storage Connection
 // ============================================================================
 
 resource functionApp 'Microsoft.Web/sites@2023-12-01' = {
@@ -80,17 +101,15 @@ resource functionApp 'Microsoft.Web/sites@2023-12-01' = {
       vnetRouteAllEnabled: true
       functionsRuntimeScaleMonitoringEnabled: true
       appSettings: [
+        // Identity-based storage connection (no connection strings needed)
         {
-          name: 'AzureWebJobsStorage'
-          value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccount.name};EndpointSuffix=${environment().suffixes.storage};AccountKey=${storageAccount.listKeys().keys[0].value}'
+          name: 'AzureWebJobsStorage__accountName'
+          value: storageAccount.name
         }
+        // Use blob deployment instead of file share for Linux Consumption/Premium
         {
-          name: 'WEBSITE_CONTENTAZUREFILECONNECTIONSTRING'
-          value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccount.name};EndpointSuffix=${environment().suffixes.storage};AccountKey=${storageAccount.listKeys().keys[0].value}'
-        }
-        {
-          name: 'WEBSITE_CONTENTSHARE'
-          value: toLower(functionAppName)
+          name: 'WEBSITE_RUN_FROM_PACKAGE'
+          value: '1'
         }
         {
           name: 'FUNCTIONS_EXTENSION_VERSION'
@@ -120,6 +139,43 @@ resource functionApp 'Microsoft.Web/sites@2023-12-01' = {
     }
     clientAffinityEnabled: false
     publicNetworkAccess: 'Disabled'
+  }
+}
+
+// ============================================================================
+// Role Assignments for Managed Identity
+// ============================================================================
+
+// Storage Blob Data Owner - for AzureWebJobsStorage operations
+resource storageBlobDataOwnerRole 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: guid(storageAccount.id, functionApp.id, 'b7e6dc6d-f1e8-4753-8033-0f276bb0955b')
+  scope: storageAccount
+  properties: {
+    roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'b7e6dc6d-f1e8-4753-8033-0f276bb0955b')
+    principalId: functionApp.identity.principalId
+    principalType: 'ServicePrincipal'
+  }
+}
+
+// Storage Queue Data Contributor - for durable functions queues
+resource storageQueueDataContributorRole 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: guid(storageAccount.id, functionApp.id, '974c5e8b-45b9-4653-ba55-5f855dd0fb88')
+  scope: storageAccount
+  properties: {
+    roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '974c5e8b-45b9-4653-ba55-5f855dd0fb88')
+    principalId: functionApp.identity.principalId
+    principalType: 'ServicePrincipal'
+  }
+}
+
+// Storage Table Data Contributor - for durable functions checkpoints
+resource storageTableDataContributorRole 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: guid(storageAccount.id, functionApp.id, '0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3')
+  scope: storageAccount
+  properties: {
+    roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3')
+    principalId: functionApp.identity.principalId
+    principalType: 'ServicePrincipal'
   }
 }
 

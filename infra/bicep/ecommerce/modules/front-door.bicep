@@ -1,7 +1,7 @@
 // ============================================================================
 // Azure Front Door Module
 // ============================================================================
-// Creates Front Door Standard with WAF for global load balancing
+// Creates Front Door Premium with WAF for global load balancing (PCI-DSS)
 // ============================================================================
 
 @description('Resource tags')
@@ -28,7 +28,7 @@ resource frontDoorProfile 'Microsoft.Cdn/profiles@2024-02-01' = {
   location: 'global'
   tags: tags
   sku: {
-    name: 'Standard_AzureFrontDoor'
+    name: 'Premium_AzureFrontDoor'  // Required for WAF with managed rules (PCI-DSS)
   }
   properties: {
     originResponseTimeoutSeconds: 60

@@ -16,7 +16,7 @@ components. I need accurate costs for:
 - Azure Cache for Redis C2
 - Azure Cognitive Search S1
 - Service Bus Premium
-- Azure Front Door Standard
+- Azure Front Door Premium (PCI-DSS WAF)
 ```
 
 ---
@@ -160,10 +160,10 @@ Based on real-time MCP pricing queries:
 | Azure SQL Database     | S3 (100 DTU) | $145.16       | azure_price_search    |
 | Azure Cache for Redis  | C2 Basic     | $65.70        | azure_price_search    |
 | Service Bus            | Premium 1 MU | $677.08       | azure_price_search    |
-| Azure Front Door       | Standard     | $100.00       | azure_price_search    |
+| Azure Front Door       | Premium      | $330.00       | azure_price_search    |
 | Private Endpoints (×5) | -            | $36.50        | Calculated            |
 | Key Vault + Logging    | Standard     | $18.00        | azure_price_search    |
-| **TOTAL**              | -            | **$1,781/mo** | Real-time MCP queries |
+| **TOTAL**              | -            | **$2,076/mo** | Real-time MCP queries |
 
 ---
 

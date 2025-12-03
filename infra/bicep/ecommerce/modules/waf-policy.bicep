@@ -19,7 +19,7 @@ resource wafPolicy 'Microsoft.Network/FrontDoorWebApplicationFirewallPolicies@20
   location: 'global'
   tags: tags
   sku: {
-    name: 'Standard_AzureFrontDoor'
+    name: 'Premium_AzureFrontDoor'  // Required for ManagedRules (PCI-DSS compliance)
   }
   properties: {
     policySettings: {

@@ -28,14 +28,14 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2023-12-01' = {
   tags: tags
   kind: 'linux'
   sku: {
-    name: 'P1v3'
-    tier: 'PremiumV3'
-    size: 'P1v3'
+    name: 'P1v2'
+    tier: 'PremiumV2'
+    size: 'P1v2'
     capacity: capacity
   }
   properties: {
     reserved: true // Linux
-    zoneRedundant: true // Requires Premium SKU
+    zoneRedundant: false // P1v2 doesn't support zone redundancy in all regions
     targetWorkerCount: capacity
     targetWorkerSizeId: 0
   }

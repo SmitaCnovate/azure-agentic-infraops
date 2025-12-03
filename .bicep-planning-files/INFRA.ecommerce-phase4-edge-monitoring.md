@@ -27,7 +27,7 @@ parameters:
     - name: sku
       type: string
       description: Front Door SKU
-      example: Standard_AzureFrontDoor
+      example: Premium_AzureFrontDoor
   optional:
     - name: location
       type: string
@@ -121,7 +121,7 @@ parameters:
     - name: sku
       type: string
       description: WAF SKU
-      default: Standard_AzureFrontDoor
+      default: Premium_AzureFrontDoor
     - name: policySettings
       type: object
       description: Policy settings
@@ -403,13 +403,13 @@ references:
 
 | Resource                | SKU/Tier                | Monthly Cost |
 | ----------------------- | ----------------------- | ------------ |
-| Front Door              | Standard                | $35 + usage  |
+| Front Door              | Premium                 | $330 + usage |
 | WAF Policy              | Included                | $0           |
 | Static Web App          | Standard                | $9           |
 | Log Analytics           | Pay-as-you-go (5GB/day) | ~$50         |
 | Application Insights    | Included in LA          | $0           |
-| **Phase 4 Total**       |                         | **~$94**     |
-| **Grand Total (P1-P4)** |                         | **~$1,826**  |
+| **Phase 4 Total**       |                         | **~$389**    |
+| **Grand Total (P1-P4)** |                         | **~$2,121**  |
 
 **Cost vs. Target:**
 
@@ -644,8 +644,8 @@ graph TB
 
 Phase 4 completes the architecture with:
 
-- **Azure Front Door Standard**: Global load balancing with health probes and geo-routing
-- **WAF Policy**: OWASP 2.1 rules + Bot Manager for PCI-DSS edge protection
+- **Azure Front Door Premium**: Global load balancing with health probes, geo-routing, and managed WAF rules
+- **WAF Policy**: OWASP 2.1 rules + Bot Manager for PCI-DSS edge protection (requires Premium SKU)
 - **Static Web App**: React SPA with global CDN, staging environments
 - **Log Analytics**: 90-day retention for PCI-DSS audit requirements
 - **Application Insights**: Distributed tracing, live metrics, smart detection

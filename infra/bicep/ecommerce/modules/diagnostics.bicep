@@ -16,9 +16,6 @@ param functionAppName string
 @description('Key Vault name')
 param keyVaultName string
 
-@description('SQL Server name')
-param sqlServerName string
-
 @description('Redis Cache name')
 param redisCacheName string
 
@@ -45,10 +42,6 @@ resource functionApp 'Microsoft.Web/sites@2023-12-01' existing = {
 
 resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' existing = {
   name: keyVaultName
-}
-
-resource sqlServer 'Microsoft.Sql/servers@2023-08-01-preview' existing = {
-  name: sqlServerName
 }
 
 resource redisCache 'Microsoft.Cache/redis@2024-03-01' existing = {
@@ -160,26 +153,13 @@ resource keyVaultDiagnostics 'Microsoft.Insights/diagnosticSettings@2021-05-01-p
 }
 
 // ============================================================================
-// SQL Server Diagnostic Settings
+// SQL Server Auditing (via SQL Server Audit, not diagnostic settings)
+// Note: SQL Server itself doesn't support diagnostic settings - auditing is
+// configured via Microsoft.Sql/servers/auditingSettings
 // ============================================================================
 
-resource sqlServerDiagnostics 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
-  name: 'diag-sqlserver'
-  scope: sqlServer
-  properties: {
-    workspaceId: logAnalyticsWorkspaceId
-    logs: [
-      {
-        category: 'SQLSecurityAuditEvents'
-        enabled: true
-      }
-      {
-        category: 'DevOpsOperationsAudit'
-        enabled: true
-      }
-    ]
-  }
-}
+// SQL Server auditing is configured in the SQL module via auditingSettings resource
+// This is a placeholder to document that SQL auditing is handled separately
 
 // ============================================================================
 // Redis Cache Diagnostic Settings

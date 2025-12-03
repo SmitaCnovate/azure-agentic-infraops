@@ -10,12 +10,12 @@ For comprehensive learning scenarios with full solutions and validation, see the
 
 ## Available Quick Demos
 
-| Demo | Time | Difficulty | Best For |
-|------|------|------------|----------|
-| [Static Website](static-site-demo.md) | 15 min | 🟢 Beginner | First-time users |
-| [E-Commerce Platform](ecommerce-prompts.md) | 30 min | 🟡 Intermediate | Multi-tier architecture |
-| [Healthcare Portal](healthcare-demo.md) | 30 min | 🔴 Advanced | Compliance scenarios (HIPAA) |
-| [Analytics Platform](analytics-demo.md) | 30 min | 🟡 Intermediate | Data workloads |
+| Demo                                        | Time   | Difficulty      | Best For                     |
+| ------------------------------------------- | ------ | --------------- | ---------------------------- |
+| [Static Website](static-site-demo.md)       | 15 min | 🟢 Beginner     | First-time users             |
+| [E-Commerce Platform](ecommerce-prompts.md) | 30 min | 🟡 Intermediate | Multi-tier architecture      |
+| [Healthcare Portal](healthcare-demo.md)     | 30 min | 🔴 Advanced     | Compliance scenarios (HIPAA) |
+| [Analytics Platform](analytics-demo.md)     | 30 min | 🟡 Intermediate | Data workloads               |
 
 ---
 

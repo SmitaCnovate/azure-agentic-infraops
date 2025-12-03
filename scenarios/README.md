@@ -22,12 +22,12 @@
 
 For simple, single-prompt scenarios, see the [Quick Demos](quick-demos/) folder:
 
-| Demo | Complexity | Time | Description |
-|------|------------|------|-------------|
+| Demo                                                   | Complexity      | Time   | Description                           |
+| ------------------------------------------------------ | --------------- | ------ | ------------------------------------- |
 | [E-Commerce Prompts](quick-demos/ecommerce-prompts.md) | 🟡 Intermediate | 30 min | PCI-DSS compliant multi-tier platform |
-| [Healthcare Portal](quick-demos/healthcare-demo.md) | 🔴 Advanced | 30 min | HIPAA-compliant patient portal |
-| [Analytics Platform](quick-demos/analytics-demo.md) | 🟡 Intermediate | 30 min | Data analytics with Synapse |
-| [Static Website](quick-demos/static-site-demo.md) | 🟢 Beginner | 15 min | Simple static web app |
+| [Healthcare Portal](quick-demos/healthcare-demo.md)    | 🔴 Advanced     | 30 min | HIPAA-compliant patient portal        |
+| [Analytics Platform](quick-demos/analytics-demo.md)    | 🟡 Intermediate | 30 min | Data analytics with Synapse           |
+| [Static Website](quick-demos/static-site-demo.md)      | 🟢 Beginner     | 15 min | Simple static web app                 |
 
 ---
 

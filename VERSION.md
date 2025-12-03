@@ -11,7 +11,7 @@ This repository follows [Semantic Versioning 2.0.0](https://semver.org/):
 
 ---
 
-## Version 3.0.0 (2025-12-03) - Agentic InfraOps Rebrand 🚀
+## Version 3.1.0 (2025-12-03) - Agentic InfraOps Rebrand 🚀
 
 ### Summary
 
@@ -90,7 +90,7 @@ Repository restructured to focus exclusively on the 4-step agent workflow for Az
 
 #### Documentation
 
-- `docs/WORKFLOW.md` - Complete workflow guide
+- `docs/workflow/WORKFLOW.md` - Complete workflow guide
 - `.github/copilot-instructions.md` - AI agent guidance
 - `README.md` - Quick start and overview
 

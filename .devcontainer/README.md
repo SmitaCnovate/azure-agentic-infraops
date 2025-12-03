@@ -146,7 +146,7 @@ sudo npm update -g markdownlint-cli           # markdownlint
 | Azure auth fails      | Use `az login --use-device-code`                         |
 | Rebuild needed        | `F1` → `Dev Containers: Rebuild Container Without Cache` |
 
-📖 **Full troubleshooting guide:** [docs/troubleshooting.md](../docs/troubleshooting.md)
+📖 **Full troubleshooting guide:** [docs/guides/troubleshooting.md](../docs/guides/troubleshooting.md)
 
 ## 📊 Resource Usage
 
@@ -166,8 +166,8 @@ sudo npm update -g markdownlint-cli           # markdownlint
 
 ## 📚 Related Documentation
 
-- [Workflow Guide](../docs/WORKFLOW.md)
-- [Scenario Prompts](../scenarios/scenario-prompts.md)
+- [Workflow Guide](../docs/workflow/WORKFLOW.md)
+- [Scenario Prompts](../scenarios/quick-demos/ecommerce-prompts.md)
 - [Copilot Instructions](../.github/copilot-instructions.md)
 - [Repository README](../README.md)
 

@@ -19,7 +19,7 @@
 > and deploy-ready Bicep/Terraform templates—all aligned with Azure Well-Architected best practices
 > and Azure Verified Modules. Real-time pricing, compliance checks, and automation included.
 
-📖 **[Quick Start Guide](docs/QUICKSTART.md)** | 📋 **[Full Workflow Docs](docs/WORKFLOW.md)** | 🎯 **[Scenarios](scenarios/)** | 💰 **[Azure Pricing MCP](mcp/azure-pricing-mcp/)**
+📖 **[Quick Start Guide](docs/getting-started/QUICKSTART.md)** | 📋 **[Full Workflow Docs](docs/workflow/WORKFLOW.md)** | 🎯 **[Scenarios](scenarios/)** | 💰 **[Azure Pricing MCP](mcp/azure-pricing-mcp/)**
 
 <!-- TODO: Add animated demo GIF showing the workflow in action
      To create: Use https://github.com/charmbracelet/vhs or screen recording
@@ -169,7 +169,7 @@ Each step requires your approval before proceeding:
 | Feedback text     | Agent refines its output |
 | `no`              | Return to previous step  |
 
-📖 **[Full Workflow Documentation](docs/WORKFLOW.md)**
+📖 **[Full Workflow Documentation](docs/workflow/WORKFLOW.md)**
 
 ---
 
@@ -191,11 +191,19 @@ azure-agentic-infraops/
 ├── .bicep-planning-files/       # Generated implementation plans
 ├── infra/bicep/                 # Generated Bicep templates
 ├── docs/
-│   ├── WORKFLOW.md              # Workflow documentation
+│   ├── README.md                # Documentation hub
+│   ├── getting-started/         # Quick start & prerequisites
+│   ├── workflow/                # Workflow documentation
+│   ├── guides/                  # Troubleshooting, how-tos
+│   ├── value-proposition/       # ROI, time savings, executive pitch
+│   ├── cost-estimates/          # Azure pricing examples
 │   ├── adr/                     # Architecture Decision Records
-│   └── diagrams/                # Generated architecture diagrams
-└── scenarios/                   # Example scenarios
-    └── scenario-prompts.md      # Ready-to-use scenario prompts
+│   ├── diagrams/                # Generated architecture diagrams
+│   └── presenter-toolkit/       # Demo delivery guides
+└── scenarios/
+    ├── README.md                # Scenarios index
+    ├── quick-demos/             # Simple prompt-based demos
+    └── S01-S09/                 # Comprehensive learning scenarios
 ```
 
 ---

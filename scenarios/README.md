@@ -1,6 +1,6 @@
 # Scenarios Overview
 
-> **Version 3.0.0** | Last Updated: December 3, 2025
+> **Version 3.1.0** | Last Updated: December 3, 2025
 >
 > **Hands-on learning scenarios demonstrating Agentic InfraOps as an efficiency multiplier for IT Professionals.**
 
@@ -11,9 +11,23 @@
 | If you're...                     | Start with                                          |
 | -------------------------------- | --------------------------------------------------- |
 | **New to Copilot**               | [S01 Bicep Baseline](#s01-bicep-baseline)           |
+| **Want a quick demo**            | [Quick Demos](quick-demos/) - 15-30 min prompts     |
 | **Experienced with IaC**         | [S03 Five-Agent Workflow](#s03-five-agent-workflow) |
 | **Focused on Terraform**         | [S02 Terraform Baseline](#s02-terraform-baseline)   |
 | **Looking for async automation** | [S09 Coding Agent](#s09-coding-agent)               |
+
+---
+
+## Quick Demos
+
+For simple, single-prompt scenarios, see the [Quick Demos](quick-demos/) folder:
+
+| Demo | Complexity | Time | Description |
+|------|------------|------|-------------|
+| [E-Commerce Prompts](quick-demos/ecommerce-prompts.md) | 🟡 Intermediate | 30 min | PCI-DSS compliant multi-tier platform |
+| [Healthcare Portal](quick-demos/healthcare-demo.md) | 🔴 Advanced | 30 min | HIPAA-compliant patient portal |
+| [Analytics Platform](quick-demos/analytics-demo.md) | 🟡 Intermediate | 30 min | Data analytics with Synapse |
+| [Static Website](quick-demos/static-site-demo.md) | 🟢 Beginner | 15 min | Simple static web app |
 
 ---
 

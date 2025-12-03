@@ -336,7 +336,7 @@ For simple infrastructure or quick iterations, use `infrastructure-specialist` w
 
 ## Related Documentation
 
-- [Scenario Prompts](../scenarios/scenario-prompts.md)
+- [Scenario Prompts](../scenarios/quick-demos/ecommerce-prompts.md)
 - [Copilot Instructions](../.github/copilot-instructions.md)
 - [Azure Pricing MCP README](../mcp/azure-pricing-mcp/README.md)
 - [README](../README.md)

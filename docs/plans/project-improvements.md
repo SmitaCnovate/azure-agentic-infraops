@@ -35,7 +35,7 @@ Update agents to reference shared config instead of duplicating.
 
 ### 3. Add more demo scenarios
 
-**File**: `scenarios/scenario-prompts.md` (add sections)
+**File**: `scenarios/quick-demos/ecommerce-prompts.md` (add sections)
 
 | Scenario                 | Complexity | Key Services                                  | New File                    |
 | ------------------------ | ---------- | --------------------------------------------- | --------------------------- |
@@ -94,7 +94,7 @@ Script to:
 
 ### 9. Create quick-start guide
 
-**File**: `docs/QUICKSTART.md`
+**File**: `docs/getting-started/QUICKSTART.md`
 
 Simplified guide for first-time users:
 
@@ -125,7 +125,7 @@ Simplified guide for first-time users:
 | `scenarios/analytics-demo.md`                     | Create                | Medium   |
 | `CHANGELOG.md`                                | Create                | Medium   |
 | `.github/agents/_shared/defaults.md`          | Create                | Low      |
-| `docs/QUICKSTART.md`                          | Create                | Low      |
+| `docs/getting-started/QUICKSTART.md`                          | Create                | Low      |
 | `scripts/regenerate-demos.ps1`                | Create                | Low      |
 | `README.md`                                   | Update (add demo GIF) | Low      |
 

@@ -332,7 +332,7 @@ How should I organize my Bicep files for a team of 5 engineers working on multip
 
 ---
 
-📖 **For general issues** (Dev Container, Azure auth, Copilot problems), see the [Troubleshooting Guide](../../docs/troubleshooting.md).
+📖 **For general issues** (Dev Container, Azure auth, Copilot problems), see the [Troubleshooting Guide](../../docs/guides/troubleshooting.md).
 
 ## Next Steps
 

@@ -14,7 +14,7 @@ Thank you for your interest in contributing! Agentic InfraOps revolutionizes how
 
 2. **Documentation**
 
-   - Workflow improvements (`docs/WORKFLOW.md`)
+   - Workflow improvements (`docs/workflow/WORKFLOW.md`)
    - Better examples and use cases
    - Troubleshooting guides
 

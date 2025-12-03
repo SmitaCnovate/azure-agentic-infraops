@@ -333,7 +333,7 @@ pwsh -File validation/validate.ps1
 | Azure deployment fails    | Run `az login` then `az account set --subscription "Name"`                           |
 | Agent not appearing       | `Ctrl+Shift+P` → "Reload Window"                                                     |
 
-📖 **Full troubleshooting guide:** [docs/troubleshooting.md](../troubleshooting.md)
+📖 **Full troubleshooting guide:** [docs/guides/troubleshooting.md](../guides/troubleshooting.md)
 
 Covers: Dev Container issues, Copilot problems, Azure deployment errors, custom agents, network/proxy issues, and a complete error message reference.
 
@@ -344,7 +344,7 @@ Covers: Dev Container issues, Copilot problems, Azure deployment errors, custom 
 After completing this guide, you can:
 
 1. **Run demos for your team** - Use [demos/30-MIN-DEMO-SCRIPT.md](../../scenarios/30-MIN-DEMO-SCRIPT.md)
-2. **Pitch to leadership** - Use [docs/executive-pitch.md](../executive-pitch.md)
+2. **Pitch to leadership** - Use [docs/value-proposition/executive-pitch.md](../value-proposition/executive-pitch.md)
 3. **Start a pilot** - Use [resources/presenter-toolkit/pilot-success-checklist.md](../../resources/presenter-toolkit/pilot-success-checklist.md)
 4. **Calculate ROI** - Use [resources/presenter-toolkit/roi-calculator-worksheet.md](../../resources/presenter-toolkit/roi-calculator-worksheet.md)
 

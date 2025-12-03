@@ -77,7 +77,7 @@ We have pre-built scenarios ready to run:
 | Scenario               | Complexity   | Time   | Prompt File                     |
 | ---------------------- | ------------ | ------ | ------------------------------- |
 | **Static Website**     | Beginner     | 15 min | `scenarios/static-site-demo.md` |
-| **E-Commerce**         | Intermediate | 30 min | `scenarios/scenario-prompts.md` |
+| **E-Commerce**         | Intermediate | 30 min | `scenarios/quick-demos/ecommerce-prompts.md` |
 | **Healthcare Portal**  | Advanced     | 30 min | `scenarios/healthcare-demo.md`  |
 | **Analytics Platform** | Intermediate | 30 min | `scenarios/analytics-demo.md`   |
 
@@ -211,7 +211,7 @@ Common issues:
 
 After completing the quick start:
 
-1. 📖 Read the [Full Workflow Documentation](WORKFLOW.md)
+1. 📖 Read the [Full Workflow Documentation](workflow/WORKFLOW.md)
 2. 🏗️ Try more complex demos (`healthcare-demo.md`, `analytics-demo.md`)
 3. 📐 Read the [Architecture Decision Records](adr/) for design context
 4. 🔧 Customize agents in `.github/agents/` for your organization
@@ -233,7 +233,7 @@ After completing the quick start:
 
 ## Getting Help
 
-- **Workflow issues:** Check [docs/WORKFLOW.md](WORKFLOW.md)
+- **Workflow issues:** Check [docs/workflow/WORKFLOW.md](workflow/WORKFLOW.md)
 - **Agent behavior:** Review agent files in `.github/agents/`
 - **Scenario prompts:** See files in `scenarios/` folder
 - **Bug reports:** Open a GitHub issue

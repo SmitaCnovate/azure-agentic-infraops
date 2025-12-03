@@ -322,7 +322,7 @@ in the diagrams library?
 
 ---
 
-📖 **For general issues** (Dev Container, Copilot problems, tool installation), see the [Troubleshooting Guide](../../docs/troubleshooting.md).
+📖 **For general issues** (Dev Container, Copilot problems, tool installation), see the [Troubleshooting Guide](../../docs/guides/troubleshooting.md).
 
 ## Next Steps
 

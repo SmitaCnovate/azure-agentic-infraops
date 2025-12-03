@@ -152,7 +152,7 @@ My Azure Subscription   xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 1. Ensure Docker Desktop is running
 2. Check available disk space (needs ~5GB)
 3. Try "Rebuild Container" from command palette
-4. See the [Troubleshooting Guide](../troubleshooting.md) for detailed fixes
+4. See the [Troubleshooting Guide](../guides/troubleshooting.md) for detailed fixes
 
 ### Azure CLI Authentication Issues
 

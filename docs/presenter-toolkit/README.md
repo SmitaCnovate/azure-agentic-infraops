@@ -32,7 +32,7 @@ whether you're presenting to customers, colleagues, training sessions, or leader
 | S08 - Diagrams as Code    | 2-3 hours   | 15-20 min    | 85-90%  |
 | S09 - Coding Agent        | 2-4 hours   | 15-30 min    | 85-90%  |
 
-📖 **Methodology**: See [Time Savings Evidence](../../docs/time-savings-evidence.md) for measurement details.
+📖 **Methodology**: See [Time Savings Evidence](../../docs/value-proposition/time-savings-evidence.md) for measurement details.
 
 ## 🎤 Demo Preparation Checklist
 

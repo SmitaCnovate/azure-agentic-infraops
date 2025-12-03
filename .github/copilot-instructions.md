@@ -21,7 +21,9 @@ This file provides context and guidance for GitHub Copilot when assisting with t
 **Critical Files:**
 
 - Agent definitions: `.github/agents/*.agent.md`
-- Workflow guide: `docs/WORKFLOW.md`
+- Workflow guide: `docs/workflow/WORKFLOW.md`
+- Quick start: `docs/getting-started/QUICKSTART.md`
+- Troubleshooting: `docs/guides/troubleshooting.md`
 - Bicep implement agent: `.github/agents/bicep-implement.agent.md` (has unique suffix guidance)
 - Diagram generator: `.github/agents/diagram-generator.agent.md` (Python architecture diagrams)
 - Dev container config: `.devcontainer/devcontainer.json`
@@ -151,7 +153,7 @@ Prompt: Generate Bicep templates from the plan
 → Approve and deploy
 ```
 
-📖 **Full Documentation:** See `docs/WORKFLOW.md`
+📖 **Full Documentation:** See `docs/workflow/WORKFLOW.md`
 
 **Critical Agent Behaviors:**
 
@@ -180,11 +182,24 @@ azure-agentic-infraops/
 │   └── copilot-instructions.md          # THIS FILE - AI agent guidance
 ├── .bicep-planning-files/               # Generated implementation plans
 ├── infra/bicep/                         # Generated Bicep templates
-├── scenarios/                           # Example scenarios
+├── scenarios/
+│   ├── README.md                        # Scenarios index
+│   ├── quick-demos/                     # Simple prompt demos
+│   └── S01-S09.../                      # Comprehensive scenarios
 └── docs/
-    ├── WORKFLOW.md                      # Workflow documentation
+    ├── README.md                        # Documentation hub
+    ├── getting-started/                 # Quick start & prerequisites
+    │   └── QUICKSTART.md                # Quick start guide
+    ├── workflow/
+    │   └── WORKFLOW.md                  # Workflow documentation
+    ├── guides/
+    │   └── troubleshooting.md           # Troubleshooting guide
+    ├── value-proposition/               # ROI, time savings evidence
+    ├── cost-estimates/                  # Azure pricing examples
     ├── adr/                             # Architecture Decision Records
-    └── diagrams/                        # Generated architecture diagrams
+    ├── diagrams/                        # Generated architecture diagrams
+    ├── presenter-toolkit/               # Demo delivery guides
+    └── copilot-customizations/          # Chat modes, instructions
 ```
 
 ### Naming Conventions

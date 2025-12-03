@@ -12,66 +12,106 @@ Fixes #
 
 <!-- Mark the appropriate option with an "x" -->
 
-- [ ] 🆕 New scenario or demo
-- [ ] ✨ New feature or module
-- [ ] 🐛 Bug fix
+- [ ] 🆕 New scenario (S01-S09 format)
+- [ ] 🏗️ New infrastructure module (Bicep/Terraform)
+- [ ] 🤖 Agent definition update (.github/agents/)
 - [ ] 📝 Documentation update
+- [ ] 🐛 Bug fix
 - [ ] 🔧 Refactoring (no functional changes)
-- [ ] 🧪 Test improvements
-- [ ] ⚙️ Configuration change
+- [ ] ⚙️ Configuration/workflow change
+- [ ] 💰 MCP server enhancement (azure-pricing-mcp)
+
+## Workflow Used
+
+<!-- Which agent workflow was used to create these changes? -->
+
+- [ ] 4-step workflow: `@plan` → `azure-principal-architect` → `bicep-plan` → `bicep-implement`
+- [ ] Direct implementation (simple change)
+- [ ] Copilot Coding Agent (autonomous)
+- [ ] Manual implementation
 
 ## Changes Made
 
-<!-- Describe the specific changes you made. Include file paths if helpful. -->
+<!-- Describe the specific changes you made. Include file paths. -->
+
+**Files added:**
+
+-
+
+**Files modified:**
 
 -
 
 ## Testing Performed
 
-<!-- Describe how you tested your changes. Include validation steps for Azure deployments. -->
+<!-- Describe how you tested your changes -->
 
-- [ ] Tested in a clean Azure subscription (if applicable)
-- [ ] Ran validation scripts (if applicable to scenarios)
-- [ ] Verified resource cleanup (if applicable)
-- [ ] Tested locally with relevant tools (Bicep CLI, Terraform, PowerShell)
+### Infrastructure (if applicable)
 
-## Time Savings (if applicable)
+- [ ] `bicep build` succeeds for all `.bicep` files
+- [ ] `bicep lint` passes with no errors
+- [ ] Deployed to Azure subscription (region: ____________)
+- [ ] All resources pass Azure Policy compliance
+- [ ] Resources cleaned up after testing
 
-<!-- Document any time savings metrics for new demos or features -->
+### Code Quality
 
-| Task                      | Traditional Approach | With GitHub Copilot |
-| ------------------------- | -------------------- | ------------------- |
-| Bicep template creation   | X min                | Y min               |
+- [ ] Pre-commit hook passed (`npm run lint:md`)
+- [ ] Agent YAML frontmatter validates
+- [ ] MCP server tests pass (`pytest tests/`)
+
+## Well-Architected Framework Alignment
+
+<!-- For infrastructure changes, which WAF pillars were considered? -->
+
+- [ ] 🛡️ Security (private endpoints, managed identity, TLS 1.2+)
+- [ ] 🔄 Reliability (zone redundancy, backups, monitoring)
+- [ ] 💰 Cost Optimization (right-sizing, auto-scaling)
+- [ ] ⚡ Performance Efficiency (caching, CDN, scaling)
+- [ ] 🔧 Operational Excellence (IaC, monitoring, alerts)
 
 ## Pre-Submission Checklist
 
 <!-- Verify all items before requesting review -->
 
-### Code Quality
+### Code Standards
 
-- [ ] Code follows repository structure and naming conventions
-- [ ] Bicep/Terraform templates use latest stable API versions
-- [ ] PowerShell scripts follow PSScriptAnalyzer rules
+- [ ] Region defaults to `swedencentral` (or `germanywestcentral`)
+- [ ] Unique suffixes used for globally-unique resource names
+- [ ] Resource names within length limits (Key Vault ≤24, Storage ≤24)
+- [ ] Required tags included (Environment, ManagedBy, Project, Owner)
 - [ ] No hardcoded secrets, subscription IDs, or sensitive data
+- [ ] Uses Azure Verified Modules (AVM) where available
 
 ### Documentation
 
-- [ ] README updated with any new features or changes
-- [ ] DEMO-SCRIPT.md updated (if applicable)
-- [ ] Prompts are documented in `prompts/effective-prompts.md`
-- [ ] Mermaid diagrams render correctly
+- [ ] README updated with any new features
+- [ ] DEMO-SCRIPT.md included (for scenarios)
+- [ ] Effective prompts documented
+- [ ] Architecture diagram included (Python diagrams-as-code)
+- [ ] Cost estimate provided (for significant infrastructure)
 
 ### Validation
 
-- [ ] Markdown files pass linting: `markdownlint '**/*.md' --ignore node_modules --config .markdownlint.json`
-- [ ] All links work and images load
-- [ ] Validation scripts are included (for scenarios)
-- [ ] CHANGELOG.md updated (if applicable)
+- [ ] Markdown linting passes: `npm run lint:md`
+- [ ] All internal links verified
+- [ ] CI workflow passes
+- [ ] CHANGELOG.md updated (for releases)
 
-## Screenshots (if applicable)
+## Screenshots / Architecture Diagram
 
-<!-- Add screenshots to help explain your changes, especially for UI or diagram changes -->
+<!-- Add architecture diagrams or screenshots if applicable -->
 
 ## Additional Notes
 
-<!-- Add any other context, dependencies, or notes for reviewers -->
+<!-- Add any other context for reviewers -->
+
+### Deployment Instructions (if applicable)
+
+```bash
+# Example deployment command
+az deployment group create \
+  --resource-group rg-project-dev \
+  --template-file infra/bicep/project/main.bicep \
+  --parameters environment=dev
+```

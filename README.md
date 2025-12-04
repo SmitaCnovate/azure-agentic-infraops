@@ -23,45 +23,12 @@
 
 📖 **[Quick Start Guide](docs/getting-started/QUICKSTART.md)** | 📋 **[Full Workflow Docs](docs/workflow/WORKFLOW.md)** | 🎯 **[Scenarios](scenarios/)** | 💰 **[Azure Pricing MCP](mcp/azure-pricing-mcp/)**
 
-<!-- TODO: Add animated demo GIF showing the workflow in action
-     To create: Use https://github.com/charmbracelet/vhs or screen recording
-     Target: ~30 second GIF showing @plan → architecture → diagram → bicep flow
--->
-
 ## The Workflow
 
-```mermaid
-%%{init: {'theme':'neutral'}}%%
-graph LR
-    subgraph "Step 1: Requirements"
-        P["@plan"]
-    end
-    subgraph "Step 2: Architecture"
-        A["azure-principal-<br/>architect"]
-        MCP["💰 Azure Pricing<br/>MCP"]
-        D["📊 diagram-<br/>generator"]
-    end
-    subgraph "Step 3: Planning"
-        B["bicep-plan"]
-    end
-    subgraph "Step 4: Implementation"
-        I["bicep-implement"]
-    end
-
-    P -->|requirements| A
-    A --> B
-    B -->|plan| I
-
-    MCP -.->|"real-time<br/>pricing"| A
-    D -.->|"architecture<br/>visualization"| A
-
-    style P fill:#e1f5fe
-    style A fill:#fff3e0
-    style MCP fill:#fff9c4
-    style D fill:#f3e5f5
-    style B fill:#e8f5e9
-    style I fill:#fce4ec
-```
+<picture>
+  <source media="(prefers-reduced-motion: reduce)" srcset="docs/diagrams/workflow/workflow.svg">
+  <img src="docs/diagrams/workflow/workflow.gif" alt="Agentic InfraOps Workflow: @plan → azure-principal-architect → bicep-plan → bicep-implement" width="800">
+</picture>
 
 | Step | Agent                       | What It Does                                          | Optional Integrations       |
 | ---- | --------------------------- | ----------------------------------------------------- | --------------------------- |

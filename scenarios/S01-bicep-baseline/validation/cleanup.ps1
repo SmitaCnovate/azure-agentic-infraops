@@ -17,7 +17,7 @@
     .\cleanup.ps1 -ResourceGroupName "rg-copilot-demo"
 
 .EXAMPLE
-    .\cleanup.ps1 -ResourceGroupName "rg-copilot-demo" -Force
+    .\cleanup.ps1 -ResourceGroupName "rg-agentic-baseline-dev" -Force
 
 .NOTES
     Author: GitHub Copilot Demo

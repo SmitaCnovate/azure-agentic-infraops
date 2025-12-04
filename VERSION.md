@@ -126,6 +126,6 @@ PATCH (Improvements):
 
 ---
 
-**Current Version**: **3.0.0**
+**Current Version**: **3.1.0**
 **Release Date**: December 3, 2025
 **Status**: Production Ready ✅

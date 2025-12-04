@@ -116,7 +116,7 @@ az bicep build --file main.bicep
 
 # Validate against Azure
 az deployment group validate `
-  --resource-group rg-copilot-demo `
+  --resource-group rg-agentic-baseline-dev `
   --template-file main.bicep `
   --parameters environment=demo
 # ✅ Validation passed

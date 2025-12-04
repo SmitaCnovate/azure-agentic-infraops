@@ -20,7 +20,7 @@
     Skip Bicep template validation before deployment.
 
 .EXAMPLE
-    .\deploy.ps1 -ResourceGroupName "rg-copilot-demo" -Location "eastus"
+    .\deploy.ps1 -ResourceGroupName "rg-agentic-baseline-dev" -Location "swedencentral"
 
 .EXAMPLE
     .\deploy.ps1 -ResourceGroupName "rg-prod" -Location "eastus" -Environment "prod"

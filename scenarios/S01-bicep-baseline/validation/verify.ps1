@@ -14,7 +14,7 @@
     The name of the Azure resource group to validate.
 
 .EXAMPLE
-    .\verify.ps1 -ResourceGroupName "rg-copilot-demo-01"
+    .\verify.ps1 -ResourceGroupName "rg-agentic-baseline-dev"
     
     Validates all resources in the specified resource group.
 

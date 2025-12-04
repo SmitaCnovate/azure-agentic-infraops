@@ -759,7 +759,7 @@ npm run lint:md
 ### Azure Subscription Requirements
 
 - Azure subscription with Contributor access
-- Resource groups: `rg-copilot-demo-<demo-name>-<random>`
+- Resource groups: `rg-agentic-<project>-<env>`
 - Clean up resources after testing
 
 ## Resources

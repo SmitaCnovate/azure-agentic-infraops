@@ -166,11 +166,13 @@ flowchart LR
 
 ### To PowerPoint (PPTX)
 
+Run these commands from the **repository root directory**:
+
 ```bash
 # Install Marp CLI
 npm install -g @marp-team/marp-cli
 
-# Export to PPTX
+# Export to PPTX (run from repository root)
 marp docs/presenter-toolkit/github-copilot-for-itpros.md --pptx -o github-copilot-for-itpros.pptx
 
 # Export to PDF (for backup)

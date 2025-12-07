@@ -7,19 +7,19 @@
 
 ## 📋 Character Matrix
 
-| Scenario | Character | Role | Company | Key Challenge |
-|----------|-----------|------|---------|---------------|
-| S01 | **Elena Rodriguez** | Cloud Infrastructure Engineer | Meridian Financial | First Azure project, 10 years VMware |
-| S02 | **Jordan Martinez** | Senior Infrastructure Engineer | CloudBridge Consulting | Multi-cloud standardization |
-| S03 | **Jennifer Chen** | Solutions Architect | Meridian Systems (SI Partner) | HIPAA-compliant patient portal |
-| S04 | **Carlos Mendez** | E-Commerce Architect | TechRetail Inc | PCI-DSS compliance, Black Friday prep |
-| S05 | **Priya Sharma** | Senior Technical Writer | Enterprise Solutions Corp | 50-server migration docs in 1 week |
-| S06 | **Marcus Chen** | Senior QA Engineer | ValidationFirst Consulting | Automated UAT validation |
-| S07 | **Maya Patel** | On-Call SRE | RetailMax Online | 2 AM production incident |
-| S08 | **Sarah Chen** | Security Engineer | HealthTech Solutions | 48-hour SBOM deadline |
-| S09 | **David Kim** | Solutions Architect | TechVentures Ltd | Design review in 2 hours |
-| S10 | **Alex Petrov** | Cloud Operations Engineer | InfraScale Solutions | 24-hour monitoring deadline |
-| S11 | Various | Multiple | Various | Quick reference demos |
+| Scenario | Character           | Role                           | Company                       | Key Challenge                         |
+| -------- | ------------------- | ------------------------------ | ----------------------------- | ------------------------------------- |
+| S01      | **Elena Rodriguez** | Cloud Infrastructure Engineer  | Meridian Financial            | First Azure project, 10 years VMware  |
+| S02      | **Jordan Martinez** | Senior Infrastructure Engineer | CloudBridge Consulting        | Multi-cloud standardization           |
+| S03      | **Jennifer Chen**   | Solutions Architect            | Meridian Systems (SI Partner) | HIPAA-compliant patient portal        |
+| S04      | **Carlos Mendez**   | E-Commerce Architect           | TechRetail Inc                | PCI-DSS compliance, Black Friday prep |
+| S05      | **Priya Sharma**    | Senior Technical Writer        | Enterprise Solutions Corp     | 50-server migration docs in 1 week    |
+| S06      | **Marcus Chen**     | Senior QA Engineer             | ValidationFirst Consulting    | Automated UAT validation              |
+| S07      | **Maya Patel**      | On-Call SRE                    | RetailMax Online              | 2 AM production incident              |
+| S08      | **Sarah Chen**      | Security Engineer              | HealthTech Solutions          | 48-hour SBOM deadline                 |
+| S09      | **David Kim**       | Solutions Architect            | TechVentures Ltd              | Design review in 2 hours              |
+| S10      | **Alex Petrov**     | Cloud Operations Engineer      | InfraScale Solutions          | 24-hour monitoring deadline           |
+| S11      | Various             | Multiple                       | Various                       | Quick reference demos                 |
 
 ---
 
@@ -185,14 +185,14 @@ can work on monitoring while Alex handles the deployment pipeline."
 
 ### Character Selection by Audience
 
-| Audience | Recommended Characters | Why |
-|----------|----------------------|-----|
-| Infrastructure Teams | Elena, Jordan, Maya | Relatable daily challenges |
-| Architects | Jennifer, Carlos, David | Strategic design focus |
-| Security/Compliance | Sarah, Carlos | Regulatory pressure |
-| Technical Writers | Priya | Documentation transformation |
-| QA/Testing | Marcus | Validation mindset |
-| Executives | Any (use time savings) | ROI focus |
+| Audience             | Recommended Characters  | Why                          |
+| -------------------- | ----------------------- | ---------------------------- |
+| Infrastructure Teams | Elena, Jordan, Maya     | Relatable daily challenges   |
+| Architects           | Jennifer, Carlos, David | Strategic design focus       |
+| Security/Compliance  | Sarah, Carlos           | Regulatory pressure          |
+| Technical Writers    | Priya                   | Documentation transformation |
+| QA/Testing           | Marcus                  | Validation mindset           |
+| Executives           | Any (use time savings)  | ROI focus                    |
 
 ### Connecting Characters
 
@@ -206,18 +206,18 @@ Some characters can reference each other for continuity:
 
 ## 📊 Time Savings by Character
 
-| Character | Traditional | With Copilot | Savings |
-|-----------|-------------|--------------|---------|
-| Elena Rodriguez | 4-6 hours | 30 min | 87% |
-| Jordan Martinez | 8 hours | 30 min | 94% |
-| Jennifer Chen | 18 hours | 45 min | 96% |
-| Carlos Mendez | 3-5 days | 90 min | 95% |
-| Priya Sharma | 3 days | 90 min | 94% |
-| Marcus Chen | 4-6 hours | 30 min | 88% |
-| Maya Patel | 2-4 hours | 25 min | 83% |
-| Sarah Chen | 2-3 days | 75 min | 95% |
-| David Kim | 2-3 hours | 20 min | 85% |
-| Alex Petrov | 8 hours | 30 min | 94% |
+| Character       | Traditional | With Copilot | Savings |
+| --------------- | ----------- | ------------ | ------- |
+| Elena Rodriguez | 4-6 hours   | 30 min       | 87%     |
+| Jordan Martinez | 8 hours     | 30 min       | 94%     |
+| Jennifer Chen   | 18 hours    | 45 min       | 96%     |
+| Carlos Mendez   | 3-5 days    | 90 min       | 95%     |
+| Priya Sharma    | 3 days      | 90 min       | 94%     |
+| Marcus Chen     | 4-6 hours   | 30 min       | 88%     |
+| Maya Patel      | 2-4 hours   | 25 min       | 83%     |
+| Sarah Chen      | 2-3 days    | 75 min       | 95%     |
+| David Kim       | 2-3 hours   | 20 min       | 85%     |
+| Alex Petrov     | 8 hours     | 30 min       | 94%     |
 
 ---
 

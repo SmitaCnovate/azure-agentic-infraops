@@ -18,12 +18,13 @@ resources.
 
 ## 🚀 Getting Started
 
-| Section                                               | Description                             |
-| ----------------------------------------------------- | --------------------------------------- |
-| [Quick Start](guides/quickstart.md)                   | Get up and running in 10 minutes        |
-| [Prerequisites](guides/prerequisites.md)              | Required tools and setup                |
-| [Complete Journey](guides/getting-started-journey.md) | Full onboarding from zero to productive |
-| [Model Selection](guides/copilot-model-selection.md)  | Choosing the right AI model             |
+| Section                                                | Description                                 |
+| ------------------------------------------------------ | ------------------------------------------- |
+| [Quick Start](guides/quickstart.md)                    | Get up and running in 10 minutes            |
+| [Prerequisites](guides/prerequisites.md)               | Required tools and setup                    |
+| [Dev Containers Setup](guides/dev-containers-setup.md) | Docker setup, alternatives, troubleshooting |
+| [Complete Journey](guides/getting-started-journey.md)  | Full onboarding from zero to productive     |
+| [Model Selection](guides/copilot-model-selection.md)   | Choosing the right AI model                 |
 
 ## 🤖 GitHub Copilot
 

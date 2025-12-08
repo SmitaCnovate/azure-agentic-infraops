@@ -54,6 +54,8 @@ code azure-agentic-infraops
 ## Step 2: Open in Dev Container
 
 The Dev Container provides all required tools pre-configured.
+For detailed Docker setup, alternatives (Podman, Colima, Rancher Desktop),
+and troubleshooting, see the [Dev Containers Setup Guide](dev-containers-setup.md).
 
 1. Press `F1` to open the Command Palette
 2. Type **"Dev Containers: Reopen in Container"**

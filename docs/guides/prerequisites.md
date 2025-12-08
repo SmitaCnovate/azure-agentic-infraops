@@ -16,7 +16,9 @@
 
 ### Option A: Dev Container (Recommended)
 
-The repository includes a pre-configured Dev Container that installs everything automatically:
+The repository includes a pre-configured Dev Container that installs everything automatically.
+For detailed setup instructions, Docker alternatives, and troubleshooting,
+see the [Dev Containers Setup Guide](dev-containers-setup.md).
 
 ```bash
 # Clone and open

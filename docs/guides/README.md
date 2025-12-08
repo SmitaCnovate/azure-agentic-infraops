@@ -21,6 +21,7 @@ This folder consolidates all operational guides for Agentic InfraOps, from getti
 | [Quick Start](quickstart.md)                          | Clone, Dev Container, run first demo — minimal steps    | 10 min    |
 | [Getting Started Journey](getting-started-journey.md) | Comprehensive onboarding with phases and learning paths | 30 min    |
 | [Prerequisites](prerequisites.md)                     | Required tools, Azure setup, knowledge prereqs          | Reference |
+| [Dev Containers Setup](dev-containers-setup.md)       | Docker setup, alternatives, troubleshooting             | Reference |
 
 > **Which one?** Use Quick Start if you just want to run something. Use the Journey for structured learning.
 

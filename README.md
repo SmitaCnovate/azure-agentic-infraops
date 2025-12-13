@@ -105,6 +105,14 @@ Each agent asks for approval before proceeding. Say `yes` to continue, or provid
 📖 **[Full Quick Start Guide →](docs/guides/quickstart.md)**
 (includes troubleshooting, demo scenarios, deployment instructions)
 
+### Using the Accelerator
+
+To simplify bootstrapping agentic infrastructure operations on Azure, we recommend starting with the
+[azure-agentic-infraops-accelerator](https://github.com/jonathan-vella/azure-agentic-infraops-accelerator)
+template repository. Click "Use this template" on the accelerator to generate a new repository
+pre-configured for Azure Agentic InfraOps and use it alongside this repository for adaptable deployments
+and workflows.
+
 ---
 
 ## Project Structure
@@ -166,6 +174,11 @@ Each agent asks for approval before proceeding. Say `yes` to continue, or provid
 - ✅ Azure Pricing MCP server (auto-configured)
 
 </details>
+
+---
+
+**Looking for a quick start?** Check out the agentic InfraOps accelerator template:
+[azure-agentic-infraops-accelerator](https://github.com/jonathan-vella/azure-agentic-infraops-accelerator).
 
 ---
 

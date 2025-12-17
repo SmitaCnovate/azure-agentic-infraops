@@ -248,29 +248,31 @@ Before finalizing architectural recommendations, verify:
 
 ### Position in Workflow
 
-This agent is **Step 2** of the 6-step agentic infrastructure workflow.
+This agent is **Step 2** of the 7-step agentic infrastructure workflow.
 
 ```mermaid
 %%{init: {'theme':'neutral'}}%%
 graph LR
     P["@plan<br/>(Step 1)"] --> A[azure-principal-architect<br/>Step 2]
-    A --> D["Pre-Build Artifacts<br/>(Step 3)"]
+    A --> D["Design Artifacts<br/>(Step 3)"]
     D --> B[bicep-plan<br/>Step 4]
     B --> I[bicep-implement<br/>Step 5]
-    I --> F["Post-Build Artifacts<br/>(Step 6)"]
+    I --> DEP["Deploy<br/>(Step 6)"]
+    DEP --> F["As-Built Artifacts<br/>(Step 7)"]
     style A fill:#fff3e0,stroke:#ff9800,stroke-width:3px
 ```
 
-**6-Step Workflow Overview:**
+**7-Step Workflow Overview:**
 
-| Step | Agent/Phase                   | Purpose                                        |
-| ---- | ----------------------------- | ---------------------------------------------- |
-| 1    | @plan                         | Requirements gathering                         |
-| 2    | **azure-principal-architect** | WAF assessment (YOU ARE HERE)                  |
-| 3    | Pre-Build Artifacts           | Design diagrams + ADRs (optional)              |
-| 4    | bicep-plan                    | Implementation planning + governance discovery |
-| 5    | bicep-implement               | Bicep code generation                          |
-| 6    | Post-Build Artifacts          | As-built diagrams + ADRs (optional)            |
+| Step | Agent/Phase                   | Purpose                                                |
+| ---- | ----------------------------- | ------------------------------------------------------ |
+| 1    | @plan                         | Requirements gathering → saved to `01-requirements.md` |
+| 2    | **azure-principal-architect** | WAF assessment (YOU ARE HERE) → `02-*` files           |
+| 3    | Design Artifacts              | Design diagrams + ADRs → `03-des-*` files              |
+| 4    | bicep-plan                    | Implementation planning + governance discovery         |
+| 5    | bicep-implement               | Bicep code generation                                  |
+| 6    | Deploy                        | Deployment to Azure → `06-deployment-summary.md`       |
+| 7    | As-Built Artifacts            | As-built diagrams, ADRs, workload docs → `07-*`        |
 
 ### Input
 
@@ -315,16 +317,26 @@ Before handing off to bicep-plan, **ALWAYS** ask for approval:
 When the user requests to save the assessment (e.g., "save", "save to file", "document this"),
 create a markdown file using the `createOrEditFiles` tool:
 
-**File Location**: `agent-output/{project-name}/01-architecture-assessment.md`
+**File Location**: `agent-output/{project-name}/02-architecture-assessment.md`
 
 Also update the project's `agent-output/{project-name}/README.md` to track this artifact.
 
+### Saving Step 1 Requirements
+
+**IMPORTANT**: At the start of Step 2, save the requirements from the @plan conversation to:
+
+**File Location**: `agent-output/{project-name}/01-requirements.md`
+
+This captures the requirements from Step 1 (@plan) for reference by subsequent agents.
+
 ### Saving Cost Estimates to Documentation
 
+Cost estimates are generated in **Step 3 (Design Artifacts)** as part of the `-des` suffix artifacts.
 When the user requests a cost estimate document
-(e.g., "create cost estimate", "save pricing", "document costs"), create a dedicated pricing file:
+(e.g., "create cost estimate", "save pricing", "document costs"), inform them this is a Step 3 activity
+and create the file with the `-des` suffix:
 
-**File Location**: `agent-output/{project-name}/01-cost-estimate.md`
+**File Location**: `agent-output/{project-name}/03-des-cost-estimate.md`
 
 Also update the project's `agent-output/{project-name}/README.md` to track this artifact.
 

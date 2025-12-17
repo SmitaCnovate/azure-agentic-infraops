@@ -36,29 +36,29 @@ Create Python diagram code that generates professional Azure architecture diagra
 
 | Trigger Point                          | Purpose                                               | Artifact Suffix |
 | -------------------------------------- | ----------------------------------------------------- | --------------- |
-| After architecture assessment (Step 2) | Visualize proposed architecture before implementation | `-design`       |
-| After Bicep implementation (Step 5)    | Document final deployed architecture                  | `-asbuilt`      |
+| After architecture assessment (Step 2) | Visualize proposed architecture before implementation | `-des`          |
+| After deployment (Step 6)              | Document final deployed architecture                  | `-ab`           |
 | Standalone request                     | Generate any Azure architecture diagram               | (context-based) |
 
 ### Artifact Suffix Convention
 
 Apply the appropriate suffix based on when the diagram is generated:
 
-- **`-design`**: Pre-implementation diagrams (Step 3 artifacts)
+- **`-des`**: Design diagrams (Step 3 artifacts)
 
-  - Example: `architecture-design.py`, `architecture-design.png`
+  - Example: `03-des-diagram.py`, `03-des-diagram.png`
   - Represents: Proposed architecture, conceptual design
   - Called from: `azure-principal-architect` handoff
 
-- **`-asbuilt`**: Post-implementation diagrams (Step 6 artifacts)
-  - Example: `architecture-asbuilt.py`, `architecture-asbuilt.png`
+- **`-ab`**: As-built diagrams (Step 7 artifacts)
+  - Example: `07-ab-diagram.py`, `07-ab-diagram.png`
   - Represents: Actual deployed infrastructure
-  - Called from: `bicep-implement` handoff
+  - Called from: After deployment (Step 6) or `bicep-implement` handoff
 
 **Important**: When called directly (standalone request), determine intent from user prompt:
 
-- Design/proposal/planning language → use `-design`
-- Deployed/implemented/current state language → use `-asbuilt`
+- Design/proposal/planning language → use `-des`
+- Deployed/implemented/current state language → use `-ab`
 
 ## Prerequisites
 
@@ -158,10 +158,10 @@ resource1 >> resource2 >> resource1
 
 Save diagrams to: `agent-output/{project-name}/` with step-prefixed filenames:
 
-| Workflow Step       | File Pattern                                      | Description                         |
-| ------------------- | ------------------------------------------------- | ----------------------------------- |
-| Step 3 (Pre-Build)  | `03-design-diagram.py`, `03-design-diagram.png`   | Proposed architecture visualization |
-| Step 6 (Post-Build) | `06-asbuilt-diagram.py`, `06-asbuilt-diagram.png` | Deployed architecture documentation |
+| Workflow Step     | File Pattern                              | Description                         |
+| ----------------- | ----------------------------------------- | ----------------------------------- |
+| Step 3 (Design)   | `03-des-diagram.py`, `03-des-diagram.png` | Proposed architecture visualization |
+| Step 7 (As-Built) | `07-ab-diagram.py`, `07-ab-diagram.png`   | Deployed architecture documentation |
 
 **Project Name**: Inherit from conversation context or prompt user if starting fresh.
 
@@ -310,17 +310,17 @@ Before completing a diagram:
 
 ### Position in Workflow
 
-This agent produces artifacts in **Step 3** (pre-build, `-design`) or **Step 6** (post-build, `-asbuilt`).
+This agent produces artifacts in **Step 3** (design, `-des`) or **Step 7** (as-built, `-ab`).
 
 ```mermaid
 %%{init: {'theme':'neutral'}}%%
 graph TD
     A[azure-principal-architect<br/>Step 2] --> D{Need diagram?}
-    D -->|Yes| G[diagram-generator<br/>-design suffix]
+    D -->|Yes| G[diagram-generator<br/>-des suffix]
     D -->|No| B[bicep-plan<br/>Step 4]
     G --> B
-    I[bicep-implement<br/>Step 5] --> F{Document with diagram?}
-    F -->|Yes| G2[diagram-generator<br/>-asbuilt suffix]
+    DEP[Deploy<br/>Step 6] --> F{Document with diagram?}
+    F -->|Yes| G2[diagram-generator<br/>-ab suffix]
     F -->|No| Done[Complete]
     G2 --> Done
 
@@ -328,16 +328,17 @@ graph TD
     style G2 fill:#e8eaf6,stroke:#3f51b5,stroke-width:2px
 ```
 
-**6-Step Workflow Overview:**
+**7-Step Workflow Overview:**
 
-| Step | Phase                     | This Agent's Role            |
-| ---- | ------------------------- | ---------------------------- |
-| 1    | @plan                     | —                            |
-| 2    | azure-principal-architect | Caller (triggers Step 3)     |
-| 3    | **Pre-Build Artifacts**   | Generate `-design` diagrams  |
-| 4    | bicep-plan                | —                            |
-| 5    | bicep-implement           | Caller (triggers Step 6)     |
-| 6    | **Post-Build Artifacts**  | Generate `-asbuilt` diagrams |
+| Step | Phase                     | This Agent's Role        |
+| ---- | ------------------------- | ------------------------ |
+| 1    | @plan                     | —                        |
+| 2    | azure-principal-architect | Caller (triggers Step 3) |
+| 3    | **Design Artifacts**      | Generate `-des` diagrams |
+| 4    | bicep-plan                | —                        |
+| 5    | bicep-implement           | —                        |
+| 6    | Deploy                    | Caller (triggers Step 7) |
+| 7    | **As-Built Artifacts**    | Generate `-ab` diagrams  |
 
 ### Approval Gate
 
@@ -358,7 +359,7 @@ After generating diagram code, ask:
 > python {step}-diagram.py
 > ```
 >
-> _(Where `{step}` is `03-design` or `06-asbuilt` based on workflow phase)_
+> _(Where `{step}` is `03-des` or `07-ab` based on workflow phase)_
 >
 > **Do you approve this diagram?**
 >
@@ -371,7 +372,7 @@ After generating diagram code, ask:
 **DO:**
 
 - ✅ Create diagram files in `agent-output/{project}/`
-- ✅ Use step-prefixed filenames (`03-design-*` or `06-asbuilt-*`)
+- ✅ Use step-prefixed filenames (`03-des-*` or `07-ab-*`)
 - ✅ Use valid `diagrams.azure.*` imports only
 - ✅ Include docstring with prerequisites and generation command
 - ✅ Match diagram to approved architecture design

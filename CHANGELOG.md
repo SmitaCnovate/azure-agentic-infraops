@@ -5,6 +5,42 @@ All notable changes to **Agentic InfraOps** will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.6.0] - 2025-01-17
+
+### Changed
+
+- **feat!: Restructure to 7-step workflow** with Deploy as new Step 6
+
+  - Step 1: @plan → `01-requirements.md`
+  - Step 2: azure-principal-architect → `02-*` files
+  - Step 3: Design Artifacts → `03-des-*` files (optional)
+  - Step 4: bicep-plan → `04-*` files
+  - Step 5: bicep-implement → `05-*` + Bicep code
+  - Step 6: Deploy → `06-deployment-summary.md` (NEW)
+  - Step 7: As-Built Artifacts → `07-*` files (optional)
+
+- **Standardized artifact suffixes**:
+
+  - Design phase: `-des` suffix (was `-design`)
+  - As-built phase: `-ab` suffix (was `-asbuilt`)
+
+- **Cost estimates moved to Step 3** as design artifacts (`03-des-cost-estimate.md`)
+
+- **Updated all file prefixes** to match step numbers (01- through 07-)
+
+- **Added Azure Pricing MCP fallback chain** to copilot-instructions.md:
+
+  1. Azure Pricing MCP (first choice)
+  2. fetch_webpage (official pricing pages)
+  3. Azure Retail API (curl)
+  4. Azure Pricing Calculator (manual)
+  5. Web search (last resort)
+
+- Updated all agent definition files (.github/agents/\*.agent.md)
+- Updated docs/workflow/WORKFLOW.md with new 7-step flow
+- Updated scenarios README files with new workflow references
+- Fixed cost-estimate.instructions.md applyTo pattern
+
 ## [3.5.0] - 2025-12-17
 
 - feat(workflow-generator): add initial setup for workflow diagram generation

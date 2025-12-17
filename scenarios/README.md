@@ -113,33 +113,36 @@ For simple, single-prompt scenarios, see the [S11 Quick Demos](S11-quick-demos/)
 
 **Challenge**: Design and implement a HIPAA-compliant patient portal for Contoso Healthcare.
 
-**The 6-Step Agentic Workflow**:
+**The 7-Step Agentic Workflow**:
 
 ```mermaid
 %%{init: {'theme':'neutral'}}%%
 flowchart LR
     A["@plan<br/>Step 1"] --> B["Azure Architect<br/>Step 2"]
-    B --> C["Pre-Build Artifacts<br/>Step 3"]
+    B --> C["Design Artifacts<br/>Step 3"]
     C --> D["Bicep Planner<br/>Step 4"]
     D --> E["Bicep Implement<br/>Step 5"]
-    E --> F["Post-Build Artifacts<br/>Step 6"]
+    E --> G["Deploy<br/>Step 6"]
+    G --> F["As-Built Artifacts<br/>Step 7"]
 
     style A fill:#e3f2fd,stroke:#1976d2
     style B fill:#e8f5e9,stroke:#388e3c
     style C fill:#f3e5f5,stroke:#7b1fa2
     style D fill:#fff3e0,stroke:#f57c00
     style E fill:#fce4ec,stroke:#c2185b
+    style G fill:#c8e6c9,stroke:#2e7d32
     style F fill:#f3e5f5,stroke:#7b1fa2
 ```
 
-| Step | Agent/Phase                 | Type     | Purpose                                |
-| ---- | --------------------------- | -------- | -------------------------------------- |
-| 1    | `@plan`                     | Built-in | Strategic planning with cost estimates |
-| 2    | `azure-principal-architect` | Custom   | Azure WAF assessment                   |
-| 3    | Pre-Build Artifacts         | Optional | Design diagrams + ADRs (`-design`)     |
-| 4    | `bicep-plan`                | Custom   | Infrastructure planning + governance   |
-| 5    | `bicep-implement`           | Custom   | Generate production-ready Bicep        |
-| 6    | Post-Build Artifacts        | Optional | As-built diagrams + ADRs (`-asbuilt`)  |
+| Step | Agent/Phase                 | Type     | Purpose                                   |
+| ---- | --------------------------- | -------- | ----------------------------------------- |
+| 1    | `@plan`                     | Built-in | Requirements gathering → `01-*`           |
+| 2    | `azure-principal-architect` | Custom   | Azure WAF assessment → `02-*`             |
+| 3    | Design Artifacts            | Optional | Design diagrams + ADRs (`-des`) → `03-*`  |
+| 4    | `bicep-plan`                | Custom   | Infrastructure planning → `04-*`          |
+| 5    | `bicep-implement`           | Custom   | Generate production-ready Bicep → `05-*`  |
+| 6    | Deploy                      | Manual   | Deploy to Azure → `06-*`                  |
+| 7    | As-Built Artifacts          | Optional | As-built diagrams + ADRs (`-ab`) → `07-*` |
 
 > **Note:** The Plan Agent (`@plan`) is a **built-in VS Code feature**—see [VS Code docs](https://code.visualstudio.com/docs/copilot/chat/chat-planning).
 > The other agents are custom agents defined in `.github/agents/`.

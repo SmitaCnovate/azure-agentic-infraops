@@ -14,16 +14,17 @@ graph LR
     E --> F["Post-Build<br/>Step 6"]
 ```
 
-| Step | Agent/Phase                 | Purpose                                      |
-| ---- | --------------------------- | -------------------------------------------- |
-| 1    | `@plan`                     | Generate implementation plan                 |
-| 2    | `azure-principal-architect` | WAF assessment, architecture guidance        |
-| 3    | Pre-Build Artifacts         | Design diagrams + ADRs (`-design` suffix)    |
-| 4    | `bicep-plan`                | AVM module selection, governance discovery   |
-| 5    | `bicep-implement`           | Generate validated Bicep templates           |
-| 6    | Post-Build Artifacts        | As-built diagrams + ADRs (`-asbuilt` suffix) |
+| Step | Agent/Phase                 | Purpose                                    |
+| ---- | --------------------------- | ------------------------------------------ |
+| 1    | `@plan`                     | Generate implementation plan               |
+| 2    | `azure-principal-architect` | WAF assessment, architecture guidance      |
+| 3    | Design Artifacts            | Design diagrams + ADRs (`-des` suffix)     |
+| 4    | `bicep-plan`                | AVM module selection, governance discovery |
+| 5    | `bicep-implement`           | Generate validated Bicep templates         |
+| 6    | Deploy                      | Deploy to Azure                            |
+| 7    | As-Built Artifacts          | As-built diagrams + ADRs (`-ab` suffix)    |
 
-> **Note**: Steps 3 and 6 are optional artifact phases using `diagram-generator` and `adr-generator`.
+> **Note**: Steps 3 and 7 are optional artifact phases using `diagram-generator` and `adr-generator`.
 
 ## Main Documentation
 

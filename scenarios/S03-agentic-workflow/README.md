@@ -7,14 +7,14 @@
 
 **Jennifer Chen** is a Solutions Architect at Meridian Systems, a Microsoft SI Partner specializing
 in healthcare. She has a new client engagement: Contoso Healthcare needs a HIPAA-compliant patient
-portal with a tight budget ($800/month) and ambitious timeline. Jennifer knows the 6-step agent
+portal with a tight budget ($800/month) and ambitious timeline. Jennifer knows the 7-step agent
 workflow will be her secret weapon—turning 18 hours of manual work into a 45-minute structured process.
 
 ---
 
 ## 🎯 Overview
 
-This demo showcases GitHub Copilot's **6-step agent workflow** for designing and implementing Azure infrastructure,
+This demo showcases GitHub Copilot's **7-step agent workflow** for designing and implementing Azure infrastructure,
 starting with VS Code's built-in **Plan Agent** and handing off to specialized custom agents.
 Each step includes an **approval gate** where you review and approve before proceeding.
 It demonstrates how architects and IT professionals can leverage plan-driven development
@@ -44,7 +44,7 @@ Traditional infrastructure design involves:
 - 📚 **Documentation lag**: Code and docs out of sync
 - 🎯 **Scope creep**: No structured planning before implementation
 
-**With 6-Step Agentic Workflow (Plan-First with Approval Gates)**:
+**With 7-Step Agentic Workflow (Plan-First with Approval Gates)**:
 
 - 📋 **Research before code**: VS Code Plan Agent researches comprehensively before any changes
 - ✅ **Approval gates**: Review and approve each step before proceeding
@@ -113,11 +113,11 @@ The plan ensures all requirements are considered before any code changes.
 - **Handoff**: Architecture assessment → Bicep Planning Specialist
 - **Optional**: Generate Architecture Diagram → diagram-generator
 
-### Step 3: Pre-Build Artifacts (Optional)
+### Step 3: Design Artifacts (Optional)
 
 - **Purpose**: Generate design documentation before implementation
 - **Agents**: `diagram-generator` and `adr-generator`
-- **Output**: Architecture diagrams with `-design` suffix, ADRs for proposed decisions
+- **Output**: Architecture diagrams with `-des` suffix, ADRs for proposed decisions
 - **Handoff**: Continue to Bicep Planning Specialist
 
 ### Step 4: Bicep Planning Specialist (`bicep-plan`)
@@ -140,11 +140,11 @@ The plan ensures all requirements are considered before any code changes.
 - **Naming Convention**: Generates unique suffixes using `uniqueString()` to prevent resource name collisions
 - **Optional**: Generate Architecture Diagram → diagram-generator
 
-### Step 6: Post-Build Artifacts (Optional)
+### Step 7: As-Built Artifacts (Optional)
 
 - **Purpose**: Generate as-built documentation after implementation
 - **Agents**: `diagram-generator` and `adr-generator`
-- **Output**: Architecture diagrams with `-asbuilt` suffix, ADRs for implemented decisions
+- **Output**: Architecture diagrams with `-ab` suffix, ADRs for implemented decisions
 - **Use Case**: Document final state, any deviations from design
 
 ### Optional: ADR Generator (`adr-generator`)
@@ -399,7 +399,7 @@ The plan becomes a reusable `*.prompt.md` file.
 
 By the end of this demo, participants will:
 
-1. ✅ Understand the **6-step agentic workflow** for Azure infrastructure (starting with Plan Agent)
+1. ✅ Understand the **7-step agentic workflow** for Azure infrastructure (starting with Plan Agent)
 2. ✅ Use VS Code's built-in **Plan Agent** to research before implementing
 3. ✅ Generate and edit **`*.prompt.md` plan files** for reusable workflows
 4. ✅ Use agent handoff buttons/controls for seamless transitions
@@ -474,7 +474,7 @@ By the end of this demo, participants will:
 
 - **Hook**: "What if you could go from customer requirements to near-production-ready infrastructure in 30 minutes?"
 - Present traditional timeline (2-3 days)
-- Introduce 6-step agentic workflow concept (6-step workflow with approval gates)
+- Introduce 7-step agentic workflow concept (7-step workflow with approval gates)
 
 ### During Demo (35 minutes)
 
@@ -532,7 +532,7 @@ agents handle time-consuming documentation and code generation.
 
 Demo is successful when audience:
 
-- [ ] Understands the **6-step agentic workflow** concept (starting with VS Code's built-in Plan Agent)
+- [ ] Understands the **7-step agentic workflow** concept (starting with VS Code's built-in Plan Agent)
 - [ ] Recognizes Plan Agent as a **built-in VS Code feature** (not a custom agent)
 - [ ] Understands how **`*.prompt.md` files** preserve and share implementation plans
 - [ ] Sees value in automatic context handoffs via UI controls
@@ -542,7 +542,7 @@ Demo is successful when audience:
 
 ## 📝 Feedback & Improvement
 
-This demo was created from an actual test execution of the 6-step agentic workflow. If you have suggestions for improvement:
+This demo was created from an actual test execution of the 7-step agentic workflow. If you have suggestions for improvement:
 
 1. Open an issue in the repository
 2. Describe your scenario/variation

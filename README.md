@@ -44,11 +44,11 @@
 %%{init: {'theme':'base', 'themeVariables': {'primaryColor': '#0078D4', 'primaryTextColor': '#ffffff', 'primaryBorderColor': '#005A9E', 'lineColor': '#6B7280', 'secondaryColor': '#00B4AB', 'tertiaryColor': '#8957E5', 'background': '#ffffff', 'mainBkg': '#ffffff', 'nodeBorder': '#005A9E', 'clusterBkg': '#F3F4F6', 'titleColor': '#1F2937', 'edgeLabelBackground': '#ffffff'}}}%%
 graph LR
     P["🎯 @plan<br/>Step 1"]:::plan --> A["🏛️ architect<br/>Step 2"]:::architect
-    A --> D3["📊 Pre-Build<br/>Step 3"]:::artifact
+    A --> D3["📊 Design<br/>Step 3"]:::artifact
     D3 --> B["📋 bicep-plan<br/>Step 4"]:::bicep
     B --> I["⚙️ implement<br/>Step 5"]:::bicep
-    I --> D6["📊 Post-Build<br/>Step 6"]:::artifact
-    D6 -.-> W["📚 Docs<br/>Step 7"]:::docs
+    I --> DEP["🚀 Deploy<br/>Step 6"]:::deploy
+    DEP --> D7["📊 As-Built<br/>Step 7"]:::artifact
     MCP["💰 Pricing MCP"]:::pricing -.->|costs| A
     MCP -.->|validation| B
 
@@ -57,7 +57,7 @@ graph LR
     classDef bicep fill:#00B4AB,stroke:#008F89,color:#fff
     classDef pricing fill:#FF6B35,stroke:#E55A25,color:#fff
     classDef artifact fill:#6B7280,stroke:#4B5563,color:#fff
-    classDef docs fill:#10B981,stroke:#059669,color:#fff
+    classDef deploy fill:#10B981,stroke:#059669,color:#fff
 ```
 
 <!-- markdownlint-enable MD013 -->
@@ -68,22 +68,22 @@ graph LR
 | ----- | -------------------------------- | -------------------------------------- |
 | 🟣    | `@plan`                          | Gather and refine requirements         |
 | 🔵    | `azure-principal-architect`      | WAF assessment (NO code)               |
-| ⚫    | Pre/Post-Build Artifacts         | Diagrams & ADRs (`-design`/`-asbuilt`) |
+| ⚫    | Design / As-Built Artifacts      | Diagrams & ADRs (`-des`/`-ab` suffix)  |
 | 🟢    | `bicep-plan` / `bicep-implement` | Implementation plan & Bicep generation |
 | 🟠    | `Azure Pricing MCP`              | Real-time cost estimation              |
-| 🟩    | `workload-documentation`         | Customer-deliverable docs (optional)   |
+| 🟩    | Deploy / As-Built                | Azure deployment + documentation       |
 
-| Step | Agent/Phase                 | What It Does                          |
-| ---- | --------------------------- | ------------------------------------- |
-| 1    | `@plan`                     | Gather requirements                   |
-| 2    | `azure-principal-architect` | WAF assessment (NO code) 💰           |
-| 3    | Pre-Build Artifacts         | Design diagrams + ADRs (`-design`)    |
-| 4    | `bicep-plan`                | Implementation plan + governance 💰   |
-| 5    | `bicep-implement`           | Generate & validate Bicep             |
-| 6    | Post-Build Artifacts        | As-built diagrams + ADRs (`-asbuilt`) |
-| 7    | `workload-documentation`    | Design docs, runbooks, inventory ⭐   |
+| Step | Agent/Phase                 | What It Does                                 |
+| ---- | --------------------------- | -------------------------------------------- |
+| 1    | `@plan`                     | Gather requirements → `01-*`                 |
+| 2    | `azure-principal-architect` | WAF assessment (NO code) 💰 → `02-*`         |
+| 3    | Design Artifacts            | Design diagrams + ADRs (`-des`) → `03-*`     |
+| 4    | `bicep-plan`                | Implementation plan + governance 💰 → `04-*` |
+| 5    | `bicep-implement`           | Generate & validate Bicep → `05-*`           |
+| 6    | Deploy                      | Deploy to Azure → `06-*`                     |
+| 7    | As-Built Artifacts          | As-built diagrams, ADRs, docs → `07-*`       |
 
-> **💰** = Azure Pricing MCP integration. Steps 3, 6 & 7 are optional.
+> **💰** = Azure Pricing MCP integration. Steps 3 & 7 are optional.
 
 </details>
 

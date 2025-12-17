@@ -7,7 +7,7 @@
 
 **Carlos Mendez** is an E-Commerce Architect at TechRetail Inc. With 90 days until Black Friday,
 he needs to build infrastructure that handles 50,000 concurrent users while maintaining PCI-DSS
-compliance for payment processing. The full 6-step workflow—including real-time cost validation
+compliance for payment processing. The full 7-step workflow—including real-time cost validation
 with the Azure Pricing MCP server—is exactly what he needs to deliver on time and on budget.
 
 ---
@@ -16,7 +16,7 @@ with the Azure Pricing MCP server—is exactly what he needs to deliver on time 
 
 This demo showcases GitHub Copilot's **complete agent workflow** for designing and implementing a
 **PCI-DSS compliant e-commerce platform** on Azure.
-It demonstrates all 6 steps:
+It demonstrates all 7 steps:
 `@plan → azure-principal-architect → pricing/diagram → bicep-plan → bicep-implement → deploy`,
 with real-time cost validation using the Azure Pricing MCP server.
 
@@ -34,7 +34,7 @@ with real-time cost validation using the Azure Pricing MCP server.
 
 ## 🌟 Why This Matters
 
-This demo extends the 6-step workflow by adding:
+This demo extends the 7-step workflow by adding:
 
 - 💰 **Real-time pricing**: Azure Pricing MCP server for accurate cost estimates
 - 📊 **Architecture diagrams**: Python-based diagrams using `diagrams` library
@@ -287,7 +287,7 @@ By the end of this demo, participants will:
 
 - **Hook**: "What if you could design, validate, and deploy a PCI-DSS compliant e-commerce platform in under 3 hours?"
 - Present traditional timeline (3-5 days)
-- Introduce the 6-step workflow with MCP pricing
+- Introduce the 7-step workflow with MCP pricing
 
 ### During Demo (60 minutes)
 
@@ -314,7 +314,7 @@ By the end of this demo, participants will:
 
 Demo is successful when audience:
 
-- [ ] Understands the **6-step workflow** with pricing and diagrams
+- [ ] Understands the **7-step workflow** with pricing and diagrams
 - [ ] Sees value in **real-time cost validation** before deployment
 - [ ] Recognizes **PCI-DSS security patterns** implemented
 - [ ] Appreciates **issue resolution documentation**

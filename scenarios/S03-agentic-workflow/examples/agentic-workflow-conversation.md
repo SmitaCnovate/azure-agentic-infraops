@@ -1,6 +1,6 @@
 # Agentic Workflow: Complete Conversation Transcript
 
-This document shows a complete conversation demonstrating the 6-step agentic workflow agents working together
+This document shows a complete conversation demonstrating the 7-step agentic workflow agents working together
 to design and implement Azure infrastructure for Contoso Healthcare's patient portal.
 
 **Character**: Jennifer Chen, Solutions Architect at Meridian Systems (SI Partner)  

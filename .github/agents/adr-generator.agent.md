@@ -77,9 +77,9 @@ Before creating an ADR, collect the following inputs from the user or conversati
 
 **Workflow Phase Detection:**
 
-- **Step 3 (Pre-Build)**: ADRs for design decisions before implementation → prefix: `03-design-adr-`
-- **Step 6 (Post-Build)**: ADRs documenting implemented architecture → prefix: `06-asbuilt-adr-`
-- Determine phase from conversation context (architect handoff = design, implement handoff = asbuilt)
+- **Step 3 (Design)**: ADRs for design decisions before implementation → prefix: `03-des-adr-`
+- **Step 7 (As-Built)**: ADRs documenting implemented architecture → prefix: `07-ab-adr-`
+- Determine phase from conversation context (architect handoff = design, after deployment = as-built)
 
 **ADR Numbering:**
 
@@ -98,8 +98,8 @@ Create an ADR as a markdown file following the standardized format below with th
 - Use coded bullet points (3-letter codes + 3-digit numbers) for multi-item sections
 - Structure content for both machine parsing and human reference
 - Save to `agent-output/{project-name}/` with step-prefixed naming:
-  - Design phase: `03-design-adr-NNNN-{title-slug}.md`
-  - Asbuilt phase: `06-asbuilt-adr-NNNN-{title-slug}.md`
+  - Design phase: `03-des-adr-NNNN-{title-slug}.md`
+  - As-built phase: `07-ab-adr-NNNN-{title-slug}.md`
 
 ---
 
@@ -221,14 +221,14 @@ For each alternative:
 
 **Step Prefixes:**
 
-- `03-design-adr-` for pre-implementation design decisions (Step 3)
-- `06-asbuilt-adr-` for post-implementation documentation (Step 6)
+- `03-des-adr-` for design decisions (Step 3)
+- `07-ab-adr-` for as-built documentation (Step 7)
 
 **Examples:**
 
-- `03-design-adr-0001-database-selection.md`
-- `06-asbuilt-adr-0001-authentication-strategy.md`
-- `03-design-adr-0002-microservices-architecture.md`
+- `03-des-adr-0001-database-selection.md`
+- `07-ab-adr-0001-authentication-strategy.md`
+- `03-des-adr-0002-microservices-architecture.md`
 
 ### Location
 
@@ -286,17 +286,17 @@ Before finalizing the ADR, verify:
 
 ### Position in Workflow
 
-This agent produces artifacts in **Step 3** (pre-build, `-design`) or **Step 6** (post-build, `-asbuilt`).
+This agent produces artifacts in **Step 3** (design, `-des`) or **Step 7** (as-built, `-ab`).
 
 ```mermaid
 %%{init: {'theme':'neutral'}}%%
 graph TD
     A[azure-principal-architect<br/>Step 2] --> D{Document decision?}
-    D -->|Yes| ADR[adr-generator<br/>-design suffix]
+    D -->|Yes| ADR[adr-generator<br/>-des suffix]
     D -->|No| B[bicep-plan<br/>Step 4]
     ADR --> B
-    I[bicep-implement<br/>Step 5] --> F{Final documentation?}
-    F -->|Yes| ADR2[adr-generator<br/>-asbuilt suffix]
+    DEP[Deploy<br/>Step 6] --> F{Final documentation?}
+    F -->|Yes| ADR2[adr-generator<br/>-ab suffix]
     F -->|No| Done[Complete]
     ADR2 --> Done
 
@@ -304,44 +304,45 @@ graph TD
     style ADR2 fill:#fff3e0,stroke:#ff9800,stroke-width:2px
 ```
 
-**6-Step Workflow Overview:**
+**7-Step Workflow Overview:**
 
-| Step | Phase                     | This Agent's Role                                |
-| ---- | ------------------------- | ------------------------------------------------ |
-| 1    | @plan                     | —                                                |
-| 2    | azure-principal-architect | Caller (triggers Step 3)                         |
-| 3    | **Pre-Build Artifacts**   | Generate `-design` ADRs (proposed decisions)     |
-| 4    | bicep-plan                | —                                                |
-| 5    | bicep-implement           | Caller (triggers Step 6)                         |
-| 6    | **Post-Build Artifacts**  | Generate `-asbuilt` ADRs (implemented decisions) |
+| Step | Phase                     | This Agent's Role                           |
+| ---- | ------------------------- | ------------------------------------------- |
+| 1    | @plan                     | —                                           |
+| 2    | azure-principal-architect | Caller (triggers Step 3)                    |
+| 3    | **Design Artifacts**      | Generate `-des` ADRs (proposed decisions)   |
+| 4    | bicep-plan                | —                                           |
+| 5    | bicep-implement           | —                                           |
+| 6    | Deploy                    | Caller (triggers Step 7)                    |
+| 7    | **As-Built Artifacts**    | Generate `-ab` ADRs (implemented decisions) |
 
 ### Artifact Suffix Convention
 
 Apply the appropriate suffix based on when the ADR is generated:
 
-- **`-design`**: Pre-implementation ADRs (Step 3 artifacts)
+- **`-des`**: Design ADRs (Step 3 artifacts)
 
-  - Example: `adr-0015-database-selection-design.md`
+  - Example: `03-des-adr-0015-database-selection.md`
   - Status: "Proposed" or "Accepted"
   - Represents: Decisions made during architecture phase
   - Called from: `azure-principal-architect` handoff
 
-- **`-asbuilt`**: Post-implementation ADRs (Step 6 artifacts)
-  - Example: `adr-0015-database-selection-asbuilt.md`
+- **`-ab`**: As-built ADRs (Step 7 artifacts)
+  - Example: `07-ab-adr-0015-database-selection.md`
   - Status: "Implemented"
   - Represents: Actual decisions after implementation, including any deviations
-  - Called from: `bicep-implement` handoff
+  - Called from: After deployment (Step 6) or workload documentation handoff
 
 **Suffix Rules:**
 
-1. When called from `azure-principal-architect` → use `-design` suffix
-2. When called from `bicep-implement` → use `-asbuilt` suffix
+1. When called from `azure-principal-architect` → use `-des` suffix
+2. When called after deployment (Step 6) → use `-ab` suffix
 3. When called standalone:
-   - Design/proposal/planning language → use `-design`
-   - Deployed/implemented/current state language → use `-asbuilt`
-   - If updating an existing `-design` ADR after implementation → create `-asbuilt` version
+   - Design/proposal/planning language → use `-des`
+   - Deployed/implemented/current state language → use `-ab`
+   - If updating an existing `-des` ADR after implementation → create `-ab` version
 
-**Important**: The `-asbuilt` ADR may differ from `-design` if implementation required changes.
+**Important**: The `-ab` ADR may differ from `-des` if implementation required changes.
 Document any deviations in the "Implementation Notes" section.
 
 ---

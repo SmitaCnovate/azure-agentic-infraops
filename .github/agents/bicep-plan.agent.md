@@ -486,29 +486,31 @@ az resource delete --ids {resource-id}
 
 ### Position in Workflow
 
-This agent is **Step 4** of the 6-step agentic infrastructure workflow.
+This agent is **Step 4** of the 7-step agentic infrastructure workflow.
 
 ```mermaid
 %%{init: {'theme':'neutral'}}%%
 graph LR
     P["@plan<br/>(Step 1)"] --> A[azure-principal-architect<br/>Step 2]
-    A --> D["Pre-Build Artifacts<br/>(Step 3)"]
+    A --> D["Design Artifacts<br/>(Step 3)"]
     D --> B[bicep-plan<br/>Step 4]
     B --> I[bicep-implement<br/>Step 5]
-    I --> F["Post-Build Artifacts<br/>(Step 6)"]
+    I --> DEP["Deploy<br/>(Step 6)"]
+    DEP --> F["As-Built Artifacts<br/>(Step 7)"]
     style B fill:#e8f5e9,stroke:#4caf50,stroke-width:3px
 ```
 
-**6-Step Workflow Overview:**
+**7-Step Workflow Overview:**
 
 | Step | Agent/Phase               | Purpose                                                       |
 | ---- | ------------------------- | ------------------------------------------------------------- |
-| 1    | @plan                     | Requirements gathering                                        |
-| 2    | azure-principal-architect | WAF assessment                                                |
-| 3    | Pre-Build Artifacts       | Design diagrams + ADRs (optional)                             |
+| 1    | @plan                     | Requirements gathering → `01-requirements.md`                 |
+| 2    | azure-principal-architect | WAF assessment → `02-*` files                                 |
+| 3    | Design Artifacts          | Design diagrams + ADRs → `03-des-*` files                     |
 | 4    | **bicep-plan**            | Implementation planning + governance discovery (YOU ARE HERE) |
-| 5    | bicep-implement           | Bicep code generation                                         |
-| 6    | Post-Build Artifacts      | As-built diagrams + ADRs (optional)                           |
+| 5    | bicep-implement           | Bicep code generation → `05-*` + `infra/bicep/`               |
+| 6    | Deploy                    | Deploy to Azure → `06-deployment-summary.md`                  |
+| 7    | As-Built Artifacts        | As-built diagrams, ADRs, workload docs → `07-*` files         |
 
 ### Input
 

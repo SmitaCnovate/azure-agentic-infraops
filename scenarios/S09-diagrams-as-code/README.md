@@ -1,7 +1,7 @@
 # S09: Diagrams-as-Code with GitHub Copilot
 
 > **🤖 Agent Available**: This scenario is also available as the `diagram-generator` agent for integration with
-> the 6-step workflow. See `.github/agents/diagram-generator.agent.md`.
+> the 7-step workflow. See `.github/agents/diagram-generator.agent.md`.
 
 ---
 
@@ -50,9 +50,9 @@ By the end of this demo, participants will understand:
 | -------------------------------------------------------------------------- | ------------------------------- |
 | [Diagram Generator Agent](../../.github/agents/diagram-generator.agent.md) | Agent definition                |
 | [Diagrams Output](../../docs/diagrams/)                                    | Generated architecture diagrams |
-| [Workflow Guide](../../docs/workflow/WORKFLOW.md)                          | Six-step agentic workflow        |
+| [Workflow Guide](../../docs/workflow/WORKFLOW.md)                          | Six-step agentic workflow       |
 | [Presenter Toolkit](../../docs/presenter-toolkit/)                         | Demo delivery guides            |
-| [S03: Agentic Workflow](../S03-agentic-workflow/)                    | Integration with main workflow  |
+| [S03: Agentic Workflow](../S03-agentic-workflow/)                          | Integration with main workflow  |
 
 ## The Challenge: Traditional Diagramming Pain Points
 

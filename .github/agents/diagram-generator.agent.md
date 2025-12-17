@@ -45,6 +45,7 @@ Create Python diagram code that generates professional Azure architecture diagra
 Apply the appropriate suffix based on when the diagram is generated:
 
 - **`-design`**: Pre-implementation diagrams (Step 3 artifacts)
+
   - Example: `architecture-design.py`, `architecture-design.png`
   - Represents: Proposed architecture, conceptual design
   - Called from: `azure-principal-architect` handoff
@@ -55,6 +56,7 @@ Apply the appropriate suffix based on when the diagram is generated:
   - Called from: `bicep-implement` handoff
 
 **Important**: When called directly (standalone request), determine intent from user prompt:
+
 - Design/proposal/planning language → use `-design`
 - Deployed/implemented/current state language → use `-asbuilt`
 
@@ -154,7 +156,14 @@ resource1 >> resource2 >> resource1
 
 ### File Location
 
-Save diagrams to: `docs/diagrams/{project-name}/architecture.py`
+Save diagrams to: `agent-output/{project-name}/` with step-prefixed filenames:
+
+| Workflow Step       | File Pattern                                      | Description                         |
+| ------------------- | ------------------------------------------------- | ----------------------------------- |
+| Step 3 (Pre-Build)  | `03-design-diagram.py`, `03-design-diagram.png`   | Proposed architecture visualization |
+| Step 6 (Post-Build) | `06-asbuilt-diagram.py`, `06-asbuilt-diagram.png` | Deployed architecture documentation |
+
+**Project Name**: Inherit from conversation context or prompt user if starting fresh.
 
 ### Standard Template
 
@@ -321,14 +330,14 @@ graph TD
 
 **6-Step Workflow Overview:**
 
-| Step | Phase | This Agent's Role |
-|------|-------|-------------------|
-| 1 | @plan | — |
-| 2 | azure-principal-architect | Caller (triggers Step 3) |
-| 3 | **Pre-Build Artifacts** | Generate `-design` diagrams |
-| 4 | bicep-plan | — |
-| 5 | bicep-implement | Caller (triggers Step 6) |
-| 6 | **Post-Build Artifacts** | Generate `-asbuilt` diagrams |
+| Step | Phase                     | This Agent's Role            |
+| ---- | ------------------------- | ---------------------------- |
+| 1    | @plan                     | —                            |
+| 2    | azure-principal-architect | Caller (triggers Step 3)     |
+| 3    | **Pre-Build Artifacts**   | Generate `-design` diagrams  |
+| 4    | bicep-plan                | —                            |
+| 5    | bicep-implement           | Caller (triggers Step 6)     |
+| 6    | **Post-Build Artifacts**  | Generate `-asbuilt` diagrams |
 
 ### Approval Gate
 
@@ -338,16 +347,18 @@ After generating diagram code, ask:
 >
 > I've created a Python diagram file:
 >
-> - **File**: `docs/diagrams/{project}/architecture.py`
+> - **File**: `agent-output/{project}/{step}-diagram.py`
 > - **Resources**: X Azure resources visualized
 > - **Clusters**: Y logical groupings
 >
 > **To generate the PNG:**
 >
 > ```bash
-> cd docs/diagrams/{project}
-> python architecture.py
+> cd agent-output/{project}
+> python {step}-diagram.py
 > ```
+>
+> _(Where `{step}` is `03-design` or `06-asbuilt` based on workflow phase)_
 >
 > **Do you approve this diagram?**
 >
@@ -359,7 +370,8 @@ After generating diagram code, ask:
 
 **DO:**
 
-- ✅ Create diagram files in `docs/diagrams/{project}/`
+- ✅ Create diagram files in `agent-output/{project}/`
+- ✅ Use step-prefixed filenames (`03-design-*` or `06-asbuilt-*`)
 - ✅ Use valid `diagrams.azure.*` imports only
 - ✅ Include docstring with prerequisites and generation command
 - ✅ Match diagram to approved architecture design
@@ -370,6 +382,7 @@ After generating diagram code, ask:
 - ❌ Create diagrams that don't match the actual architecture
 - ❌ Skip the validation step (test PNG generation)
 - ❌ Overwrite existing diagrams without user consent
+- ❌ Output to legacy `docs/diagrams/` folder (use `agent-output/` instead)
 
 ## Patterns to Avoid
 

@@ -186,6 +186,78 @@ Prompt: Generate Bicep templates from the plan
 - **App Service Plans**: Use P1v4 (Premium) or higher for zone redundancy (Standard SKU doesn't support it)
 - **SQL Server**: Use Azure AD-only auth and grant logged in user appropriate admin permissions
 
+## Project Naming and Output Organization
+
+**All agent outputs (except Bicep code) go to `agent-output/{project-name}/`.**
+
+### Project Name Workflow
+
+1. **Step 1 (@plan)**: When starting a new workflow, prompt the user for a project name:
+
+   - Check if any `agent-output/*/` folders exist
+   - If existing projects found, ask: "Would you like to continue an existing project or start a new one?"
+   - For new projects, validate the name: lowercase, alphanumeric with hyphens, 3-50 characters
+   - Create `agent-output/{project-name}/README.md` with project index template
+
+2. **Steps 2-6**: Inherit the project name from conversation context
+   - All agents should detect the active project from previous messages
+   - If unclear, ask: "Which project is this for?" and list existing `agent-output/*/` folders
+
+### Output File Locations
+
+| Agent                     | Step | Output Location                                                                    |
+| ------------------------- | ---- | ---------------------------------------------------------------------------------- |
+| @plan                     | 1    | Chat context only (not persisted)                                                  |
+| azure-principal-architect | 2    | `agent-output/{project}/01-architecture-assessment.md`, `01-cost-estimate.md`      |
+| diagram-generator         | 3    | `agent-output/{project}/03-design-diagram.py`, `03-design-diagram.png`             |
+| adr-generator             | 3    | `agent-output/{project}/03-design-adr-NNN-{title}.md`                              |
+| bicep-plan                | 4    | `agent-output/{project}/04-implementation-plan.md`, `04-governance-constraints.md` |
+| bicep-implement           | 5    | `infra/bicep/{project}/` (Bicep code stays here)                                   |
+| —                         | 5    | `agent-output/{project}/05-implementation-reference.md` (link to Bicep folder)     |
+| diagram-generator         | 6    | `agent-output/{project}/06-asbuilt-diagram.py`, `06-asbuilt-diagram.png`           |
+| adr-generator             | 6    | `agent-output/{project}/06-asbuilt-adr-NNN-{title}.md`                             |
+
+### Auto-Generated Project README
+
+Each project's `README.md` is updated by agents to track progress:
+
+```markdown
+# {Project Name} - Agent Outputs
+
+**Created**: {date}
+**Last Updated**: {date}
+
+## Workflow Progress
+
+- [x] Step 1: Requirements (@plan)
+- [x] Step 2: Architecture (azure-principal-architect)
+- [ ] Step 3: Pre-Build Artifacts (optional)
+- [ ] Step 4: Planning (bicep-plan)
+- [ ] Step 5: Implementation (bicep-implement)
+- [ ] Step 6: Post-Build Artifacts (optional)
+
+## Generated Artifacts
+
+| File                                                             | Description    | Created |
+| ---------------------------------------------------------------- | -------------- | ------- |
+| [01-architecture-assessment.md](./01-architecture-assessment.md) | WAF assessment | {date}  |
+
+## Related Resources
+
+- **Bicep Code**: [`infra/bicep/{project}/`](../../infra/bicep/{project}/)
+```
+
+### Legacy Output Locations (Preserved for Demos)
+
+Existing demo outputs remain untouched:
+
+- `docs/adr/` - Global Architecture Decision Records
+- `docs/diagrams/` - Workflow and demo diagrams
+- `.bicep-planning-files/` - Legacy planning files
+- `scenarios/scenario-output/` - Scenario demo outputs
+
+New projects should use `agent-output/` exclusively.
+
 ## Repository Structure
 
 ```
@@ -201,7 +273,10 @@ azure-agentic-infraops/
 │   │   ├── diagram-generator.agent.md
 │   │   └── infrastructure-specialist.agent.md  # Unified agent (optional)
 │   └── copilot-instructions.md          # THIS FILE - AI agent guidance
-├── .bicep-planning-files/               # Generated implementation plans
+├── agent-output/                        # Agent-generated artifacts (per project)
+│   ├── README.md                        # Structure documentation
+│   └── {project-name}/                  # Project-specific outputs
+├── .bicep-planning-files/               # Legacy planning files (demo use)
 ├── infra/bicep/                         # Generated Bicep templates
 ├── scenarios/
 │   ├── README.md                        # Scenarios index

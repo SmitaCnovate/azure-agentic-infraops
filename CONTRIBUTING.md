@@ -91,16 +91,78 @@ git checkout -b fix/issue-description
 
 ```bash
 git add .
-git commit -m "feat: Add [feature description]"
+git commit -m "feat: add diagram generator improvements"
 git push origin feature/your-feature-name
 ```
 
-**Commit Message Format:**
+## 📝 Commit Message Format (Required)
 
-- `feat:` New feature
-- `fix:` Bug fix
-- `docs:` Documentation changes
-- `refactor:` Code refactoring
+This repository uses [Conventional Commits](https://www.conventionalcommits.org/) with automated enforcement.
+Commit messages are validated by commitlint before each commit.
+
+### Format
+
+```text
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+### Types
+
+| Type       | Description                             | Version Bump  |
+| ---------- | --------------------------------------- | ------------- |
+| `feat`     | New feature                             | Minor (1.x.0) |
+| `fix`      | Bug fix                                 | Patch (1.0.x) |
+| `docs`     | Documentation only changes              | None          |
+| `style`    | Code style (formatting, semicolons)     | None          |
+| `refactor` | Code refactoring (no functional change) | None          |
+| `perf`     | Performance improvements                | None          |
+| `test`     | Adding or updating tests                | None          |
+| `build`    | Build system or dependencies            | None          |
+| `ci`       | CI/CD configuration                     | None          |
+| `chore`    | Maintenance tasks                       | None          |
+| `revert`   | Reverting a previous commit             | None          |
+
+### Breaking Changes
+
+For breaking changes, add `!` after the type or include `BREAKING CHANGE:` in the footer:
+
+```bash
+# Breaking change indicator
+git commit -m "feat!: redesign agent workflow architecture"
+
+# Or with footer
+git commit -m "feat: new output structure
+
+BREAKING CHANGE: agent outputs now go to agent-output/ folder"
+```
+
+Breaking changes trigger a **major version bump** (x.0.0).
+
+### Examples
+
+```bash
+# Feature (minor version bump)
+git commit -m "feat: add terraform validation agent"
+git commit -m "feat(bicep): add diagnostic settings module"
+
+# Bug fix (patch version bump)
+git commit -m "fix: correct resource naming in Key Vault module"
+git commit -m "fix(docs): update broken quickstart links"
+
+# No version bump
+git commit -m "docs: update workflow documentation"
+git commit -m "chore: update dev container configuration"
+git commit -m "refactor: simplify agent handoff logic"
+```
+
+### Validation
+
+Commits are automatically validated by the commit-msg hook. If your commit message
+doesn't follow the format, you'll see a helpful error with examples.
 
 ### 5. Create Pull Request
 

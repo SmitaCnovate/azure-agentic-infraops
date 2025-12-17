@@ -9,6 +9,8 @@
     "lint:md:fix": "markdownlint-cli2 --fix '**/*.md' '#node_modules'"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.0.0",
+    "@commitlint/config-conventional": "^19.0.0",
     "husky": "^9.0.0",
     "markdownlint-cli2": "^0.17.0"
   },

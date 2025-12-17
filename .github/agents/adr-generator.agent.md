@@ -73,11 +73,19 @@ Before creating an ADR, collect the following inputs from the user or conversati
 
 **Input Validation:** If any required information is missing, ask the user to provide it before proceeding.
 
-### 2. Determine ADR Number
+### 2. Determine ADR Number and Workflow Phase
 
-- Check the `/docs/adr/` directory for existing ADRs
-- Determine the next sequential 4-digit number (e.g., 0001, 0002, etc.)
-- If the directory doesn't exist, start with 0001
+**Workflow Phase Detection:**
+
+- **Step 3 (Pre-Build)**: ADRs for design decisions before implementation → prefix: `03-design-adr-`
+- **Step 6 (Post-Build)**: ADRs documenting implemented architecture → prefix: `06-asbuilt-adr-`
+- Determine phase from conversation context (architect handoff = design, implement handoff = asbuilt)
+
+**ADR Numbering:**
+
+- Check the `agent-output/{project-name}/` directory for existing ADRs
+- Determine the next sequential 4-digit number within that project (e.g., 0001, 0002, etc.)
+- If starting fresh, begin with 0001
 
 ### 3. Generate ADR Document in Markdown
 
@@ -89,7 +97,9 @@ Create an ADR as a markdown file following the standardized format below with th
 - Document all alternatives with clear rejection rationale
 - Use coded bullet points (3-letter codes + 3-digit numbers) for multi-item sections
 - Structure content for both machine parsing and human reference
-- Save the file to `/docs/adr/` with proper naming convention
+- Save to `agent-output/{project-name}/` with step-prefixed naming:
+  - Design phase: `03-design-adr-NNNN-{title-slug}.md`
+  - Asbuilt phase: `06-asbuilt-adr-NNNN-{title-slug}.md`
 
 ---
 
@@ -207,17 +217,24 @@ For each alternative:
 
 ### Naming Convention
 
-`adr-NNNN-[title-slug].md`
+`{step}-adr-NNNN-[title-slug].md`
+
+**Step Prefixes:**
+
+- `03-design-adr-` for pre-implementation design decisions (Step 3)
+- `06-asbuilt-adr-` for post-implementation documentation (Step 6)
 
 **Examples:**
 
-- `adr-0001-database-selection.md`
-- `adr-0015-microservices-architecture.md`
-- `adr-0042-authentication-strategy.md`
+- `03-design-adr-0001-database-selection.md`
+- `06-asbuilt-adr-0001-authentication-strategy.md`
+- `03-design-adr-0002-microservices-architecture.md`
 
 ### Location
 
-All ADRs must be saved in: `/docs/adr/`
+All ADRs must be saved in: `agent-output/{project-name}/`
+
+**Project Name**: Inherit from conversation context or prompt user if starting fresh.
 
 ### Title Slug Guidelines
 
@@ -289,20 +306,21 @@ graph TD
 
 **6-Step Workflow Overview:**
 
-| Step | Phase | This Agent's Role |
-|------|-------|-------------------|
-| 1 | @plan | — |
-| 2 | azure-principal-architect | Caller (triggers Step 3) |
-| 3 | **Pre-Build Artifacts** | Generate `-design` ADRs (proposed decisions) |
-| 4 | bicep-plan | — |
-| 5 | bicep-implement | Caller (triggers Step 6) |
-| 6 | **Post-Build Artifacts** | Generate `-asbuilt` ADRs (implemented decisions) |
+| Step | Phase                     | This Agent's Role                                |
+| ---- | ------------------------- | ------------------------------------------------ |
+| 1    | @plan                     | —                                                |
+| 2    | azure-principal-architect | Caller (triggers Step 3)                         |
+| 3    | **Pre-Build Artifacts**   | Generate `-design` ADRs (proposed decisions)     |
+| 4    | bicep-plan                | —                                                |
+| 5    | bicep-implement           | Caller (triggers Step 6)                         |
+| 6    | **Post-Build Artifacts**  | Generate `-asbuilt` ADRs (implemented decisions) |
 
 ### Artifact Suffix Convention
 
 Apply the appropriate suffix based on when the ADR is generated:
 
 - **`-design`**: Pre-implementation ADRs (Step 3 artifacts)
+
   - Example: `adr-0015-database-selection-design.md`
   - Status: "Proposed" or "Accepted"
   - Represents: Decisions made during architecture phase
@@ -344,7 +362,7 @@ Document any deviations in the "Implementation Notes" section.
 
 Your work is complete when:
 
-1. ADR file is created in `/docs/adr/` with correct naming
+1. ADR file is created in `agent-output/{project-name}/` with correct step-prefixed naming
 2. All required sections are filled with meaningful content
 3. Consequences realistically reflect the decision's impact
 4. Alternatives are thoroughly documented with clear rejection reasons

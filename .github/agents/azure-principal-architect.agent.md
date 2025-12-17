@@ -263,14 +263,14 @@ graph LR
 
 **6-Step Workflow Overview:**
 
-| Step | Agent/Phase | Purpose |
-|------|-------------|----------|
-| 1 | @plan | Requirements gathering |
-| 2 | **azure-principal-architect** | WAF assessment (YOU ARE HERE) |
-| 3 | Pre-Build Artifacts | Design diagrams + ADRs (optional) |
-| 4 | bicep-plan | Implementation planning + governance discovery |
-| 5 | bicep-implement | Bicep code generation |
-| 6 | Post-Build Artifacts | As-built diagrams + ADRs (optional) |
+| Step | Agent/Phase                   | Purpose                                        |
+| ---- | ----------------------------- | ---------------------------------------------- |
+| 1    | @plan                         | Requirements gathering                         |
+| 2    | **azure-principal-architect** | WAF assessment (YOU ARE HERE)                  |
+| 3    | Pre-Build Artifacts           | Design diagrams + ADRs (optional)              |
+| 4    | bicep-plan                    | Implementation planning + governance discovery |
+| 5    | bicep-implement               | Bicep code generation                          |
+| 6    | Post-Build Artifacts          | As-built diagrams + ADRs (optional)            |
 
 ### Input
 
@@ -315,14 +315,18 @@ Before handing off to bicep-plan, **ALWAYS** ask for approval:
 When the user requests to save the assessment (e.g., "save", "save to file", "document this"),
 create a markdown file using the `createOrEditFiles` tool:
 
-**File Location**: `docs/{project-name}-waf-assessment.md`
+**File Location**: `agent-output/{project-name}/01-architecture-assessment.md`
+
+Also update the project's `agent-output/{project-name}/README.md` to track this artifact.
 
 ### Saving Cost Estimates to Documentation
 
 When the user requests a cost estimate document
 (e.g., "create cost estimate", "save pricing", "document costs"), create a dedicated pricing file:
 
-**File Location**: `docs/{project-name}-cost-estimate.md`
+**File Location**: `agent-output/{project-name}/01-cost-estimate.md`
+
+Also update the project's `agent-output/{project-name}/README.md` to track this artifact.
 
 **Cost Estimate File Structure**:
 

@@ -1,0 +1,48 @@
+# Ecommerce Platform - Agent Outputs
+
+**Created**: December 2025
+**Last Updated**: December 17, 2025
+
+## Workflow Progress
+
+- [x] Step 1: Requirements (@plan)
+- [x] Step 2: Architecture (azure-principal-architect)
+- [ ] Step 3: Pre-Build Artifacts (optional)
+- [x] Step 4: Planning (bicep-plan)
+- [x] Step 5: Implementation (bicep-implement)
+- [x] Step 6: Post-Build Artifacts (diagram)
+- [x] Step 7: Workload Documentation ✅
+
+## Generated Artifacts
+
+| File                                                             | Description                       | Created  |
+| ---------------------------------------------------------------- | --------------------------------- | -------- |
+| [01-architecture-assessment.md](./01-architecture-assessment.md) | WAF assessment with pillar scores | Dec 2025 |
+| [01-cost-estimate.md](./01-cost-estimate.md)                     | Azure pricing estimate            | Dec 2025 |
+| [04-implementation-plan.md](./04-implementation-plan.md)         | Bicep implementation plan         | Dec 2025 |
+| [06-asbuilt-diagram.png](./06-asbuilt-diagram.png)               | Architecture diagram              | Dec 2025 |
+| [06-asbuilt-diagram.py](./06-asbuilt-diagram.py)                 | Diagram source code               | Dec 2025 |
+| [07-documentation-index.md](./07-documentation-index.md)         | Documentation master index        | Dec 2025 |
+| [07-design-document.md](./07-design-document.md)                 | Comprehensive design document     | Dec 2025 |
+| [07-operations-runbook.md](./07-operations-runbook.md)           | Day-2 operational procedures      | Dec 2025 |
+| [07-resource-inventory.md](./07-resource-inventory.md)           | Complete resource inventory       | Dec 2025 |
+| [07-compliance-matrix.md](./07-compliance-matrix.md)             | PCI-DSS control mapping           | Dec 2025 |
+| [07-backup-dr-plan.md](./07-backup-dr-plan.md)                   | Backup & disaster recovery plan   | Dec 2025 |
+
+## Related Resources
+
+- **Bicep Code**: [`infra/bicep/ecommerce/`](../../infra/bicep/ecommerce/)
+- **Legacy Outputs**: [`scenarios/scenario-output/ecommerce/`](../../scenarios/scenario-output/ecommerce/)
+
+## Project Overview
+
+PCI-DSS compliant multi-tier e-commerce platform with:
+
+- Azure Front Door with WAF (OWASP rules)
+- App Service (P1v4) with zone redundancy
+- Azure SQL Database with Azure AD-only auth
+- Azure Cache for Redis
+- Azure Cognitive Search
+- Service Bus Premium
+- Azure Functions for order processing
+- Full private endpoint isolation

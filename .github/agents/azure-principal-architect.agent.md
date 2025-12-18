@@ -91,7 +91,7 @@ If requirements are incomplete, respond:
 > - [ ] **Budget**: What is the monthly/annual cost budget?
 >
 > 📋 **Tip**: Use the comprehensive requirements template at
-> [`.github/prompts/plan-requirements.prompt.md`](../.github/prompts/plan-requirements.prompt.md)
+> [`.github/prompts/plan-requirements.prompt.md`](../prompts/plan-requirements.prompt.md)
 
 **Only proceed with WAF assessment when critical NFRs are defined.**
 
@@ -464,7 +464,7 @@ Also update the project's `agent-output/{project-name}/README.md` to track this 
 ## References
 
 - [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/)
-- [Azure Pricing MCP Architecture](../docs/diagrams/mcp/azure_pricing_mcp_architecture.png)
+- [Azure Pricing MCP Architecture](../../docs/diagrams/mcp/azure_pricing_mcp_architecture.png)
 ```
 
 ### WAF Assessment File Structure

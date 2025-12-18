@@ -56,7 +56,7 @@ This demo extends the 7-step workflow by adding:
 | [Cost Estimate](../../docs/cost-estimates/ecommerce-cost-estimate.md) | Monthly cost breakdown              |
 | [Workflow Outputs](../scenario-output/ecommerce/)                     | Step-by-step captured outputs       |
 | [ADR-003: AVM-First](../../docs/adr/ADR-003-avm-first-approach.md)    | Module selection rationale          |
-| [Presenter Toolkit](../../docs/presenter-toolkit/)                    | Demo delivery guides                |
+| [Presenter Toolkit](../../docs/presenter/)                            | Demo delivery guides                |
 
 ## 🤖 The Seven Steps
 

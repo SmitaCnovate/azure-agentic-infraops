@@ -64,7 +64,7 @@ jobs:
             ["README.md"]='s/> \*\*Version [0-9]+\.[0-9]+\.[0-9]+\*\*/> **Version '"$VERSION"'**/'
             ["docs/README.md"]='s/> \*\*Agentic InfraOps v[0-9]+\.[0-9]+\.[0-9]+\*\*/> **Agentic InfraOps v'"$VERSION"'**/'
             ["docs/guides/getting-started-journey.md"]='s/> \*\*Version [0-9]+\.[0-9]+\.[0-9]+\*\*/> **Version '"$VERSION"'**/'
-            ["docs/presenter-toolkit/README.md"]='s/> \*\*Version [0-9]+\.[0-9]+\.[0-9]+\*\*/> **Version '"$VERSION"'**/'
+            ["docs/presenter/README.md"]='s/> \*\*Version [0-9]+\.[0-9]+\.[0-9]+\*\*/> **Version '"$VERSION"'**/'
             ["scenarios/README.md"]='s/> \*\*Version [0-9]+\.[0-9]+\.[0-9]+\*\*/> **Version '"$VERSION"'**/'
             ["scenarios/S11-quick-demos/README.md"]='s/> \*\*Version [0-9]+\.[0-9]+\.[0-9]+\*\*/> **Version '"$VERSION"'**/'
             ["infra/bicep/contoso-patient-portal/README.md"]='s/> \*\*Version [0-9]+\.[0-9]+\.[0-9]+\*\*/> **Version '"$VERSION"'**/'
@@ -112,7 +112,7 @@ jobs:
             - `README.md`
             - `docs/README.md`
             - `docs/guides/getting-started-journey.md`
-            - `docs/presenter-toolkit/README.md`
+            - `docs/presenter/README.md`
             - `scenarios/README.md`
             - `scenarios/S11-quick-demos/README.md`
             - `infra/bicep/contoso-patient-portal/README.md`

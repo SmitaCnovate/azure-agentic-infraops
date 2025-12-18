@@ -240,31 +240,31 @@ You've completed your first agentic workflow!
 
 ### What You Learned
 
-| Concept | Description |
-| ------- | ----------- |
-| `@plan` agent | Gathers and structures requirements |
-| WAF assessment | Validates architecture quality |
-| Module design | Organizes infrastructure logically |
-| Bicep generation | Creates production-ready code |
-| Deployment | Azure CLI deployment process |
+| Concept          | Description                         |
+| ---------------- | ----------------------------------- |
+| `@plan` agent    | Gathers and structures requirements |
+| WAF assessment   | Validates architecture quality      |
+| Module design    | Organizes infrastructure logically  |
+| Bicep generation | Creates production-ready code       |
+| Deployment       | Azure CLI deployment process        |
 
 ### Time Comparison
 
-| Approach | Time |
-| -------- | ---- |
-| Traditional manual | 2-4 hours |
+| Approach              | Time           |
+| --------------------- | -------------- |
+| Traditional manual    | 2-4 hours      |
 | With Agentic InfraOps | **30 minutes** |
 
 ---
 
 ## Next Steps
 
-| Your Goal | Next Step |
-| --------- | --------- |
-| Try another beginner scenario | [S02 Terraform Baseline](../../scenarios/S02-terraform-baseline/) |
-| Learn advanced workflow | [S03 Agentic Workflow](../../scenarios/S03-five-agent-workflow/) |
-| Understand all agents | [Agents Overview](../reference/agents-overview.md) |
-| Explore all scenarios | [Scenarios Index](../../scenarios/) |
+| Your Goal                     | Next Step                                                        |
+| ----------------------------- | ---------------------------------------------------------------- |
+| Try another beginner scenario | [S02 Terraform Baseline](../../scenarios/S02-terraform-baseline/)|
+| Learn advanced workflow       | [S03 Agentic Workflow](../../scenarios/S03-agentic-workflow/)    |
+| Understand all agents         | [Agents Overview](../reference/agents-overview.md)               |
+| Explore all scenarios         | [Scenarios Index](../../scenarios/)                              |
 
 ---
 

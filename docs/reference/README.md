@@ -7,12 +7,12 @@ documents rather than duplicating content.
 
 ## Contents
 
-| Document | Purpose |
-| -------- | ------- |
-| [defaults.md](defaults.md) | Regions, CAF naming conventions, required tags, SKU recommendations |
-| [agents-overview.md](agents-overview.md) | All 7 agents in one comparison table with usage examples |
-| [workflow.md](workflow.md) | Canonical 7-step workflow diagram |
-| [bicep-patterns.md](bicep-patterns.md) | Critical Bicep deployment patterns |
+| Document                                 | Purpose                                                             |
+| ---------------------------------------- | ------------------------------------------------------------------- |
+| [defaults.md](defaults.md)               | Regions, CAF naming conventions, required tags, SKU recommendations |
+| [agents-overview.md](agents-overview.md) | All 7 agents in one comparison table with usage examples            |
+| [workflow.md](workflow.md)               | Canonical 7-step workflow diagram                                   |
+| [bicep-patterns.md](bicep-patterns.md)   | Critical Bicep deployment patterns                                  |
 
 ## Why Single Source of Truth?
 
@@ -27,6 +27,7 @@ When creating or updating agent definitions in `.github/agents/`:
 
 ```markdown
 <!-- Reference shared defaults instead of duplicating -->
+
 📖 **Region Defaults**: See [docs/reference/defaults.md](../../docs/reference/defaults.md)
 📖 **Naming Conventions**: See [docs/reference/defaults.md#caf-naming-conventions](../../docs/reference/defaults.md)
 ```

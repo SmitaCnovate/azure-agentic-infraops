@@ -59,7 +59,7 @@ $VersionFiles = @(
         Replace = "> **Version $NewVersion**"
     },
     @{
-        Path    = 'docs/presenter-toolkit/README.md'
+        Path    = 'docs/presenter/README.md'
         Pattern = '> \*\*Version \d+\.\d+\.\d+\*\*'
         Replace = "> **Version $NewVersion**"
     },

@@ -204,11 +204,11 @@ Step 6: Deploy → Azure Deployment
 
 ### Step 7: As-Built Artifacts (Optional)
 
-| Tool/Agent                        | Purpose                       | Output Suffix |
-| --------------------------------- | ----------------------------- | ------------- |
-| 📊 `diagram-generator`            | Document deployed state       | `-ab`         |
-| 📝 `adr-generator`                | Document implementation notes | `-ab`         |
-| 📚 `workload-documentation-gen.`  | Customer-deliverable docs     | `07-*`        |
+| Tool/Agent                       | Purpose                       | Output Suffix |
+| -------------------------------- | ----------------------------- | ------------- |
+| 📊 `diagram-generator`           | Document deployed state       | `-ab`         |
+| 📝 `adr-generator`               | Document implementation notes | `-ab`         |
+| 📚 `workload-documentation-gen.` | Customer-deliverable docs     | `07-*`        |
 
 ---
 

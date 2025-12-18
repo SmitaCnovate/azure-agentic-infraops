@@ -318,18 +318,29 @@ azure-agentic-infraops/
 │   └── S10-quick-demos/                 # Simple prompt demos
 └── docs/
     ├── README.md                        # Documentation hub
-    ├── guides/                          # All guides consolidated
+    ├── getting-started/                 # Beginner onboarding
     │   ├── quickstart.md                # Quick start guide
+    │   ├── first-scenario.md            # First scenario walkthrough
+    │   └── learning-paths.md            # Structured learning paths
+    ├── guides/                          # All guides consolidated
     │   ├── copilot-getting-started.md   # Copilot setup guide
     │   ├── copilot-best-practices.md    # Copilot best practices
     │   └── troubleshooting.md           # Troubleshooting guide
+    ├── reference/                       # Single-source-of-truth docs
+    │   ├── defaults.md                  # Regions, naming, tags, SKUs
+    │   ├── workflow.md                  # Canonical 7-step workflow
+    │   ├── agents-overview.md           # All agents comparison
+    │   └── bicep-patterns.md            # Bicep patterns guide
+    ├── presenter/                       # Demo toolkit & value prop
+    │   ├── time-savings-evidence.md     # ROI methodology
+    │   ├── executive-pitch.md           # C-level presentation
+    │   ├── demo-delivery-guide.md       # Demo walkthrough
+    │   └── roi-calculator.md            # ROI calculation guide
     ├── workflow/
     │   └── WORKFLOW.md                  # Workflow documentation
-    ├── value-proposition/               # ROI, time savings evidence
     ├── cost-estimates/                  # Azure pricing examples
     ├── adr/                             # Architecture Decision Records
-    ├── diagrams/                        # Generated architecture diagrams
-    └── presenter-toolkit/               # Demo delivery guides
+    └── diagrams/                        # Generated architecture diagrams
 ```
 
 ### Naming Conventions

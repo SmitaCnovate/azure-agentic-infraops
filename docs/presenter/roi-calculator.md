@@ -36,7 +36,7 @@ These measurements come from the repository's documented scenarios (S01-S11):
 | S09 - Diagrams as Code    | 45 min      | 20 min       | 25 min        | 56%       |
 | S10 - Coding Agent        | 8+ hours    | 30 min       | 7.5+ hours    | 94%       |
 
-📖 **Methodology**: See [Time Savings Evidence](../value-proposition/time-savings-evidence.md) for measurement details.
+📖 **Methodology**: See [Time Savings Evidence](time-savings-evidence.md) for measurement details.
 
 ---
 
@@ -295,7 +295,7 @@ Break-Even Hours = $19 / Hourly_Rate
 
 ## 📚 Resources
 
-- [Time Savings Evidence](../value-proposition/time-savings-evidence.md) — Detailed methodology
+- [Time Savings Evidence](time-savings-evidence.md) — Detailed methodology
 - [Demo Delivery Guide](demo-delivery-guide.md) — Presenting to stakeholders
 - [GitHub Copilot Pricing](https://github.com/features/copilot) — Official pricing page
 - [Objection Handling](objection-handling.md) — Address budget concerns

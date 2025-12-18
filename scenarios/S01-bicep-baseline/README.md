@@ -48,7 +48,7 @@ By the end of this demo, participants will understand:
 | [Workflow Guide](../../docs/workflow/WORKFLOW.md)                     | Seven-step agentic workflow |
 | [ADR-003: AVM-First](../../docs/adr/ADR-003-avm-first-approach.md)    | Module selection rationale  |
 | [ADR-004: Region Defaults](../../docs/adr/ADR-004-region-defaults.md) | `swedencentral` default     |
-| [Presenter Toolkit](../../docs/presenter-toolkit/)                    | Demo delivery guides        |
+| [Presenter Toolkit](../../docs/presenter/)                            | Demo delivery guides        |
 | [S03: Agentic Workflow](../S03-agentic-workflow/)                     | Next: advanced workflow     |
 
 ## The Challenge: Traditional IaC Learning Curve

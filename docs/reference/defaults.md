@@ -17,16 +17,16 @@ files should reference this document rather than duplicating content.
 
 ### Region Selection Guidelines
 
-| Requirement                  | Recommended Region   | Notes                              |
-| ---------------------------- | -------------------- | ---------------------------------- |
-| Default (no constraints)     | `swedencentral`      | Sustainable, EU-compliant          |
-| German data residency        | `germanywestcentral` | German sovereignty requirements    |
-| Swiss banking/healthcare     | `switzerlandnorth`   | Swiss regulations                  |
-| UK GDPR requirements         | `uksouth`            | UK data residency                  |
-| French data sovereignty      | `francecentral`      | French regulations                 |
-| APAC latency optimization    | `southeastasia`      | Asia-Pacific users                 |
-| Americas latency             | `eastus`, `westus2`  | North/South America users          |
-| Preview feature access       | `eastus`, `westus2`  | New Azure features first           |
+| Requirement               | Recommended Region   | Notes                           |
+| ------------------------- | -------------------- | ------------------------------- |
+| Default (no constraints)  | `swedencentral`      | Sustainable, EU-compliant       |
+| German data residency     | `germanywestcentral` | German sovereignty requirements |
+| Swiss banking/healthcare  | `switzerlandnorth`   | Swiss regulations               |
+| UK GDPR requirements      | `uksouth`            | UK data residency               |
+| French data sovereignty   | `francecentral`      | French regulations              |
+| APAC latency optimization | `southeastasia`      | Asia-Pacific users              |
+| Americas latency          | `eastus`, `westus2`  | North/South America users       |
+| Preview feature access    | `eastus`, `westus2`  | New Azure features first        |
 
 📖 **Full guidance**: See [ADR-004: Region Defaults](../adr/ADR-004-region-defaults.md)
 
@@ -103,13 +103,13 @@ var keyVaultName = 'kv-${take(replace(projectName, '-', ''), 8)}-${take(environm
 
 All Azure resources **MUST** include these tags:
 
-| Tag           | Required | Description            | Example Values                    |
-| ------------- | -------- | ---------------------- | --------------------------------- |
-| `Environment` | ✅ Yes   | Deployment environment | `dev`, `staging`, `prod`, `demo`  |
-| `ManagedBy`   | ✅ Yes   | IaC tool used          | `Bicep`, `Terraform`, `ARM`       |
-| `Project`     | ✅ Yes   | Project identifier     | `ecommerce`, `patient-portal`     |
-| `Owner`       | ✅ Yes   | Team or individual     | `platform-team`, `john.doe`       |
-| `CostCenter`  | Optional | Billing allocation     | `CC-12345`                        |
+| Tag           | Required | Description            | Example Values                   |
+| ------------- | -------- | ---------------------- | -------------------------------- |
+| `Environment` | ✅ Yes   | Deployment environment | `dev`, `staging`, `prod`, `demo` |
+| `ManagedBy`   | ✅ Yes   | IaC tool used          | `Bicep`, `Terraform`, `ARM`      |
+| `Project`     | ✅ Yes   | Project identifier     | `ecommerce`, `patient-portal`    |
+| `Owner`       | ✅ Yes   | Team or individual     | `platform-team`, `john.doe`      |
+| `CostCenter`  | Optional | Billing allocation     | `CC-12345`                       |
 
 ### Bicep Tag Pattern
 
@@ -130,11 +130,11 @@ var tags = {
 
 ### By Environment
 
-| Environment | Compute       | Storage      | Database     | Notes                 |
-| ----------- | ------------- | ------------ | ------------ | --------------------- |
-| Dev/Demo    | B-series VMs  | Standard_LRS | Basic/S0     | Cost-optimized        |
-| Staging     | D-series VMs  | Standard_ZRS | Standard/S1  | Zone-redundant        |
-| Production  | D/E-series    | Premium_ZRS  | Premium/P1+  | HA, geo-redundant     |
+| Environment | Compute      | Storage      | Database    | Notes             |
+| ----------- | ------------ | ------------ | ----------- | ----------------- |
+| Dev/Demo    | B-series VMs | Standard_LRS | Basic/S0    | Cost-optimized    |
+| Staging     | D-series VMs | Standard_ZRS | Standard/S1 | Zone-redundant    |
+| Production  | D/E-series   | Premium_ZRS  | Premium/P1+ | HA, geo-redundant |
 
 ### Zone Redundancy Requirements
 
@@ -178,22 +178,22 @@ var tags = {
 
 All resources should follow these security principles:
 
-| Principle            | Implementation                           |
-| -------------------- | ---------------------------------------- |
-| 🔒 Encryption        | TLS 1.2+ in transit, encryption at rest  |
-| 🚫 No Public Access  | Private endpoints where possible         |
-| 🛡️ Network Isolation | NSGs on all subnets, deny by default     |
-| 🔑 Managed Identities| Prefer over connection strings           |
-| 📝 Audit Logging     | Enable diagnostic settings               |
-| 🔄 Soft Delete       | Enable for Storage and Key Vault         |
+| Principle             | Implementation                          |
+| --------------------- | --------------------------------------- |
+| 🔒 Encryption         | TLS 1.2+ in transit, encryption at rest |
+| 🚫 No Public Access   | Private endpoints where possible        |
+| 🛡️ Network Isolation  | NSGs on all subnets, deny by default    |
+| 🔑 Managed Identities | Prefer over connection strings          |
+| 📝 Audit Logging      | Enable diagnostic settings              |
+| 🔄 Soft Delete        | Enable for Storage and Key Vault        |
 
 ### Common Azure Policy Requirements
 
-| Policy                         | Solution                               |
-| ------------------------------ | -------------------------------------- |
-| SQL Server Azure AD-only auth  | `azureADOnlyAuthentication: true`      |
-| Storage shared key access      | Use identity-based storage connections |
-| App Service zone redundancy    | Use P1v4+ SKU (not Standard)           |
+| Policy                        | Solution                               |
+| ----------------------------- | -------------------------------------- |
+| SQL Server Azure AD-only auth | `azureADOnlyAuthentication: true`      |
+| Storage shared key access     | Use identity-based storage connections |
+| App Service zone redundancy   | Use P1v4+ SKU (not Standard)           |
 
 ---
 

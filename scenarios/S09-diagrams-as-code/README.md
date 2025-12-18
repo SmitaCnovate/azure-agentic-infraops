@@ -51,7 +51,7 @@ By the end of this demo, participants will understand:
 | [Diagram Generator Agent](../../.github/agents/diagram-generator.agent.md) | Agent definition                |
 | [Diagrams Output](../../docs/diagrams/)                                    | Generated architecture diagrams |
 | [Workflow Guide](../../docs/workflow/WORKFLOW.md)                          | Seven-step agentic workflow     |
-| [Presenter Toolkit](../../docs/presenter-toolkit/)                         | Demo delivery guides            |
+| [Presenter Toolkit](../../docs/presenter/)                                 | Demo delivery guides            |
 | [S03: Agentic Workflow](../S03-agentic-workflow/)                          | Integration with main workflow  |
 
 ## The Challenge: Traditional Diagramming Pain Points

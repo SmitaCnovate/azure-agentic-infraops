@@ -225,12 +225,12 @@ resource sqlAuditing 'Microsoft.Sql/servers/auditingSettings@2023-05-01-preview'
 
 For complex infrastructure (10+ resources, multiple modules):
 
-| Phase | Resources                                  |
-| ----- | ------------------------------------------ |
-| 1     | Foundation (networking, NSGs)              |
-| 2     | Platform services (Key Vault, SQL, ASP)    |
-| 3     | Application tier (App Service, databases)  |
-| 4     | Configuration (secrets, RBAC, monitoring)  |
+| Phase | Resources                                 |
+| ----- | ----------------------------------------- |
+| 1     | Foundation (networking, NSGs)             |
+| 2     | Platform services (Key Vault, SQL, ASP)   |
+| 3     | Application tier (App Service, databases) |
+| 4     | Configuration (secrets, RBAC, monitoring) |
 
 Between each phase:
 

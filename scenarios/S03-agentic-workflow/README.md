@@ -63,7 +63,7 @@ Traditional infrastructure design involves:
 | [Contoso Patient Portal](../../infra/bicep/contoso-patient-portal/) | Working implementation (1,070 lines) |
 | [Workflow Guide](../../docs/workflow/WORKFLOW.md)                   | Complete workflow documentation      |
 | [ADR-003: AVM-First](../../docs/adr/ADR-003-avm-first-approach.md)  | Module selection rationale           |
-| [Presenter Toolkit](../../docs/presenter-toolkit/)                  | Demo delivery guides                 |
+| [Presenter Toolkit](../../docs/presenter/)                          | Demo delivery guides                 |
 | [S04: E-Commerce](../S04-ecommerce-platform/)                       | Next: full workflow with deployment  |
 
 ## 🤖 The Seven Steps

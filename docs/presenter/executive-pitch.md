@@ -2,7 +2,7 @@
 
 > **Duration:** 5 minutes | **Audience:** C-level, IT Directors, Partner Leadership
 
-![78% Time Saved on Infrastructure Tasks](../presenter-toolkit/infographics/generated/exec-pitch-banner.png)
+![78% Time Saved on Infrastructure Tasks](infographics/generated/exec-pitch-banner.png)
 
 ---
 
@@ -143,7 +143,7 @@ _The challenges below are drawn from hundreds of conversations with IT professio
 
 ## The One-Slide Summary
 
-![Executive One-Slide Summary](../presenter-toolkit/infographics/generated/executive-one-slide-web.png)
+![Executive One-Slide Summary](infographics/generated/executive-one-slide-web.png)
 
 ---
 
@@ -189,9 +189,9 @@ Just faster execution.
 | If you're...                     | Do this                                                                                                                    |
 | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | **Ready to see a demo**          | [Book a session](https://github.com/jonathan-vella/azure-agentic-infraops/issues) or explore [Scenarios](../../scenarios/) |
-| **Building a business case**     | Use our [ROI Calculator](../presenter-toolkit/roi-calculator.md) with your team's numbers                                  |
-| **Want to try it yourself**      | [Quick Start Guide](../guides/quickstart.md) — 10 minutes to first demo                                                    |
-| **Need evidence for leadership** | Share [Time Savings Evidence](time-savings-evidence.md) with peer-reviewed research                                        |
+| **Building a business case**     | Use our [ROI Calculator](roi-calculator.md) with your team's numbers                                                        |
+| **Want to try it yourself**      | [Quick Start Guide](../getting-started/quickstart.md) — 10 minutes to first demo                                            |
+| **Need evidence for leadership** | Share [Time Savings Evidence](time-savings-evidence.md) with peer-reviewed research                                         |
 
 ---
 

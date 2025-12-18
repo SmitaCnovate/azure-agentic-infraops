@@ -9,15 +9,15 @@ and example prompts.
 
 ## Agent Comparison Table
 
-| Agent | Step | Purpose | Creates Code? | Output Files |
-| ----- | ---- | ------- | ------------- | ------------ |
-| `@plan` (built-in) | 1 | Requirements gathering | ❌ No | `01-requirements.md` |
-| `azure-principal-architect` | 2 | WAF assessment & guidance | ❌ No | `02-architecture-assessment.md` |
-| `diagram-generator` | 3, 7 | Python architecture diagrams | ✅ Yes | `03-des-diagram.*`, `07-ab-diagram.*` |
-| `adr-generator` | 3, 7 | Architecture Decision Records | ❌ No | `03-des-adr-*`, `07-ab-adr-*` |
-| `bicep-plan` | 4 | Implementation planning | ❌ No | `04-implementation-plan.md` |
-| `bicep-implement` | 5 | Bicep code generation | ✅ Yes | `infra/bicep/{project}/` |
-| `workload-documentation-generator` | 7 | Customer-deliverable docs | ❌ No | `07-*.md` |
+| Agent                              | Step | Purpose                       | Creates Code? | Output Files                          |
+| ---------------------------------- | ---- | ----------------------------- | ------------- | ------------------------------------- |
+| `@plan` (built-in)                 | 1    | Requirements gathering        | ❌ No         | `01-requirements.md`                  |
+| `azure-principal-architect`        | 2    | WAF assessment & guidance     | ❌ No         | `02-architecture-assessment.md`       |
+| `diagram-generator`                | 3, 7 | Python architecture diagrams  | ✅ Yes        | `03-des-diagram.*`, `07-ab-diagram.*` |
+| `adr-generator`                    | 3, 7 | Architecture Decision Records | ❌ No         | `03-des-adr-*`, `07-ab-adr-*`         |
+| `bicep-plan`                       | 4    | Implementation planning       | ❌ No         | `04-implementation-plan.md`           |
+| `bicep-implement`                  | 5    | Bicep code generation         | ✅ Yes        | `infra/bicep/{project}/`              |
+| `workload-documentation-generator` | 7    | Customer-deliverable docs     | ❌ No         | `07-*.md`                             |
 
 ---
 
@@ -262,15 +262,15 @@ graph LR
 
 ## Quick Reference
 
-| I want to... | Use Agent | Step |
-| ------------ | --------- | ---- |
-| Gather requirements | `@plan` | 1 |
-| Get architecture guidance | `azure-principal-architect` | 2 |
-| Create architecture diagram | `diagram-generator` | 3 or 7 |
-| Document a decision | `adr-generator` | 3 or 7 |
-| Plan implementation | `bicep-plan` | 4 |
-| Generate Bicep code | `bicep-implement` | 5 |
-| Create customer docs | `workload-documentation-generator` | 7 |
+| I want to...                | Use Agent                          | Step   |
+| --------------------------- | ---------------------------------- | ------ |
+| Gather requirements         | `@plan`                            | 1      |
+| Get architecture guidance   | `azure-principal-architect`        | 2      |
+| Create architecture diagram | `diagram-generator`                | 3 or 7 |
+| Document a decision         | `adr-generator`                    | 3 or 7 |
+| Plan implementation         | `bicep-plan`                       | 4      |
+| Generate Bicep code         | `bicep-implement`                  | 5      |
+| Create customer docs        | `workload-documentation-generator` | 7      |
 
 ---
 

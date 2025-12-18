@@ -320,7 +320,7 @@ Use this before, during, and after your sessions to ensure smooth delivery.
 - **Repository**: <https://github.com/jonathan-vella/azure-agentic-infraops>
 - **Documentation**: `/docs/README.md`
 - **Troubleshooting**: `/docs/guides/troubleshooting.md`
-- **Character Reference**: `/docs/presenter-toolkit/character-reference.md`
+- **Character Reference**: `/docs/presenter/character-reference.md`
 
 ### Support Contacts
 

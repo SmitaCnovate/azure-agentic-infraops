@@ -10,12 +10,12 @@
 
 Before you begin, ensure you have:
 
-| Requirement    | Version                    | Check Command            | Get It |
-| -------------- | -------------------------- | ------------------------ | ------ |
-| VS Code        | Latest                     | `code --version`         | [Download](https://code.visualstudio.com/) |
-| GitHub Copilot | Active subscription        | Check VS Code extensions | [Get Copilot](https://github.com/features/copilot) |
+| Requirement    | Version                    | Check Command            | Get It                                                  |
+| -------------- | -------------------------- | ------------------------ | ------------------------------------------------------- |
+| VS Code        | Latest                     | `code --version`         | [Download](https://code.visualstudio.com/)              |
+| GitHub Copilot | Active subscription        | Check VS Code extensions | [Get Copilot](https://github.com/features/copilot)      |
 | Docker Desktop | Latest (for Dev Container) | `docker --version`       | [Download](https://docker.com/products/docker-desktop/) |
-| Git            | 2.30+                      | `git --version`          | [Download](https://git-scm.com/) |
+| Git            | 2.30+                      | `git --version`          | [Download](https://git-scm.com/)                        |
 
 **Optional** (for Azure deployments):
 
@@ -33,12 +33,12 @@ Before you begin, ensure you have:
 
 ## Defaults for IT Pros
 
-| Setting | Value | Reference |
-| ------- | ----- | --------- |
-| **Region** | `swedencentral` (fallback: `germanywestcentral`) | [ADR-004](../adr/ADR-004-region-defaults.md) |
-| **Naming** | `uniqueString(resourceGroup().id)` suffix | [Defaults](../reference/defaults.md) |
-| **Modules** | AVM-first approach | [ADR-003](../adr/ADR-003-avm-first-approach.md) |
-| **Workflow** | 7-step agent flow | [Workflow Guide](../reference/workflow.md) |
+| Setting      | Value                                            | Reference                                       |
+| ------------ | ------------------------------------------------ | ----------------------------------------------- |
+| **Region**   | `swedencentral` (fallback: `germanywestcentral`) | [ADR-004](../adr/ADR-004-region-defaults.md)    |
+| **Naming**   | `uniqueString(resourceGroup().id)` suffix        | [Defaults](../reference/defaults.md)            |
+| **Modules**  | AVM-first approach                               | [ADR-003](../adr/ADR-003-avm-first-approach.md) |
+| **Workflow** | 7-step agent flow                                | [Workflow Guide](../reference/workflow.md)      |
 
 ---
 
@@ -155,12 +155,12 @@ az deployment group create \
 
 ## Troubleshooting
 
-| Issue | Solution |
-| ----- | -------- |
-| Agent not responding | Reload VS Code (`F1` → "Developer: Reload Window") |
-| Copilot icon missing | Check extension is installed and licensed |
-| Dev Container won't start | Ensure Docker Desktop is running, check disk space |
-| Azure deployment fails | Verify `az account show` shows correct subscription |
+| Issue                     | Solution                                            |
+| ------------------------- | --------------------------------------------------- |
+| Agent not responding      | Reload VS Code (`F1` → "Developer: Reload Window")  |
+| Copilot icon missing      | Check extension is installed and licensed           |
+| Dev Container won't start | Ensure Docker Desktop is running, check disk space  |
+| Azure deployment fails    | Verify `az account show` shows correct subscription |
 
 📖 Full troubleshooting guide: [Troubleshooting](../guides/troubleshooting.md)
 
@@ -168,13 +168,13 @@ az deployment group create \
 
 ## Next Steps
 
-| Your Goal | Next Step |
-| --------- | --------- |
-| Detailed S01 walkthrough | [First Scenario](first-scenario.md) |
-| Learn Copilot basics | [Copilot Getting Started](../guides/copilot-getting-started.md) |
-| Explore more scenarios | [Scenarios Index](../../scenarios/) |
-| Role-based learning paths | [Learning Paths](learning-paths.md) |
-| Choose AI model | [Model Selection](../guides/copilot-model-selection.md) |
+| Your Goal                 | Next Step                                                       |
+| ------------------------- | --------------------------------------------------------------- |
+| Detailed S01 walkthrough  | [First Scenario](first-scenario.md)                             |
+| Learn Copilot basics      | [Copilot Getting Started](../guides/copilot-getting-started.md) |
+| Explore more scenarios    | [Scenarios Index](../../scenarios/)                             |
+| Role-based learning paths | [Learning Paths](learning-paths.md)                             |
+| Choose AI model           | [Model Selection](../guides/copilot-model-selection.md)         |
 
 ---
 
@@ -189,18 +189,18 @@ If deploying to Azure (Step 5):
 
 ### Recommended Regions
 
-| Region | Use Case |
-| ------ | -------- |
-| `swedencentral` | Default - sustainable, good availability |
-| `germanywestcentral` | Alternative if quota issues |
-| `eastus` / `westus2` | Americas users for lower latency |
+| Region               | Use Case                                 |
+| -------------------- | ---------------------------------------- |
+| `swedencentral`      | Default - sustainable, good availability |
+| `germanywestcentral` | Alternative if quota issues              |
+| `eastus` / `westus2` | Americas users for lower latency         |
 
 ### Quota Considerations
 
-| Resource | Typical Usage |
-| -------- | ------------- |
-| vCPUs | 4-8 cores |
-| Public IPs | 2-3 |
-| Storage Accounts | 1-2 |
+| Resource         | Typical Usage |
+| ---------------- | ------------- |
+| vCPUs            | 4-8 cores     |
+| Public IPs       | 2-3           |
+| Storage Accounts | 1-2           |
 
 Check quota: `az vm list-usage --location swedencentral`

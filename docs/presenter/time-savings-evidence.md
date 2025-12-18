@@ -3,7 +3,7 @@
 > **TL;DR**: All time savings estimates in this repository are grounded in peer-reviewed research and industry studies,
 > using conservative lower-bound figures.
 
-![Time Savings Infographic](../presenter-toolkit/infographics/generated/time-savings-infographic-web.png)
+![Time Savings Infographic](infographics/generated/time-savings-infographic-web.png)
 
 ---
 

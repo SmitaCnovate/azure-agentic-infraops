@@ -33,14 +33,14 @@ All agents in this repository MUST follow these standards.
 
 ### When to Suggest Other Regions
 
-| Scenario | Recommended Region(s) |
-|----------|----------------------|
-| Americas latency | `eastus`, `eastus2`, `westus2`, `centralus` |
-| APAC latency | `southeastasia`, `eastasia`, `australiaeast` |
-| German data residency | `germanywestcentral` |
-| Swiss regulations | `switzerlandnorth` |
-| UK GDPR | `uksouth`, `ukwest` |
-| French sovereignty | `francecentral` |
+| Scenario              | Recommended Region(s)                        |
+| --------------------- | -------------------------------------------- |
+| Americas latency      | `eastus`, `eastus2`, `westus2`, `centralus`  |
+| APAC latency          | `southeastasia`, `eastasia`, `australiaeast` |
+| German data residency | `germanywestcentral`                         |
+| Swiss regulations     | `switzerlandnorth`                           |
+| UK GDPR               | `uksouth`, `ukwest`                          |
+| French sovereignty    | `francecentral`                              |
 
 **Always document** the reason when deviating from `swedencentral`.
 
@@ -70,6 +70,7 @@ Step 7: As-Built Artifacts → 07-* files (optional)
 ## ✅ Ready for Next Step
 
 I have completed [current step]. The deliverables are:
+
 - [List outputs created]
 
 **Shall I proceed to [next step]?**
@@ -78,10 +79,10 @@ Reply "yes" to continue, or provide feedback to refine.
 
 ### Artifact Suffix Convention
 
-| Phase | Suffix | Example |
-|-------|--------|---------|
-| Design (Step 3) | `-des` | `03-des-diagram.py` |
-| As-Built (Step 7) | `-ab` | `07-ab-diagram.py` |
+| Phase             | Suffix | Example             |
+| ----------------- | ------ | ------------------- |
+| Design (Step 3)   | `-des` | `03-des-diagram.py` |
+| As-Built (Step 7) | `-ab`  | `07-ab-diagram.py`  |
 
 ---
 
@@ -110,25 +111,25 @@ var uniqueSuffix = uniqueString(resourceGroup().id)
 
 ### Name Length Limits
 
-| Resource | Max Length | Pattern Example |
-|----------|------------|-----------------|
-| Key Vault | 24 chars | `kv-{short}-{env}-{suffix}` |
-| Storage Account | 24 chars | `st{project}{env}{suffix}` (no hyphens) |
-| SQL Server | 63 chars | `sql-{project}-{env}-{suffix}` |
+| Resource        | Max Length | Pattern Example                         |
+| --------------- | ---------- | --------------------------------------- |
+| Key Vault       | 24 chars   | `kv-{short}-{env}-{suffix}`             |
+| Storage Account | 24 chars   | `st{project}{env}{suffix}` (no hyphens) |
+| SQL Server      | 63 chars   | `sql-{project}-{env}-{suffix}`          |
 
 ### CAF Naming Prefixes
 
-| Resource Type | Prefix |
-|---------------|--------|
-| Resource Group | `rg-` |
-| Virtual Network | `vnet-` |
-| Subnet | `snet-` |
-| Network Security Group | `nsg-` |
-| Storage Account | `st` |
-| Key Vault | `kv-` |
-| App Service | `app-` |
-| SQL Server | `sql-` |
-| Cosmos DB | `cosmos-` |
+| Resource Type          | Prefix    |
+| ---------------------- | --------- |
+| Resource Group         | `rg-`     |
+| Virtual Network        | `vnet-`   |
+| Subnet                 | `snet-`   |
+| Network Security Group | `nsg-`    |
+| Storage Account        | `st`      |
+| Key Vault              | `kv-`     |
+| App Service            | `app-`    |
+| SQL Server             | `sql-`    |
+| Cosmos DB              | `cosmos-` |
 
 ---
 
@@ -146,13 +147,13 @@ All resources MUST include:
 
 ## Common Anti-Patterns
 
-| Anti-Pattern | Problem | Solution |
-|--------------|---------|----------|
-| Hardcoded resource names | Deployment collisions | Use `uniqueString()` suffix |
-| Missing `uniqueSuffix` in modules | Child modules conflict | Pass suffix to ALL modules |
-| Resource IDs in diagnostic scope | BCP036 error | Use `existing` keyword + symbolic ref |
-| S1/P1v2 for zone redundancy | Deployment fails | Use P1v4 or higher |
-| SQL with local auth | Policy blocks deployment | Use Azure AD-only auth |
+| Anti-Pattern                      | Problem                  | Solution                              |
+| --------------------------------- | ------------------------ | ------------------------------------- |
+| Hardcoded resource names          | Deployment collisions    | Use `uniqueString()` suffix           |
+| Missing `uniqueSuffix` in modules | Child modules conflict   | Pass suffix to ALL modules            |
+| Resource IDs in diagnostic scope  | BCP036 error             | Use `existing` keyword + symbolic ref |
+| S1/P1v2 for zone redundancy       | Deployment fails         | Use P1v4 or higher                    |
+| SQL with local auth               | Policy blocks deployment | Use Azure AD-only auth                |
 
 ---
 
@@ -167,6 +168,6 @@ All resources MUST include:
 
 ## Version History
 
-| Version | Date | Changes |
-|---------|------|---------|
-| 3.6.0 | 2025-01 | Initial shared foundation |
+| Version | Date    | Changes                   |
+| ------- | ------- | ------------------------- |
+| 3.6.0   | 2025-01 | Initial shared foundation |

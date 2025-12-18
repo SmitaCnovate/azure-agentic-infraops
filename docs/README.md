@@ -1,218 +1,123 @@
-# 📚 Documentation Hub
+# Documentation Hub
 
-> **Agentic InfraOps v3.6.0** — Azure infrastructure engineered by agents
->
+> **Agentic InfraOps v3.6.0** |
 > 🔗 [aka.ms/agenticinfraops](https://aka.ms/agenticinfraops)
 
----
-
-## 🎯 Choose Your Path
+Welcome to the Agentic InfraOps documentation center. Choose your path based on experience level.
 
 ```mermaid
 %%{init: {'theme':'neutral'}}%%
-flowchart TB
-    subgraph beginner["🌱 BEGINNER PATH"]
-        B1[Prerequisites] --> B2[Quick Start]
-        B2 --> B3[First Scenario]
-        B3 --> B4[Copilot Basics]
-        B4 --> B5[Explore Scenarios]
+flowchart LR
+    subgraph Start["🎯 Choose Your Path"]
+        B["🟢 Beginner<br/>New to IaC/Copilot"]
+        E["🟡 Experienced<br/>Know IaC, new to agents"]
+        P["🔴 Presenter<br/>Delivering demos"]
     end
 
-    subgraph experienced["⚡ EXPERIENCED PATH"]
-        E1[Workflow Guide] --> E2[Agents Overview]
-        E2 --> E3[Run S03 Demo]
-        E3 --> E4[Reference Patterns]
+    subgraph Resources
+        QS["Quick Start"]
+        REF["Reference Docs"]
+        DEMO["Demo Toolkit"]
     end
 
-    subgraph presenter["🎤 PRESENTER PATH"]
-        P1[Demo Guide] --> P2[Evidence & ROI]
-        P2 --> P3[Objection Handling]
-        P3 --> P4[Practice Demo]
-    end
+    B --> QS
+    E --> REF
+    P --> DEMO
 
-    B5 --> M[🏆 MASTER]
-    E4 --> M
-    P4 --> M
-
-    style beginner fill:#e3f2fd,stroke:#1976d2
-    style experienced fill:#e8f5e9,stroke:#388e3c
-    style presenter fill:#fff3e0,stroke:#f57c00
-    style M fill:#fce4ec,stroke:#c2185b
+    click QS "getting-started/quickstart.md"
+    click REF "reference/"
+    click DEMO "presenter/"
 ```
 
 ---
 
-### 🌱 Beginner Path
+## 🟢 Beginner Path — New to IaC or Copilot
 
-**New to GitHub Copilot or Infrastructure as Code** | ⏱️ 2-4 hours
+**Goal**: Get running in 15 minutes, understand the basics
 
-Start here if you're new to AI-assisted development or Azure IaC.
+| Step | Resource                                                     | Time   |
+|------|--------------------------------------------------------------|--------|
+| 1    | [Quick Start](getting-started/quickstart.md)                 | 10 min |
+| 2    | [Your First Scenario](getting-started/first-scenario.md)     | 15 min |
+| 3    | [Copilot Getting Started](guides/copilot-getting-started.md) | 10 min |
+| 4    | Run [S01-bicep-baseline](../scenarios/S01-bicep-baseline/)   | 20 min |
 
-- [ ] **Step 1**: Check [prerequisites](getting-started/quickstart.md#prerequisites) (15 min)
-- [ ] **Step 2**: Complete [Quick Start](getting-started/quickstart.md) — clone, open Dev Container (10 min)
-- [ ] **Step 3**: Run [your first scenario](getting-started/first-scenario.md) — S01 Bicep Baseline (30 min)
-- [ ] **Step 4**: Learn [Copilot basics](guides/copilot-getting-started.md) (30 min)
-- [ ] **Step 5**: Explore [more scenarios](../scenarios/) at your own pace (2+ hrs)
-
-| Step | What You'll Do | Time | Link |
-| ---- | -------------- | ---- | ---- |
-| 1 | Verify prerequisites | 15 min | [Prerequisites](getting-started/quickstart.md#prerequisites) |
-| 2 | Clone & open Dev Container | 10 min | [Quick Start](getting-started/quickstart.md) |
-| 3 | Complete S01 scenario | 30 min | [First Scenario](getting-started/first-scenario.md) |
-| 4 | Learn Copilot basics | 30 min | [Copilot Getting Started](guides/copilot-getting-started.md) |
-| 5 | Explore scenarios | 2+ hrs | [Scenarios Index](../scenarios/) |
+📚 **Next**: [Learning Paths](getting-started/learning-paths.md) for structured progression
 
 ---
 
-### ⚡ Experienced Path
+## 🟡 Experienced Path — Know IaC, New to Agents
 
-**Know IaC, want to learn the agentic workflow** | ⏱️ 30-60 min
+**Goal**: Understand agent workflow, run advanced scenarios
 
-Start here if you're familiar with Bicep/Terraform and want to leverage the 7-step agent workflow.
+| Step | Resource                                                       | Time   |
+|------|----------------------------------------------------------------|--------|
+| 1    | [Reference: Workflow](reference/workflow.md)                   | 5 min  |
+| 2    | [Reference: Agents Overview](reference/agents-overview.md)     | 5 min  |
+| 3    | Run [S03-agentic-workflow](../scenarios/S03-agentic-workflow/) | 30 min |
+| 4    | [Reference: Bicep Patterns](reference/bicep-patterns.md)       | 10 min |
 
-| Step | What You'll Do | Time | Link |
-| ---- | -------------- | ---- | ---- |
-| 1 | Understand 7-step workflow | 10 min | [Workflow Guide](reference/workflow.md) |
-| 2 | Review agent capabilities | 10 min | [Agents Overview](reference/agents-overview.md) |
-| 3 | Run S03 Agentic Workflow | 30 min | [S03 Scenario](../scenarios/S03-five-agent-workflow/) |
-| 4 | Reference patterns | Ongoing | [Bicep Patterns](reference/bicep-patterns.md) |
-
-**Quick Jump**: [Defaults](reference/defaults.md) ·
-[Agents](reference/agents-overview.md) ·
-[Workflow](reference/workflow.md) ·
-[Patterns](reference/bicep-patterns.md)
+📚 **Deep Dive**: [ADR-003 AVM-First](adr/ADR-003-avm-first-approach.md) | [ADR-004 Regions](adr/ADR-004-region-defaults.md)
 
 ---
 
-### 🎤 Presenter Path
+## 🔴 Presenter Path — Delivering Demos
 
-**Preparing demos or customer presentations** | ⏱️ 15-30 min
+**Goal**: Prepare for customer/partner presentations
 
-Start here if you're preparing to demo Agentic InfraOps or present to stakeholders.
+| Step | Resource                                                    | Time   |
+|------|-------------------------------------------------------------|--------|
+| 1    | [Demo Delivery Guide](presenter/demo-delivery-guide.md)     | 15 min |
+| 2    | [Time Savings Evidence](presenter/time-savings-evidence.md) | 10 min |
+| 3    | [Objection Handling](presenter/objection-handling.md)       | 10 min |
+| 4    | [ROI Calculator](presenter/roi-calculator.md)               | 5 min  |
 
-| Step | What You'll Do | Time | Link |
-| ---- | -------------- | ---- | ---- |
-| 1 | Review demo guide | 10 min | [Demo Delivery Guide](presenter/demo-delivery-guide.md) |
-| 2 | Gather evidence | 5 min | [Time Savings Evidence](presenter/time-savings-evidence.md) |
-| 3 | Prepare objection responses | 5 min | [Objection Handling](presenter/objection-handling.md) |
-| 4 | Run practice demo | 15 min | [Presenter Toolkit](presenter/) |
-
-**Quick Jump**: [Executive Pitch](presenter/executive-pitch.md) ·
-[ROI Calculator](presenter/roi-calculator.md) ·
-[Portfolio Showcase](presenter/portfolio-showcase.md)
+📚 **Full Toolkit**: [Presenter Hub](presenter/) | [Visual Elements](presenter/visual-elements-guide.md)
 
 ---
 
-## 🔍 Quick Find
+## 📊 Reference Materials (Single Source of Truth)
 
-| I want to... | Go to... |
-| ------------ | -------- |
-| Get started in 10 minutes | [Quick Start](getting-started/quickstart.md) |
-| Understand the 7-step workflow | [Workflow Guide](reference/workflow.md) |
-| See all 7 agents at a glance | [Agents Overview](reference/agents-overview.md) |
-| Find region/naming defaults | [Defaults Reference](reference/defaults.md) |
-| Learn Bicep deployment patterns | [Bicep Patterns](reference/bicep-patterns.md) |
-| Troubleshoot an issue | [Troubleshooting](guides/troubleshooting.md) |
-| Prepare a customer demo | [Presenter Toolkit](presenter/) |
-| Find a specific scenario | [Scenarios Index](../scenarios/) |
-| Understand a term | [Glossary](GLOSSARY.md) |
+| Document                                        | Purpose                               |
+|-------------------------------------------------|---------------------------------------|
+| [Defaults](reference/defaults.md)               | Regions, naming, tags, SKUs, security |
+| [Workflow](reference/workflow.md)               | Canonical 7-step agent workflow       |
+| [Agents Overview](reference/agents-overview.md) | All agents comparison with examples   |
+| [Bicep Patterns](reference/bicep-patterns.md)   | Unique suffix, diagnostics, policies  |
+| [Glossary](GLOSSARY.md)                         | Terms and acronyms (AVM, WAF, MCP)    |
 
 ---
 
-<details>
-<summary><strong>📁 All Documentation</strong> (click to expand)</summary>
+## 🗂️ Additional Resources
 
-### Getting Started
-
-| Document | Description |
-| -------- | ----------- |
-| [Quick Start](getting-started/quickstart.md) | 10-minute setup + first demo |
-| [First Scenario](getting-started/first-scenario.md) | Step-by-step S01 walkthrough |
-| [Learning Paths](getting-started/learning-paths.md) | Role-based comprehensive paths |
-
-### Guides
-
-| Document | Description |
-| -------- | ----------- |
-| [Copilot Getting Started](guides/copilot-getting-started.md) | Install, configure, first steps |
-| [Copilot Best Practices](guides/copilot-best-practices.md) | Prompting tips, validation |
-| [Model Selection](guides/copilot-model-selection.md) | Choosing the right AI model |
-| [Dev Containers Setup](guides/dev-containers-setup.md) | Docker setup, alternatives |
-| [Troubleshooting](guides/troubleshooting.md) | Common issues and solutions |
-| [Markdown Style Guide](guides/markdown-style-guide.md) | Documentation standards |
-
-### Reference
-
-| Document | Description |
-| -------- | ----------- |
-| [Defaults](reference/defaults.md) | Regions, naming, tags, SKUs |
-| [Agents Overview](reference/agents-overview.md) | All 7 agents comparison |
-| [Workflow](reference/workflow.md) | Canonical 7-step diagram |
-| [Bicep Patterns](reference/bicep-patterns.md) | Deployment patterns |
-| [Glossary](GLOSSARY.md) | Terms and acronyms |
-
-### Presenter Resources
-
-| Document | Description |
-| -------- | ----------- |
-| [Presenter Toolkit](presenter/) | Demo guides, checklists |
-| [Executive Pitch](presenter/executive-pitch.md) | C-level presentation |
-| [Time Savings Evidence](presenter/time-savings-evidence.md) | ROI data |
-| [Portfolio Showcase](presenter/portfolio-showcase.md) | Real-world examples |
-| [Objection Handling](presenter/objection-handling.md) | Common objections |
-| [ROI Calculator](presenter/roi-calculator.md) | Calculate savings |
-
-### Architecture
-
-| Document | Description |
-| -------- | ----------- |
-| [Workflow Guide](workflow/WORKFLOW.md) | Detailed workflow documentation |
-| [ADR Index](adr/) | Architecture Decision Records |
-| [Cost Estimates](cost-estimates/) | Azure pricing examples |
-| [Diagrams](diagrams/) | Generated architecture diagrams |
-
-</details>
+| Section                                      | Description                           |
+|----------------------------------------------|---------------------------------------|
+| [Workflow Guide](workflow/WORKFLOW.md)       | Complete 7-step workflow with Mermaid |
+| [Architecture Decisions](adr/)               | ADRs documenting design choices       |
+| [Cost Estimates](cost-estimates/)            | Azure pricing examples                |
+| [Diagrams](diagrams/)                        | Generated architecture diagrams       |
+| [All Guides](guides/)                        | Consolidated how-to guides            |
+| [Troubleshooting](guides/troubleshooting.md) | Common issues and solutions           |
 
 ---
 
-<details>
-<summary><strong>🎯 Scenarios by Difficulty</strong> (click to expand)</summary>
+## 🛠️ Copilot Customization
 
-### 🟢 Beginner
-
-| Scenario | Description | Time |
-| -------- | ----------- | ---- |
-| [S01 Bicep Baseline](../scenarios/S01-bicep-baseline/) | Hub-spoke network with Bicep | 30 min |
-| [S02 Terraform Baseline](../scenarios/S02-terraform-baseline/) | Same topology with Terraform | 30 min |
-| [S09 Diagrams as Code](../scenarios/S08-diagrams-as-code/) | Python architecture diagrams | 20 min |
-
-### 🟡 Intermediate
-
-| Scenario | Description | Time |
-| -------- | ----------- | ---- |
-| [S05 Documentation Gen](../scenarios/S04-documentation-generation/) | Auto-generate docs from code | 90 min |
-| [S06 Service Validation](../scenarios/S05-service-validation/) | Automated UAT and load testing | 30 min |
-| [S07 Troubleshooting](../scenarios/S06-troubleshooting/) | Diagnose infrastructure issues | 25 min |
-| [S08 SBOM Generator](../scenarios/S07-sbom-generator/) | Software Bill of Materials | 75 min |
-
-### 🔴 Advanced
-
-| Scenario | Description | Time |
-| -------- | ----------- | ---- |
-| [S03 Agentic Workflow](../scenarios/S03-five-agent-workflow/) | Full 7-step agent workflow | 45-60 min |
-| [S04 E-Commerce Platform](../scenarios/S04-ecommerce-platform/) | PCI-DSS compliant retail | 60-90 min |
-| [S10 Coding Agent](../scenarios/S09-coding-agent/) | Async GitHub Issues automation | 30 min |
-
-</details>
+| Section                                                | Description                |
+|--------------------------------------------------------|----------------------------|
+| [Agent Definitions](../.github/agents/)                | Custom agent `.md` files   |
+| [Shared Foundation](../.github/agents/shared/)         | Common patterns for agents |
+| [Instructions](../.github/instructions/)               | Coding standards files     |
+| [Markdown Style Guide](guides/markdown-style-guide.md) | Documentation standards    |
 
 ---
 
-## 🔗 Quick Links
+## Quick Links
 
 - 📖 [Main README](../README.md) — Repository overview
-- 🎯 [Scenarios](../scenarios/) — Learning scenarios and demos
+- 🎯 [Scenarios](../scenarios/) — Learning scenarios (S01-S11)
 - 💰 [Azure Pricing MCP](../mcp/azure-pricing-mcp/) — Real-time pricing tools
-- 🤖 [Agent Definitions](../.github/agents/) — Custom agent configuration
+- 📚 [Portfolio Showcase](presenter/copilot-portfolio-showcase.md) — Real-world examples
 
 ---
 

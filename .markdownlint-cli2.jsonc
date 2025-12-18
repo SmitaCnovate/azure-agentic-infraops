@@ -50,7 +50,7 @@
     "coverage/**",
     ".bicep-planning-files/**",
     "docs/audit-checklists/**",
-    "docs/presenter-toolkit/**",
+    "docs/presenter/**",
     "scenarios/scenario-output/**",
     "scenarios/**/solution/**",
     "scenarios/**/examples/**",

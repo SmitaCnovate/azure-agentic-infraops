@@ -447,8 +447,8 @@ into a single agent. This is useful for:
 
 ## Related Documentation
 
-- [Time Savings Evidence](../value-proposition/time-savings-evidence.md) — Quantified efficiency gains (45 min vs 18+ hours)
-- [Copilot Portfolio Showcase](../value-proposition/copilot-portfolio-showcase.md) — Real-world projects
+- [Time Savings Evidence](../presenter/time-savings-evidence.md) — Quantified efficiency gains (45 min vs 18+ hours)
+- [Copilot Portfolio Showcase](../presenter/copilot-portfolio-showcase.md) — Real-world projects
 - [ADR-003: AVM-First Approach](../adr/ADR-003-avm-first-approach.md) — Why we use Azure Verified Modules
 - [ADR-004: Region Defaults](../adr/ADR-004-region-defaults.md) — Default `swedencentral`, fallback guidance
 - [Scenario Prompts](../../scenarios/S11-quick-demos/ecommerce-prompts.md)

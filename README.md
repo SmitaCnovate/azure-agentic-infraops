@@ -157,9 +157,9 @@ and workflows.
 > **Efficiency multiplier**: Reduce infrastructure development time by 60-90% while delivering Well-Architected,
 > deploy-ready Azure infrastructure.
 
-| Benefit             | Details                                                                                                                     |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| **AVM-First**       | Azure Verified Modules for policy-compliant deployments ([ADR-003](docs/adr/ADR-003-avm-first-approach.md))                 |
+| Benefit             | Details                                                                                                             |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| **AVM-First**       | Azure Verified Modules for policy-compliant deployments ([ADR-003](docs/adr/ADR-003-avm-first-approach.md))         |
 | **Time Savings**    | Quantified evidence: 45 min vs 18+ hours ([time-savings-evidence](docs/presenter/time-savings-evidence.md))         |
 | **Real Portfolios** | See real projects built with agentic workflows ([portfolio showcase](docs/presenter/copilot-portfolio-showcase.md)) |
 

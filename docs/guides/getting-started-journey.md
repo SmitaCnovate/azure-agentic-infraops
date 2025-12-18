@@ -286,11 +286,11 @@ Delegate entire GitHub Issues to Copilot for autonomous implementation.
 
 | Resource            | Location                                                                           | Purpose                   |
 | ------------------- | ---------------------------------------------------------------------------------- | ------------------------- |
-| **Prerequisites**   | [docs/getting-started/prerequisites.md](prerequisites.md)                          | Tool requirements         |
-| **Model Selection** | [docs/guides/copilot-model-selection.md](copilot-model-selection.md)               | Choose the right AI model |
-| **Scenarios**       | [scenarios/](../../scenarios/)                                                     | Hands-on learning         |
-| **Demo Script**     | [S01 Demo Script](../../scenarios/S01-bicep-baseline/DEMO-SCRIPT.md)               | Presenter guide           |
-| **ROI Calculator**  | [docs/presenter-toolkit/roi-calculator.md](../presenter-toolkit/roi-calculator.md) | Calculate savings         |
+| **Prerequisites**   | [docs/getting-started/prerequisites.md](prerequisites.md)                    | Tool requirements         |
+| **Model Selection** | [docs/guides/copilot-model-selection.md](copilot-model-selection.md)         | Choose the right AI model |
+| **Scenarios**       | [scenarios/](../../scenarios/)                                               | Hands-on learning         |
+| **Demo Script**     | [S01 Demo Script](../../scenarios/S01-bicep-baseline/DEMO-SCRIPT.md)         | Presenter guide           |
+| **ROI Calculator**  | [docs/presenter/roi-calculator.md](../presenter/roi-calculator.md)           | Calculate savings         |
 
 ### Common Commands
 
@@ -346,9 +346,9 @@ issues, and a complete error message reference.
 After completing this guide, you can:
 
 1. **Run demos for your team** - Use [S01 Demo Script](../../scenarios/S01-bicep-baseline/DEMO-SCRIPT.md)
-2. **Pitch to leadership** - Use [Executive Pitch](../value-proposition/executive-pitch.md)
-3. **Start a pilot** - Use [Pilot Success Checklist](../presenter-toolkit/pilot-success-checklist.md)
-4. **Calculate ROI** - Use [ROI Calculator](../presenter-toolkit/roi-calculator.md)
+2. **Pitch to leadership** - Use [Executive Pitch](../presenter/executive-pitch.md)
+3. **Start a pilot** - Use [Pilot Success Checklist](../presenter/pilot-success-checklist.md)
+4. **Calculate ROI** - Use [ROI Calculator](../presenter/roi-calculator.md)
 
 ---
 

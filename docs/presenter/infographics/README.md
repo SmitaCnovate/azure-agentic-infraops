@@ -16,7 +16,7 @@ pip install matplotlib numpy pillow
 ### Generate All Assets
 
 ```bash
-cd docs/presenter-toolkit/infographics
+cd docs/presenter/infographics
 
 # Generate all infographics
 python generate_infographic.py

@@ -30,4 +30,4 @@ assessment. You can also use the Azure Pricing MCP tools directly:
 ## Related Documentation
 
 - [Azure Pricing MCP](../../mcp/azure-pricing-mcp/) - Real-time pricing tools
-- [ROI Calculator](../presenter-toolkit/roi-calculator.md) - Calculate time and cost savings
+- [ROI Calculator](../presenter/roi-calculator.md) - Calculate time and cost savings

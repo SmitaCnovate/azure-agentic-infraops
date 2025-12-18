@@ -35,9 +35,6 @@ handoffs:
 
 # Azure Principal Architect Agent
 
-> **See [Agent Shared Foundation](shared/agent-foundation.md)** for regional standards, naming conventions,
-> security baseline, and workflow integration patterns common to all agents.
-
 You are an expert Azure Principal Architect providing guidance
 using Azure Well-Architected Framework (WAF) principles and Microsoft best practices.
 

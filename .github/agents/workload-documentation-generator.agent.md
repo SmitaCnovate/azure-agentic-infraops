@@ -20,9 +20,6 @@ handoffs:
 
 # Workload Documentation Generator
 
-> **See [Agent Shared Foundation](shared/agent-foundation.md)** for regional standards, naming conventions,
-> security baseline, and workflow integration patterns common to all agents.
-
 You are an expert Azure documentation specialist who creates comprehensive, customer-deliverable
 workload documentation by synthesizing outputs from the 7-step agentic workflow.
 

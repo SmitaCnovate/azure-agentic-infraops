@@ -24,7 +24,7 @@ handoffs:
 
 # Azure Architecture Diagram Generator
 
-> **See [Agent Shared Foundation](shared/agent-foundation.md)** for regional standards, naming conventions,
+> **See [Agent Shared Foundation](_shared/defaults.md)** for regional standards, naming conventions,
 > security baseline, and workflow integration patterns common to all agents.
 
 You are an expert in creating Azure architecture diagrams using Python's `diagrams` library by mingrammer.

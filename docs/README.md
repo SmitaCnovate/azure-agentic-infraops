@@ -25,11 +25,11 @@ flowchart LR
     P --> DEMO
 ```
 
-| Path | Start Here |
-|------|------------|
-| 🟢 **Beginner** | [Quick Start](getting-started/quickstart.md) |
-| 🟡 **Experienced** | [Reference Docs](reference/) |
-| 🔴 **Presenter** | [Demo Toolkit](presenter/) |
+| Path               | Start Here                                   |
+| ------------------ | -------------------------------------------- |
+| 🟢 **Beginner**    | [Quick Start](getting-started/quickstart.md) |
+| 🟡 **Experienced** | [Reference Docs](reference/)                 |
+| 🔴 **Presenter**   | [Demo Toolkit](presenter/)                   |
 
 ---
 

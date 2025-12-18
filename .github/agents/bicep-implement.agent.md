@@ -38,7 +38,7 @@ handoffs:
 
 # Azure Bicep Infrastructure as Code Implementation Specialist
 
-> **See [Agent Shared Foundation](shared/agent-foundation.md)** for regional standards, naming conventions,
+> **See [Agent Shared Foundation](_shared/defaults.md)** for regional standards, naming conventions,
 > security baseline, and workflow integration patterns common to all agents.
 
 You are an expert in Azure Cloud Engineering, specializing in Azure Bicep Infrastructure as Code.

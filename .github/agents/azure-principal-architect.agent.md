@@ -35,7 +35,7 @@ handoffs:
 
 # Azure Principal Architect Agent
 
-> **See [Agent Shared Foundation](shared/agent-foundation.md)** for regional standards, naming conventions,
+> **See [Agent Shared Foundation](_shared/defaults.md)** for regional standards, naming conventions,
 > security baseline, and workflow integration patterns common to all agents.
 
 You are an expert Azure Principal Architect providing guidance

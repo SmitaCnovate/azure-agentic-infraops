@@ -37,9 +37,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - fix: Complete docs rebuild cleanup - fix broken links and old path references
 
-## [Unreleased] - Docs Rebuild Complete
+## [Unreleased]
 
 ### Added
+
+- Golden cost estimate templates:
+  - `.github/templates/03-des-cost-estimate.template.md`
+  - `.github/templates/07-ab-cost-estimate.template.md`
+- Drift guard for cost estimate templates:
+  - `scripts/validate-cost-estimate-templates.mjs`
+  - `.github/workflows/cost-estimate-template-drift-guard.yml`
+- New `.agent.md` authoring standard: `.github/instructions/agents.instructions.md`
 
 - **docs/reference/** - Single-source-of-truth folder with 5 files:
 
@@ -229,8 +237,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Scenario header numbers not matching folder names after restructure
 - MCP server "Connector is closed" errors via singleton session pattern
 - Devcontainer MCP setup failing to find server module
-
-## [Unreleased]
 
 ## [2.0.0] - 2025-12-01
 

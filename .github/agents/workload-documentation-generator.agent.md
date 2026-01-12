@@ -206,7 +206,8 @@ For comparison with design estimates, see [03-des-cost-estimate.md](./03-des-cos
 - [Azure Well-Architected Framework](https://learn.microsoft.com/azure/well-architected/)
 - [Cloud Adoption Framework](https://learn.microsoft.com/azure/cloud-adoption-framework/)
 - [Azure Architecture Center](https://learn.microsoft.com/azure/architecture/)
-```
+
+````
 
 ---
 
@@ -312,7 +313,7 @@ For comparison with design estimates, see [03-des-cost-estimate.md](./03-des-cos
 | Primary On-Call   | {contact} | {escalation} |
 | Secondary On-Call | {contact} | {escalation} |
 | Management        | {contact} | {escalation} |
-```
+````
 
 ---
 
@@ -544,3 +545,4 @@ Before finalizing documentation:
 ```
 
 ```
+````

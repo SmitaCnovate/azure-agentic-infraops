@@ -470,7 +470,7 @@ Hard requirements:
 ## Next Steps
 
 {workflow guidance}
-````
+```
 
 ### Guardrails
 

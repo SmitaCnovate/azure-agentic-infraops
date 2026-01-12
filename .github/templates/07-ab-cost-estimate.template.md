@@ -31,24 +31,24 @@
 
 ### Design vs As-Built Summary
 
-| Metric | Design Estimate | As-Built | Variance |
-| ------ | --------------- | -------- | -------- |
-| Monthly Estimate | ${X} | ${X} | {+$X / -$X} |
-| Annual Estimate | ${X} | ${X} | {+$X / -$X} |
+| Metric           | Design Estimate | As-Built | Variance    |
+| ---------------- | --------------- | -------- | ----------- |
+| Monthly Estimate | ${X}            | ${X}     | {+$X / -$X} |
+| Annual Estimate  | ${X}            | ${X}     | {+$X / -$X} |
 
 ## 🔁 Requirements → Cost Mapping
 
-| Requirement | Architecture Decision | Cost Impact | Mandatory |
-| ---------- | --------------------- | ---------- | --------- |
-| {SLA/RTO/RPO} | {decision} | {+$X/month} | {Yes / No} |
-| {Compliance} | {decision} | {+$X/month 📈} | {Yes / No} |
-| {Latency/Performance} | {decision} | {+$X/month} | {Yes / No} |
+| Requirement           | Architecture Decision | Cost Impact    | Mandatory  |
+| --------------------- | --------------------- | -------------- | ---------- |
+| {SLA/RTO/RPO}         | {decision}            | {+$X/month}    | {Yes / No} |
+| {Compliance}          | {decision}            | {+$X/month 📈} | {Yes / No} |
+| {Latency/Performance} | {decision}            | {+$X/month}    | {Yes / No} |
 
 ## 📊 Top 5 Cost Drivers
 
-| Rank | Resource | Monthly Cost | % of Total | Trend |
-| ---- | -------- | ------------ | ---------- | ----- |
-| 1️⃣ | {service / SKU} | ${X} | {Y%} | ➡️ |
+| Rank | Resource        | Monthly Cost | % of Total | Trend |
+| ---- | --------------- | ------------ | ---------- | ----- |
+| 1️⃣   | {service / SKU} | ${X}         | {Y%}       | ➡️    |
 
 > 💡 **Quick Win**: {one low-effort action that saves meaningful cost}
 
@@ -67,9 +67,9 @@ pie showData
 
 ### Key Design Decisions Affecting Cost
 
-| Decision | Cost Impact | Business Rationale | Status |
-| -------- | ----------- | ------------------ | ------ |
-| {example} | +$.../month 📈 | {why} | {Required / Optional} |
+| Decision  | Cost Impact    | Business Rationale | Status                |
+| --------- | -------------- | ------------------ | --------------------- |
+| {example} | +$.../month 📈 | {why}              | {Required / Optional} |
 
 ## 🧾 What We Are Not Paying For (Yet)
 
@@ -80,8 +80,8 @@ pie showData
 
 ## ⚠️ Cost Risk Indicators
 
-| Resource | Risk Level | Issue | Mitigation |
-| -------- | ---------- | ----- | ---------- |
+| Resource        | Risk Level                     | Issue  | Mitigation   |
+| --------------- | ------------------------------ | ------ | ------------ |
 | {service / SKU} | {🔴 High / 🟡 Medium / 🟢 Low} | {risk} | {mitigation} |
 
 > **⚠️ Watch Item**: {one sentence on biggest budget uncertainty}
@@ -90,9 +90,9 @@ pie showData
 
 _"If you need X, expect to pay Y more"_
 
-| Requirement | Additional Cost | SKU Change | Notes |
-| ---------- | --------------- | ---------- | ----- |
-| {Example: 99.99% SLA} | +$.../month | {SKU move} | {notes} |
+| Requirement           | Additional Cost | SKU Change | Notes   |
+| --------------------- | --------------- | ---------- | ------- |
+| {Example: 99.99% SLA} | +$.../month     | {SKU move} | {notes} |
 
 ## 💰 Savings Opportunities
 
@@ -100,26 +100,26 @@ _"If you need X, expect to pay Y more"_
 >
 > | Commitment | Monthly Savings | Annual Savings |
 > | ---------- | --------------- | -------------- |
-> | {1-year} | ${...} | ${...} |
+> | {1-year}   | ${...}          | ${...}         |
 
 ## Detailed Cost Breakdown
 
 ### IaC / Pricing Coverage
 
-| Signal | Value |
-| ------ | ----- |
-| Templates scanned | {n} |
-| Resources detected | {n} |
-| Resources priced | {n} |
+| Signal             | Value       |
+| ------------------ | ----------- |
+| Templates scanned  | {n}         |
+| Resources detected | {n}         |
+| Resources priced   | {n}         |
 | Unpriced resources | {list or 0} |
 
 ### Line Items
 
-| Category | Service | SKU / Meter | Quantity / Units | Est. Monthly |
-| -------- | ------- | ----------- | ---------------- | ----------- |
-| 💻 Compute | {service} | {SKU} | {qty} | ${...} |
-| 💾 Data Services | {service} | {SKU} | {qty} | ${...} |
-| 🌐 Networking | {service} | {meter} | {qty} | ${...} |
+| Category         | Service   | SKU / Meter | Quantity / Units | Est. Monthly |
+| ---------------- | --------- | ----------- | ---------------- | ------------ |
+| 💻 Compute       | {service} | {SKU}       | {qty}            | ${...}       |
+| 💾 Data Services | {service} | {SKU}       | {qty}            | ${...}       |
+| 🌐 Networking    | {service} | {meter}     | {qty}            | ${...}       |
 
 ### Notes
 

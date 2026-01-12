@@ -24,6 +24,25 @@
 
 ---
 
+## ✅ Decision Summary
+
+- ✅ Approved: Single-region EU deployment with premium edge/WAF, zone-redundant compute, and premium messaging
+- ⏳ Deferred: Multi-region active-active, premium HA Redis tier, full geo-replicated SQL by default
+- 🔁 Redesign Trigger: If RTO/RPO tighten to near-zero or global latency becomes a hard requirement, add DR/second region
+
+**Confidence**: Medium | **Expected Variance**: ±20% (Service Bus Premium MU base cost and traffic-driven egress/search)
+
+---
+
+## 🔁 Requirements → Cost Mapping
+
+| Requirement                   | Architecture Decision                      | Cost Impact                  | Mandatory |
+| ----------------------------- | ------------------------------------------ | ---------------------------- | --------- |
+| PCI-DSS aligned security      | Front Door Premium WAF + private endpoints | +$230/month 📈 +$37/month 📈 | Yes       |
+| High availability for revenue | App Service P1v4 (zones)                   | +$206/month 📈               | Yes       |
+| Fast catalog search           | Cognitive Search S1                        | +$245/month 📈               | Yes       |
+| Reliable order processing     | Service Bus Premium                        | +$190-$677/month 📈          | Yes       |
+
 ## 📊 Top 5 Cost Drivers
 
 | Rank | Resource                 | Monthly Cost | % of Total | Trend |
@@ -85,6 +104,14 @@ pie showData
 
 ---
 
+## 🧾 What We Are Not Paying For (Yet)
+
+- Full multi-region DR stack (secondary region compute/data/messaging)
+- SQL geo-replication enabled by default
+- Premium HA cache tier (Redis Premium) unless load requires it
+
+---
+
 ## ⚠️ Cost Risk Indicators
 
 | Resource            | Risk Level | Issue                             | Mitigation                     |
@@ -113,6 +140,16 @@ _"If you need X, expect to pay Y more"_
 | Premium Redis (HA)  | +$270/month     | P1 Premium    | Currently using Basic C2    |
 
 > 💡 Use this matrix to quickly scope change requests and budget impacts
+
+---
+
+## 🧩 Change Control
+
+| Change Request                    | Delta         | Notes                |
+| --------------------------------- | ------------- | -------------------- |
+| Add multi-region DR               | +$1,200/month | From decision matrix |
+| Enable SQL geo-replication        | +$145/month   | From decision matrix |
+| Upgrade cache to Redis Premium HA | +$270/month   | From decision matrix |
 
 ---
 
@@ -225,6 +262,15 @@ Cost Distribution:
 
 ---
 
+## 🧮 Base Run Cost vs Growth-Variable Cost
+
+| Cost Type       | Drivers     | Examples                                      | How It Scales                  |
+| --------------- | ----------- | --------------------------------------------- | ------------------------------ |
+| Base run        | fixed SKUs  | App Service plan, Search, Service Bus MU base | step-changes (SKU upgrades/MU) |
+| Growth-variable | usage-based | egress, logs, queries, transactions           | increases with users/traffic   |
+
+---
+
 ## 🌍 Regional Comparison
 
 | Region             | Monthly Cost | vs. Primary | Data Residency   | Recommendation                 |
@@ -240,6 +286,13 @@ Cost Distribution:
 
 ---
 
+## 🔧 Environment Strategy (FinOps)
+
+- Production: Keep zone redundancy and premium security controls; scale-out via instances before SKU upgrades.
+- Non-prod: Use single instances and lower SKUs (Standard/Basic) and disable non-essential premium services.
+
+---
+
 ## 🔄 Environment Cost Comparison
 
 | Environment | Monthly Cost | vs. Production | Notes                              |
@@ -251,6 +304,27 @@ Cost Distribution:
 **Total for all environments**: ~$2,795/month
 
 > 💡 **Tip**: Apply Azure Dev/Test pricing to non-production subscriptions for additional 40-50% savings
+
+---
+
+## 🛡️ Cost Guardrails
+
+| Guardrail                | Threshold      | Action                                       |
+| ------------------------ | -------------- | -------------------------------------------- |
+| Messaging MU utilization | >70% sustained | Budget for full MU base cost or add MU       |
+| Search query volume      | >X QPS         | Evaluate tier/replicas/partitions            |
+| Log ingestion            | >X GB/day      | Tune sampling/retention                      |
+| Egress                   | >100 GB/month  | Investigate caching/CDN and traffic patterns |
+
+---
+
+## 📝 Testable Assumptions
+
+| Assumption                                 | Why It Matters                     | How to Measure      | Threshold / Trigger |
+| ------------------------------------------ | ---------------------------------- | ------------------- | ------------------- |
+| Service Bus Premium at ~30% MU utilization | big variance driver                | MU metrics          | >70% sustained      |
+| Egress <100 GB/month                       | keeps networking costs predictable | Azure Cost Mgmt     | >100 GB/month       |
+| Logs around 5 GB/month                     | avoids ingestion spikes            | Log Analytics usage | >10 GB/month        |
 
 ---
 

@@ -4,6 +4,7 @@
 **Region**: swedencentral (Sweden Central)
 **Environment**: Production
 **Compliance**: HIPAA
+**MCP Tools Used**: Not recorded in this scenario output
 **Architecture Reference**: [WAF Assessment](./01-azure-architect.md)
 
 ---
@@ -24,6 +25,24 @@
 > | Compliance        | ✅ HIPAA aligned                      |
 
 ---
+
+## ✅ Decision Summary
+
+- ✅ Approved: Single-region HIPAA-aligned patient portal within $800/month budget
+- ⏳ Deferred: Zone redundancy, geo-replication/multi-region DR, global edge front door
+- 🔁 Redesign Trigger: If RTO/RPO become strict or uptime targets increase, compute and data tiers increase
+
+**Confidence**: Medium | **Expected Variance**: ±20% (traffic growth and log ingestion are the main uncertainty)
+
+---
+
+## 🔁 Requirements → Cost Mapping
+
+| Requirement             | Architecture Decision                 | Cost Impact                | Mandatory |
+| ----------------------- | ------------------------------------- | -------------------------- | --------- |
+| HIPAA alignment         | Private endpoints + Key Vault         | +$15/month 📈 +$3/month 📈 | Yes       |
+| Stay under $800/month   | App Service P1v3 + SQL S1 right-sized | Baseline                   | Yes       |
+| Initial DR not required | Single region                         | Baseline                   | Yes       |
 
 ## 📊 Top 5 Cost Drivers
 
@@ -65,7 +84,7 @@ room for future enhancements.
 ### Cost Distribution
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': {'pie1': '#0078D4', 'pie2': '#107C10', 'pie3': '#5C2D91', 'pie4': '#008272', 'pie5': '#FFB900'}}}%%
+%%{init: {'theme':'base','themeVariables':{pie1:'#0078D4',pie2:'#107C10',pie3:'#5C2D91',pie4:'#D83B01',pie5:'#FFB900'}}}%%
 pie showData
     title Monthly Cost Distribution ($)
     "💻 Compute" : 146
@@ -84,6 +103,14 @@ pie showData
 | Private endpoints  | +$15/month    | HIPAA network isolation requirement    | Required         |
 | Single region      | $0            | DR not in initial scope                | Budget conscious |
 | No geo-replication | $0            | RTO/RPO requirements not specified     | Future option    |
+
+---
+
+## 🧾 What We Are Not Paying For (Yet)
+
+- Zone redundancy (App Service P1v4) until higher availability is required
+- SQL geo-replication until RTO/RPO demands it
+- Front Door / global edge until global latency or additional protection is needed
 
 ---
 
@@ -114,6 +141,16 @@ _"If you need X, expect to pay Y more"_
 | Defender for Cloud     | +$15/month      | Not included   | Enhanced security        |
 
 > 💡 All additions above still fit within the $800/month budget
+
+---
+
+## 🧩 Change Control
+
+| Change Request                    | Delta      | Notes                |
+| --------------------------------- | ---------- | -------------------- |
+| Upgrade to zone redundancy (P1v4) | +$60/month | From decision matrix |
+| Add SQL geo-replication           | +$85/month | From decision matrix |
+| Add Azure AD B2C                  | +$33/month | From decision matrix |
 
 ---
 
@@ -197,6 +234,64 @@ Cost Distribution:
 🌐 Networking   ███░░░░░░░░░░░░░░░░░░░░░░░░░░░  7%
 📊 Monitoring   ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░  6%
 ```
+
+---
+
+## 🧮 Base Run Cost vs Growth-Variable Cost
+
+| Cost Type       | Drivers     | Examples                   | How It Scales                |
+| --------------- | ----------- | -------------------------- | ---------------------------- |
+| Base run        | fixed SKUs  | App Service plan, SQL tier | step-changes (SKU upgrades)  |
+| Growth-variable | usage-based | logs, egress               | increases with users/traffic |
+
+---
+
+## 🌍 Regional Comparison
+
+| Region             | Monthly Cost | vs. Primary | Notes                             |
+| ------------------ | ------------ | ----------- | --------------------------------- |
+| swedencentral      | ~$207        | Baseline    | Selected (default + EU residency) |
+| germanywestcentral | TBD          | TBD         | Consider if DE residency required |
+
+> 💡 **Decision**: swedencentral selected for EU residency and default region standards.
+
+---
+
+## 🔧 Environment Strategy (FinOps)
+
+- Production: Right-sized baseline (P1v3 + SQL S1); upgrade tiers only on sustained utilization signals.
+- Non-prod: Use smaller SKUs and enable auto-shutdown where applicable.
+
+---
+
+## 🔄 Environment Cost Comparison
+
+| Environment | Monthly Cost | vs. Production | Notes                                 |
+| ----------- | ------------ | -------------- | ------------------------------------- |
+| Production  | ~$207        | Baseline       | Current scope                         |
+| Staging     | TBD          | TBD            | Optional; size based on testing needs |
+| Development | TBD          | TBD            | Optional; smallest SKUs               |
+
+---
+
+## 🛡️ Cost Guardrails
+
+| Guardrail           | Threshold          | Action                       |
+| ------------------- | ------------------ | ---------------------------- |
+| Budget alert        | 80% / 100% of $800 | Notify / require approval    |
+| App Service CPU     | >80% sustained     | Scale out before SKU upgrade |
+| SQL DTU utilization | >80% sustained     | Evaluate S1 -> S2            |
+| Log ingestion       | >X GB/day          | Tune verbosity/retention     |
+
+---
+
+## 📝 Testable Assumptions
+
+| Assumption                         | Why It Matters                 | How to Measure      | Threshold / Trigger |
+| ---------------------------------- | ------------------------------ | ------------------- | ------------------- |
+| SQL S1 sufficient for 10K patients | avoids tier upgrade            | DTU metrics         | >80% sustained      |
+| Logs near 5 GB/month               | prevents ingestion cost growth | Log Analytics usage | >10 GB/month        |
+| Minimal egress                     | keeps networking stable        | Azure Cost Mgmt     | >100 GB/month       |
 
 ---
 

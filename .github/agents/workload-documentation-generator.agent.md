@@ -693,9 +693,41 @@ Create `07-ab-cost-estimate.md` using Azure Pricing MCP tools:
 
 ---
 
-## 💰 Cost Summary
+## 💰 Cost At-a-Glance
 
 > **Monthly Total: ~$X,XXX** | Annual: ~$XX,XXX
+>
+> ```
+> Budget: $X/month (soft|hard) | Utilization: NN% ($X of $X)
+> ```
+>
+> | Status            | Indicator                    |
+> | ----------------- | ---------------------------- |
+> | Cost Trend        | ➡️ Stable                    |
+> | Savings Available | 💰 $X/year with reservations |
+> | Compliance        | ✅ {e.g., PCI-DSS aligned}   |
+
+---
+
+## ✅ Decision Summary
+
+- ✅ Approved: {what is in-scope and funded}
+- ⏳ Deferred: {what is explicitly not included yet}
+- 🔁 Redesign Trigger: {what requirement change forces SKU/region redesign}
+
+**Confidence**: High|Medium|Low | **Expected Variance**: ±X% (1 sentence why)
+
+---
+
+## 🔁 Requirements → Cost Mapping
+
+| Requirement | Architecture Decision | Cost Impact | Mandatory |
+| ---------- | --------------------- | ---------- | --------- |
+| SLA/RTO/RPO | {decision} | +$X/month | Yes|No |
+| Compliance | {decision} | +$X/month 📈 | Yes|No |
+| Latency/Performance | {decision} | +$X/month | Yes|No |
+
+## Design vs As-Built Summary
 
 | Metric           | Design Estimate | As-Built | Variance |
 | ---------------- | --------------- | -------- | -------- |
@@ -704,38 +736,193 @@ Create `07-ab-cost-estimate.md` using Azure Pricing MCP tools:
 
 ---
 
-## Detailed Cost Breakdown
+## 📊 Top 5 Cost Drivers
 
-### Compute Services
+| Rank | Resource | Monthly Cost | % of Total | Trend |
+| ---- | -------- | ------------ | ---------- | ----- |
+| 1️⃣   | ...      | $...         | ...        | ➡️    |
 
-| Resource    | SKU  | Qty | $/Month | Source         |
-| ----------- | ---- | --- | ------- | -------------- |
-| App Service | {SKU}| {n} | $XXX    | main.bicep:L42 |
-
-### Data Services
-
-| Resource  | SKU  | Size   | $/Month | Source         |
-| --------- | ---- | ------ | ------- | -------------- |
-| Azure SQL | {SKU}| {size} | $XXX    | main.bicep:L78 |
-
-### Supporting Services
-
-| Resource     | SKU  | $/Month | Source          |
-| ------------ | ---- | ------- | --------------- |
-| Key Vault    | std  | $X      | main.bicep:L105 |
-| App Insights | -    | $X      | main.bicep:L22  |
+> 💡 **Quick Win**: One low-effort action that saves meaningful cost
 
 ---
 
-## Cost Optimization Opportunities
+## Summary
 
-| Opportunity                | Potential Savings | Recommendation           |
-| -------------------------- | ----------------- | ------------------------ |
-| Reserved Instances (1-yr)  | ~30%              | {specific recommendation}|
-| Reserved Instances (3-yr)  | ~50%              | {specific recommendation}|
-| Dev/Test Pricing           | ~40%              | Apply to non-prod envs   |
-| Auto-shutdown (non-prod)   | ~50%              | Schedule off-hours       |
+| Metric              | Value             |
+| ------------------- | ----------------- |
+| 💵 Monthly Estimate | $X - $Y           |
+| 📅 Annual Estimate  | $X - $Y           |
+| 🌍 Primary Region   | swedencentral     |
+| 💳 Pricing Type     | List Price (PAYG) |
+| ⭐ WAF Score        | X.X/10 (or TBD)   |
+
+---
+
+## Architecture Overview
+
+### Cost Distribution
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{pie1:'#0078D4',pie2:'#107C10',pie3:'#5C2D91',pie4:'#D83B01',pie5:'#FFB900'}}}%%
+pie showData
+  title Monthly Cost Distribution ($)
+  "💻 Compute" : 535
+  "💾 Data Services" : 466
+  "🌐 Networking" : 376
+```
+
+### Key Design Decisions Affecting Cost
+
+| Decision | Cost Impact | Business Rationale | Status |
+| -------- | ----------- | ------------------ | ------ |
+| ... | +$.../month 📈 | ... | Required |
+
+---
+
+## 🧾 What We Are Not Paying For (Yet)
+
+{explicit list of deferred capabilities}
+
+---
+
+## ⚠️ Cost Risk Indicators
+
+| Resource | Risk Level | Issue | Mitigation |
+| -------- | ---------- | ----- | ---------- |
+| ... | 🔴 High | ... | ... |
+
+> **⚠️ Watch Item**: One sentence on the biggest budget uncertainty
+
+---
+
+## 🎯 Quick Decision Matrix
+
+_"If you need X, expect to pay Y more"_
+
+| Requirement | Additional Cost | SKU Change | Notes |
+| ---------- | --------------- | ---------- | ----- |
+| ... | +$.../month | ... | ... |
+
+---
+
+## 🧩 Change Control
+
+| Change Request | Delta | Notes |
+| ------------- | ----- | ----- |
+| ... | +$.../month | From decision matrix |
+
+---
+
+## 💰 Savings Opportunities
+
+> ### Total Potential Savings: $X/year
+>
+> | Commitment | Monthly Savings | Annual Savings |
+> | ---------- | --------------- | -------------- |
+> | 1-Year ... | $...            | $...           |
+
+---
+
+## Detailed Cost Breakdown
+
+### 💻 Compute Services
+
+| Resource | SKU | Qty | $/Month | Source |
+| -------- | --- | --- | ------- | ------ |
+| App Service | {SKU} | {n} | $XXX | main.bicep:L42 |
+
+### 💾 Data Services
+
+| Resource | SKU | Config | $/Month | Source |
+| -------- | --- | ------ | ------- | ------ |
+| Azure SQL | {SKU} | {size} | $XXX | main.bicep:L78 |
+
+### 🌐 Networking
+
+| Resource | SKU/Config | $/Month | Source |
+| -------- | ---------- | ------- | ------ |
+
+### 🔐 Security/Management
+
+| Resource | SKU/Config | $/Month | Source |
+| -------- | ---------- | ------- | ------ |
+
+---
+
+## 📋 Monthly Cost Summary
+
+| Category | Monthly Cost | % of Total | Trend |
+| -------- | ------------ | ---------- | ----- |
+| 💻 Compute | $X | NN% | ➡️ |
+| 💾 Data Services | $X | NN% | ➡️ |
+| 🌐 Networking | $X | NN% | ➡️ |
+| 🔐 Security/Mgmt | $X | NN% | ➡️ |
+| **Total** | **~$X** | 100% | |
+
+---
+
+## 🧮 Base Run Cost vs Growth-Variable Cost
+
+| Cost Type | Drivers | Examples | How It Scales |
+| --------- | ------- | -------- | ------------- |
+| Base run | fixed SKUs | App Service plan, SQL tier | step-changes (SKU upgrades) |
+| Growth-variable | usage-based | egress, logs, queries | linear/near-linear with usage |
+
+---
+
+## 🔧 Environment Strategy (FinOps)
+
+- Production: {HA/zone strategy, baseline capacity}
+- Non-prod: {smaller SKUs, single instance, auto-shutdown schedule}
+
+---
+
+## 🛡️ Cost Guardrails
+
+| Guardrail | Threshold | Action |
+| --------- | --------- | ------ |
+| Budget alert | 80% / 100% | Notify / block approvals |
+| Utilization | >80% | Review tier/queries |
+| Logs | >X GB/day | Tune sampling/retention |
+| Egress | >X GB/month | Investigate CDN/traffic |
+
+---
+
+## 📝 Testable Assumptions
+
+| Assumption | Why It Matters | How to Measure | Threshold / Trigger |
+| --------- | -------------- | -------------- | ------------------- |
+| Usage: 730 hours/month (24x7) | Baseline compute | Azure usage metrics | If usage differs >20% |
+| ... | ... | ... | ... |
+
+---
+
+## 📝 Assumptions
+
+- Pricing: Azure retail list prices (pay-as-you-go)
+- Prices queried: {YYYY-MM-DD} via Azure Pricing MCP
+
+---
+
+## 📊 Pricing Data Accuracy
+
+> **📊 Data Source**: Prices retrieved from Azure Retail Prices API via Azure Pricing MCP
+>
+> ✅ **Included**: Retail list prices (PAYG)
+>
+> ❌ **Not Included**: EA discounts, CSP pricing, negotiated rates, Azure Hybrid Benefit
+>
+> 💡 For official quotes, validate with Azure Pricing Calculator
+
+---
+
+## 🔗 References
+
+- [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/)
+- [Azure Retail Prices API](https://learn.microsoft.com/en-us/rest/api/cost-management/retail-prices/azure-retail-prices)
 ````
+
+Authoritative standard: `.github/instructions/cost-estimate.instructions.md`
 
 ### Step 7: Generate Optional Documents
 

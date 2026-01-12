@@ -4,7 +4,7 @@
 **Region**: swedencentral (Sweden Central)
 **Environment**: Production
 **MCP Tools Used**: azure_price_search, azure_region_recommend, azure_sku_discovery
-**Architecture Reference**: [WAF Assessment](./01-azure-architect.md)
+**Architecture Reference**: [Architecture Assessment](./01-architecture-assessment.md)
 
 ---
 
@@ -23,6 +23,25 @@
 > | Compliance        | ✅ PCI-DSS aligned                      |
 
 ---
+
+## ✅ Decision Summary
+
+- ✅ Approved: Single-region EU deployment with premium edge/WAF, zone-redundant compute, and premium messaging
+- ⏳ Deferred: Multi-region active-active, premium HA Redis tier, full geo-replicated SQL by default
+- 🔁 Redesign Trigger: If RTO/RPO tighten to near-zero or global latency becomes a hard requirement, add DR/second region
+
+**Confidence**: Medium | **Expected Variance**: ±20% (Service Bus Premium MU base cost and traffic-driven egress/search)
+
+---
+
+## 🔁 Requirements → Cost Mapping
+
+| Requirement                   | Architecture Decision                      | Cost Impact                  | Mandatory |
+| ----------------------------- | ------------------------------------------ | ---------------------------- | --------- |
+| PCI-DSS aligned security      | Front Door Premium WAF + private endpoints | +$230/month 📈 +$37/month 📈 | Yes       |
+| High availability for revenue | App Service P1v4 (zones)                   | +$206/month 📈               | Yes       |
+| Fast catalog search           | Cognitive Search S1                        | +$245/month 📈               | Yes       |
+| Reliable order processing     | Service Bus Premium                        | +$190-$677/month 📈          | Yes       |
 
 ## 📊 Top 5 Cost Drivers
 
@@ -63,7 +82,7 @@ supporting revenue generation and customer retention goals.
 ### Cost Distribution
 
 ```mermaid
-%%{init: {'theme':'neutral'}}%%
+%%{init: {'theme':'base','themeVariables':{pie1:'#0078D4',pie2:'#107C10',pie3:'#5C2D91',pie4:'#D83B01',pie5:'#FFB900'}}}%%
 pie showData
     title Monthly Cost Distribution ($)
     "💻 Compute" : 535
@@ -82,6 +101,14 @@ pie showData
 | Cognitive Search S1    | +$245/month 📈 | <100ms product search performance    | Required |
 | Front Door Premium     | +$230/month 📈 | PCI-DSS WAF managed rules            | Required |
 | Private endpoints (×5) | +$37/month     | Network isolation for compliance     | Required |
+
+---
+
+## 🧾 What We Are Not Paying For (Yet)
+
+- Full multi-region DR stack (secondary region compute/data/messaging)
+- SQL geo-replication enabled by default
+- Premium HA cache tier (Redis Premium) unless load requires it
 
 ---
 
@@ -113,6 +140,16 @@ _"If you need X, expect to pay Y more"_
 | Premium Redis (HA)  | +$270/month     | P1 Premium    | Currently using Basic C2    |
 
 > 💡 Use this matrix to quickly scope change requests and budget impacts
+
+---
+
+## 🧩 Change Control
+
+| Change Request                    | Delta         | Notes                |
+| --------------------------------- | ------------- | -------------------- |
+| Add multi-region DR               | +$1,200/month | From decision matrix |
+| Enable SQL geo-replication        | +$145/month   | From decision matrix |
+| Upgrade cache to Redis Premium HA | +$270/month   | From decision matrix |
 
 ---
 
@@ -225,6 +262,15 @@ Cost Distribution:
 
 ---
 
+## 🧮 Base Run Cost vs Growth-Variable Cost
+
+| Cost Type       | Drivers     | Examples                                      | How It Scales                  |
+| --------------- | ----------- | --------------------------------------------- | ------------------------------ |
+| Base run        | fixed SKUs  | App Service plan, Search, Service Bus MU base | step-changes (SKU upgrades/MU) |
+| Growth-variable | usage-based | egress, logs, queries, transactions           | increases with users/traffic   |
+
+---
+
 ## 🌍 Regional Comparison
 
 | Region             | Monthly Cost | vs. Primary | Data Residency   | Recommendation                 |
@@ -240,6 +286,13 @@ Cost Distribution:
 
 ---
 
+## 🔧 Environment Strategy (FinOps)
+
+- Production: Keep zone redundancy and premium security controls; scale-out via instances before SKU upgrades.
+- Non-prod: Use single instances and lower SKUs (Standard/Basic) and disable non-essential premium services.
+
+---
+
 ## 🔄 Environment Cost Comparison
 
 | Environment | Monthly Cost | vs. Production | Notes                              |
@@ -251,6 +304,27 @@ Cost Distribution:
 **Total for all environments**: ~$2,795/month
 
 > 💡 **Tip**: Apply Azure Dev/Test pricing to non-production subscriptions for additional 40-50% savings
+
+---
+
+## 🛡️ Cost Guardrails
+
+| Guardrail                | Threshold      | Action                                       |
+| ------------------------ | -------------- | -------------------------------------------- |
+| Messaging MU utilization | >70% sustained | Budget for full MU base cost or add MU       |
+| Search query volume      | >X QPS         | Evaluate tier/replicas/partitions            |
+| Log ingestion            | >X GB/day      | Tune sampling/retention                      |
+| Egress                   | >100 GB/month  | Investigate caching/CDN and traffic patterns |
+
+---
+
+## 📝 Testable Assumptions
+
+| Assumption                                 | Why It Matters                     | How to Measure      | Threshold / Trigger |
+| ------------------------------------------ | ---------------------------------- | ------------------- | ------------------- |
+| Service Bus Premium at ~30% MU utilization | big variance driver                | MU metrics          | >70% sustained      |
+| Egress <100 GB/month                       | keeps networking costs predictable | Azure Cost Mgmt     | >100 GB/month       |
+| Logs around 5 GB/month                     | avoids ingestion spikes            | Log Analytics usage | >10 GB/month        |
 
 ---
 
@@ -282,9 +356,9 @@ Cost Distribution:
 ## 🔗 References
 
 - [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/)
-- [WAF Assessment](./01-azure-architect.md)
-- [Implementation Plan](./02-bicep-plan.md)
-- [Architecture Diagram](./ecommerce_architecture.png)
+- [Architecture Assessment](./01-architecture-assessment.md)
+- [Implementation Plan](./04-implementation-plan.md)
+- [As-Built Diagram](./06-asbuilt-diagram.png)
 - [Azure App Service Pricing](https://azure.microsoft.com/pricing/details/app-service/)
 - [Azure Front Door Pricing](https://azure.microsoft.com/pricing/details/frontdoor/)
 - [Azure Cognitive Search Pricing](https://azure.microsoft.com/pricing/details/search/)

@@ -383,89 +383,277 @@ Also update the project's `agent-output/{project-name}/README.md` to track this 
 
 **Cost Estimate File Structure**:
 
-```markdown
+````markdown
 # Azure Cost Estimate: {Project Name}
 
 **Generated**: {YYYY-MM-DD}
 **Region**: {primary-region}
-**Environment**: {dev|staging|prod}
-**MCP Tools Used**: azure_price_search, azure_cost_estimate, azure_region_recommend
+**Environment**: {Production|Staging|Development}
+**MCP Tools Used**: azure_price_search, azure_cost_estimate, azure_region_recommend, azure_sku_discovery
+**Architecture Reference**: {relative link to assessment doc, if available}
+
+---
+
+## 💰 Cost At-a-Glance
+
+> **Monthly Total: ~$X,XXX** | Annual: ~$XX,XXX
+>
+> ```
+> Budget: $X/month (soft|hard) | Utilization: NN% ($X of $X)
+> ```
+>
+> | Status            | Indicator                    |
+> | ----------------- | ---------------------------- |
+> | Cost Trend        | ➡️ Stable                    |
+> | Savings Available | 💰 $X/year with reservations |
+> | Compliance        | ✅ {e.g., PCI-DSS aligned}   |
+
+---
+
+## ✅ Decision Summary
+
+- ✅ Approved: {what is in-scope and funded}
+- ⏳ Deferred: {what is explicitly not included yet}
+- 🔁 Redesign Trigger: {what requirement change forces SKU/region redesign}
+
+**Confidence**: High|Medium|Low | **Expected Variance**: ±X% (1 sentence why)
+
+---
+
+## 🔁 Requirements → Cost Mapping
+
+| Requirement         | Architecture Decision | Cost Impact  | Mandatory |
+| ------------------- | --------------------- | ------------ | --------- | --- |
+| SLA/RTO/RPO         | {decision}            | +$X/month    | Yes       | No  |
+| Compliance          | {decision}            | +$X/month 📈 | Yes       | No  |
+| Latency/Performance | {decision}            | +$X/month    | Yes       | No  |
+
+## 📊 Top 5 Cost Drivers
+
+| Rank | Resource | Monthly Cost | % of Total | Trend |
+| ---- | -------- | ------------ | ---------- | ----- |
+| 1️⃣   | ...      | $...         | ...        | ➡️    |
+
+> 💡 **Quick Win**: One low-effort action that saves meaningful cost
 
 ---
 
 ## Summary
 
-| Metric           | Value                 |
-| ---------------- | --------------------- |
-| Monthly Estimate | ${X,XXX} - ${X,XXX}   |
-| Annual Estimate  | ${XX,XXX} - ${XX,XXX} |
-| Primary Region   | swedencentral         |
-| Pricing Type     | List Price (PAYG)     |
+| Metric              | Value             |
+| ------------------- | ----------------- |
+| 💵 Monthly Estimate | $X - $Y           |
+| 📅 Annual Estimate  | $X - $Y           |
+| 🌍 Primary Region   | swedencentral     |
+| 💳 Pricing Type     | List Price (PAYG) |
+| ⭐ WAF Score        | X.X/10 (or TBD)   |
+| 🎯 Target Users     | N concurrent      |
+
+### Business Context
+
+{2-5 lines linking spend to requirements + outcomes}
+
+---
+
+## Architecture Overview
+
+### Cost Distribution
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{pie1:'#0078D4',pie2:'#107C10',pie3:'#5C2D91',pie4:'#D83B01',pie5:'#FFB900'}}}%%
+pie showData
+  title Monthly Cost Distribution ($)
+  "💻 Compute" : 535
+  "💾 Data Services" : 466
+  "🌐 Networking" : 376
+```
+````
+
+### Key Design Decisions Affecting Cost
+
+| Decision | Cost Impact    | Business Rationale | Status   |
+| -------- | -------------- | ------------------ | -------- |
+| ...      | +$.../month 📈 | ...                | Required |
+
+---
+
+## 🧾 What We Are Not Paying For (Yet)
+
+{explicit list of deferred capabilities}
+
+---
+
+## ⚠️ Cost Risk Indicators
+
+| Resource | Risk Level | Issue | Mitigation |
+| -------- | ---------- | ----- | ---------- |
+| ...      | 🔴 High    | ...   | ...        |
+
+> **⚠️ Watch Item**: One sentence on the biggest budget uncertainty
+
+---
+
+## 🎯 Quick Decision Matrix
+
+_"If you need X, expect to pay Y more"_
+
+| Requirement | Additional Cost | SKU Change | Notes |
+| ----------- | --------------- | ---------- | ----- |
+| ...         | +$.../month     | ...        | ...   |
+
+---
+
+## 🧩 Change Control
+
+| Change Request | Delta       | Notes                |
+| -------------- | ----------- | -------------------- |
+| ...            | +$.../month | From decision matrix |
+
+---
+
+## 💰 Savings Opportunities
+
+> ### Total Potential Savings: $X/year
+>
+> | Commitment | Monthly Savings | Annual Savings |
+> | ---------- | --------------- | -------------- |
+> | 1-Year ... | $...            | $...           |
+
+### Additional Optimization Strategies
+
+| Strategy | Potential Savings | Effort | Notes |
+| -------- | ----------------- | ------ | ----- |
+| ...      | ...               | 🟢 Low | ...   |
 
 ---
 
 ## Detailed Cost Breakdown
 
-### Compute Services
+### 💻 Compute Services
 
-| Resource         | SKU    | Qty | $/Hour | $/Month | Notes           |
-| ---------------- | ------ | --- | ------ | ------- | --------------- |
-| App Service      | P1v3   | 2   | $0.XXX | $XXX    | Zone redundant  |
-| Azure Functions  | EP1    | 1   | $0.XXX | $XXX    | Premium plan    |
-| Virtual Machines | D4s_v5 | 3   | $0.XXX | $XXX    | General purpose |
+| Resource | SKU | Qty | $/Hour | $/Month | Notes |
+| -------- | --- | --- | ------ | ------- | ----- |
 
-### Data Services
+**💻 Compute Subtotal**: ~$X/month
 
-| Resource    | SKU | Size   | $/Month | Notes         |
-| ----------- | --- | ------ | ------- | ------------- |
-| Azure SQL   | S2  | 250 GB | $XXX    | Standard tier |
-| Redis Cache | C2  | 6 GB   | $XXX    | Basic cache   |
-| Storage     | LRS | 500 GB | $XX     | Hot tier      |
+### 💾 Data Services
 
-### Networking
+| Resource | SKU | Config | $/Unit | $/Month | Notes |
+| -------- | --- | ------ | ------ | ------- | ----- |
 
-| Resource          | Configuration | $/Month | Notes              |
-| ----------------- | ------------- | ------- | ------------------ |
-| Front Door        | Standard      | $XXX    | WAF included       |
-| Private Endpoints | 5 endpoints   | $XX     | $0.01/hour each    |
-| VNet Gateway      | VpnGw1        | $XXX    | For hybrid connect |
+**💾 Data Subtotal**: ~$X/month
 
----
+### 🌐 Networking
 
-## Regional Comparison
+| Resource | SKU/Config | $/Month | Notes |
+| -------- | ---------- | ------- | ----- |
 
-| Region             | Monthly Cost | Savings vs Primary |
-| ------------------ | ------------ | ------------------ |
-| swedencentral      | $X,XXX       | Baseline           |
-| germanywestcentral | $X,XXX       | +X%                |
-| northeurope        | $X,XXX       | -X%                |
+**🌐 Networking Subtotal**: ~$X/month
+
+### 🔐 Security/Management
+
+| Resource | SKU/Config | $/Month | Notes |
+| -------- | ---------- | ------- | ----- |
+
+**🔐 Security/Management Subtotal**: ~$X/month
 
 ---
 
-## Cost Optimization Recommendations
+## 📋 Monthly Cost Summary
 
-1. **Reserved Instances**: Save up to 72% with 3-year reserved VM pricing
-2. **Dev/Test Pricing**: Use B-series VMs and Basic tiers for non-production
-3. **Auto-shutdown**: Schedule non-prod VMs to stop outside business hours
-4. **Serverless Options**: Consider Azure SQL Serverless for variable workloads
-5. **Spot VMs**: Use spot instances for fault-tolerant batch workloads
+| Category         | Monthly Cost | % of Total | Trend |
+| ---------------- | ------------ | ---------- | ----- |
+| 💻 Compute       | $X           | NN%        | ➡️    |
+| 💾 Data Services | $X           | NN%        | ➡️    |
+| 🌐 Networking    | $X           | NN%        | ➡️    |
+| 🔐 Security/Mgmt | $X           | NN%        | ➡️    |
+| **Total**        | **~$X**      | 100%       |       |
 
 ---
 
-## Assumptions
+## 🌍 Regional Comparison
 
-- Usage: 730 hours/month (24x7)
-- Data transfer: Minimal egress (<100 GB/month)
+| Region             | Monthly Cost | vs. Primary | Notes       |
+| ------------------ | ------------ | ----------- | ----------- |
+| swedencentral      | $X           | Baseline    | Selected    |
+| germanywestcentral | $X           | +N%         | Alternative |
+
+---
+
+## 🔄 Environment Cost Comparison
+
+| Environment | Monthly Cost | vs. Production | Notes |
+| ----------- | ------------ | -------------- | ----- |
+| Production  | $X           | Baseline       | ...   |
+| Staging     | $X           | -N%            | ...   |
+| Development | $X           | -N%            | ...   |
+
+---
+
+## 🧮 Base Run Cost vs Growth-Variable Cost
+
+| Cost Type       | Drivers     | Examples                   | How It Scales                 |
+| --------------- | ----------- | -------------------------- | ----------------------------- |
+| Base run        | fixed SKUs  | App Service plan, SQL tier | step-changes (SKU upgrades)   |
+| Growth-variable | usage-based | egress, logs, queries      | linear/near-linear with usage |
+
+---
+
+## 🔧 Environment Strategy (FinOps)
+
+- Production: {HA/zone strategy, baseline capacity}
+- Non-prod: {smaller SKUs, single instance, auto-shutdown schedule}
+
+---
+
+## 🛡️ Cost Guardrails
+
+| Guardrail    | Threshold   | Action                   |
+| ------------ | ----------- | ------------------------ |
+| Budget alert | 80% / 100%  | Notify / block approvals |
+| Utilization  | >80%        | Review tier/queries      |
+| Logs         | >X GB/day   | Tune sampling/retention  |
+| Egress       | >X GB/month | Investigate CDN/traffic  |
+
+---
+
+## 📝 Testable Assumptions
+
+| Assumption                    | Why It Matters   | How to Measure      | Threshold / Trigger   |
+| ----------------------------- | ---------------- | ------------------- | --------------------- |
+| Usage: 730 hours/month (24x7) | Baseline compute | Azure usage metrics | If usage differs >20% |
+| ...                           | ...              | ...                 | ...                   |
+
+---
+
+## 📝 Assumptions
+
 - Pricing: Azure retail list prices (pay-as-you-go)
 - Prices queried: {YYYY-MM-DD} via Azure Pricing MCP
+- Data/egress assumptions: {brief}
 
 ---
 
-## References
+## 📊 Pricing Data Accuracy
+
+> **📊 Data Source**: Prices retrieved from Azure Retail Prices API via Azure Pricing MCP
+>
+> ✅ **Included**: Retail list prices (PAYG)
+>
+> ❌ **Not Included**: EA discounts, CSP pricing, negotiated rates, Azure Hybrid Benefit
+>
+> 💡 For official quotes, validate with Azure Pricing Calculator
+
+---
+
+## 🔗 References
 
 - [Azure Pricing Calculator](https://azure.microsoft.com/en-us/pricing/calculator/)
-- [Azure Pricing MCP Architecture](../../docs/diagrams/mcp/azure_pricing_mcp_architecture.png)
-```
+- [Azure Retail Prices API](https://learn.microsoft.com/en-us/rest/api/cost-management/retail-prices/azure-retail-prices)
+
+````
+
+Authoritative standard: `.github/instructions/cost-estimate.instructions.md`
 
 ### WAF Assessment File Structure
 
@@ -544,7 +732,7 @@ Also update the project's `agent-output/{project-name}/README.md` to track this 
 ## Next Steps
 
 {workflow guidance}
-```
+````
 
 ### Guardrails
 

@@ -41,4 +41,6 @@ jobs:
       - name: Validate Wave 1 artifact templates
         run: node scripts/validate-wave1-artifacts.mjs
         env:
-          STRICTNESS: relaxed # Start with relaxed, ratchet to standard after 2 conforming regenerations
+          # RATCHET: Change to 'standard' after 2 successful artifact regenerations pass validation
+          # Current count: 0 of 2 (tracking in issue #TBD)
+          STRICTNESS: relaxed

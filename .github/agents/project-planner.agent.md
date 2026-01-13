@@ -84,7 +84,7 @@ NEVER:
 
 ## Requirements Gathering Process
 
-**Always follow**: `.github/templates/01-requirements.template.md`
+**Always follow**: [`../templates/01-requirements.template.md`](../templates/01-requirements.template.md)
 
 ### Invariant H2 Sections (Required, in order):
 

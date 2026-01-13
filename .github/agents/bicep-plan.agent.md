@@ -299,7 +299,7 @@ After governance discovery:
 **Filename:** `04-implementation-plan.md`
 **Format:** Valid Markdown
 
-**Template**: Use `.github/templates/04-implementation-plan.template.md`
+**Template**: Use [`../templates/04-implementation-plan.template.md`](../templates/04-implementation-plan.template.md)
 
 **Required Structure:**
 

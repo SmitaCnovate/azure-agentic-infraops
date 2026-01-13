@@ -23,3 +23,27 @@ if [ -n "$STAGED_MD_FILES" ]; then
 else
   echo "ℹ️  No markdown files to validate"
 fi
+
+# Wave 1 artifact structure validation
+echo ""
+echo "🔍 Running Wave 1 artifact structure validation..."
+
+# Check if any Wave 1 artifacts are staged
+STAGED_WAVE1=$(echo "$STAGED_MD_FILES" | grep -E '(01-requirements|02-architecture-assessment|04-implementation-plan|06-deployment-summary)\.md$' || true)
+
+if [ -n "$STAGED_WAVE1" ]; then
+  echo "📋 Validating Wave 1 artifact structure..."
+  # RATCHET: Change to STRICTNESS=standard after 2 successful artifact regenerations pass validation
+  STRICTNESS=relaxed npm run lint:wave1-artifacts
+  
+  if [ $? -ne 0 ]; then
+    echo ""
+    echo "❌ Wave 1 artifact validation failed!"
+    echo "Ensure artifact structure matches templates in .github/templates/"
+    exit 1
+  fi
+  
+  echo "✅ Wave 1 artifacts passed structure validation"
+else
+  echo "ℹ️  No Wave 1 artifacts to validate"
+fi

@@ -117,9 +117,9 @@ Create `07-ab-cost-estimate.md` using Azure Pricing MCP tools:
 4. **Compare to Design** - If `03-des-cost-estimate.md` exists, show variance analysis
 5. **Generate File** - Create `07-ab-cost-estimate.md` with full breakdown
 
-**Template**: Use `.github/templates/07-ab-cost-estimate.template.md`
+**Template**: Use [`../templates/07-ab-cost-estimate.template.md`](../templates/07-ab-cost-estimate.template.md)
 
-**Standard**: `.github/instructions/cost-estimate.instructions.md`
+**Standard**: [`../instructions/cost-estimate.instructions.md`](../instructions/cost-estimate.instructions.md)
 
 Hard requirements:
 

@@ -25,6 +25,16 @@ Each template defines:
 3. **Optional sections**: May appear after anchor, with relaxed ordering
 4. **Guidance**: Brief instructions or examples under each section
 
+### Template Authority Rule
+
+> **Required H2 headings must match template exactly (text and order).**
+> Additional context sections are permitted only AFTER the anchor heading (last required H2).
+
+- ✅ Use exact heading text: `## Approval Gate` (not `## Approval Checkpoint`)
+- ✅ Maintain heading order as defined in template
+- ✅ Add extra H2/H3 sections only after the anchor
+- ❌ Do not paraphrase, abbreviate, or reorder required headings
+
 ## Validation
 
 Templates and their usage are validated by:

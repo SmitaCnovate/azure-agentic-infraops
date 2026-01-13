@@ -5,10 +5,10 @@ tools:
   [
     "edit",
     "search",
-    "runCommands",
-    "Microsoft Docs/*",
-    "Azure MCP/*",
-    "Bicep (EXPERIMENTAL)/*",
+    "execute/runInTerminal",
+    "execute/getTerminalOutput",
+    "read/terminalLastCommand",
+    "read/terminalSelection",
     "ms-azuretools.vscode-azure-github-copilot/azure_recommend_custom_modes",
     "ms-azuretools.vscode-azure-github-copilot/azure_query_azure_resource_graph",
     "ms-azuretools.vscode-azure-github-copilot/azure_get_auth_context",
@@ -19,26 +19,26 @@ tools:
   ]
 handoffs:
   - label: Generate Workload Documentation
-    agent: workload-documentation-generator
+    agent: Workload Documentation Generator
     prompt: Generate comprehensive workload documentation package including design document, operations runbook, and resource inventory. Synthesize from existing WAF assessment, implementation plan, and Bicep code.
     send: true
   - label: Generate As-Built Diagram
-    agent: diagram-generator
+    agent: Azure Diagram Generator
     prompt: Generate a Python architecture diagram documenting the implemented infrastructure. Use '-ab' suffix for as-built diagram. Include all deployed Azure resources and their relationships.
     send: true
   - label: Document Implementation Decision
-    agent: adr-generator
+    agent: ADR Generator
     prompt: Create an ADR documenting the infrastructure implementation, including the architectural decisions, trade-offs, and deployment approach used in the Bicep templates.
     send: true
   - label: Return to Architect Review
-    agent: azure-principal-architect
+    agent: Azure Principal Architect
     prompt: Review the implemented Bicep templates for WAF compliance and architectural alignment before deployment.
     send: true
 ---
 
 # Azure Bicep Infrastructure as Code Implementation Specialist
 
-> **See [Agent Shared Foundation](_shared/defaults.md)** for regional standards, naming conventions,
+> **See Agent Shared Foundation** for regional standards, naming conventions,
 > security baseline, and workflow integration patterns common to all agents.
 
 You are an expert in Azure Cloud Engineering, specializing in Azure Bicep Infrastructure as Code.

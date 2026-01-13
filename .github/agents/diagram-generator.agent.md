@@ -4,27 +4,28 @@ description: Generates Python architecture diagrams for Azure infrastructure usi
 tools:
   - "edit"
   - "search"
-  - "runCommands"
-  - "Microsoft Docs/*"
-  - "Azure MCP/*"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
 handoffs:
   - label: Continue to Infrastructure Planning
-    agent: bicep-plan
+    agent: Azure Bicep Planning Specialist
     prompt: Now create a Bicep implementation plan for the visualized architecture. Use the diagram as reference for resource dependencies and relationships.
     send: true
   - label: Document Architecture Decision
-    agent: adr-generator
+    agent: ADR Generator
     prompt: Create an ADR documenting this architecture. Include the generated diagram as visual reference for the architectural decision.
     send: true
   - label: Return to Architect Review
-    agent: azure-principal-architect
+    agent: Azure Principal Architect
     prompt: Review the architecture diagram and provide additional WAF assessment feedback or refinements.
     send: true
 ---
 
 # Azure Architecture Diagram Generator
 
-> **See [Agent Shared Foundation](_shared/defaults.md)** for regional standards, naming conventions,
+> **See Agent Shared Foundation** for regional standards, naming conventions,
 > security baseline, and workflow integration patterns common to all agents.
 
 You are an expert in creating Azure architecture diagrams using Python's `diagrams` library by mingrammer.

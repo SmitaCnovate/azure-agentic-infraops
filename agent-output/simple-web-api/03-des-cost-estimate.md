@@ -14,11 +14,11 @@
 > Budget: $100/month (hard) | Utilization: 20% ($20 of $100)
 > ```
 >
-> | Status            | Indicator                    |
-> | ----------------- | ---------------------------- |
-> | Cost Trend        | ➡️ Stable                    |
+> | Status            | Indicator                      |
+> | ----------------- | ------------------------------ |
+> | Cost Trend        | ➡️ Stable                      |
 > | Savings Available | 💰 $0/year (already optimized) |
-> | Compliance        | ✅ No special requirements   |
+> | Compliance        | ✅ No special requirements     |
 
 ## ✅ Decision Summary
 
@@ -30,22 +30,22 @@
 
 ## 🔁 Requirements → Cost Mapping
 
-| Requirement         | Architecture Decision      | Cost Impact  | Mandatory |
-| ------------------- | -------------------------- | ------------ | --------- |
-| 99.9% SLA           | Serverless (built-in HA)   | $0 (included)| Yes       |
-| $100/month budget   | Free/Consumption tiers     | -$80/month   | Yes       |
-| 10 concurrent users | Consumption plan sufficient| $0           | Yes       |
-| Basic monitoring    | App Insights (pay-as-you-go)| ~$2/month   | Yes       |
+| Requirement         | Architecture Decision        | Cost Impact   | Mandatory |
+| ------------------- | ---------------------------- | ------------- | --------- |
+| 99.9% SLA           | Serverless (built-in HA)     | $0 (included) | Yes       |
+| $100/month budget   | Free/Consumption tiers       | -$80/month    | Yes       |
+| 10 concurrent users | Consumption plan sufficient  | $0            | Yes       |
+| Basic monitoring    | App Insights (pay-as-you-go) | ~$2/month     | Yes       |
 
 ## 📊 Top 5 Cost Drivers
 
-| Rank | Resource              | Monthly Cost | % of Total | Trend |
-| ---- | --------------------- | ------------ | ---------- | ----- |
-| 1️⃣   | Cosmos DB (Serverless)| $10          | 50%        | ➡️    |
-| 2️⃣   | Azure Functions       | $5           | 25%        | ➡️    |
-| 3️⃣   | Application Insights  | $3           | 15%        | ➡️    |
-| 4️⃣   | Storage (Functions)   | $2           | 10%        | ➡️    |
-| 5️⃣   | Static Web Apps       | $0           | 0%         | ➡️    |
+| Rank | Resource               | Monthly Cost | % of Total | Trend |
+| ---- | ---------------------- | ------------ | ---------- | ----- |
+| 1️⃣   | Cosmos DB (Serverless) | $10          | 50%        | ➡️    |
+| 2️⃣   | Azure Functions        | $5           | 25%        | ➡️    |
+| 3️⃣   | Application Insights   | $3           | 15%        | ➡️    |
+| 4️⃣   | Storage (Functions)    | $2           | 10%        | ➡️    |
+| 5️⃣   | Static Web Apps        | $0           | 0%         | ➡️    |
 
 > 💡 **Quick Win**: Cosmos DB is already serverless - optimal for low-traffic workloads
 
@@ -65,11 +65,11 @@ pie showData
 
 ### Key Design Decisions Affecting Cost
 
-| Decision               | Cost Impact    | Business Rationale              | Status   |
-| ---------------------- | -------------- | ------------------------------- | -------- |
-| Static Web Apps Free   | -$9/month      | Sufficient for < 2 custom domains| Required |
-| Functions Consumption  | -$150/month    | Low traffic doesn't justify Premium| Required |
-| Cosmos DB Serverless   | -$25/month     | Auto-scale from 0 RU/s          | Required |
+| Decision              | Cost Impact | Business Rationale                  | Status   |
+| --------------------- | ----------- | ----------------------------------- | -------- |
+| Static Web Apps Free  | -$9/month   | Sufficient for < 2 custom domains   | Required |
+| Functions Consumption | -$150/month | Low traffic doesn't justify Premium | Required |
+| Cosmos DB Serverless  | -$25/month  | Auto-scale from 0 RU/s              | Required |
 
 ## 🧾 What We Are Not Paying For (Yet)
 
@@ -88,11 +88,11 @@ pie showData
 
 ## ⚠️ Cost Risk Indicators
 
-| Resource        | Risk Level | Issue                        | Mitigation                    |
-| --------------- | ---------- | ---------------------------- | ----------------------------- |
-| Cosmos DB       | 🟢 Low     | Serverless scales with usage | Monitor RU consumption        |
-| App Insights    | 🟢 Low     | 5 GB free tier included      | Set sampling if needed        |
-| Functions       | 🟢 Low     | 1M executions free           | Monitor execution count       |
+| Resource     | Risk Level | Issue                        | Mitigation              |
+| ------------ | ---------- | ---------------------------- | ----------------------- |
+| Cosmos DB    | 🟢 Low     | Serverless scales with usage | Monitor RU consumption  |
+| App Insights | 🟢 Low     | 5 GB free tier included      | Set sampling if needed  |
+| Functions    | 🟢 Low     | 1M executions free           | Monitor execution count |
 
 > **⚠️ Watch Item**: Cosmos DB serverless can spike during burst traffic; set budget alerts
 
@@ -100,12 +100,12 @@ pie showData
 
 _"If you need X, expect to pay Y more"_
 
-| Requirement           | Additional Cost | SKU Change                  | Notes                    |
-| --------------------- | --------------- | --------------------------- | ------------------------ |
-| 99.99% SLA            | +$50/month      | Functions Premium P1v2      | Zone redundancy required |
-| Custom domains (>2)   | +$9/month       | Static Web Apps Standard    | Unlimited custom domains |
-| Private endpoints     | +$10/month      | Cosmos DB private endpoint  | Plus VNet costs          |
-| WAF protection        | +$35/month      | Azure Front Door Standard   | DDoS protection included |
+| Requirement         | Additional Cost | SKU Change                 | Notes                    |
+| ------------------- | --------------- | -------------------------- | ------------------------ |
+| 99.99% SLA          | +$50/month      | Functions Premium P1v2     | Zone redundancy required |
+| Custom domains (>2) | +$9/month       | Static Web Apps Standard   | Unlimited custom domains |
+| Private endpoints   | +$10/month      | Cosmos DB private endpoint | Plus VNet costs          |
+| WAF protection      | +$35/month      | Azure Front Door Standard  | DDoS protection included |
 
 ## 💰 Savings Opportunities
 
@@ -127,14 +127,14 @@ _"If you need X, expect to pay Y more"_
 
 ### Line Items
 
-| Category         | Service             | SKU / Meter     | Quantity / Units    | Est. Monthly |
-| ---------------- | ------------------- | --------------- | ------------------- | ------------ |
-| 🌐 Frontend      | Static Web Apps     | Free            | 1 app               | $0.00        |
-| 💻 Compute       | Azure Functions     | Consumption     | ~30K executions     | $0.00-5.00   |
-| 💾 Data Services | Cosmos DB           | Serverless      | ~100 RU/s average   | $5.00-15.00  |
-| 📊 Monitoring    | Application Insights| Pay-as-you-go   | < 5 GB/month        | $0.00-3.00   |
-| 💿 Storage       | Storage Account     | Standard LRS    | < 1 GB (Functions)  | $0.02-2.00   |
-| **TOTAL**        |                     |                 |                     | **~$15-25**  |
+| Category         | Service              | SKU / Meter   | Quantity / Units   | Est. Monthly |
+| ---------------- | -------------------- | ------------- | ------------------ | ------------ |
+| 🌐 Frontend      | Static Web Apps      | Free          | 1 app              | $0.00        |
+| 💻 Compute       | Azure Functions      | Consumption   | ~30K executions    | $0.00-5.00   |
+| 💾 Data Services | Cosmos DB            | Serverless    | ~100 RU/s average  | $5.00-15.00  |
+| 📊 Monitoring    | Application Insights | Pay-as-you-go | < 5 GB/month       | $0.00-3.00   |
+| 💿 Storage       | Storage Account      | Standard LRS  | < 1 GB (Functions) | $0.02-2.00   |
+| **TOTAL**        |                      |               |                    | **~$15-25**  |
 
 ### Notes
 

@@ -15,6 +15,7 @@
 When the 2nd regeneration is complete:
 
 1. **`.husky/pre-commit`**
+
    - Change `STRICTNESS=relaxed` to `STRICTNESS=standard`
 
 2. **`.github/workflows/wave1-artifact-drift-guard.yml`**
@@ -25,11 +26,11 @@ When the 2nd regeneration is complete:
 
 ### Regeneration #1: simple-web-api
 
-| Check       | Result  |
-| ----------- | ------- |
-| Failures    | 0       |
-| Warnings    | 12      |
-| Mode        | relaxed |
+| Check    | Result  |
+| -------- | ------- |
+| Failures | 0       |
+| Warnings | 12      |
+| Mode     | relaxed |
 
 Warnings are expected for governance constraints schema differences
 and optional attribution fields.

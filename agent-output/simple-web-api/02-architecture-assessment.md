@@ -4,12 +4,12 @@
 
 ## Requirements Validation ✅
 
-| Requirement Category  | Status | Notes                              |
-| --------------------- | ------ | ---------------------------------- |
-| NFRs (SLA, RTO, RPO)  | ✅ Defined | 99.9% SLA, 4h RTO, 1h RPO       |
-| Compliance Requirements | ✅ Defined | No regulatory requirements     |
-| Cost Constraints      | ✅ Defined | $100/month hard limit            |
-| Scale Requirements    | ✅ Defined | 10 concurrent users, 1000 req/day |
+| Requirement Category    | Status     | Notes                             |
+| ----------------------- | ---------- | --------------------------------- |
+| NFRs (SLA, RTO, RPO)    | ✅ Defined | 99.9% SLA, 4h RTO, 1h RPO         |
+| Compliance Requirements | ✅ Defined | No regulatory requirements        |
+| Cost Constraints        | ✅ Defined | $100/month hard limit             |
+| Scale Requirements      | ✅ Defined | 10 concurrent users, 1000 req/day |
 
 ---
 
@@ -20,6 +20,7 @@ project, leveraging Azure's consumption-based services to stay well within the $
 while meeting all functional and non-functional requirements.
 
 The proposed architecture uses:
+
 - **Azure Static Web Apps (Free tier)** for hosting the frontend with built-in CDN
 - **Azure Functions (Consumption plan)** for serverless API backend
 - **Azure Cosmos DB (Serverless)** for NoSQL data persistence
@@ -65,13 +66,13 @@ This combination provides excellent cost efficiency for low-traffic workloads wh
 
 ### Overall Scores
 
-| Pillar                    | Score | Confidence | Summary                                    |
-| ------------------------- | ----- | ---------- | ------------------------------------------ |
-| 🔒 Security               | 7/10  | High       | Managed services with HTTPS by default     |
-| 🔄 Reliability            | 7/10  | High       | Serverless HA, single region acceptable   |
-| ⚡ Performance            | 7/10  | Medium     | CDN + serverless, cold starts expected    |
-| 💰 Cost Optimization      | 9/10  | High       | ~$15-25/month, well under budget          |
-| 🔧 Operational Excellence | 8/10  | High       | Managed services minimize ops overhead     |
+| Pillar                    | Score | Confidence | Summary                                 |
+| ------------------------- | ----- | ---------- | --------------------------------------- |
+| 🔒 Security               | 7/10  | High       | Managed services with HTTPS by default  |
+| 🔄 Reliability            | 7/10  | High       | Serverless HA, single region acceptable |
+| ⚡ Performance            | 7/10  | Medium     | CDN + serverless, cold starts expected  |
+| 💰 Cost Optimization      | 9/10  | High       | ~$15-25/month, well under budget        |
+| 🔧 Operational Excellence | 8/10  | High       | Managed services minimize ops overhead  |
 
 **Primary Pillar Optimized**: 💰 Cost Optimization  
 **Trade-offs Accepted**: Accepting cold starts and single-region deployment for cost savings
@@ -140,13 +141,13 @@ This combination provides excellent cost efficiency for low-traffic workloads wh
 
 ### 💰 Cost Assessment (9/10)
 
-| Service             | SKU           | Monthly Cost | Notes                          |
-| ------------------- | ------------- | ------------ | ------------------------------ |
-| Static Web Apps     | Free          | $0.00        | Included hosting + CDN         |
-| Azure Functions     | Consumption   | $0.00-5.00   | 1M requests/month free         |
-| Cosmos DB           | Serverless    | $5.00-15.00  | ~100 RU/s average usage        |
-| Application Insights| Pay-as-you-go | $2.00-5.00   | 5GB/month free, minimal overage|
-| **Total Estimated** |               | **~$15-25/mo**| **75% under budget**          |
+| Service              | SKU           | Monthly Cost   | Notes                           |
+| -------------------- | ------------- | -------------- | ------------------------------- |
+| Static Web Apps      | Free          | $0.00          | Included hosting + CDN          |
+| Azure Functions      | Consumption   | $0.00-5.00     | 1M requests/month free          |
+| Cosmos DB            | Serverless    | $5.00-15.00    | ~100 RU/s average usage         |
+| Application Insights | Pay-as-you-go | $2.00-5.00     | 5GB/month free, minimal overage |
+| **Total Estimated**  |               | **~$15-25/mo** | **75% under budget**            |
 
 **Cost Optimization Applied:**
 
@@ -179,25 +180,25 @@ This combination provides excellent cost efficiency for low-traffic workloads wh
 
 ## Resource SKU Recommendations
 
-| Service             | Recommended SKU | Configuration           | Justification                    |
-| ------------------- | --------------- | ----------------------- | -------------------------------- |
-| Static Web Apps     | Free            | Default                 | Meets all requirements at $0     |
-| Azure Functions     | Consumption     | Node.js 20 LTS          | Pay-per-execution, auto-scale    |
-| Cosmos DB           | Serverless      | NoSQL API, Sweden Central| Auto-scale 0-5000 RU/s          |
-| Application Insights| Basic           | 30-day retention        | Sufficient for troubleshooting   |
+| Service              | Recommended SKU | Configuration             | Justification                  |
+| -------------------- | --------------- | ------------------------- | ------------------------------ |
+| Static Web Apps      | Free            | Default                   | Meets all requirements at $0   |
+| Azure Functions      | Consumption     | Node.js 20 LTS            | Pay-per-execution, auto-scale  |
+| Cosmos DB            | Serverless      | NoSQL API, Sweden Central | Auto-scale 0-5000 RU/s         |
+| Application Insights | Basic           | 30-day retention          | Sufficient for troubleshooting |
 
 ---
 
 ## Architecture Decision Summary
 
-| Decision                  | Choice                | Rationale                                   |
-| ------------------------- | --------------------- | ------------------------------------------- |
-| Hosting Model             | Serverless            | Optimal for low-traffic, cost-sensitive    |
-| Database Type             | NoSQL (Cosmos DB)     | Flexible schema, serverless billing         |
-| Frontend Hosting          | Static Web Apps       | Free tier with CDN included                 |
-| Region Strategy           | Single Region         | Cost savings, acceptable for SLA target     |
-| Authentication            | None (Phase 1)        | Public API per requirements                 |
-| Network Isolation         | Public Endpoints      | Acceptable per security requirements        |
+| Decision          | Choice            | Rationale                               |
+| ----------------- | ----------------- | --------------------------------------- |
+| Hosting Model     | Serverless        | Optimal for low-traffic, cost-sensitive |
+| Database Type     | NoSQL (Cosmos DB) | Flexible schema, serverless billing     |
+| Frontend Hosting  | Static Web Apps   | Free tier with CDN included             |
+| Region Strategy   | Single Region     | Cost savings, acceptable for SLA target |
+| Authentication    | None (Phase 1)    | Public API per requirements             |
+| Network Isolation | Public Endpoints  | Acceptable per security requirements    |
 
 ---
 

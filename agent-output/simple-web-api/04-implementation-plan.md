@@ -12,17 +12,17 @@ The architecture follows cost-optimized patterns using Free and Consumption tier
 
 ## Resource Inventory
 
-| Resource            | Type                                              | SKU         | Dependencies         |
-| ------------------- | ------------------------------------------------- | ----------- | -------------------- |
-| Resource Group      | Microsoft.Resources/resourceGroups                | N/A         | None                 |
-| Static Web Apps     | Microsoft.Web/staticSites                         | Free        | None                 |
-| Function App        | Microsoft.Web/sites                               | Consumption | Storage, App Insights|
-| App Service Plan    | Microsoft.Web/serverfarms                         | Y1          | None                 |
-| Storage Account     | Microsoft.Storage/storageAccounts                 | Standard_LRS| None                 |
-| Cosmos DB Account   | Microsoft.DocumentDB/databaseAccounts             | Serverless  | None                 |
-| Cosmos DB Database  | Microsoft.DocumentDB/databaseAccounts/sqlDatabases| N/A         | Cosmos Account       |
-| Application Insights| Microsoft.Insights/components                     | PayAsYouGo  | Log Analytics        |
-| Log Analytics       | Microsoft.OperationalInsights/workspaces          | Free        | None                 |
+| Resource             | Type                                               | SKU          | Dependencies          |
+| -------------------- | -------------------------------------------------- | ------------ | --------------------- |
+| Resource Group       | Microsoft.Resources/resourceGroups                 | N/A          | None                  |
+| Static Web Apps      | Microsoft.Web/staticSites                          | Free         | None                  |
+| Function App         | Microsoft.Web/sites                                | Consumption  | Storage, App Insights |
+| App Service Plan     | Microsoft.Web/serverfarms                          | Y1           | None                  |
+| Storage Account      | Microsoft.Storage/storageAccounts                  | Standard_LRS | None                  |
+| Cosmos DB Account    | Microsoft.DocumentDB/databaseAccounts              | Serverless   | None                  |
+| Cosmos DB Database   | Microsoft.DocumentDB/databaseAccounts/sqlDatabases | N/A          | Cosmos Account        |
+| Application Insights | Microsoft.Insights/components                      | PayAsYouGo   | Log Analytics         |
+| Log Analytics        | Microsoft.OperationalInsights/workspaces           | Free         | None                  |
 
 ---
 
@@ -243,7 +243,7 @@ resource staticWebApp 'Microsoft.Web/staticSites@2023-12-01' = {
 param(
     [Parameter(Mandatory = $false)]
     [string]$Environment = 'dev',
-    
+
     [Parameter(Mandatory = $false)]
     [string]$Location = 'swedencentral'
 )
@@ -259,10 +259,10 @@ graph TD
     RG[Resource Group] --> MON[monitoring.bicep]
     RG --> ST[storage.bicep]
     RG --> CDB[cosmos-db.bicep]
-    
+
     MON --> FUNC[function-app.bicep]
     ST --> FUNC
-    
+
     FUNC --> SWA[static-web-app.bicep]
     CDB --> FUNC
 ```
@@ -271,43 +271,43 @@ graph TD
 
 ## Naming Conventions
 
-| Resource            | Pattern                                   | Example                           |
-| ------------------- | ----------------------------------------- | --------------------------------- |
-| Resource Group      | rg-{project}-{env}                        | rg-simple-web-api-dev             |
-| Static Web App      | swa-{project}-{env}-{suffix}              | swa-simple-web-api-dev-abc123     |
-| Function App        | func-{project}-{env}-{suffix}             | func-simple-web-api-dev-abc123    |
-| Cosmos DB           | cosmos-{project}-{env}-{suffix}           | cosmos-simple-web-api-dev-abc12345|
-| Storage Account     | st{project}{suffix} (no hyphens, ≤24 chars)| stsimplewebapiabc123             |
-| App Insights        | appi-{project}-{env}-{suffix}             | appi-simple-web-api-dev-abc123    |
-| Log Analytics       | log-{project}-{env}-{suffix}              | log-simple-web-api-dev-abc123     |
+| Resource        | Pattern                                     | Example                            |
+| --------------- | ------------------------------------------- | ---------------------------------- |
+| Resource Group  | rg-{project}-{env}                          | rg-simple-web-api-dev              |
+| Static Web App  | swa-{project}-{env}-{suffix}                | swa-simple-web-api-dev-abc123      |
+| Function App    | func-{project}-{env}-{suffix}               | func-simple-web-api-dev-abc123     |
+| Cosmos DB       | cosmos-{project}-{env}-{suffix}             | cosmos-simple-web-api-dev-abc12345 |
+| Storage Account | st{project}{suffix} (no hyphens, ≤24 chars) | stsimplewebapiabc123               |
+| App Insights    | appi-{project}-{env}-{suffix}               | appi-simple-web-api-dev-abc123     |
+| Log Analytics   | log-{project}-{env}-{suffix}                | log-simple-web-api-dev-abc123      |
 
 ---
 
 ## Security Configuration
 
-| Resource        | Security Setting           | Value           |
-| --------------- | -------------------------- | --------------- |
-| Storage Account | supportsHttpsTrafficOnly   | true            |
-| Storage Account | minimumTlsVersion          | TLS1_2          |
-| Storage Account | allowBlobPublicAccess      | false           |
-| Function App    | httpsOnly                  | true            |
-| Function App    | ftpsState                  | Disabled        |
-| Function App    | minTlsVersion              | 1.2             |
-| Function App    | identity                   | SystemAssigned  |
-| Cosmos DB       | minimalTlsVersion          | Tls12           |
-| Cosmos DB       | publicNetworkAccess        | Enabled         |
+| Resource        | Security Setting         | Value          |
+| --------------- | ------------------------ | -------------- |
+| Storage Account | supportsHttpsTrafficOnly | true           |
+| Storage Account | minimumTlsVersion        | TLS1_2         |
+| Storage Account | allowBlobPublicAccess    | false          |
+| Function App    | httpsOnly                | true           |
+| Function App    | ftpsState                | Disabled       |
+| Function App    | minTlsVersion            | 1.2            |
+| Function App    | identity                 | SystemAssigned |
+| Cosmos DB       | minimalTlsVersion        | Tls12          |
+| Cosmos DB       | publicNetworkAccess      | Enabled        |
 
 ---
 
 ## Estimated Implementation Time
 
-| Task                  | Estimated Duration |
-| --------------------- | ------------------ |
-| Bicep modules         | 60 minutes         |
-| Testing (lint/build)  | 15 minutes         |
-| What-If validation    | 10 minutes         |
-| Deployment            | 10 minutes         |
-| **Total**             | **~95 minutes**    |
+| Task                 | Estimated Duration |
+| -------------------- | ------------------ |
+| Bicep modules        | 60 minutes         |
+| Testing (lint/build) | 15 minutes         |
+| What-If validation   | 10 minutes         |
+| Deployment           | 10 minutes         |
+| **Total**            | **~95 minutes**    |
 
 ---
 

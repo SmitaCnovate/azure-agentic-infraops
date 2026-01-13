@@ -9,12 +9,12 @@ that must be addressed in the Bicep implementation.
 
 ### Policy Categories
 
-| Category          | Constraint                    | Implementation              |
-| ----------------- | ----------------------------- | --------------------------- |
-| Naming            | CAF naming convention         | Use `uniqueString()` suffix |
-| Tagging           | Required tags on all resources| Include in all modules      |
-| Security          | TLS 1.2 minimum               | Configure in all services   |
-| Data Residency    | Sweden Central only           | Set location parameter      |
+| Category       | Constraint                     | Implementation              |
+| -------------- | ------------------------------ | --------------------------- |
+| Naming         | CAF naming convention          | Use `uniqueString()` suffix |
+| Tagging        | Required tags on all resources | Include in all modules      |
+| Security       | TLS 1.2 minimum                | Configure in all services   |
+| Data Residency | Sweden Central only            | Set location parameter      |
 
 ### Required Tags
 
@@ -31,29 +31,29 @@ tags: {
 
 ### Security Policies
 
-| Policy                          | Requirement                        |
-| ------------------------------- | ---------------------------------- |
-| HTTPS Only                      | Required on all web services       |
-| TLS Version                     | Minimum TLS 1.2                    |
-| Storage Public Access           | Disabled                           |
-| Managed Identity                | Preferred over connection strings  |
-| Key Vault                       | Not required (no secrets in scope) |
+| Policy                | Requirement                        |
+| --------------------- | ---------------------------------- |
+| HTTPS Only            | Required on all web services       |
+| TLS Version           | Minimum TLS 1.2                    |
+| Storage Public Access | Disabled                           |
+| Managed Identity      | Preferred over connection strings  |
+| Key Vault             | Not required (no secrets in scope) |
 
 ### Cost Policies
 
-| Policy            | Constraint                          |
-| ----------------- | ----------------------------------- |
-| Budget            | $100/month hard limit               |
-| SKU Restrictions  | Free/Consumption tiers only         |
-| Reserved Capacity | Not applicable (serverless)         |
+| Policy            | Constraint                  |
+| ----------------- | --------------------------- |
+| Budget            | $100/month hard limit       |
+| SKU Restrictions  | Free/Consumption tiers only |
+| Reserved Capacity | Not applicable (serverless) |
 
 ### Network Policies
 
-| Policy              | Constraint                         |
-| ------------------- | ---------------------------------- |
-| Private Endpoints   | Not required (cost constraint)     |
-| VNet Integration    | Not required                       |
-| Public Endpoints    | Acceptable per requirements        |
+| Policy            | Constraint                     |
+| ----------------- | ------------------------------ |
+| Private Endpoints | Not required (cost constraint) |
+| VNet Integration  | Not required                   |
+| Public Endpoints  | Acceptable per requirements    |
 
 ---
 

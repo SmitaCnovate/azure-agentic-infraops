@@ -4,13 +4,13 @@
 
 ## Project Overview
 
-| Attribute              | Value                                                             |
-| ---------------------- | ----------------------------------------------------------------- |
-| **Project Name**       | Simple Web API                                                    |
-| **Project Type**       | Serverless Web Application                                        |
-| **Timeline**           | 1-2 weeks                                                         |
-| **Primary Stakeholder** | Development Team                                                 |
-| **Business Context**   | Low-cost API backend for static web frontend with minimal traffic |
+| Attribute               | Value                                                             |
+| ----------------------- | ----------------------------------------------------------------- |
+| **Project Name**        | Simple Web API                                                    |
+| **Project Type**        | Serverless Web Application                                        |
+| **Timeline**            | 1-2 weeks                                                         |
+| **Primary Stakeholder** | Development Team                                                  |
+| **Business Context**    | Low-cost API backend for static web frontend with minimal traffic |
 
 ## Functional Requirements
 
@@ -23,10 +23,10 @@
 
 ### User Types
 
-| User Type | Description                    | Estimated Count |
-| --------- | ------------------------------ | --------------- |
-| End Users | Consumers of the web API       | 10 concurrent   |
-| Admins    | System administrators          | 1-2             |
+| User Type | Description              | Estimated Count |
+| --------- | ------------------------ | --------------- |
+| End Users | Consumers of the web API | 10 concurrent   |
+| Admins    | System administrators    | 1-2             |
 
 ### Integrations
 
@@ -45,27 +45,27 @@
 
 ### Availability & Reliability
 
-| Metric  | Target   | Justification                                         |
-| ------- | -------- | ----------------------------------------------------- |
-| **SLA** | 99.9%    | Standard availability for non-critical workload       |
-| **RTO** | 4 hours  | Acceptable recovery time for low-priority application |
-| **RPO** | 1 hour   | Minimal data loss tolerance                           |
+| Metric  | Target  | Justification                                         |
+| ------- | ------- | ----------------------------------------------------- |
+| **SLA** | 99.9%   | Standard availability for non-critical workload       |
+| **RTO** | 4 hours | Acceptable recovery time for low-priority application |
+| **RPO** | 1 hour  | Minimal data loss tolerance                           |
 
 ### Performance
 
-| Metric           | Target        | Notes                           |
-| ---------------- | ------------- | ------------------------------- |
-| Page Load Time   | < 2 seconds   | Static content via CDN          |
-| API Response Time| < 500ms       | Cold start acceptable           |
-| Concurrent Users | 10            | Low-traffic application         |
+| Metric            | Target      | Notes                   |
+| ----------------- | ----------- | ----------------------- |
+| Page Load Time    | < 2 seconds | Static content via CDN  |
+| API Response Time | < 500ms     | Cold start acceptable   |
+| Concurrent Users  | 10          | Low-traffic application |
 
 ### Scalability
 
-| Metric             | Current | Projected (12 months) |
-| ------------------ | ------- | --------------------- |
-| Daily Users        | 50      | 100                   |
-| Data Volume        | < 1 GB  | < 5 GB                |
-| Transactions/Day   | 1,000   | 2,000                 |
+| Metric           | Current | Projected (12 months) |
+| ---------------- | ------- | --------------------- |
+| Daily Users      | 50      | 100                   |
+| Data Volume      | < 1 GB  | < 5 GB                |
+| Transactions/Day | 1,000   | 2,000                 |
 
 ## Compliance & Security Requirements
 
@@ -80,19 +80,19 @@
 
 ### Data Residency
 
-| Requirement              | Value           |
-| ------------------------ | --------------- |
-| Primary Region           | swedencentral   |
-| Data Sovereignty         | EU preferred    |
-| Cross-region Replication | Not required    |
+| Requirement              | Value         |
+| ------------------------ | ------------- |
+| Primary Region           | swedencentral |
+| Data Sovereignty         | EU preferred  |
+| Cross-region Replication | Not required  |
 
 ### Authentication & Authorization
 
-| Requirement       | Value                |
-| ----------------- | -------------------- |
-| Identity Provider | None (public API)    |
-| MFA Required      | No                   |
-| RBAC Model        | N/A                  |
+| Requirement       | Value             |
+| ----------------- | ----------------- |
+| Identity Provider | None (public API) |
+| MFA Required      | No                |
+| RBAC Model        | N/A               |
 
 ### Network Security
 
@@ -105,9 +105,9 @@
 
 ### Budget
 
-| Period  | Budget     | Limit Type |
-| ------- | ---------- | ---------- |
-| Monthly | $100       | Hard Limit |
+| Period  | Budget | Limit Type |
+| ------- | ------ | ---------- |
+| Monthly | $100   | Hard Limit |
 
 ### Cost Optimization Priorities
 
@@ -126,35 +126,35 @@
 
 ### Monitoring & Alerting
 
-| Requirement         | Value                    |
-| ------------------- | ------------------------ |
-| Application Insights| Required                 |
-| Log Analytics       | Basic retention (30 days)|
-| Alert Recipients    | DevOps team email        |
-| Dashboards          | Basic metrics only       |
+| Requirement          | Value                     |
+| -------------------- | ------------------------- |
+| Application Insights | Required                  |
+| Log Analytics        | Basic retention (30 days) |
+| Alert Recipients     | DevOps team email         |
+| Dashboards           | Basic metrics only        |
 
 ### Support & Maintenance
 
-| Requirement        | Value                |
-| ------------------ | -------------------- |
-| Support Hours      | Business hours only  |
-| On-call Required   | No                   |
-| Maintenance Window | Weekends preferred   |
+| Requirement        | Value               |
+| ------------------ | ------------------- |
+| Support Hours      | Business hours only |
+| On-call Required   | No                  |
+| Maintenance Window | Weekends preferred  |
 
 ### Backup & Disaster Recovery
 
-| Component  | Backup Frequency | Retention |
-| ---------- | ---------------- | --------- |
-| Cosmos DB  | Continuous       | 7 days    |
-| Functions  | N/A (stateless)  | N/A       |
+| Component | Backup Frequency | Retention |
+| --------- | ---------------- | --------- |
+| Cosmos DB | Continuous       | 7 days    |
+| Functions | N/A (stateless)  | N/A       |
 
 ## Regional Preferences
 
-| Preference        | Value             |
-| ----------------- | ----------------- |
-| Primary Region    | swedencentral     |
-| Failover Region   | Not required      |
-| Availability Zones| Not required      |
+| Preference         | Value         |
+| ------------------ | ------------- |
+| Primary Region     | swedencentral |
+| Failover Region    | Not required  |
+| Availability Zones | Not required  |
 
 ---
 

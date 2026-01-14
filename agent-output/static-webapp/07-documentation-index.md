@@ -4,7 +4,7 @@
 **Version**: 1.0
 **Status**: Complete
 
-## Document Package Contents
+## 1. Document Package Contents
 
 | Document                                         | Description                                  | Status |
 | ------------------------------------------------ | -------------------------------------------- | ------ |
@@ -14,7 +14,7 @@
 | [Compliance Matrix](./07-compliance-matrix.md)   | Security controls mapping                    | ✅     |
 | [Backup & DR Plan](./07-backup-dr-plan.md)       | Recovery procedures                          | ✅     |
 
-## Source Artifacts
+## 2. Source Artifacts
 
 These documents were generated from the following agentic workflow outputs:
 
@@ -31,7 +31,7 @@ These documents were generated from the following agentic workflow outputs:
 | As-Built Diagram    | [07-ab-diagram.png](./07-ab-diagram.png)                                   | 2024-12-17 |
 | Bicep Code          | [`infra/bicep/static-webapp-test/`](../../infra/bicep/static-webapp-test/) | 2024-12-17 |
 
-## Project Summary
+## 3. Project Summary
 
 | Attribute          | Value                   |
 | ------------------ | ----------------------- |
@@ -57,12 +57,12 @@ These documents were generated from the following agentic workflow outputs:
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-## Related Resources
+## 4. Related Resources
 
 - **Infrastructure Code**: [`infra/bicep/static-webapp-test/`](../../infra/bicep/static-webapp-test/)
 - **Workflow Documentation**: [WORKFLOW.md](../../docs/workflow/WORKFLOW.md)
 
-## Quick Links
+## 5. Quick Links
 
 - [Deployment Script](../../infra/bicep/static-webapp-test/deploy.ps1)
 - [Main Bicep Template](../../infra/bicep/static-webapp-test/main.bicep)

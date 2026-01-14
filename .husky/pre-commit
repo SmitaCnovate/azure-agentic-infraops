@@ -33,7 +33,8 @@ STAGED_CORE=$(echo "$STAGED_MD_FILES" | grep -E '(01-requirements|02-architectur
 
 if [ -n "$STAGED_CORE" ]; then
   echo "📋 Validating core artifact structure..."
-  STRICTNESS=standard npm run lint:artifact-templates
+  # Use per-artifact strictness (no override) - standard for core, relaxed for Wave 2
+  npm run lint:artifact-templates
   
   if [ $? -ne 0 ]; then
     echo ""

@@ -18,9 +18,27 @@
 
 ---
 
-## 1. Backup Strategy
+## 1. Recovery Objectives
 
-### 1.1 Backup Overview
+### 1.1 Recovery Time Objective (RTO)
+
+| Tier     | RTO Target | Services                   |
+| -------- | ---------- | -------------------------- |
+| Critical | 4 hours    | Full application           |
+| Standard | 8 hours    | Non-critical functions     |
+
+### 1.2 Recovery Point Objective (RPO)
+
+| Data Type        | RPO Target | Backup Strategy   |
+| ---------------- | ---------- | ----------------- |
+| SQL Database     | 1 hour     | Automated backup  |
+| Application Code | Minutes    | GitHub repository |
+
+---
+
+## 2. Backup Strategy
+
+### 2.1 Backup Overview
 
 | Component        | Backup Method          | Frequency  | Retention | RPO     |
 | ---------------- | ---------------------- | ---------- | --------- | ------- |
@@ -29,7 +47,7 @@
 | Infrastructure   | Bicep templates (IaC)  | On commit  | Unlimited | Minutes |
 | Static Content   | Built from source      | On deploy  | Unlimited | Minutes |
 
-### 1.2 SQL Database Backup Details
+### 2.2 SQL Database Backup Details
 
 | Setting                 | Value                                 |
 | ----------------------- | ------------------------------------- |
@@ -40,7 +58,7 @@
 | Point-in-Time Retention | 7 days (Basic tier default)           |
 | Geo-Redundant Backup    | No (single region deployment)         |
 
-### 1.3 Backup Verification
+### 2.3 Backup Verification
 
 **Monthly Verification Procedure:**
 
@@ -54,9 +72,9 @@ az sql db list-restore-points \
 
 ---
 
-## 2. Recovery Procedures
+## 3. Disaster Recovery Procedures
 
-### 2.1 Scenario: Database Corruption or Data Loss
+### 3.1 Scenario: Database Corruption or Data Loss
 
 **RTO**: 1-2 hours | **RPO**: Up to 1 hour
 
@@ -96,7 +114,7 @@ az sql db list-restore-points \
 5. **Clean up**
    - Delete corrupted database (after verification)
 
-### 2.2 Scenario: Application Deployment Failure
+### 3.2 Scenario: Application Deployment Failure
 
 **RTO**: 30 minutes | **RPO**: Minutes
 
@@ -117,7 +135,7 @@ az sql db list-restore-points \
    - Test application functionality
    - Check Application Insights for errors
 
-### 2.3 Scenario: Infrastructure Failure (Full Region Outage)
+### 3.3 Scenario: Infrastructure Failure (Full Region Outage))
 
 **RTO**: 4 hours | **RPO**: 1 hour
 
@@ -158,7 +176,7 @@ az sql db list-restore-points \
 
 ## 3. Disaster Recovery Architecture
 
-### 3.1 Current Architecture (Single Region)
+### 3.4 Current Architecture (Single Region)
 
 ```
 ┌─────────────────────────────────────────┐
@@ -176,7 +194,7 @@ az sql db list-restore-points \
 └─────────────────────────────────────────┘
 ```
 
-### 3.2 Recommended Production Architecture (If Upgraded)
+### 3.5 Recommended Production Architecture (If Upgraded)
 
 ```
 ┌────────────────────────────────────────────────────────────────┐
@@ -193,7 +211,7 @@ az sql db list-restore-points \
 
 ---
 
-## 4. Business Continuity
+## 4. Testing Schedule
 
 ### 4.1 Service Dependencies
 
@@ -204,7 +222,9 @@ az sql db list-restore-points \
 | SQL Database | Application non-functional | Restore from backup    |
 | Azure Region | Full outage                | Manual DR (4h RTO)     |
 
-### 4.2 Communication Plan
+---
+
+## 5. Communication Plan
 
 | Event                 | Notify           | Method         |
 | --------------------- | ---------------- | -------------- |
@@ -215,7 +235,7 @@ az sql db list-restore-points \
 
 ---
 
-## 5. Testing Schedule
+## 6. Roles and Responsibilities
 
 | Test Type             | Frequency | Last Performed | Next Scheduled |
 | --------------------- | --------- | -------------- | -------------- |
@@ -223,7 +243,7 @@ az sql db list-restore-points \
 | Point-in-time restore | Quarterly | N/A            | March 2026     |
 | Full DR drill         | Annually  | N/A            | December 2026  |
 
-### 5.1 Backup Verification Checklist
+### 6.1 Backup Verification Checklist
 
 - [ ] Confirm SQL backups are running
 - [ ] Verify point-in-time restore points available
@@ -231,7 +251,7 @@ az sql db list-restore-points \
 - [ ] Validate data integrity
 - [ ] Document any issues
 
-### 5.2 DR Test Checklist
+### 6.2 DR Test Checklist
 
 - [ ] Document current configuration
 - [ ] Simulate failure scenario
@@ -242,7 +262,30 @@ az sql db list-restore-points \
 
 ---
 
-## 6. Contacts
+## 7. Dependencies
+
+| Dependency   | Failure Impact             | Mitigation             |
+| ------------ | -------------------------- | ---------------------- |
+| Azure AD     | No authentication          | N/A (Azure-wide issue) |
+| GitHub       | No deployments             | Local source available |
+| SQL Database | Application non-functional | Restore from backup    |
+| Azure Region | Full outage                | Manual DR (4h RTO)     |
+
+---
+
+## 8. Recovery Runbooks
+
+| Runbook                | Location                   | Owner       |
+| ---------------------- | -------------------------- | ----------- |
+| Database restore       | Section 3.1                | DevOps Team |
+| Application rollback   | Section 3.2                | DevOps Team |
+| Full region failover   | Section 3.3                | DevOps Lead |
+
+---
+
+## 9. Appendix
+
+### 9.1 Contact Information
 
 | Role           | Contact       | Responsibility              |
 | -------------- | ------------- | --------------------------- |
@@ -250,3 +293,9 @@ az sql db list-restore-points \
 | Technical Lead | DevOps Team   | Execute recovery procedures |
 | Business Owner | Product Owner | User communication          |
 | Escalation     | Eng Manager   | Resource allocation         |
+
+### 9.2 Related Documents
+
+- [Operations Runbook](./07-operations-runbook.md)
+- [Design Document](./07-design-document.md)
+- [Resource Inventory](./07-resource-inventory.md)

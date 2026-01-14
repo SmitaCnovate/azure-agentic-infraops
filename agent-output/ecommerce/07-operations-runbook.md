@@ -79,53 +79,9 @@ union AppExceptions, FunctionAppLogs
 
 ---
 
-## 2. Routine Maintenance
+## 2. Incident Response
 
-### 2.1 Weekly Tasks
-
-| Day       | Task                       | Owner  | Duration |
-| --------- | -------------------------- | ------ | -------- |
-| Monday    | Review cost trends         | FinOps | 15 min   |
-| Tuesday   | Check security alerts      | SecOps | 30 min   |
-| Wednesday | Validate backups           | Ops    | 20 min   |
-| Thursday  | Review performance metrics | Dev    | 30 min   |
-| Friday    | Update runbooks if needed  | Ops    | 15 min   |
-
-**Weekly Backup Validation:**
-
-```powershell
-# Verify SQL backup status
-az sql db list-restore-points `
-    --resource-group rg-ecommerce-prod-swc-001 `
-    --server sql-ecommerce-prod-swc-{suffix} `
-    --database sqldb-ecommerce-prod `
-    --output table
-```
-
-### 2.2 Monthly Tasks
-
-| Task              | Description                         | Owner  |
-| ----------------- | ----------------------------------- | ------ |
-| Security Scan     | Run vulnerability assessment on SQL | SecOps |
-| Cost Review       | Analyze spending vs budget          | FinOps |
-| Capacity Planning | Review scaling metrics, plan ahead  | Arch   |
-| DR Test           | Validate restore procedures         | Ops    |
-| Access Review     | Audit RBAC assignments              | SecOps |
-
-### 2.3 Patching Schedule
-
-| Component              | Patch Method     | Window         | Notification        |
-| ---------------------- | ---------------- | -------------- | ------------------- |
-| App Service Runtime    | Platform-managed | Automatic      | Azure notifications |
-| Function Runtime       | Platform-managed | Automatic      | Azure notifications |
-| Application Code       | Deployment slots | Tue/Thu 2-4 AM | 24h advance         |
-| Infrastructure (Bicep) | CI/CD pipeline   | Wed 2-4 AM     | 24h advance         |
-
----
-
-## 3. Incident Response
-
-### 3.1 Severity Definitions
+### 2.1 Severity Definitions
 
 | Severity  | Definition                       | Response Time     | Examples                    |
 | --------- | -------------------------------- | ----------------- | --------------------------- |
@@ -134,7 +90,7 @@ az sql db list-restore-points `
 | **Sev 3** | Minor issue, workaround exists   | 4 hours           | Single feature broken       |
 | **Sev 4** | Cosmetic, no business impact     | Next business day | UI glitch, typo             |
 
-### 3.2 Incident Response Process
+### 2.2 Incident Response Process
 
 ```mermaid
 graph TD
@@ -151,7 +107,7 @@ graph TD
     J --> K[Post-Incident Review]
 ```
 
-### 3.3 Common Issues & Resolutions
+### 2.3 Common Issues & Resolutions
 
 #### Issue: High Response Latency (> 500ms)
 
@@ -252,9 +208,9 @@ AzureDiagnostics
 
 ---
 
-## 4. Scaling Procedures
+## 3. Common Procedures
 
-### 4.1 Scale Up (Vertical)
+### 3.1 Scaling Up (Vertical)
 
 **When:** Consistent high resource utilization
 
@@ -274,7 +230,7 @@ az appservice plan update `
     --sku P2V4
 ```
 
-### 4.2 Scale Out (Horizontal)
+### 3.2 Scaling Out (Horizontal)
 
 **When:** Traffic spikes, sales events
 
@@ -301,7 +257,7 @@ az monitor autoscale create `
     --count 2
 ```
 
-### 4.3 Scale Down
+### 3.3 Scale Down
 
 **When:** Post-event, reduced traffic
 
@@ -312,11 +268,7 @@ az monitor autoscale create `
 3. Scale down gradually (1 instance at a time)
 4. Monitor for 15 minutes after each reduction
 
----
-
-## 5. Deployment Procedures
-
-### 5.1 Standard Deployment
+### 3.4 Standard Deployment
 
 **Pre-Deployment Checklist:**
 
@@ -353,7 +305,7 @@ az webapp deployment slot swap `
 4. Monitor for 15 minutes
 5. Mark deployment successful or initiate rollback
 
-### 5.2 Emergency Deployment (Hotfix)
+### 3.5 Emergency Deployment (Hotfix)
 
 **Expedited Process:**
 
@@ -363,7 +315,7 @@ az webapp deployment slot swap `
 4. Swap with production (skip warm-up if critical)
 5. Post-incident review within 24 hours
 
-### 5.3 Rollback Procedures
+### 3.6 Rollback Procedures
 
 **Immediate Rollback (< 5 minutes):**
 
@@ -388,7 +340,51 @@ az webapp deployment slot swap `
 
 ---
 
-## 6. Contact Information
+## 4. Maintenance Windows
+
+### 4.1 Weekly Tasks
+
+| Day       | Task                       | Owner  | Duration |
+| --------- | -------------------------- | ------ | -------- |
+| Monday    | Review cost trends         | FinOps | 15 min   |
+| Tuesday   | Check security alerts      | SecOps | 30 min   |
+| Wednesday | Validate backups           | Ops    | 20 min   |
+| Thursday  | Review performance metrics | Dev    | 30 min   |
+| Friday    | Update runbooks if needed  | Ops    | 15 min   |
+
+**Weekly Backup Validation:**
+
+```powershell
+# Verify SQL backup status
+az sql db list-restore-points `
+    --resource-group rg-ecommerce-prod-swc-001 `
+    --server sql-ecommerce-prod-swc-{suffix} `
+    --database sqldb-ecommerce-prod `
+    --output table
+```
+
+### 4.2 Monthly Tasks
+
+| Task              | Description                         | Owner  |
+| ----------------- | ----------------------------------- | ------ |
+| Security Scan     | Run vulnerability assessment on SQL | SecOps |
+| Cost Review       | Analyze spending vs budget          | FinOps |
+| Capacity Planning | Review scaling metrics, plan ahead  | Arch   |
+| DR Test           | Validate restore procedures         | Ops    |
+| Access Review     | Audit RBAC assignments              | SecOps |
+
+### 4.3 Patching Schedule
+
+| Component              | Patch Method     | Window         | Notification        |
+| ---------------------- | ---------------- | -------------- | ------------------- |
+| App Service Runtime    | Platform-managed | Automatic      | Azure notifications |
+| Function Runtime       | Platform-managed | Automatic      | Azure notifications |
+| Application Code       | Deployment slots | Tue/Thu 2-4 AM | 24h advance         |
+| Infrastructure (Bicep) | CI/CD pipeline   | Wed 2-4 AM     | 24h advance         |
+
+---
+
+## 5. Contacts & Escalation
 
 | Role                    | Contact                   | Availability   | Escalation           |
 | ----------------------- | ------------------------- | -------------- | -------------------- |
@@ -408,11 +404,9 @@ az webapp deployment slot swap `
 | 1 hour              | Engineering Manager notified (Sev 1) |
 | 2 hours             | Azure Support engaged (if needed)    |
 
----
+### 5.1 Useful Commands
 
-## Appendix: Useful Commands
-
-### Quick Health Check
+#### Quick Health Check
 
 ```powershell
 # Check all resources in resource group
@@ -425,7 +419,7 @@ az webapp show --resource-group rg-ecommerce-prod-swc-001 --name app-ecommerce-a
 az functionapp show --resource-group rg-ecommerce-prod-swc-001 --name func-ecommerce-orders-prod-swc-001 --query state
 ```
 
-### View Recent Logs
+#### View Recent Logs
 
 ```powershell
 # Stream App Service logs
@@ -435,7 +429,7 @@ az webapp log tail --resource-group rg-ecommerce-prod-swc-001 --name app-ecommer
 az functionapp log tail --resource-group rg-ecommerce-prod-swc-001 --name func-ecommerce-orders-prod-swc-001
 ```
 
-### Restart Services
+#### Restart Services
 
 ```powershell
 # Restart App Service
@@ -444,3 +438,11 @@ az webapp restart --resource-group rg-ecommerce-prod-swc-001 --name app-ecommerc
 # Restart Function App
 az functionapp restart --resource-group rg-ecommerce-prod-swc-001 --name func-ecommerce-orders-prod-swc-001
 ```
+
+---
+
+## 6. Change Log
+
+| Date       | Version | Author        | Change Description       |
+| ---------- | ------- | ------------- | ------------------------ |
+| 2025-12-17 | 1.0     | Copilot Agent | Initial runbook creation |

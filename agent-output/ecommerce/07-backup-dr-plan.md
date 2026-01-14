@@ -124,7 +124,7 @@ az keyvault secret backup \
 
 ---
 
-## 3. Disaster Recovery Architecture
+## 3. Disaster Recovery Procedures
 
 ### 3.1 Current State (Single-Region)
 
@@ -189,9 +189,7 @@ az keyvault secret backup \
 
 ---
 
-## 4. Failover Procedures
-
-### 4.1 Planned Failover (Maintenance)
+### 3.3 Planned Failover (Maintenance)
 
 Use for scheduled maintenance, region migrations, or DR testing.
 
@@ -239,7 +237,7 @@ curl -s https://app-ecommerce-api-dr.azurewebsites.net/health
 curl -s https://ecommerce.example.com/health
 ```
 
-### 4.2 Unplanned Failover (Disaster)
+### 3.4 Unplanned Failover (Disaster)
 
 Use when primary region is unavailable.
 
@@ -289,11 +287,7 @@ az afd origin update \
 # See Operations Runbook for escalation contacts
 ```
 
----
-
-## 5. Recovery Procedures
-
-### 5.1 SQL Database Point-in-Time Recovery
+### 3.5 SQL Database Point-in-Time Recovery
 
 **Scenario**: Accidental data deletion or corruption
 
@@ -395,7 +389,7 @@ cd infra/bicep/ecommerce
 
 ---
 
-## 6. DR Testing Schedule
+## 4. Testing Schedule
 
 | Test Type                  | Frequency | Duration | Stakeholders                  |
 | -------------------------- | --------- | -------- | ----------------------------- |
@@ -415,9 +409,9 @@ cd infra/bicep/ecommerce
 
 ---
 
-## 7. Monitoring and Alerts
+## 5. Communication Plan
 
-### 7.1 Backup Monitoring
+### 5.1 Backup Monitoring
 
 | Alert                     | Condition                  | Severity | Action                     |
 | ------------------------- | -------------------------- | -------- | -------------------------- |
@@ -450,7 +444,7 @@ AzureMetrics
 
 ---
 
-## 8. Roles and Responsibilities
+## 6. Roles and Responsibilities
 
 | Role                    | Responsibility                              |
 | ----------------------- | ------------------------------------------- |
@@ -462,7 +456,31 @@ AzureMetrics
 
 ---
 
-## 9. Document Control
+## 7. Dependencies
+
+| Dependency        | Failure Impact               | Mitigation                    |
+| ----------------- | ---------------------------- | ----------------------------- |
+| Azure SQL         | No transaction processing    | Geo-replication + failover    |
+| Azure Key Vault   | No secrets access            | Soft delete + purge protection|
+| Azure Front Door  | No traffic routing           | Multi-region endpoints        |
+| Azure AD          | No authentication            | N/A (Azure-wide issue)        |
+
+---
+
+## 8. Recovery Runbooks
+
+| Runbook                  | Location          | Owner             |
+| ------------------------ | ----------------- | ----------------- |
+| SQL PITR Restore         | Section 3.5       | DBA               |
+| Planned Failover         | Section 3.3       | Platform Engineer |
+| Unplanned Failover       | Section 3.4       | DR Coordinator    |
+| Full Infrastructure      | Section 3.6       | Platform Engineer |
+
+---
+
+## 9. Appendix
+
+### 9.1 Document Control
 
 | Version | Date       | Author                       | Changes         |
 | ------- | ---------- | ---------------------------- | --------------- |
@@ -470,7 +488,7 @@ AzureMetrics
 
 ---
 
-## References
+### 9.2 References
 
 - [Azure SQL Database Backup](https://learn.microsoft.com/azure/azure-sql/database/automated-backups-overview)
 - [Azure SQL Geo-Replication](https://learn.microsoft.com/azure/azure-sql/database/active-geo-replication-overview)

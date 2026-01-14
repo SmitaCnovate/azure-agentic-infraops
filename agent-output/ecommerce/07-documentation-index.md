@@ -4,7 +4,7 @@
 **Version**: 1.0
 **Status**: Draft
 
-## Document Package Contents
+## 1. Document Package Contents
 
 | Document                                         | Description                                  | Status |
 | ------------------------------------------------ | -------------------------------------------- | ------ |
@@ -14,7 +14,7 @@
 | [Compliance Matrix](./07-compliance-matrix.md)   | PCI-DSS security controls mapping            | ✅     |
 | [Backup & DR Plan](./07-backup-dr-plan.md)       | Recovery procedures and failover             | ✅     |
 
-## Source Artifacts
+## 2. Source Artifacts
 
 These documents were generated from the following agentic workflow outputs:
 
@@ -26,7 +26,7 @@ These documents were generated from the following agentic workflow outputs:
 | Architecture Diagram | [06-asbuilt-diagram.png](./06-asbuilt-diagram.png)               | Dec 2025  |
 | Bicep Code           | [`infra/bicep/ecommerce/`](../../infra/bicep/ecommerce/)         | Dec 2025  |
 
-## Project Summary
+## 3. Project Summary
 
 | Attribute          | Value              |
 | ------------------ | ------------------ |
@@ -38,13 +38,13 @@ These documents were generated from the following agentic workflow outputs:
 | **Monthly Cost**   | ~$1,595            |
 | **Target Users**   | 10,000 concurrent  |
 
-## Related Resources
+## 4. Related Resources
 
 - **Infrastructure Code**: [`infra/bicep/ecommerce/`](../../infra/bicep/ecommerce/)
 - **Legacy Outputs**: [`scenarios/scenario-output/ecommerce/`](../../scenarios/scenario-output/ecommerce/)
 - **ADRs**: See `*-adr-*.md` files in this folder (if generated)
 
-## Quick Links
+## 5. Quick Links
 
 - [Deployment Script](../../infra/bicep/ecommerce/deploy.ps1)
 - [Main Bicep Template](../../infra/bicep/ecommerce/main.bicep)

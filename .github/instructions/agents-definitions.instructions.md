@@ -54,14 +54,15 @@ handoffs:
 
 - Use `handoffs` to connect workflow steps (for example: architect -> plan -> implement).
 - Only reference agents that actually exist in the repo.
-- Prefer using the agent file stem (for example: `bicep-plan`) consistently across docs.
+- Use the agent's display `name` (from frontmatter) as the `agent` value, not the file stem.
+  For example: `agent: Azure Principal Architect` (not `agent: azure-principal-architect`).
 
 ## Shared Defaults (Required)
 
 All top-level workflow agents in `.github/agents/` MUST include this near the top of the file:
 
-```markdown
-> **See [Agent Shared Foundation](_shared/defaults.md)** for regional standards, naming conventions,
+```text
+> **See \[Agent Shared Foundation\]\(_shared/defaults.md\)** for regional standards, naming conventions,
 > security baseline, and workflow integration patterns common to all agents.
 ```
 
@@ -76,7 +77,6 @@ When an agent outputs a specific document type, it MUST treat these as authorita
 - Workload docs: `.github/instructions/workload-documentation.instructions.md`
 - Markdown style: `.github/instructions/markdown.instructions.md`
 - Bicep: `.github/instructions/bicep-code-best-practices.instructions.md`
-- Terraform: `.github/instructions/terraform-azure.instructions.md`
 
 If an agent contains an embedded template in its body, it MUST match the relevant instruction file.
 

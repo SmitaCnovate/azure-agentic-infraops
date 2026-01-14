@@ -158,16 +158,18 @@ If the file is used as-is in output → `assets/`.
 
 ### Referencing Resources in SKILL.md
 
-Use relative paths to reference files within the skill directory:
+Use relative paths to reference files within the skill directory.
 
-```markdown
+**Example syntax** (adapt paths to your actual skill structure):
+
+```text
 ## Available Scripts
 
-Run the [helper script](./scripts/helper.py) to automate common tasks.
+Run the \[helper script\]\(./scripts/helper.py\) to automate common tasks.
 
-See [API reference](./references/api_reference.md) for detailed documentation.
+See \[API reference\]\(./references/api_reference.md\) for detailed documentation.
 
-Use the [scaffold](./templates/scaffold.py) as a starting point.
+Use the \[scaffold\]\(./templates/scaffold.py\) as a starting point.
 ```
 
 ## Progressive Loading Architecture
@@ -266,16 +268,18 @@ Before publishing a skill:
 
 ## Workflow Execution Pattern
 
-When executing multi-step workflows, create a TODO list where each step references the relevant documentation:
+When executing multi-step workflows, create a TODO list where each step references the relevant documentation.
 
-```markdown
+**Example syntax** (adapt paths to your actual skill structure):
+
+```text
 ## TODO
 
-- [ ] Step 1: Configure environment - see [workflow-setup.md](./references/workflow-setup.md#environment)
-- [ ] Step 2: Build project - see [workflow-setup.md](./references/workflow-setup.md#build)
-- [ ] Step 3: Deploy to staging - see [workflow-deployment.md](./references/workflow-deployment.md#staging)
-- [ ] Step 4: Run validation - see [workflow-deployment.md](./references/workflow-deployment.md#validation)
-- [ ] Step 5: Deploy to production - see [workflow-deployment.md](./references/workflow-deployment.md#production)
+- [ ] Step 1: Configure environment - see \[workflow-setup.md\]\(./references/workflow-setup.md#environment\)
+- [ ] Step 2: Build project - see \[workflow-setup.md\]\(./references/workflow-setup.md#build\)
+- [ ] Step 3: Deploy to staging - see \[workflow-deployment.md\]\(./references/workflow-deployment.md#staging\)
+- [ ] Step 4: Run validation - see \[workflow-deployment.md\]\(./references/workflow-deployment.md#validation\)
+- [ ] Step 5: Deploy to production - see \[workflow-deployment.md\]\(./references/workflow-deployment.md#production\)
 ```
 
 This ensures traceability and allows resuming workflows if interrupted.

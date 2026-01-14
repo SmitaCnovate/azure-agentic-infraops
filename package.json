@@ -8,8 +8,7 @@
     "lint:md": "markdownlint-cli2 '**/*.md' '#node_modules'",
     "lint:md:fix": "markdownlint-cli2 --fix '**/*.md' '#node_modules'",
     "lint:cost-estimate-templates": "node scripts/validate-cost-estimate-templates.mjs",
-    "lint:artifact-templates": "node scripts/validate-artifact-templates.mjs",
-    "validate:simple-web-api": "node scripts/validate-simple-web-api.mjs"
+    "lint:artifact-templates": "node scripts/validate-artifact-templates.mjs"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.0.0",

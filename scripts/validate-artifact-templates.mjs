@@ -116,10 +116,11 @@ const ARTIFACT_STRICTNESS = {
   "01-requirements.md": "standard",
   "04-implementation-plan.md": "standard",
   "06-deployment-summary.md": "standard",
-  // Newly templatized artifacts - relaxed until existing artifacts updated
+  // Ratcheted artifacts - now standard after fixing simple-web-api & static-webapp
+  "04-governance-constraints.md": "standard",
+  // Legacy artifacts - relaxed (ecommerce uses v3.0 format predating templates)
   "02-architecture-assessment.md": "relaxed",
-  "04-governance-constraints.md": "relaxed",
-  // Wave 2 artifacts - relaxed strictness (ratchet later)
+  // Wave 2 artifacts - relaxed strictness (ratchet after regeneration)
   "05-implementation-reference.md": "relaxed",
   "07-design-document.md": "relaxed",
   "07-operations-runbook.md": "relaxed",

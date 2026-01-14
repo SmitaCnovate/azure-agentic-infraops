@@ -2,18 +2,18 @@
 
 > **Goal**: Upgrade all artifact validation from `relaxed` to `standard` strictness
 >
-> **Status**: 🔄 **IN PROGRESS** - 3 core artifacts at standard, 9 artifacts at relaxed
+> **Status**: 🔄 **IN PROGRESS** - 4 artifacts at standard, 8 artifacts at relaxed
 
 ## Strictness Configuration
 
 The artifact template validator uses per-artifact strictness:
 
-| Artifact Category | Artifacts | Strictness | Status |
-|-------------------|-----------|------------|--------|
-| Core (established) | `01-requirements`, `04-implementation-plan`, `06-deployment-summary` | `standard` | ✅ Complete |
-| Newly templatized | `02-architecture-assessment`, `04-governance-constraints` | `relaxed` | ⏳ Pending |
-| Wave 2 (05) | `05-implementation-reference` | `relaxed` | ⏳ Pending |
-| Wave 2 (07-*) | `07-design-document`, `07-operations-runbook`, `07-resource-inventory`, `07-backup-dr-plan`, `07-compliance-matrix`, `07-documentation-index` | `relaxed` | ⏳ Pending |
+| Artifact Category  | Artifacts                                                                                                                                     | Strictness | Status      |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ----------- |
+| Core (established) | `01-requirements`, `04-implementation-plan`, `06-deployment-summary`, `04-governance-constraints`                                             | `standard` | ✅ Complete |
+| Legacy artifacts   | `02-architecture-assessment`                                                                                                                  | `relaxed`  | ⏳ Pending  |
+| Wave 2 (05)        | `05-implementation-reference`                                                                                                                 | `relaxed`  | ⏳ Pending  |
+| Wave 2 (07-\*)     | `07-design-document`, `07-operations-runbook`, `07-resource-inventory`, `07-backup-dr-plan`, `07-compliance-matrix`, `07-documentation-index` | `relaxed`  | ⏳ Pending  |
 
 Override with environment variable: `STRICTNESS=standard npm run lint:artifact-templates`
 
@@ -25,15 +25,15 @@ Override with environment variable: `STRICTNESS=standard npm run lint:artifact-t
 - [x] `04-implementation-plan.md` - standard
 - [x] `06-deployment-summary.md` - standard
 
-### Phase 2: Newly Templatized Artifacts ⏳ Pending
+### Phase 2: Newly Templatized Artifacts ✅ Partial
 
 - [ ] `02-architecture-assessment.md` - relaxed → standard
-  - [ ] Update ecommerce artifact to match template
+  - [ ] Update ecommerce artifact to match template (legacy v3.0 format)
   - [ ] Upgrade strictness
-- [ ] `04-governance-constraints.md` - relaxed → standard
-  - [ ] Update static-webapp artifact to match template
-  - [ ] Update simple-web-api artifact to match template
-  - [ ] Upgrade strictness
+- [x] `04-governance-constraints.md` - relaxed → **standard** ✅
+  - [x] Update static-webapp artifact to match template
+  - [x] Update simple-web-api artifact to match template
+  - [x] Upgrade strictness
 
 ### Phase 3: Implementation Reference ⏳ Pending
 
@@ -55,11 +55,11 @@ Override with environment variable: `STRICTNESS=standard npm run lint:artifact-t
 
 ### v3.8.0 - Core Artifacts (2026-01-13)
 
-| Check | Result |
-|-------|--------|
-| Failures | 0 |
-| Warnings | 0 |
-| Mode | standard |
+| Check    | Result   |
+| -------- | -------- |
+| Failures | 0        |
+| Warnings | 0        |
+| Mode     | standard |
 
 ### v3.8.1 - Generalized Validation (2026-01-14)
 

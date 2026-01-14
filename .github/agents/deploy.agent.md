@@ -90,6 +90,8 @@ After successful deployment, create:
 
 - `agent-output/{project}/06-deployment-summary.md`
 
+**Template**: Use [`../templates/06-deployment-summary.template.md`](../templates/06-deployment-summary.template.md)
+
 Include:
 
 - Deployment timestamp and duration

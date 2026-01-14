@@ -20,8 +20,8 @@ These documents were generated from the following agentic workflow outputs:
 
 | Artifact             | Source                                                           | Generated |
 | -------------------- | ---------------------------------------------------------------- | --------- |
-| WAF Assessment       | [01-architecture-assessment.md](./01-architecture-assessment.md) | Dec 2025  |
-| Cost Estimate        | [01-cost-estimate.md](./01-cost-estimate.md)                     | Dec 2025  |
+| WAF Assessment       | [02-architecture-assessment.md](./02-architecture-assessment.md) | Dec 2025  |
+| Cost Estimate        | [03-des-cost-estimate.md](./03-des-cost-estimate.md)             | Dec 2025  |
 | Implementation Plan  | [04-implementation-plan.md](./04-implementation-plan.md)         | Dec 2025  |
 | Architecture Diagram | [06-asbuilt-diagram.png](./06-asbuilt-diagram.png)               | Dec 2025  |
 | Bicep Code           | [`infra/bicep/ecommerce/`](../../infra/bicep/ecommerce/)         | Dec 2025  |

@@ -638,6 +638,8 @@ graph LR
 - Module files in `modules/` subfolder
 - Reference file: `agent-output/{project}/05-implementation-reference.md`
 
+**Template**: Use [`../templates/05-implementation-reference.template.md`](../templates/05-implementation-reference.template.md)
+
 ### Approval Gate (MANDATORY)
 
 After generating code, **ALWAYS** ask for approval:

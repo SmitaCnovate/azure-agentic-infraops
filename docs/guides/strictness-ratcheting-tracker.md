@@ -1,54 +1,75 @@
 # Strictness Ratcheting Tracker
 
-> **Goal**: Upgrade validation from `STRICTNESS=relaxed` to `STRICTNESS=standard`
+> **Goal**: Upgrade all artifact validation from `relaxed` to `standard` strictness
 >
-> **Status**: ✅ **COMPLETE** - All regenerations successful, strictness upgraded
+> **Status**: 🔄 **IN PROGRESS** - 3 core artifacts at standard, 9 artifacts at relaxed
 
-## Current Status
+## Strictness Configuration
 
-- [x] Regeneration #1: `simple-web-api` (2025-01-13) - Commit: `08be373`
-- [x] Regeneration #2: `static-webapp` (2026-01-13) - Commit: `7952f2e`
-- [x] Regeneration #3: `ecommerce` (2026-01-13) - Commit: `ba0985f`
-- [x] Switch to `STRICTNESS=standard` - ✅ Complete
+The artifact template validator uses per-artifact strictness:
 
-## Files Updated
+| Artifact Category | Artifacts | Strictness | Status |
+|-------------------|-----------|------------|--------|
+| Core (established) | `01-requirements`, `04-implementation-plan`, `06-deployment-summary` | `standard` | ✅ Complete |
+| Newly templatized | `02-architecture-assessment`, `04-governance-constraints` | `relaxed` | ⏳ Pending |
+| Wave 2 (05) | `05-implementation-reference` | `relaxed` | ⏳ Pending |
+| Wave 2 (07-*) | `07-design-document`, `07-operations-runbook`, `07-resource-inventory`, `07-backup-dr-plan`, `07-compliance-matrix`, `07-documentation-index` | `relaxed` | ⏳ Pending |
 
-Strictness ratcheting complete:
+Override with environment variable: `STRICTNESS=standard npm run lint:artifact-templates`
 
-1. **`.husky/pre-commit`** ✅
+## Ratcheting Plan
 
-   - Changed `STRICTNESS=relaxed` to `STRICTNESS=standard`
+### Phase 1: Established Core Artifacts ✅ Complete
 
-2. **`.github/workflows/wave1-artifact-drift-guard.yml`** ✅
-   - Removed ratchet comment
-   - Changed `STRICTNESS: relaxed` to `STRICTNESS: standard`
+- [x] `01-requirements.md` - standard
+- [x] `04-implementation-plan.md` - standard
+- [x] `06-deployment-summary.md` - standard
 
-## Validation Results History
+### Phase 2: Newly Templatized Artifacts ⏳ Pending
 
-### Regeneration #1: simple-web-api
+- [ ] `02-architecture-assessment.md` - relaxed → standard
+  - [ ] Update ecommerce artifact to match template
+  - [ ] Upgrade strictness
+- [ ] `04-governance-constraints.md` - relaxed → standard
+  - [ ] Update static-webapp artifact to match template
+  - [ ] Update simple-web-api artifact to match template
+  - [ ] Upgrade strictness
 
-| Check    | Result  |
-| -------- | ------- |
-| Failures | 0       |
-| Warnings | 12      |
-| Mode     | relaxed |
+### Phase 3: Implementation Reference ⏳ Pending
 
-### Regeneration #2: static-webapp
+- [ ] `05-implementation-reference.md` - relaxed → standard
+  - [ ] Regenerate static-webapp artifact
+  - [ ] Regenerate ecommerce artifact
+  - [ ] Upgrade strictness
 
-| Check    | Result  |
-| -------- | ------- |
-| Failures | 0       |
-| Warnings | 0       |
-| Mode     | relaxed |
+### Phase 4: Workload Documentation ⏳ Pending
 
-### Regeneration #3: ecommerce
+- [ ] `07-design-document.md` - relaxed → standard
+- [ ] `07-operations-runbook.md` - relaxed → standard
+- [ ] `07-resource-inventory.md` - relaxed → standard
+- [ ] `07-backup-dr-plan.md` - relaxed → standard
+- [ ] `07-compliance-matrix.md` - relaxed → standard
+- [ ] `07-documentation-index.md` - relaxed → standard
 
-| Check    | Result   |
-| -------- | -------- |
-| Failures | 0        |
-| Warnings | 0        |
-| Mode     | standard |
+## History
+
+### v3.8.0 - Core Artifacts (2026-01-13)
+
+| Check | Result |
+|-------|--------|
+| Failures | 0 |
+| Warnings | 0 |
+| Mode | standard |
+
+### v3.8.1 - Generalized Validation (2026-01-14)
+
+- Expanded from 4 core artifacts to 12 total
+- Added per-artifact strictness configuration
+- Created 8 new templates for Wave 2 artifacts
+- Renamed `validate-wave1-artifacts.mjs` → `validate-artifact-templates.mjs`
+- Moved `02-architecture-assessment` and `04-governance-constraints` to relaxed
+  (existing artifacts predate templates)
 
 ---
 
-_Completed on branch: chore/templatize-artifacts (2026-01-13)_
+_Last updated: 2026-01-14 (branch: chore/generalize-artifact-validation)_

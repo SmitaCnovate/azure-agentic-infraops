@@ -1,6 +1,7 @@
 {
   "name": "azure-agentic-infraops",
-  "version": "3.8.0",
+  "version": "3.8.1",
+  "version": "3.8.1",
   "description": "Agentic InfraOps - Azure infrastructure engineered by agents. Verified. Well-Architected. Deployable.",
   "private": true,
   "scripts": {
@@ -8,7 +9,7 @@
     "lint:md": "markdownlint-cli2 '**/*.md' '#node_modules'",
     "lint:md:fix": "markdownlint-cli2 --fix '**/*.md' '#node_modules'",
     "lint:cost-estimate-templates": "node scripts/validate-cost-estimate-templates.mjs",
-    "lint:wave1-artifacts": "node scripts/validate-wave1-artifacts.mjs",
+    "lint:artifact-templates": "node scripts/validate-artifact-templates.mjs",
     "validate:simple-web-api": "node scripts/validate-simple-web-api.mjs"
   },
   "devDependencies": {

@@ -24,25 +24,25 @@ else
   echo "ℹ️  No markdown files to validate"
 fi
 
-# Wave 1 artifact structure validation
+# Core artifact structure validation (01, 02, 04, 06)
 echo ""
-echo "🔍 Running Wave 1 artifact structure validation..."
+echo "🔍 Running core artifact structure validation..."
 
-# Check if any Wave 1 artifacts are staged
-STAGED_WAVE1=$(echo "$STAGED_MD_FILES" | grep -E '(01-requirements|02-architecture-assessment|04-implementation-plan|06-deployment-summary)\.md$' || true)
+# Check if any core artifacts are staged (Wave 2 validated in CI only)
+STAGED_CORE=$(echo "$STAGED_MD_FILES" | grep -E '(01-requirements|02-architecture-assessment|04-implementation-plan|04-governance-constraints|06-deployment-summary)\.md$' || true)
 
-if [ -n "$STAGED_WAVE1" ]; then
-  echo "📋 Validating Wave 1 artifact structure..."
-  STRICTNESS=standard npm run lint:wave1-artifacts
+if [ -n "$STAGED_CORE" ]; then
+  echo "📋 Validating core artifact structure..."
+  STRICTNESS=standard npm run lint:artifact-templates
   
   if [ $? -ne 0 ]; then
     echo ""
-    echo "❌ Wave 1 artifact validation failed!"
+    echo "❌ Core artifact validation failed!"
     echo "Ensure artifact structure matches templates in .github/templates/"
     exit 1
   fi
   
-  echo "✅ Wave 1 artifacts passed structure validation"
+  echo "✅ Core artifacts passed structure validation"
 else
-  echo "ℹ️  No Wave 1 artifacts to validate"
+  echo "ℹ️  No core artifacts to validate"
 fi

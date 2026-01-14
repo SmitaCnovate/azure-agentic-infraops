@@ -49,6 +49,15 @@ Generate customer-deliverable documentation by synthesizing outputs from previou
 | `07-compliance-matrix.md`   | Security controls         | Optional |
 | `07-backup-dr-plan.md`      | DR procedures             | Optional |
 
+**Templates** (use relative paths):
+
+- [`../templates/07-design-document.template.md`](../templates/07-design-document.template.md)
+- [`../templates/07-operations-runbook.template.md`](../templates/07-operations-runbook.template.md)
+- [`../templates/07-resource-inventory.template.md`](../templates/07-resource-inventory.template.md)
+- [`../templates/07-backup-dr-plan.template.md`](../templates/07-backup-dr-plan.template.md)
+- [`../templates/07-compliance-matrix.template.md`](../templates/07-compliance-matrix.template.md)
+- [`../templates/07-documentation-index.template.md`](../templates/07-documentation-index.template.md)
+
 ---
 
 ## Design Document Structure (10 Sections)

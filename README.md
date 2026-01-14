@@ -1,6 +1,6 @@
 # Agentic InfraOps
 
-> **Version 3.7.8** | [Changelog](VERSION.md)
+> **Version 3.8.1** | [Changelog](VERSION.md)
 
 [![Agentic InfraOps](https://img.shields.io/badge/Agentic-InfraOps-FF6B35?style=for-the-badge&logo=robot&logoColor=white)](https://github.com/jonathan-vella/azure-agentic-infraops)
 [![Azure](https://img.shields.io/badge/Azure-Infrastructure-0078D4?style=for-the-badge&logo=microsoftazure)](https://azure.microsoft.com)
@@ -43,12 +43,12 @@
 ```mermaid
 %%{init: {'theme':'base', 'themeVariables': {'primaryColor': '#0078D4', 'primaryTextColor': '#ffffff', 'primaryBorderColor': '#005A9E', 'lineColor': '#6B7280', 'secondaryColor': '#00B4AB', 'tertiaryColor': '#8957E5', 'background': '#ffffff', 'mainBkg': '#ffffff', 'nodeBorder': '#005A9E', 'clusterBkg': '#F3F4F6', 'titleColor': '#1F2937', 'edgeLabelBackground': '#ffffff'}}}%%
 graph LR
-    P["🎯 @plan<br/>Step 1"]:::plan --> A["🏛️ architect<br/>Step 2"]:::architect
-    A --> D3["📊 Design<br/>Step 3"]:::artifact
-    D3 --> B["📋 bicep-plan<br/>Step 4"]:::bicep
-    B --> I["⚙️ implement<br/>Step 5"]:::bicep
+    P["🎯 Project Planner<br/>Step 1"]:::plan --> A["🏛️ Azure Architect<br/>Step 2"]:::architect
+    A --> D3["📊 Design Artifacts<br/>Step 3"]:::artifact
+    D3 --> B["📋 Bicep Plan<br/>Step 4"]:::bicep
+    B --> I["⚙️ Bicep Implement<br/>Step 5"]:::bicep
     I --> DEP["🚀 Deploy<br/>Step 6"]:::deploy
-    DEP --> D7["📊 As-Built<br/>Step 7"]:::artifact
+    DEP --> D7["📄 Workload Docs<br/>Step 7"]:::artifact
     MCP["💰 Pricing MCP"]:::pricing -.->|costs| A
     MCP -.->|validation| B
 
@@ -64,24 +64,24 @@ graph LR
 
 **Agent Legend**
 
-| Color | Agent/Phase                      | Role                                   |
-| ----- | -------------------------------- | -------------------------------------- |
-| 🟣    | `@plan`                          | Gather and refine requirements         |
-| 🔵    | `azure-principal-architect`      | WAF assessment (NO code)               |
-| ⚫    | Design / As-Built Artifacts      | Diagrams & ADRs (`-des`/`-ab` suffix)  |
-| 🟢    | `bicep-plan` / `bicep-implement` | Implementation plan & Bicep generation |
-| 🟠    | `Azure Pricing MCP`              | Real-time cost estimation              |
-| 🟩    | Deploy / As-Built                | Azure deployment + documentation       |
+| Color | Phase        | Description                            |
+| :---: | ------------ | -------------------------------------- |
+|  🟣   | Requirements | Gather and refine project requirements |
+|  🔵   | Architecture | WAF assessment and design decisions    |
+|  ⚫   | Design/Docs  | Diagrams, ADRs, and documentation      |
+|  🟢   | Bicep        | Implementation planning and code gen   |
+|  🟠   | Pricing      | Real-time Azure cost estimation (MCP)  |
+|  🟩   | Deployment   | Azure resource provisioning            |
 
-| Step | Agent/Phase                 | What It Does                                 |
-| ---- | --------------------------- | -------------------------------------------- |
-| 1    | `@plan`                     | Gather requirements → `01-*`                 |
-| 2    | `azure-principal-architect` | WAF assessment (NO code) 💰 → `02-*`         |
-| 3    | Design Artifacts            | Design diagrams + ADRs (`-des`) → `03-*`     |
-| 4    | `bicep-plan`                | Implementation plan + governance 💰 → `04-*` |
-| 5    | `bicep-implement`           | Generate & validate Bicep → `05-*`           |
-| 6    | Deploy                      | Deploy to Azure → `06-*`                     |
-| 7    | As-Built Artifacts          | As-built diagrams, ADRs, docs → `07-*`       |
+| Step | Phase          | Agent                            | Output     |
+| :--: | -------------- | -------------------------------- | ---------- |
+|  1   | Requirements   | Project Planner                  | `01-*`     |
+|  2   | Architecture   | Azure Principal Architect 💰     | `02-*`     |
+|  3   | Design         | Diagram Generator, ADR Generator | `03-des-*` |
+|  4   | Planning       | Bicep Plan 💰                    | `04-*`     |
+|  5   | Implementation | Bicep Implement                  | `05-*`     |
+|  6   | Deployment     | _(Manual/CLI)_                   | `06-*`     |
+|  7   | Documentation  | Workload Documentation Generator | `07-*`     |
 
 > **💰** = Azure Pricing MCP integration. Steps 3 & 7 are optional.
 

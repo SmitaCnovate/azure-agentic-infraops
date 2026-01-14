@@ -5,6 +5,41 @@ All notable changes to **Agentic InfraOps** will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.8.1] - 2026-01-14
+
+### Added
+
+- **8 new artifact templates** for comprehensive workflow coverage:
+  - `04-governance-constraints.template.md` - Azure policy and governance constraints
+  - `05-implementation-reference.template.md` - Bicep code location and deployment instructions
+  - `07-design-document.template.md` - 10-section architecture design document
+  - `07-operations-runbook.template.md` - 6-section day-2 operations guide
+  - `07-resource-inventory.template.md` - Complete resource listing from IaC
+  - `07-backup-dr-plan.template.md` - 9-section backup and DR procedures
+  - `07-compliance-matrix.template.md` - 6-section security controls mapping
+  - `07-documentation-index.template.md` - 5-section documentation package index
+- **Per-artifact strictness configuration** in validation script (core=standard, wave2=relaxed)
+
+### Changed
+
+- **Generalized artifact template validation** from Wave 1 to all 12 artifact types:
+  - Renamed `validate-wave1-artifacts.mjs` → `validate-artifact-templates.mjs`
+  - Renamed `wave1-artifact-drift-guard.yml` → `artifact-template-drift-guard.yml`
+  - Renamed `lint:wave1-artifacts` → `lint:artifact-templates` in package.json
+- **Redesigned README.md workflow tables**:
+  - Updated Mermaid diagram with display names (Project Planner, Azure Architect, etc.)
+  - New 4-column Step table (Step, Phase, Agent, Output)
+  - Simplified Legend table (Phase-focused with color + description)
+- **Renamed ecommerce artifacts** to match standard naming convention:
+  - `01-architecture-assessment.md` → `02-architecture-assessment.md`
+  - `01-cost-estimate.md` → `03-des-cost-estimate.md`
+- Updated husky pre-commit to use new script name and add `04-governance-constraints`
+- Expanded workflow trigger paths to include all 12 templates and 6 agents
+
+### Fixed
+
+- Ecommerce `07-documentation-index.md` references to renamed artifacts
+
 ## [3.8.0] - 2026-01-14
 
 - feat: refactor agents and add deploy agent (v3.8.0)

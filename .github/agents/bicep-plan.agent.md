@@ -307,6 +307,8 @@ After governance discovery:
 
 **Template**: Use [`../templates/04-implementation-plan.template.md`](../templates/04-implementation-plan.template.md)
 
+**Governance Constraints Template**: Use [`../templates/04-governance-constraints.template.md`](../templates/04-governance-constraints.template.md)
+
 **Required Structure:**
 
 - Follow the template's H2 heading order exactly

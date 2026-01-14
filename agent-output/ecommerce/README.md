@@ -20,8 +20,8 @@
 
 | File                                                             | Description                       | Created  |
 | ---------------------------------------------------------------- | --------------------------------- | -------- |
-| [01-architecture-assessment.md](./01-architecture-assessment.md) | WAF assessment with pillar scores | Dec 2025 |
-| [01-cost-estimate.md](./01-cost-estimate.md)                     | Azure pricing estimate            | Dec 2025 |
+| [02-architecture-assessment.md](./02-architecture-assessment.md) | WAF assessment with pillar scores | Dec 2025 |
+| [03-des-cost-estimate.md](./03-des-cost-estimate.md)             | Azure pricing estimate            | Dec 2025 |
 | [04-implementation-plan.md](./04-implementation-plan.md)         | Bicep implementation plan         | Dec 2025 |
 | [06-asbuilt-diagram.png](./06-asbuilt-diagram.png)               | Architecture diagram              | Dec 2025 |
 | [06-asbuilt-diagram.py](./06-asbuilt-diagram.py)                 | Diagram source code               | Dec 2025 |

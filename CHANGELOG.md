@@ -5,6 +5,31 @@ All notable changes to **Agentic InfraOps** will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.9.0] - 2026-01-14
+
+### Added
+
+- **All 12 artifacts now at standard strictness** - Complete template compliance across the repository
+
+### Changed
+
+- **Restructured all Wave 2 artifacts** (07-*) to match template standards:
+  - `07-documentation-index.md` - Added numbered section prefixes
+  - `07-design-document.md` - Removed Table of Contents sections
+  - `07-operations-runbook.md` - Reordered sections to match template sequence
+  - `07-backup-dr-plan.md` - Added Recovery Objectives, renamed sections
+  - `07-compliance-matrix.md` - Restructured with numbered sections
+- **Restructured legacy artifacts** to match current templates:
+  - `02-architecture-assessment.md` (ecommerce) - Complete rewrite with all required sections
+  - `05-implementation-reference.md` (ecommerce) - Restructured to template format
+- **Ratcheted strictness** from relaxed to standard for all artifact types
+- **Expanded optional sections** allowed in validation for common extra content
+
+### Fixed
+
+- Duplicate version line in package.json
+- Removed outdated TOC sections from design documents
+
 ## [3.8.1] - 2026-01-14
 
 ### Added

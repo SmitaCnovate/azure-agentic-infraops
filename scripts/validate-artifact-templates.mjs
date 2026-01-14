@@ -114,20 +114,18 @@ const ARTIFACT_HEADINGS = {
 const ARTIFACT_STRICTNESS = {
   // Core artifacts - standard strictness (established templates)
   "01-requirements.md": "standard",
+  "02-architecture-assessment.md": "standard",
   "04-implementation-plan.md": "standard",
-  "06-deployment-summary.md": "standard",
-  // Ratcheted artifacts - now standard after fixing simple-web-api & static-webapp
   "04-governance-constraints.md": "standard",
-  // Legacy artifacts - relaxed (ecommerce uses v3.0 format predating templates)
-  "02-architecture-assessment.md": "relaxed",
-  // Wave 2 artifacts - relaxed strictness (ratchet after regeneration)
-  "05-implementation-reference.md": "relaxed",
-  "07-design-document.md": "relaxed",
-  "07-operations-runbook.md": "relaxed",
-  "07-resource-inventory.md": "relaxed",
-  "07-backup-dr-plan.md": "relaxed",
-  "07-compliance-matrix.md": "relaxed",
-  "07-documentation-index.md": "relaxed",
+  "05-implementation-reference.md": "standard",
+  "06-deployment-summary.md": "standard",
+  // Wave 2 artifacts - ratcheted to standard after v3.9.0 restructuring
+  "07-design-document.md": "standard",
+  "07-operations-runbook.md": "standard",
+  "07-resource-inventory.md": "standard",
+  "07-backup-dr-plan.md": "standard",
+  "07-compliance-matrix.md": "standard",
+  "07-documentation-index.md": "standard",
 };
 
 // Optional sections that can appear after the anchor (last invariant H2)
@@ -136,14 +134,24 @@ const OPTIONAL_ALLOWED = {
   "02-architecture-assessment.md": [],
   "04-implementation-plan.md": [],
   "04-governance-constraints.md": [],
+  "05-implementation-reference.md": ["## Key Implementation Notes", "## Next Steps"],
   "06-deployment-summary.md": [],
-  "05-implementation-reference.md": ["## Key Implementation Notes"],
   "07-design-document.md": [],
   "07-operations-runbook.md": [],
-  "07-resource-inventory.md": [],
-  "07-backup-dr-plan.md": [],
-  "07-compliance-matrix.md": [],
-  "07-documentation-index.md": [],
+  "07-resource-inventory.md": [
+    "## Resource Configuration Details",
+    "## Tags Applied",
+    "## Resource Dependencies",
+    "## Cost Summary by Resource",
+    "## Cost by Resource",
+    "## Private DNS Zones",
+    "## IP Address Allocation",
+    "## Module Summary",
+    "## Validation Commands",
+  ],
+  "07-backup-dr-plan.md": ["## 3. Disaster Recovery Architecture"],
+  "07-compliance-matrix.md": ["## Security Controls Summary"],
+  "07-documentation-index.md": ["## Architecture Overview"],
 };
 
 const TITLE_DRIFT = "Artifact Template Drift";

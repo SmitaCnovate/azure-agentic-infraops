@@ -7,12 +7,12 @@ that must be addressed in the Bicep implementation.
 
 ## Azure Policy Compliance
 
-| Category       | Constraint                       | Implementation                         |
-| -------------- | -------------------------------- | -------------------------------------- |
-| Naming         | CAF naming convention            | Use standard prefixes                  |
-| Tagging        | Required tags on all resources   | Include Environment, ManagedBy, etc.   |
-| Security       | SQL Azure AD-only auth           | Must use Azure AD auth, no SQL auth    |
-| Data Residency | Allowed locations: swedencentral | Set location parameter to swedencentral|
+| Category       | Constraint                       | Implementation                          |
+| -------------- | -------------------------------- | --------------------------------------- |
+| Naming         | CAF naming convention            | Use standard prefixes                   |
+| Tagging        | Required tags on all resources   | Include Environment, ManagedBy, etc.    |
+| Security       | SQL Azure AD-only auth           | Must use Azure AD auth, no SQL auth     |
+| Data Residency | Allowed locations: swedencentral | Set location parameter to swedencentral |
 
 ## Required Tags
 
@@ -29,29 +29,29 @@ tags: {
 
 ## Security Policies
 
-| Policy                | Requirement                              |
-| --------------------- | ---------------------------------------- |
-| HTTPS Only            | Required - SWA enforces by default       |
-| TLS Version           | Minimum TLS 1.2                          |
-| Public Access         | Acceptable (no blocking policy)          |
-| Managed Identity      | Preferred for SQL connectivity           |
-| Key Vault             | Not required (no secrets in scope)       |
+| Policy           | Requirement                        |
+| ---------------- | ---------------------------------- |
+| HTTPS Only       | Required - SWA enforces by default |
+| TLS Version      | Minimum TLS 1.2                    |
+| Public Access    | Acceptable (no blocking policy)    |
+| Managed Identity | Preferred for SQL connectivity     |
+| Key Vault        | Not required (no secrets in scope) |
 
 ## Cost Policies
 
-| Policy            | Constraint                     |
-| ----------------- | ------------------------------ |
-| Budget            | $50/month                      |
-| SKU Restrictions  | Free/Basic tiers only          |
-| Reserved Capacity | Not applicable                 |
+| Policy            | Constraint            |
+| ----------------- | --------------------- |
+| Budget            | $50/month             |
+| SKU Restrictions  | Free/Basic tiers only |
+| Reserved Capacity | Not applicable        |
 
 ## Network Policies
 
-| Policy            | Constraint                              |
-| ----------------- | --------------------------------------- |
-| Private Endpoints | Not required (cost prohibitive)         |
-| VNet Integration  | Not required                            |
-| Public Endpoints  | Allowed for internal tool               |
+| Policy            | Constraint                      |
+| ----------------- | ------------------------------- |
+| Private Endpoints | Not required (cost prohibitive) |
+| VNet Integration  | Not required                    |
+| Public Endpoints  | Allowed for internal tool       |
 
 ---
 

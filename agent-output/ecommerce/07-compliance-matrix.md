@@ -24,9 +24,9 @@ access controls, and monitoring capabilities implemented via Azure-native servic
 
 ---
 
-## PCI-DSS Control Mapping
+## 1. Control Mapping
 
-### Requirement 1: Network Security Controls
+### PCI-DSS Requirements
 
 | Control | Requirement                         | Implementation                           | Status |
 | ------- | ----------------------------------- | ---------------------------------------- | ------ |
@@ -180,7 +180,7 @@ access controls, and monitoring capabilities implemented via Azure-native servic
 
 ---
 
-## Azure Security Benchmark Alignment
+### Azure Security Benchmark Alignment
 
 | Control Area              | ASB Control | Implementation                   | Status |
 | ------------------------- | ----------- | -------------------------------- | ------ |
@@ -196,7 +196,7 @@ access controls, and monitoring capabilities implemented via Azure-native servic
 
 ---
 
-## Compliance Gaps and Remediation
+## 2. Gap Analysis
 
 | Gap                        | Risk Level | Remediation                             | Timeline |
 | -------------------------- | ---------- | --------------------------------------- | -------- |
@@ -208,17 +208,7 @@ access controls, and monitoring capabilities implemented via Azure-native servic
 
 ---
 
-## Compliance Attestation Readiness
-
-| Attestation Type      | Readiness | Notes                            |
-| --------------------- | --------- | -------------------------------- |
-| SAQ-D Self-Assessment | 85%       | Most technical controls in place |
-| ROC by QSA            | 75%       | Need pen testing, ASV scans, MFA |
-| AOC (Level 2-4)       | 85%       | Technical controls sufficient    |
-
----
-
-## Evidence Inventory
+## 3. Evidence Collection
 
 | Control Category  | Evidence Location                                           |
 | ----------------- | ----------------------------------------------------------- |
@@ -231,7 +221,37 @@ access controls, and monitoring capabilities implemented via Azure-native servic
 
 ---
 
-## References
+## 4. Audit Trail
+
+| Date       | Auditor       | Finding                      | Status    |
+| ---------- | ------------- | ---------------------------- | --------- |
+| 2025-12-17 | Copilot Agent | Initial assessment completed | Documented |
+
+### Attestation Readiness
+
+| Attestation Type      | Readiness | Notes                            |
+| --------------------- | --------- | -------------------------------- |
+| SAQ-D Self-Assessment | 85%       | Most technical controls in place |
+| ROC by QSA            | 75%       | Need pen testing, ASV scans, MFA |
+| AOC (Level 2-4)       | 85%       | Technical controls sufficient    |
+
+---
+
+## 5. Remediation Tracker
+
+| Finding                    | Owner         | Due Date  | Status   |
+| -------------------------- | ------------- | --------- | -------- |
+| No ASV external scans      | Security Lead | 30 days   | Planned  |
+| No annual pen testing      | Security Lead | 60 days   | Planned  |
+| Defender not fully enabled | Platform Team | 14 days   | Planned  |
+| MFA not enforced           | Security Lead | 14 days   | Planned  |
+| Incident response basic    | Ops Team      | 30 days   | Planned  |
+
+---
+
+## 6. Appendix
+
+### A. References
 
 - [PCI-DSS v4.0 Requirements](https://www.pcisecuritystandards.org/document_library/)
 - [Azure Security Benchmark v3](https://learn.microsoft.com/security/benchmark/azure/)

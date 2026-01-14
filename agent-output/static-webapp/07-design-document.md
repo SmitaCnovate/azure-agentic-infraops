@@ -7,21 +7,6 @@
 
 ---
 
-## Table of Contents
-
-1. [Introduction](#1-introduction)
-2. [Azure Architecture Overview](#2-azure-architecture-overview)
-3. [Networking](#3-networking)
-4. [Storage](#4-storage)
-5. [Compute](#5-compute)
-6. [Identity & Access](#6-identity--access)
-7. [Security & Compliance](#7-security--compliance)
-8. [Backup & Disaster Recovery](#8-backup--disaster-recovery)
-9. [Management & Monitoring](#9-management--monitoring)
-10. [Appendix](#10-appendix)
-
----
-
 ## 1. Introduction
 
 ### 1.1 Document Purpose

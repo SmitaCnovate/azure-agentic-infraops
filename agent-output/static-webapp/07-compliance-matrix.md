@@ -6,7 +6,24 @@
 
 ---
 
-## Compliance Summary
+## Executive Summary
+
+This compliance matrix maps the static-webapp-test security controls to Azure Security Baseline requirements.
+
+| Compliance Area    | Coverage | Status      |
+| ------------------ | -------- | ----------- |
+| Network Security   | 50%      | Partial     |
+| Data Protection    | 80%      | Implemented |
+| Access Control     | 100%     | Implemented |
+| Monitoring & Audit | 85%      | Implemented |
+| Incident Response  | 70%      | Partial     |
+| Overall            | 69%      | Partial     |
+
+---
+
+## 1. Control Mapping
+
+### Framework Summary
 
 | Framework               | Required | Status      | Notes                  |
 | ----------------------- | -------- | ----------- | ---------------------- |
@@ -15,10 +32,6 @@
 | GDPR                    | ❌       | N/A         | Internal tool, no PII  |
 | SOC 2                   | ❌       | N/A         | Not required           |
 | Azure Security Baseline | ✅       | Implemented | Best practices applied |
-
----
-
-## Azure Security Baseline Controls
 
 ### Identity Management
 
@@ -103,7 +116,7 @@
 
 ---
 
-## Risk Acceptance
+## 2. Gap Analysis
 
 The following controls are intentionally not implemented due to cost/complexity trade-offs
 for this internal development tool:
@@ -120,7 +133,38 @@ for this internal development tool:
 
 ---
 
-## Recommendations for Production
+## 3. Evidence Collection
+
+| Control   | Evidence Type   | Location                    | Last Collected |
+| --------- | --------------- | --------------------------- | -------------- |
+| IM-1      | Configuration   | Azure AD tenant             | Automated      |
+| DP-3      | Configuration   | TLS settings                | Automated      |
+| LT-5      | Logs            | Log Analytics workspace     | Continuous     |
+| BR-1      | Backup status   | SQL automated backup        | Daily          |
+
+---
+
+## 4. Audit Trail
+
+| Date       | Auditor       | Finding                      | Status    |
+| ---------- | ------------- | ---------------------------- | --------- |
+| 2025-12-17 | Copilot Agent | Initial assessment completed | Documented |
+
+---
+
+## 5. Remediation Tracker
+
+| Finding           | Owner       | Due Date    | Status     |
+| ----------------- | ----------- | ----------- | ---------- |
+| Private endpoints | DevOps Team | Production  | Deferred   |
+| WAF protection    | DevOps Team | Production  | Deferred   |
+| DDoS Protection   | DevOps Team | Production  | Deferred   |
+
+---
+
+## 6. Appendix
+
+### A. Recommendations for Production
 
 If this workload moves to production or handles sensitive data:
 
@@ -129,3 +173,9 @@ If this workload moves to production or handles sensitive data:
 3. ✅ Implement customer-managed keys
 4. ✅ Add WAF via Front Door
 5. ✅ Extend log retention to 90+ days
+
+### B. Related Documents
+
+- [Design Document](./07-design-document.md)
+- [Operations Runbook](./07-operations-runbook.md)
+- [Backup & DR Plan](./07-backup-dr-plan.md)

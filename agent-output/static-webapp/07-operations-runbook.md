@@ -59,39 +59,9 @@ AzureDiagnostics
 
 ---
 
-## 2. Routine Maintenance
+## 2. Incident Response
 
-### 2.1 Weekly Tasks
-
-| Task                    | Procedure                             |
-| ----------------------- | ------------------------------------- |
-| Review Application Logs | Check App Insights for anomalies      |
-| Verify Backup Status    | Confirm SQL automated backups running |
-| Check Resource Health   | Azure Portal → Resource Health        |
-
-### 2.2 Monthly Tasks
-
-| Task               | Procedure                             |
-| ------------------ | ------------------------------------- |
-| Cost Review        | Check cost vs $50/month budget        |
-| Security Updates   | Review Azure Security Center findings |
-| Performance Review | Analyze DTU usage trends              |
-
-### 2.3 Patching Schedule
-
-| Component       | Patching                     |
-| --------------- | ---------------------------- |
-| Static Web App  | Automatic (Azure-managed)    |
-| Azure Functions | Automatic (consumption plan) |
-| SQL Database    | Automatic (Azure-managed)    |
-
-**No manual patching required** - all services are PaaS with automatic updates.
-
----
-
-## 3. Incident Response
-
-### 3.1 Severity Definitions
+### 2.1 Severity Definitions
 
 | Severity | Definition           | Response Time     | Example                    |
 | -------- | -------------------- | ----------------- | -------------------------- |
@@ -100,7 +70,11 @@ AzureDiagnostics
 | Sev 3    | Minor issue          | Next business day | Slow performance           |
 | Sev 4    | Cosmetic             | Backlog           | UI alignment issue         |
 
-### 3.2 Common Issues & Resolutions
+---
+
+## 3. Common Procedures
+
+### 3.1 Common Issues & Resolutions
 
 #### Issue: Static Web App Not Loading
 
@@ -157,11 +131,9 @@ az monitor metrics list \
   --interval PT1H
 ```
 
----
+### 3.2 Scaling Procedures
 
-## 4. Scaling Procedures
-
-### 4.1 Scale Up SQL Database
+#### Scale Up SQL Database
 
 **When**: DTU consistently >80% for extended periods
 
@@ -190,11 +162,9 @@ az staticwebapp update \
 # Cost impact: $0/mo → $9/mo
 ```
 
----
+### 3.3 Deployment Procedures
 
-## 5. Deployment Procedures
-
-### 5.1 Standard Deployment
+#### Standard Deployment
 
 Deployments are **automatic via GitHub Actions** when code is pushed to main branch.
 
@@ -207,7 +177,7 @@ az staticwebapp deploy \
   --source ./build
 ```
 
-### 5.2 Infrastructure Changes
+#### Infrastructure Changes
 
 ```bash
 # Navigate to Bicep directory
@@ -220,7 +190,7 @@ cd infra/bicep/static-webapp-test
 ./deploy.ps1
 ```
 
-### 5.3 Rollback Procedures
+#### Rollback Procedures
 
 **Application Rollback:**
 
@@ -239,7 +209,37 @@ cd infra/bicep/static-webapp-test
 
 ---
 
-## 6. Contact Information
+## 4. Maintenance Windows
+
+### 4.1 Patching Schedule
+
+| Component       | Patching                     |
+| --------------- | ---------------------------- |
+| Static Web App  | Automatic (Azure-managed)    |
+| Azure Functions | Automatic (consumption plan) |
+| SQL Database    | Automatic (Azure-managed)    |
+
+**No manual patching required** - all services are PaaS with automatic updates.
+
+### 4.2 Weekly Maintenance Tasks
+
+| Task                    | Procedure                             |
+| ----------------------- | ------------------------------------- |
+| Review Application Logs | Check App Insights for anomalies      |
+| Verify Backup Status    | Confirm SQL automated backups running |
+| Check Resource Health   | Azure Portal → Resource Health        |
+
+### 4.3 Monthly Maintenance Tasks
+
+| Task               | Procedure                             |
+| ------------------ | ------------------------------------- |
+| Cost Review        | Check cost vs $50/month budget        |
+| Security Updates   | Review Azure Security Center findings |
+| Performance Review | Analyze DTU usage trends              |
+
+---
+
+## 5. Contacts & Escalation
 
 | Role              | Contact          | Escalation     |
 | ----------------- | ---------------- | -------------- |
@@ -247,9 +247,7 @@ cd infra/bicep/static-webapp-test
 | Secondary On-Call | Dev Team         | Email          |
 | Management        | Engineering Lead | Direct message |
 
----
-
-## 7. Useful Commands
+### 5.1 Useful Commands
 
 ```bash
 # List all resources in the project
@@ -269,3 +267,11 @@ az sql db show-connection-string \
   --name sqldb-static-webapp-test-dev \
   --client ado.net
 ```
+
+---
+
+## 6. Change Log
+
+| Date       | Version | Author        | Change Description       |
+| ---------- | ------- | ------------- | ------------------------ |
+| 2025-12-17 | 1.0     | Copilot Agent | Initial runbook creation |

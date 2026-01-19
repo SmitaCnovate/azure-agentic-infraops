@@ -80,7 +80,7 @@ graph LR
 |  3   | Design         | Diagram Generator, ADR Generator | `03-des-*` |
 |  4   | Planning       | Bicep Plan 💰                    | `04-*`     |
 |  5   | Implementation | Bicep Implement                  | `05-*`     |
-|  6   | Deployment     | _(Manual/CLI)_                   | `06-*`     |
+|  6   | Deployment     | Deploy Agent                     | `06-*`     |
 |  7   | Documentation  | Workload Documentation Generator | `07-*`     |
 
 > **💰** = Azure Pricing MCP integration. Steps 3 & 7 are optional.

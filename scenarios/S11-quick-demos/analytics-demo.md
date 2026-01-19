@@ -28,7 +28,7 @@ graph LR
 | 1    | `Project Planner`                     | Requirements & cost estimate | `scenario-output/analytics/`   |
 | 2    | `azure-principal-architect` | WAF assessment               | `scenario-output/analytics/`   |
 | 3    | `diagram-generator`         | Architecture visualization   | `docs/diagrams/analytics/` |
-| 4    | `bicep-plan`                | Implementation planning      | `.bicep-planning-files/`   |
+| 4    | `bicep-plan`                | Implementation planning      | `agent-output/analytics/`  |
 | 5    | `bicep-implement`           | Code generation              | `infra/bicep/analytics/`   |
 
 ---
@@ -171,7 +171,7 @@ Create Bicep implementation plan for Phase 4:
 Reference Phase 1-3 outputs.
 ```
 
-**Expected Output:** 4 planning files in `.bicep-planning-files/INFRA.analytics-*.md`
+**Expected Output:** `agent-output/analytics/04-implementation-plan.md`
 
 ---
 
@@ -326,5 +326,5 @@ After running this demo, you should have:
 | Plan output          | `scenario-output/analytics/00-plan.md`            |
 | WAF assessment       | `scenario-output/analytics/01-azure-architect.md` |
 | Architecture diagram | `docs/diagrams/analytics/`                    |
-| Bicep planning files | `.bicep-planning-files/INFRA.analytics-*.md`  |
+| Implementation plan  | `agent-output/analytics/04-implementation-plan.md` |
 | Bicep templates      | `infra/bicep/analytics/`                      |

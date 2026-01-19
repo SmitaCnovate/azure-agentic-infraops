@@ -304,7 +304,7 @@ You: approve
 
 [Handoff to bicep-plan]
 
-Planner: [Creates implementation plan in .bicep-planning-files/]
+Planner: [Creates implementation plan in agent-output/{project}/]
          [Validates costs with Azure Pricing MCP]
          Do you approve this implementation plan?
 
@@ -413,7 +413,6 @@ Implementer: [Executes deployment to Azure]
 | Agent Definitions      | `.github/agents/`                                       |
 | MCP Server             | `mcp/azure-pricing-mcp/`                                |
 | MCP Configuration      | `.vscode/mcp.json`                                      |
-| Legacy Planning Files  | `.bicep-planning-files/` (deprecated)                   |
 | Legacy Diagrams        | `docs/diagrams/` (preserved for demos)                  |
 | Global ADRs            | `docs/adr/` (repository-level decisions)                |
 

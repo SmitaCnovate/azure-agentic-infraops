@@ -160,7 +160,7 @@ Create Bicep implementation plan for Phase 4:
 - Diagnostic settings for all resources
 ```
 
-**Expected Output:** 4 planning files in `.bicep-planning-files/` with AVM module specs
+**Expected Output:** `agent-output/ecommerce/04-implementation-plan.md`
 
 ---
 
@@ -277,5 +277,5 @@ After running this demo, you should have:
 | Planning strategy       | `scenario-output/02-bicep-plan.md`               |
 | Implementation strategy | `scenario-output/03-bicep-code-gen.md`           |
 | Architecture diagram    | `docs/diagrams/ecommerce/`                   |
-| Bicep planning files    | `.bicep-planning-files/INFRA.ecommerce-*.md` |
+| Implementation plan     | `agent-output/ecommerce/04-implementation-plan.md` |
 | Bicep templates         | `infra/bicep/ecommerce/`                     |

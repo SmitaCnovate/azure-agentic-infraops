@@ -376,7 +376,7 @@ Create a detailed Bicep implementation plan for the Contoso Healthcare patient p
 - Production: High availability, meets all compliance requirements
 
 **Save Plan To:**
-.bicep-planning-files/INFRA.contoso-patient-portal.md
+agent-output/contoso-patient-portal/04-implementation-plan.md
 
 **Additional Considerations:**
 - HIPAA compliance requirements (encryption, private endpoints, audit logging)
@@ -390,7 +390,7 @@ After creating the plan, hand off to the Bicep Implementation Specialist to gene
 
 ### Expected Outputs
 
-- [ ] Plan file created in `.bicep-planning-files/`
+- [ ] Plan file created in `agent-output/contoso-patient-portal/`
 - [ ] Complete resource breakdown with YAML blocks
 - [ ] Mermaid dependency diagram (should render in preview)
 - [ ] Cost estimation table with monthly totals
@@ -408,7 +408,7 @@ After creating the plan, hand off to the Bicep Implementation Specialist to gene
 
 ### Key Validation Points
 
-- **Plan File:** `.bicep-planning-files/INFRA.contoso-patient-portal.md` exists
+- **Plan File:** `agent-output/contoso-patient-portal/04-implementation-plan.md` exists
 - **Diagram:** Mermaid syntax valid, shows resource dependencies
 - **Phases:** Foundation → Platform → Security (logical deployment order)
 - **Parameters:** Environment-specific (dev/prod), location, naming prefix
@@ -449,7 +449,7 @@ Understanding validation:
 ### Prompt
 
 ```bicep
-Implement the Bicep templates for the Contoso Healthcare patient portal based on the implementation plan in .bicep-planning-files/INFRA.contoso-patient-portal.md
+Implement the Bicep templates for the Contoso Healthcare patient portal based on the implementation plan in agent-output/contoso-patient-portal/04-implementation-plan.md
 
 **Implementation Approach:**
 Use progressive implementation pattern with these phases:

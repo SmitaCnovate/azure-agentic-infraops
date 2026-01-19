@@ -28,7 +28,7 @@ graph LR
 | 1    | `Project Planner`                     | Requirements & cost estimate | `scenario-output/healthcare/`   |
 | 2    | `azure-principal-architect` | WAF + HIPAA assessment       | `scenario-output/healthcare/`   |
 | 3    | `diagram-generator`         | Architecture visualization   | `docs/diagrams/healthcare/` |
-| 4    | `bicep-plan`                | Implementation planning      | `.bicep-planning-files/`    |
+| 4    | `bicep-plan`                | Implementation planning      | `agent-output/healthcare/`  |
 | 5    | `bicep-implement`           | Code generation              | `infra/bicep/healthcare/`   |
 
 ---
@@ -171,7 +171,7 @@ Create Bicep implementation plan for Phase 4:
 Reference Phase 1-3 outputs.
 ```
 
-**Expected Output:** 4 planning files in `.bicep-planning-files/INFRA.healthcare-*.md`
+**Expected Output:** `agent-output/healthcare/04-implementation-plan.md`
 
 ---
 
@@ -287,5 +287,5 @@ After running this demo, you should have:
 | Plan output          | `scenario-output/healthcare/00-plan.md`            |
 | WAF assessment       | `scenario-output/healthcare/01-azure-architect.md` |
 | Architecture diagram | `docs/diagrams/healthcare/`                    |
-| Bicep planning files | `.bicep-planning-files/INFRA.healthcare-*.md`  |
+| Implementation plan  | `agent-output/healthcare/04-implementation-plan.md` |
 | Bicep templates      | `infra/bicep/healthcare/`                      |

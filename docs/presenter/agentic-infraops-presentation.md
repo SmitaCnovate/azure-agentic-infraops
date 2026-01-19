@@ -139,12 +139,12 @@ Agents ensure compliance with:
 - Selects Azure Verified Modules (AVM)
 - Maps resource dependencies
 - Generates machine-readable plan
-- Stored in `.bicep-planning-files/`
+- Stored in `agent-output/{project}/`
 
 ```
-📁 .bicep-planning-files/
-   ├── governance-constraints.md
-   └── INFRA.patient-portal.md
+📁 agent-output/{project}/
+   ├── 04-governance-constraints.md
+   └── 04-implementation-plan.md
 ```
 
 ---

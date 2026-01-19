@@ -294,7 +294,7 @@ az resource delete --ids <resource-id>
 
 ## 📚 Additional Resources
 
-- [Implementation Plan](.bicep-planning-files/INFRA.contoso-patient-portal.md)
+- [Implementation Plan](../../../agent-output/contoso-patient-portal/04-implementation-plan.md)
 - [Azure Bicep Documentation](https://learn.microsoft.com/azure/azure-resource-manager/bicep/)
 - [Azure Verified Modules](https://azure.github.io/Azure-Verified-Modules/)
 - [HIPAA Compliance on Azure](https://learn.microsoft.com/azure/compliance/offerings/offering-hipaa-us)

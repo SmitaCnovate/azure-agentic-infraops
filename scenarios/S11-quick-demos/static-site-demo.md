@@ -28,7 +28,7 @@ graph LR
 | 1    | `Project Planner`                     | Requirements & cost estimate | `scenario-output/staticsite/`   |
 | 2    | `azure-principal-architect` | WAF assessment               | `scenario-output/staticsite/`   |
 | 3    | `diagram-generator`         | Architecture visualization   | `docs/diagrams/staticsite/` |
-| 4    | `bicep-plan`                | Implementation planning      | `.bicep-planning-files/`    |
+| 4    | `bicep-plan`                | Implementation planning      | `agent-output/staticsite/`  |
 | 5    | `bicep-implement`           | Code generation              | `infra/bicep/staticsite/`   |
 
 ---
@@ -129,7 +129,7 @@ Region: swedencentral
 Environment: prod
 ```
 
-**Expected Output:** Single planning file in `.bicep-planning-files/INFRA.staticsite.md`
+**Expected Output:** `agent-output/staticsite/04-implementation-plan.md`
 
 ---
 
@@ -284,7 +284,7 @@ After running this demo, you should have:
 | Plan output          | `scenario-output/staticsite/00-plan.md`            |
 | WAF assessment       | `scenario-output/staticsite/01-azure-architect.md` |
 | Architecture diagram | `docs/diagrams/staticsite/`                    |
-| Bicep planning file  | `.bicep-planning-files/INFRA.staticsite.md`    |
+| Implementation plan  | `agent-output/staticsite/04-implementation-plan.md` |
 | Bicep templates      | `infra/bicep/staticsite/`                      |
 
 ---

@@ -20,9 +20,6 @@
 .PARAMETER CleanBicep
     Also clean the generated Bicep files in infra/bicep/{demo}/
 
-.PARAMETER CleanPlanning
-    Also clean the planning files in .bicep-planning-files/
-
 .PARAMETER Force
     Skip confirmation prompts.
 
@@ -50,7 +47,6 @@ param(
     [string]$Demo,
 
     [switch]$CleanBicep,
-    [switch]$CleanPlanning,
     [switch]$Force
 )
 
@@ -67,7 +63,6 @@ $DemoConfigs = @{
         OutputDir   = 'demo-output'
         DiagramDir  = 'docs/diagrams/ecommerce'
         BicepDir    = 'infra/bicep/ecommerce'
-        PlanPrefix  = 'INFRA.ecommerce-'
         PromptFile  = 'demos/demo-prompts.md'
     }
     'healthcare' = @{
@@ -75,7 +70,6 @@ $DemoConfigs = @{
         OutputDir   = 'demo-output/healthcare'
         DiagramDir  = 'docs/diagrams/healthcare'
         BicepDir    = 'infra/bicep/healthcare'
-        PlanPrefix  = 'INFRA.healthcare-'
         PromptFile  = 'demos/healthcare-demo.md'
     }
     'analytics' = @{
@@ -83,7 +77,6 @@ $DemoConfigs = @{
         OutputDir   = 'demo-output/analytics'
         DiagramDir  = 'docs/diagrams/analytics'
         BicepDir    = 'infra/bicep/analytics'
-        PlanPrefix  = 'INFRA.analytics-'
         PromptFile  = 'demos/analytics-demo.md'
     }
     'staticsite' = @{
@@ -91,7 +84,6 @@ $DemoConfigs = @{
         OutputDir   = 'demo-output/staticsite'
         DiagramDir  = 'docs/diagrams/staticsite'
         BicepDir    = 'infra/bicep/staticsite'
-        PlanPrefix  = 'INFRA.staticsite'
         PromptFile  = 'demos/static-site-demo.md'
     }
 }
@@ -156,27 +148,6 @@ function New-DemoFolder {
     }
 }
 
-function Remove-PlanningFiles {
-    param([string]$Prefix)
-
-    $PlanningDir = Join-Path $RepoRoot '.bicep-planning-files'
-
-    if (Test-Path $PlanningDir) {
-        $Files = Get-ChildItem -Path $PlanningDir -Filter "$Prefix*.md" -ErrorAction SilentlyContinue
-
-        foreach ($File in $Files) {
-            if ($PSCmdlet.ShouldProcess($File.FullName, 'Remove planning file')) {
-                Remove-Item -Path $File.FullName -Force
-                Write-Success "Removed: .bicep-planning-files/$($File.Name)"
-            }
-        }
-
-        if ($Files.Count -eq 0) {
-            Write-Skip "No planning files found matching: $Prefix*.md"
-        }
-    }
-}
-
 function Invoke-DemoRegeneration {
     param([string]$DemoKey)
 
@@ -201,15 +172,6 @@ function Invoke-DemoRegeneration {
     }
     else {
         Write-Skip "Skipping Bicep cleanup (use -CleanBicep to include)"
-    }
-
-    # Clean planning files (if requested)
-    if ($CleanPlanning) {
-        Write-Step "Cleaning planning files..."
-        Remove-PlanningFiles -Prefix $Config.PlanPrefix
-    }
-    else {
-        Write-Skip "Skipping planning files cleanup (use -CleanPlanning to include)"
     }
 
     Write-Host "`n  📋 Next steps:" -ForegroundColor Yellow

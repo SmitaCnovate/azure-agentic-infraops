@@ -48,7 +48,6 @@
     "__pycache__/**",
     ".pytest_cache/**",
     "coverage/**",
-    ".bicep-planning-files/**",
     "docs/audit-checklists/**",
     "docs/presenter/**",
     "scenarios/scenario-output/**",

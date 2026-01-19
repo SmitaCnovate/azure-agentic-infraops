@@ -125,7 +125,7 @@ Resources to deploy:
 - Log Analytics + App Insights
 - RBAC role assignments
 
-Use 4 deployment phases. Output to .bicep-planning-files/
+Use 4 deployment phases. Output to agent-output/ecommerce/
 ```
 
 ---

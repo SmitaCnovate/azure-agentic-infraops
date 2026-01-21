@@ -27,7 +27,7 @@ tools:
 handoffs:
   - label: Generate Workload Documentation
     agent: Workload Documentation Generator
-    prompt: Generate comprehensive workload documentation for the deployed infrastructure. Include resource inventory, operations runbook, and backup/DR plan.
+    prompt: Generate comprehensive workload documentation for the deployed infrastructure. Include resource inventory, operations runbook, backup/DR plan, and as-built cost estimate (07-ab-cost-estimate.md).
     send: true
   - label: Return to Architect Review
     agent: Azure Principal Architect
@@ -37,9 +37,9 @@ handoffs:
     agent: Azure Diagram Generator
     prompt: Generate an as-built architecture diagram documenting the deployed infrastructure. Use '-ab' suffix for as-built diagram.
     send: true
-  - label: Generate As-Built Cost Estimate
-    agent: Azure Principal Architect
-    prompt: Generate an as-built cost estimate comparing actual deployed resources against design estimates. Create 07-ab-cost-estimate.md.
+  - label: Fix Deployment Issues
+    agent: Azure Bicep Implementation Specialist
+    prompt: The deployment encountered errors. Review the error messages and fix the Bicep templates to resolve the issues. Then retry deployment.
     send: true
 ---
 

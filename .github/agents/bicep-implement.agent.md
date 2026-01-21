@@ -24,6 +24,10 @@ tools:
     "ms-vscode.vscode-websearchforcopilot/websearch",
   ]
 handoffs:
+  - label: Deploy to Azure
+    agent: Deploy
+    prompt: Deploy the Bicep templates to Azure. Run what-if analysis first to preview changes, then execute deployment with user approval. Generate deployment summary upon completion.
+    send: true
   - label: Generate Workload Documentation
     agent: Workload Documentation Generator
     prompt: Generate comprehensive workload documentation package including design document, operations runbook, and resource inventory. Synthesize from existing WAF assessment, implementation plan, and Bicep code.

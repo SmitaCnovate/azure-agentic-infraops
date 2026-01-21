@@ -43,15 +43,15 @@ graph LR
     DEP --> F["Docs<br/>Step 7"]
 ```
 
-| Step | Agent                | Output                          |
-| ---- | -------------------- | ------------------------------- |
-| 1    | `plan`               | `01-requirements.md`            |
-| 2    | `architect`          | `02-architecture-assessment.md` |
-| 3    | `diagram`, `adr`     | `03-des-*.md/.py/.png`          |
-| 4    | `bicep-plan`         | `04-implementation-plan.md`     |
-| 5    | `bicep-code`         | `infra/bicep/{project}/`        |
-| 6    | `deploy`             | `06-deployment-summary.md`      |
-| 7    | `docs`               | `07-*.md`                       |
+| Step | Agent            | Output                          |
+| ---- | ---------------- | ------------------------------- |
+| 1    | `plan`           | `01-requirements.md`            |
+| 2    | `architect`      | `02-architecture-assessment.md` |
+| 3    | `diagram`, `adr` | `03-des-*.md/.py/.png`          |
+| 4    | `bicep-plan`     | `04-implementation-plan.md`     |
+| 5    | `bicep-code`     | `infra/bicep/{project}/`        |
+| 6    | `deploy`         | `06-deployment-summary.md`      |
+| 7    | `docs`           | `07-*.md`                       |
 
 **How to use agents**: `Ctrl+Alt+I` → select agent from picker → type prompt → wait for approval before next step
 

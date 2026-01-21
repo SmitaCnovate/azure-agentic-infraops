@@ -1,5 +1,7 @@
 # Reference Documentation
 
+> **Version 5.3.0** | [Back to Documentation Hub](../README.md)
+>
 > **Single source of truth** for Agentic InfraOps patterns and defaults
 
 This folder contains authoritative reference documentation. Other docs and agent files should link to these

@@ -1,5 +1,7 @@
 # S08: GitHub Copilot Coding Agent
 
+> **Version 5.3.0** | [Back to Scenarios](../README.md)
+
 ---
 
 ## Meet Alex Petrov

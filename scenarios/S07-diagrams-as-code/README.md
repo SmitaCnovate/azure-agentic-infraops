@@ -1,5 +1,7 @@
 # S07: Diagrams-as-Code with GitHub Copilot
 
+> **Version 5.3.0** | [Back to Scenarios](../README.md)
+>
 > **🤖 Agent Available**: This scenario is also available as the `diagram-generator` agent for integration with
 > the 7-step workflow. See `.github/agents/diagram-generator.agent.md`.
 

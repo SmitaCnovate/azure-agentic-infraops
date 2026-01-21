@@ -1,5 +1,7 @@
 # S02: Seven-Step Agent Workflow for Azure Infrastructure
 
+> **Version 5.3.0** | [Back to Scenarios](../README.md)
+
 ## Meet Jennifer Chen
 
 > _"My clients pay for architecture, not typing. Every hour I spend on boilerplate

@@ -1,5 +1,7 @@
 # S05: Azure Troubleshooting Assistant
 
+> **Version 5.3.0** | [Back to Scenarios](../README.md)
+
 ## Meet Maya Patel
 
 **Role**: On-Call Site Reliability Engineer at RetailMax Online

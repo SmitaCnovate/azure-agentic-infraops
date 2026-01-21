@@ -1,6 +1,6 @@
 # Scenarios Overview
 
-> **Version 4.0.0** | [Changelog](../VERSION.md)
+> **Version 5.3.0** | [Changelog](../VERSION.md)
 >
 > **Hands-on learning scenarios demonstrating Agentic InfraOps as an efficiency multiplier
 > for IT Professionals.**
@@ -10,7 +10,7 @@
 ## Defaults & Workflow
 
 > **Region**: `swedencentral` (fallback: `germanywestcentral`).
-> See [ADR-004](../docs/adr/ADR-004-region-defaults.md).
+> See [ADR-004](../docs/_superseded/adr/ADR-004-region-defaults.md).
 >
 > **Modules**: AVM-first for policy-compliant deployments.
 > See [ADR-003](../docs/adr/ADR-003-avm-first-approach.md).

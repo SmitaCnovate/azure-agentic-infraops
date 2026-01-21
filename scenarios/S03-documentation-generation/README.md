@@ -1,5 +1,7 @@
 # S03: Documentation Generation - Learning Documentation Automation with Copilot
 
+> **Version 5.3.0** | [Back to Scenarios](../README.md)
+
 ---
 
 ## Meet Priya Sharma

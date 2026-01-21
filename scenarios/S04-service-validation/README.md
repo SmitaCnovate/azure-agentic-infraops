@@ -1,5 +1,7 @@
 # S04: Service Validation - Learning AI-Assisted Testing with Copilot
 
+> **Version 5.3.0** | [Back to Scenarios](../README.md)
+
 ---
 
 ## Meet Marcus Chen

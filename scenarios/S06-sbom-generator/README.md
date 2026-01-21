@@ -1,5 +1,7 @@
 # S06: SBOM Discovery - Learn Component Documentation with Copilot
 
+> **Version 5.3.0** | [Back to Scenarios](../README.md)
+
 ## Meet Sarah Chen
 
 **Role**: Security Engineer at HealthTech Solutions (Healthcare SaaS Provider)

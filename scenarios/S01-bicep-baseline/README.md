@@ -1,5 +1,7 @@
 # S01: Azure Bicep Fundamentals with GitHub Copilot
 
+> **Version 5.3.0** | [Back to Scenarios](../README.md)
+
 ---
 
 ## Meet Elena Rodriguez

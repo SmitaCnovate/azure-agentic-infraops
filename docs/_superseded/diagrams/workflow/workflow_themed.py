@@ -99,7 +99,7 @@ digraph AgenticInfraOps {{
         penwidth="2"
         
         architect [
-            label="azure-principal-architect\\n(NO CODE)"
+            label="architect\\n(NO CODE)"
             fillcolor="{COLORS['orange']}"
         ]
     }}
@@ -116,12 +116,12 @@ digraph AgenticInfraOps {{
         penwidth="2"
         
         diagrams_design [
-            label="📊 diagram-generator\\n(-des)"
+            label="📊 diagram\\n(-des)"
             fillcolor="{COLORS['purple']}"
         ]
         
         adr_design [
-            label="📝 adr-generator\\n(-des)"
+            label="📝 adr\\n(-des)"
             fillcolor="{COLORS['teal']}"
         ]
     }}
@@ -169,7 +169,7 @@ digraph AgenticInfraOps {{
         penwidth="2"
         
         bicep_implement [
-            label="bicep-implement\\n(code generation)"
+            label="bicep-code\\n(code generation)"
             fillcolor="{COLORS['pink']}"
         ]
     }}
@@ -203,12 +203,12 @@ digraph AgenticInfraOps {{
         penwidth="2"
         
         diagrams_asbuilt [
-            label="📊 diagram-generator\\n(-ab)"
+            label="📊 diagram\\n(-ab)"
             fillcolor="{COLORS['purple']}"
         ]
         
         adr_asbuilt [
-            label="📝 adr-generator\\n(-ab)"
+            label="📝 adr\\n(-ab)"
             fillcolor="{COLORS['teal']}"
         ]
     }}
@@ -278,7 +278,7 @@ digraph SimpleWorkflow {{
     architect [label="azure-principal-\\narchitect" fillcolor="{COLORS['orange']}"]
     design_artifacts [label="Design\\nArtifacts" fillcolor="{COLORS['purple']}" style="filled,rounded,dashed"]
     bicep_plan [label="bicep-plan" fillcolor="{COLORS['green']}"]
-    bicep_implement [label="bicep-implement" fillcolor="{COLORS['pink']}"]
+    bicep_implement [label="bicep-code" fillcolor="{COLORS['pink']}"]
     deploy [label="Deploy" fillcolor="{COLORS['coral']}"]
     asbuilt_artifacts [label="As-Built\\nArtifacts" fillcolor="{COLORS['cyan']}" style="filled,rounded,dashed"]
     

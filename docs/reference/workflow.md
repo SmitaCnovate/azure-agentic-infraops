@@ -16,7 +16,7 @@ This document describes the 7-step agent workflow for Azure infrastructure devel
 > **Note: Project Planner vs Plan**
 >
 > VS Code includes a built-in **Plan** agent for general planning tasks. This repository uses a custom
-> **Project Planner** agent (`project-planner.agent.md`) specifically designed for Azure infrastructure
+> **Project Planner** agent (`plan.agent.md`) specifically designed for Azure infrastructure
 > requirements gathering. The custom agent includes Azure-specific instructions, templates, and handoffs
 > to other agents in this 7-step workflow.
 
@@ -32,13 +32,13 @@ graph TB
     end
 
     subgraph "Step 2: Architecture"
-        A["azure-principal-architect<br/>(NO CODE)"]
+        A["architect<br/>(NO CODE)"]
         MCP["💰 Azure Pricing MCP"]
     end
 
     subgraph "Step 3: Design Artifacts"
-        D["📊 diagram-generator<br/>(-des suffix)"]
-        ADR1["📝 adr-generator<br/>(-des suffix)"]
+        D["📊 diagram<br/>(-des suffix)"]
+        ADR1["📝 adr<br/>(-des suffix)"]
     end
 
     subgraph "Step 4: Planning"
@@ -46,7 +46,7 @@ graph TB
     end
 
     subgraph "Step 5: Implementation"
-        I["bicep-implement<br/>(code generation)"]
+        I["bicep-code<br/>(code generation)"]
     end
 
     subgraph "Step 6: Deploy"
@@ -54,8 +54,8 @@ graph TB
     end
 
     subgraph "Step 7: As-Built Artifacts"
-        D2["📊 diagram-generator<br/>(-ab suffix)"]
-        ADR2["📝 adr-generator<br/>(-ab suffix)"]
+        D2["📊 diagram<br/>(-ab suffix)"]
+        ADR2["📝 adr<br/>(-ab suffix)"]
         WL["📚 workload-documentation"]
     end
 
@@ -89,11 +89,11 @@ graph TB
 
 | Step | Agent/Phase                 | Purpose                              | Creates                                   | Required |
 | ---- | --------------------------- | ------------------------------------ | ----------------------------------------- | -------- |
-| 1    | `project-planner` (custom)  | Gather requirements                  | `01-requirements.md`                      | ✅ Yes   |
-| 2    | `azure-principal-architect` | WAF assessment                       | `02-architecture-assessment.md`           | ✅ Yes   |
+| 1    | `plan` (custom)  | Gather requirements                  | `01-requirements.md`                      | ✅ Yes   |
+| 2    | `architect` | WAF assessment                       | `02-architecture-assessment.md`           | ✅ Yes   |
 | 3    | Design Artifacts            | Visualize design, document decisions | `03-des-*` diagrams + cost + ADRs         | Optional |
 | 4    | `bicep-plan`                | Implementation planning + governance | `04-*` plan + governance constraints      | ✅ Yes   |
-| 5    | `bicep-implement`           | Code generation                      | Bicep templates + `05-*` reference        | ✅ Yes   |
+| 5    | `bicep-code`           | Code generation                      | Bicep templates + `05-*` reference        | ✅ Yes   |
 | 6    | Deploy                      | Deploy to Azure                      | `06-deployment-summary.md`                | ✅ Yes   |
 | 7    | As-Built Artifacts          | Document final state                 | `07-ab-*` diagrams + ADRs + workload docs | Optional |
 
@@ -124,9 +124,9 @@ Compliance: HIPAA, SOC 2, data residency in EU.
 Budget: $3,000/month maximum.
 ```
 
-### Step 2: Architecture (azure-principal-architect)
+### Step 2: Architecture (architect)
 
-See agent definition: [`.github/agents/azure-principal-architect.agent.md`](../../.github/agents/azure-principal-architect.agent.md)
+See agent definition: [`.github/agents/architect.agent.md`](../../.github/agents/architect.agent.md)
 
 **Validates requirements include NFRs** before proceeding with WAF assessment.
 
@@ -134,8 +134,8 @@ See agent definition: [`.github/agents/azure-principal-architect.agent.md`](../.
 
 | Tool/Agent             | Purpose                         | Output Suffix | Triggered By                        |
 | ---------------------- | ------------------------------- | ------------- | ----------------------------------- |
-| 📊 `diagram-generator` | Visualize proposed architecture | `-des`        | Ask: "generate diagram"             |
-| 📝 `adr-generator`     | Document design decisions       | `-des`        | Ask: "create ADR for this decision" |
+| 📊 `diagram` | Visualize proposed architecture | `-des`        | Ask: "generate diagram"             |
+| 📝 `adr`     | Document design decisions       | `-des`        | Ask: "create ADR for this decision" |
 
 ### Step 4: Governance Discovery
 
@@ -158,8 +158,8 @@ Deploy infrastructure to Azure using generated scripts:
 
 | Tool/Agent                       | Purpose                           | Output Suffix | Triggered By                         |
 | -------------------------------- | --------------------------------- | ------------- | ------------------------------------ |
-| 📊 `diagram-generator`           | Document deployed architecture    | `-ab`         | Ask: "generate as-built diagram"     |
-| 📝 `adr-generator`               | Document implementation decisions | `-ab`         | Ask: "create ADR for implementation" |
+| 📊 `diagram`           | Document deployed architecture    | `-ab`         | Ask: "generate as-built diagram"     |
+| 📝 `adr`               | Document implementation decisions | `-ab`         | Ask: "create ADR for implementation" |
 | 📚 `workload-documentation-gen.` | Customer-deliverable docs         | `07-*`        | Ask: "generate workload docs"        |
 
 ---
@@ -186,7 +186,7 @@ This eliminates guesswork and ensures accurate cost estimates.
 %%{init: {'theme':'neutral'}}%%
 sequenceDiagram
     participant User
-    participant Architect as azure-principal-architect
+    participant Architect as architect
     participant MCP as Azure Pricing MCP
     participant Azure as Azure Retail Prices API
 
@@ -274,7 +274,7 @@ Plan Agent: [Generates requirements plan]
 
 You: yes
 
-[Handoff to azure-principal-architect]
+[Handoff to architect]
 
 Architect: [Provides WAF assessment with scores]
            [Queries Azure Pricing MCP for real-time costs]
@@ -294,7 +294,7 @@ Architect: [Provides WAF assessment with scores]
 
 You: yes generate the diagram
 
-Architect: [Invokes diagram-generator]
+Architect: [Invokes diagram]
            ✅ Created docs/diagrams/patient-portal/architecture.py
            ✅ Generated architecture.png
 
@@ -310,7 +310,7 @@ Planner: [Creates implementation plan in agent-output/{project}/]
 
 You: yes
 
-[Handoff to bicep-implement]
+[Handoff to bicep-code]
 
 Implementer: [Generates Bicep templates]
              Validation: bicep build ✅ | bicep lint ✅
@@ -331,20 +331,20 @@ Implementer: [Executes deployment to Azure]
 - **Output**: Structured requirements plan
 - **Limitations**: Cannot access workspace files
 
-### azure-principal-architect
+### architect
 
 - **Input**: Requirements from @plan or user
 - **Output**: WAF pillar assessment, SKU recommendations (no cost estimates)
 - **Integrations**:
   - 💰 Uses Azure Pricing MCP for SKU pricing context
-  - 📊 Can invoke diagram-generator for visualizations (Step 3)
-  - 📝 Can invoke adr-generator for decisions (Step 3)
+  - 📊 Can invoke diagram for visualizations (Step 3)
+  - 📝 Can invoke adr for decisions (Step 3)
 - **Limitations**: ❌ Cannot create or edit Bicep code files
 - **Documentation**: Creates `02-architecture-assessment.md` only (cost estimates in Step 3)
 
-### diagram-generator
+### diagram
 
-- **Input**: Architecture context from azure-principal-architect OR bicep-implement
+- **Input**: Architecture context from architect OR bicep-code
 - **Output**: Python diagram file in `agent-output/{project}/` + PNG image
 - **Artifact Suffix**:
   - `-des` when called from Step 3 (design phase)
@@ -354,7 +354,7 @@ Implementer: [Executes deployment to Azure]
 
 ### bicep-plan
 
-- **Input**: Architecture assessment from azure-principal-architect
+- **Input**: Architecture assessment from architect
 - **Output**:
   - Implementation plan in `agent-output/{project}/04-implementation-plan.md`
   - Governance constraints in `agent-output/{project}/04-governance-constraints.md` and `.json`
@@ -363,7 +363,7 @@ Implementer: [Executes deployment to Azure]
 - **Limitations**: ❌ Cannot create actual Bicep code
 - **Focus**: Detailed planning with AVM modules + policy compliance
 
-### bicep-implement
+### bicep-code
 
 - **Input**: Implementation plan from `agent-output/{project}/04-implementation-plan.md`
 - **Output**:
@@ -372,9 +372,9 @@ Implementer: [Executes deployment to Azure]
 - **Limitations**: Must follow the approved plan
 - **Validation**: Runs `bicep build` and `bicep lint`
 - **Focus**: Code generation and deployment
-- **Handoffs**: Can invoke diagram-generator and adr-generator for as-built artifacts
+- **Handoffs**: Can invoke diagram and adr for as-built artifacts
 
-### adr-generator (Optional)
+### adr (Optional)
 
 - **Input**: Any architectural decision during the workflow
 - **Output**: ADR in `agent-output/{project}/`
@@ -383,7 +383,7 @@ Implementer: [Executes deployment to Azure]
   - `-ab` when documenting implementation decisions (Step 7)
 - **When to Use**: Major technology choices, trade-off decisions, policy exceptions
 
-### workload-documentation-generator (Optional)
+### docs (Optional)
 
 - **Input**: All previous artifacts (WAF assessment, plan, Bicep code)
 - **Output**: Customer-deliverable documentation in `agent-output/{project}/07-*.md`

@@ -47,7 +47,7 @@ but an amplifier of it.
 
 1. **Start Fresh** - Open VS Code in a clean workspace
 2. **Show Context** - Open the scenario folder (e.g., `scenarios/S01-bicep-baseline/`)
-3. **Use Agents** - Demonstrate the workflow: `@plan` → `azure-principal-architect` → `bicep-plan` → `bicep-implement`
+3. **Use Agents** - Demonstrate the workflow: `@plan` → `architect` → `bicep-plan` → `bicep-code`
 4. **Accept & Refine** - Show the iterative process of accepting and improving suggestions
 5. **Deploy (Optional)** - If time permits, deploy to Azure to show working infrastructure
 

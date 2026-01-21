@@ -31,13 +31,13 @@ graph TB
     end
 
     subgraph "Phase 2: Architecture & Cost"
-        A["azure-principal-architect<br/>🏛️"]
+        A["architect<br/>🏛️"]
         MCP["💰 Azure Pricing MCP"]
     end
 
     subgraph "Phase 3: Design Artifacts"
-        D["diagram-generator<br/>📊 (-des)"]
-        ADR1["adr-generator<br/>📝 (-des)"]
+        D["diagram<br/>📊 (-des)"]
+        ADR1["adr<br/>📝 (-des)"]
         COST["Cost Estimate<br/>💰 (-des)"]
     end
 
@@ -47,7 +47,7 @@ graph TB
     end
 
     subgraph "Phase 5: Code Generation"
-        I["bicep-implement<br/>⚙️"]
+        I["bicep-code<br/>⚙️"]
     end
 
     subgraph "Phase 6: Deployment"
@@ -55,8 +55,8 @@ graph TB
     end
 
     subgraph "Phase 7: As-Built Documentation"
-        D2["diagram-generator<br/>📊 (-ab)"]
-        ADR2["adr-generator<br/>📝 (-ab)"]
+        D2["diagram<br/>📊 (-ab)"]
+        ADR2["adr<br/>📝 (-ab)"]
         COST2["Cost Estimate<br/>💰 (-ab)"]
         WL["workload-documentation<br/>📚"]
     end
@@ -126,30 +126,30 @@ A comprehensive overview of all agents, their workflow phases, and outputs:
 
 | Agent                                 | Phase | Purpose                            | Creates Code? | Output Files                          | Required |
 | ------------------------------------- | ----- | ---------------------------------- | ------------- | ------------------------------------- | -------- |
-| `project-planner` (custom)            | 1     | Requirements & NFR gathering       | ❌ No         | `01-requirements.md`                  | ✅ Yes   |
-| `azure-principal-architect`           | 2     | WAF assessment & architecture      | ❌ No         | `02-architecture-assessment.md`       | ✅ Yes   |
-| `diagram-generator`                   | 3, 7  | Python architecture diagrams       | ✅ Yes        | `03-des-diagram.*`, `07-ab-diagram.*` | Optional |
-| `adr-generator`                       | 3, 7  | Architecture Decision Records      | ❌ No         | `03-des-adr-*`, `07-ab-adr-*`         | Optional |
+| `plan` (custom)            | 1     | Requirements & NFR gathering       | ❌ No         | `01-requirements.md`                  | ✅ Yes   |
+| `architect`           | 2     | WAF assessment & architecture      | ❌ No         | `02-architecture-assessment.md`       | ✅ Yes   |
+| `diagram`                   | 3, 7  | Python architecture diagrams       | ✅ Yes        | `03-des-diagram.*`, `07-ab-diagram.*` | Optional |
+| `adr`                       | 3, 7  | Architecture Decision Records      | ❌ No         | `03-des-adr-*`, `07-ab-adr-*`         | Optional |
 | `bicep-plan`                          | 4     | Policy discovery & planning        | ❌ No         | `04-implementation-plan.md`           | ✅ Yes   |
-| `bicep-implement`                     | 5     | Bicep IaC generation               | ✅ Yes        | `infra/bicep/{project}/`              | ✅ Yes   |
+| `bicep-code`                     | 5     | Bicep IaC generation               | ✅ Yes        | `infra/bicep/{project}/`              | ✅ Yes   |
 | `deploy`                              | 6     | Azure deployment orchestration     | ❌ No         | `06-deployment-summary.md`            | ✅ Yes   |
-| `workload-documentation-generator`    | 7     | Customer-deliverable docs          | ❌ No         | `07-*.md` (6 files)                   | Optional |
-| `azure-resource-health-diagnostician` | 8     | Post-deployment health diagnostics | ❌ No         | `08-resource-health-report.md`        | Optional |
+| `docs`    | 7     | Customer-deliverable docs          | ❌ No         | `07-*.md` (6 files)                   | Optional |
+| `diagnose` | 8     | Post-deployment health diagnostics | ❌ No         | `08-resource-health-report.md`        | Optional |
 
 ### Key Capabilities by Function
 
 | Capability                          | Agents                                    |
 | ----------------------------------- | ----------------------------------------- |
-| Requirements Analysis               | `project-planner`                         |
-| Architecture Design                 | `azure-principal-architect`               |
-| Cost Estimation (Real-time)         | `azure-principal-architect`, `bicep-plan` |
+| Requirements Analysis               | `plan`                         |
+| Architecture Design                 | `architect`               |
+| Cost Estimation (Real-time)         | `architect`, `bicep-plan` |
 | Policy Compliance Discovery         | `bicep-plan`                              |
-| Infrastructure Code                 | `bicep-implement`                         |
-| Visualization                       | `diagram-generator`                       |
-| Decision Documentation              | `adr-generator`                           |
+| Infrastructure Code                 | `bicep-code`                         |
+| Visualization                       | `diagram`                       |
+| Decision Documentation              | `adr`                           |
 | Deployment Automation               | `deploy`                                  |
-| Operational Documentation           | `workload-documentation-generator`        |
-| Health Assessment & Troubleshooting | `azure-resource-health-diagnostician`     |
+| Operational Documentation           | `docs`        |
+| Health Assessment & Troubleshooting | `diagnose`     |
 
 ---
 
@@ -166,15 +166,15 @@ A comprehensive overview of all agents, their workflow phases, and outputs:
 
 | I want to...                        | Use Agent                             | Phase |
 | ----------------------------------- | ------------------------------------- | ----- |
-| Gather requirements                 | `project-planner`                     | 1     |
-| Get architecture guidance           | `azure-principal-architect`           | 2     |
-| Create architecture diagram         | `diagram-generator`                   | 3, 7  |
-| Document a decision                 | `adr-generator`                       | 3, 7  |
+| Gather requirements                 | `plan`                     | 1     |
+| Get architecture guidance           | `architect`           | 2     |
+| Create architecture diagram         | `diagram`                   | 3, 7  |
+| Document a decision                 | `adr`                       | 3, 7  |
 | Plan implementation with governance | `bicep-plan`                          | 4     |
-| Generate Bicep code                 | `bicep-implement`                     | 5     |
+| Generate Bicep code                 | `bicep-code`                     | 5     |
 | Deploy to Azure                     | `deploy`                              | 6     |
-| Create customer documentation       | `workload-documentation-generator`    | 7     |
-| Diagnose resource health            | `azure-resource-health-diagnostician` | 8     |
+| Create customer documentation       | `docs`    | 7     |
+| Diagnose resource health            | `diagnose` | 8     |
 
 ---
 
@@ -184,7 +184,7 @@ This section provides a detailed walkthrough of each phase in the 8-phase workfl
 
 ### Phase 1: Requirements Definition
 
-**Agent**: `project-planner` (custom)
+**Agent**: `plan` (custom)
 
 **Objectives:**
 
@@ -197,11 +197,11 @@ This section provides a detailed walkthrough of each phase in the 8-phase workfl
 
 - `01-requirements.md` - Structured requirements document
 
-**Next Phase**: Architecture assessment with `azure-principal-architect`
+**Next Phase**: Architecture assessment with `architect`
 
 ### Phase 2: Well-Architected Framework Assessment & Cost Estimation
 
-**Agent**: `azure-principal-architect`
+**Agent**: `architect`
 
 **Objectives:**
 
@@ -220,7 +220,7 @@ This section provides a detailed walkthrough of each phase in the 8-phase workfl
 
 ### Phase 3: Design Artifacts & Documentation
 
-**Agents**: `diagram-generator`, `adr-generator`
+**Agents**: `diagram`, `adr`
 
 **Objectives:**
 
@@ -261,7 +261,7 @@ This section provides a detailed walkthrough of each phase in the 8-phase workfl
 
 ### Phase 5: Bicep Infrastructure-as-Code Generation
 
-**Agent**: `bicep-implement`
+**Agent**: `bicep-code`
 
 **Objectives:**
 
@@ -311,7 +311,7 @@ This section provides a detailed walkthrough of each phase in the 8-phase workfl
 
 ### Phase 7: As-Built Documentation
 
-**Agents**: `diagram-generator`, `adr-generator`, `workload-documentation-generator`
+**Agents**: `diagram`, `adr`, `docs`
 
 **Objectives:**
 
@@ -338,7 +338,7 @@ This section provides a detailed walkthrough of each phase in the 8-phase workfl
 
 ### Phase 8: Resource Health Diagnostics (Optional)
 
-**Agent**: `azure-resource-health-diagnostician`
+**Agent**: `diagnose`
 
 **Objectives:**
 
@@ -375,7 +375,7 @@ This section provides a detailed walkthrough of each phase in the 8-phase workfl
 
 This section provides detailed information about each agent, including purpose, behaviors, example prompts, and outputs.
 
-### project-planner
+### plan
 
 > **Phase 1** | Custom requirements gathering agent
 
@@ -383,7 +383,7 @@ This section provides detailed information about each agent, including purpose, 
 and cost constraints. This is a custom agent specifically designed for Azure infrastructure projects.
 
 > **Note**: VS Code includes a built-in "Plan" agent for general planning. This repository uses the custom
-> **Project Planner** agent (`project-planner.agent.md`) with Azure-specific instructions and workflow handoffs.
+> **Project Planner** agent (`plan.agent.md`) with Azure-specific instructions and workflow handoffs.
 
 **📋 Template**: Use [`.github/prompts/plan-requirements.prompt.md`](../../.github/prompts/plan-requirements.prompt.md)
 
@@ -401,7 +401,7 @@ Budget: $3,000/month maximum.
 
 ---
 
-### azure-principal-architect
+### architect
 
 > **Phase 2** | Azure Well-Architected Framework assessment
 
@@ -418,17 +418,17 @@ and recommendations.
 **Example Prompt**:
 
 ```text
-@azure-principal-architect Assess architecture for patient portal from Step 1.
+@architect Assess architecture for patient portal from Step 1.
 Focus on HIPAA compliance and high availability requirements.
 ```
 
 **Output**: `agent-output/{project}/02-architecture-assessment.md`
 
-**📖 Definition**: [`.github/agents/azure-principal-architect.agent.md`](../../.github/agents/azure-principal-architect.agent.md)
+**📖 Definition**: [`.github/agents/architect.agent.md`](../../.github/agents/architect.agent.md)
 
 ---
 
-### diagram-generator
+### diagram
 
 > **Phases 3 & 7** | Python architecture diagrams
 
@@ -443,9 +443,9 @@ and rendered `.png` images.
 **Example Prompts**:
 
 ```text
-@diagram-generator Create architecture diagram for the patient portal design.
+@diagram Create architecture diagram for the patient portal design.
 
-@diagram-generator Generate as-built diagram showing deployed infrastructure.
+@diagram Generate as-built diagram showing deployed infrastructure.
 ```
 
 **Output**:
@@ -453,11 +453,11 @@ and rendered `.png` images.
 - `agent-output/{project}/03-des-diagram.py` + `.png`
 - `agent-output/{project}/07-ab-diagram.py` + `.png`
 
-**📖 Definition**: [`.github/agents/diagram-generator.agent.md`](../../.github/agents/diagram-generator.agent.md)
+**📖 Definition**: [`.github/agents/diagram.agent.md`](../../.github/agents/diagram.agent.md)
 
 ---
 
-### adr-generator
+### adr
 
 > **Phases 3 & 7** | Architecture Decision Records
 
@@ -472,9 +472,9 @@ and rationale.
 **Example Prompts**:
 
 ```text
-@adr-generator Create ADR for database selection decision (SQL vs Cosmos DB).
+@adr Create ADR for database selection decision (SQL vs Cosmos DB).
 
-@adr-generator Document the decision to use App Service instead of AKS.
+@adr Document the decision to use App Service instead of AKS.
 ```
 
 **Output**:
@@ -482,7 +482,7 @@ and rationale.
 - `agent-output/{project}/03-des-adr-NNN-{title}.md`
 - `agent-output/{project}/07-ab-adr-NNN-{title}.md`
 
-**📖 Definition**: [`.github/agents/adr-generator.agent.md`](../../.github/agents/adr-generator.agent.md)
+**📖 Definition**: [`.github/agents/adr.agent.md`](../../.github/agents/adr.agent.md)
 
 ---
 
@@ -516,7 +516,7 @@ Include module structure and deployment order.
 
 ---
 
-### bicep-implement
+### bicep-code
 
 > **Phase 5** | Bicep code generation
 
@@ -534,7 +534,7 @@ validated code following AVM-first approach.
 **Example Prompt**:
 
 ```text
-@bicep-implement Generate Bicep templates for patient portal.
+@bicep-code Generate Bicep templates for patient portal.
 Follow the implementation plan from Step 4.
 ```
 
@@ -545,7 +545,7 @@ Follow the implementation plan from Step 4.
 - `infra/bicep/{project}/deploy.ps1`
 - `agent-output/{project}/05-implementation-reference.md`
 
-**📖 Definition**: [`.github/agents/bicep-implement.agent.md`](../../.github/agents/bicep-implement.agent.md)
+**📖 Definition**: [`.github/agents/bicep-code.agent.md`](../../.github/agents/bicep-code.agent.md)
 
 ---
 
@@ -580,7 +580,7 @@ Run what-if analysis first before actual deployment.
 
 ---
 
-### workload-documentation-generator
+### docs
 
 > **Phase 7** | Customer-deliverable documentation
 
@@ -599,17 +599,17 @@ runbooks, and compliance matrices.
 **Example Prompt**:
 
 ```text
-@workload-documentation-generator Generate complete workload documentation package
+@docs Generate complete workload documentation package
 for the deployed patient portal infrastructure.
 ```
 
 **Output**: `agent-output/{project}/07-*.md` (6 files)
 
-**📖 Definition**: [`.github/agents/workload-documentation-generator.agent.md`](../../.github/agents/workload-documentation-generator.agent.md)
+**📖 Definition**: [`.github/agents/docs.agent.md`](../../.github/agents/docs.agent.md)
 
 ---
 
-### azure-resource-health-diagnostician
+### diagnose
 
 > **Phase 8** | Post-deployment health assessment and diagnostics
 
@@ -641,19 +641,19 @@ identification, and remediation planning. Operates on a single resource or entir
 
 **Handoff Options**:
 
-- To `azure-principal-architect` - For architectural issues requiring WAF evaluation
-- To `workload-documentation-generator` - To incorporate health findings into as-built documentation
+- To `architect` - For architectural issues requiring WAF evaluation
+- To `docs` - To incorporate health findings into as-built documentation
 
 **Example Prompt**:
 
 ```text
-@azure-resource-health-diagnostician Diagnose health of my-app-prod web app
+@diagnose Diagnose health of my-app-prod web app
 in rg-myapp-prod. Check availability, performance, and recent errors.
 ```
 
 **Output**: `agent-output/{project}/08-resource-health-report.md`
 
-**📖 Definition**: [`.github/agents/azure-resource-health-diagnostician.agent.md`](../../.github/agents/azure-resource-health-diagnostician.agent.md)
+**📖 Definition**: [`.github/agents/diagnose.agent.md`](../../.github/agents/diagnose.agent.md)
 
 ---
 
@@ -663,45 +663,45 @@ in rg-myapp-prod. Check availability, performance, and recent errors.
 
 | I want to...                        | Use Agent                             | Phase |
 | ----------------------------------- | ------------------------------------- | ----- |
-| Gather requirements                 | `project-planner`                     | 1     |
-| Get architecture guidance           | `azure-principal-architect`           | 2     |
-| Create architecture diagram         | `diagram-generator`                   | 3, 7  |
-| Document a decision                 | `adr-generator`                       | 3, 7  |
+| Gather requirements                 | `plan`                     | 1     |
+| Get architecture guidance           | `architect`           | 2     |
+| Create architecture diagram         | `diagram`                   | 3, 7  |
+| Document a decision                 | `adr`                       | 3, 7  |
 | Plan implementation with governance | `bicep-plan`                          | 4     |
-| Generate Bicep code                 | `bicep-implement`                     | 5     |
+| Generate Bicep code                 | `bicep-code`                     | 5     |
 | Deploy to Azure                     | `deploy`                              | 6     |
-| Create customer documentation       | `workload-documentation-generator`    | 7     |
-| Diagnose resource health            | `azure-resource-health-diagnostician` | 8     |
+| Create customer documentation       | `docs`    | 7     |
+| Diagnose resource health            | `diagnose` | 8     |
 
 ### By Workflow Phase
 
 | Phase | Focus Area                  | Primary Agents                                     | Outcome                                  |
 | ----- | --------------------------- | -------------------------------------------------- | ---------------------------------------- |
-| 1     | Requirements                | `project-planner`                                  | Clear project scope & NFRs               |
-| 2     | Architecture & Costing      | `azure-principal-architect` + Azure Pricing MCP    | WAF-aligned design with real-time costs  |
-| 3     | Design Documentation        | `diagram-generator`, `adr-generator`               | Visual architecture & decisions          |
+| 1     | Requirements                | `plan`                                  | Clear project scope & NFRs               |
+| 2     | Architecture & Costing      | `architect` + Azure Pricing MCP    | WAF-aligned design with real-time costs  |
+| 3     | Design Documentation        | `diagram`, `adr`               | Visual architecture & decisions          |
 | 4     | Governance & Planning       | `bicep-plan`                                       | Policy-compliant implementation plan     |
-| 5     | Code Generation             | `bicep-implement`                                  | Production-ready Bicep templates         |
+| 5     | Code Generation             | `bicep-code`                                  | Production-ready Bicep templates         |
 | 6     | Deployment                  | `deploy`                                           | Live Azure infrastructure                |
-| 7     | As-Built Documentation      | `diagram-generator`, `adr-generator`, `workload-*` | Customer-deliverable documentation       |
-| 8     | Health & Troubleshooting    | `azure-resource-health-diagnostician`              | Health validation & issue resolution     |
+| 7     | As-Built Documentation      | `diagram`, `adr`, `workload-*` | Customer-deliverable documentation       |
+| 8     | Health & Troubleshooting    | `diagnose`              | Health validation & issue resolution     |
 
 ### By Output Artifact
 
 | Artifact                         | Agent(s)                              | Phase |
 | -------------------------------- | ------------------------------------- | ----- |
-| `01-requirements.md`             | `project-planner`                     | 1     |
-| `02-architecture-assessment.md`  | `azure-principal-architect`           | 2     |
-| `03-des-diagram.*`               | `diagram-generator`                   | 3     |
-| `03-des-adr-*.md`                | `adr-generator`                       | 3     |
-| `03-des-cost-estimate.md`        | `azure-principal-architect`           | 3     |
+| `01-requirements.md`             | `plan`                     | 1     |
+| `02-architecture-assessment.md`  | `architect`           | 2     |
+| `03-des-diagram.*`               | `diagram`                   | 3     |
+| `03-des-adr-*.md`                | `adr`                       | 3     |
+| `03-des-cost-estimate.md`        | `architect`           | 3     |
 | `04-implementation-plan.md`      | `bicep-plan`                          | 4     |
 | `04-governance-constraints.md`   | `bicep-plan`                          | 4     |
-| `infra/bicep/{project}/`         | `bicep-implement`                     | 5     |
+| `infra/bicep/{project}/`         | `bicep-code`                     | 5     |
 | `06-deployment-summary.md`       | `deploy`                              | 6     |
-| `07-ab-diagram.*`                | `diagram-generator`                   | 7     |
-| `07-*.md` (documentation set)    | `workload-documentation-generator`    | 7     |
-| `08-resource-health-report.md`   | `azure-resource-health-diagnostician` | 8     |
+| `07-ab-diagram.*`                | `diagram`                   | 7     |
+| `07-*.md` (documentation set)    | `docs`    | 7     |
+| `08-resource-health-report.md`   | `diagnose` | 8     |
 
 ---
 
@@ -717,15 +717,15 @@ in rg-myapp-prod. Check availability, performance, and recent errors.
 
 All agent definitions are located in `.github/agents/`:
 
-- [project-planner.agent.md](../../.github/agents/project-planner.agent.md)
-- [azure-principal-architect.agent.md](../../.github/agents/azure-principal-architect.agent.md)
-- [diagram-generator.agent.md](../../.github/agents/diagram-generator.agent.md)
-- [adr-generator.agent.md](../../.github/agents/adr-generator.agent.md)
+- [plan.agent.md](../../.github/agents/plan.agent.md)
+- [architect.agent.md](../../.github/agents/architect.agent.md)
+- [diagram.agent.md](../../.github/agents/diagram.agent.md)
+- [adr.agent.md](../../.github/agents/adr.agent.md)
 - [bicep-plan.agent.md](../../.github/agents/bicep-plan.agent.md)
-- [bicep-implement.agent.md](../../.github/agents/bicep-implement.agent.md)
+- [bicep-code.agent.md](../../.github/agents/bicep-code.agent.md)
 - [deploy.agent.md](../../.github/agents/deploy.agent.md)
-- [workload-documentation-generator.agent.md](../../.github/agents/workload-documentation-generator.agent.md)
-- [azure-resource-health-diagnostician.agent.md](../../.github/agents/azure-resource-health-diagnostician.agent.md)
+- [docs.agent.md](../../.github/agents/docs.agent.md)
+- [diagnose.agent.md](../../.github/agents/diagnose.agent.md)
 
 ### Supporting Resources
 

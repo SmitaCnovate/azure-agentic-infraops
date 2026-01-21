@@ -31,23 +31,23 @@ design a workflow that:
 We adopted a **seven-step workflow** with approval gates:
 
 ```
-@plan → azure-principal-architect → [Design Artifacts] → bicep-plan → bicep-implement → Deploy → [As-Built Artifacts]
+@plan → architect → [Design Artifacts] → bicep-plan → bicep-code → Deploy → [As-Built Artifacts]
 ```
 
 With optional artifact phases:
 
-- **Step 3**: Design Artifacts - `diagram-generator`, `adr-generator` (suffix: `-des`)
-- **Step 7**: As-Built Artifacts - `diagram-generator`, `adr-generator` (suffix: `-ab`)
+- **Step 3**: Design Artifacts - `diagram`, `adr` (suffix: `-des`)
+- **Step 7**: As-Built Artifacts - `diagram`, `adr` (suffix: `-ab`)
 
 ### Workflow Steps
 
 | Step | Agent/Phase                 | Purpose                          | Creates Code? |
 | ---- | --------------------------- | -------------------------------- | ------------- |
 | 1    | `@plan`                     | Requirements gathering           | No            |
-| 2    | `azure-principal-architect` | WAF assessment, recommendations  | No            |
+| 2    | `architect` | WAF assessment, recommendations  | No            |
 | 3    | Design Artifacts (optional) | Design diagrams + ADRs           | No            |
 | 4    | `bicep-plan`                | Implementation planning with AVM | Planning docs |
-| 5    | `bicep-implement`           | Bicep code generation            | Yes           |
+| 5    | `bicep-code`           | Bicep code generation            | Yes           |
 | 6    | Deploy                      | Deploy to Azure                  | No            |
 | 7    | As-Built Artifacts (opt.)   | As-built diagrams + ADRs         | No            |
 

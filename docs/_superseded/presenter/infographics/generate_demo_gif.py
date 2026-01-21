@@ -236,7 +236,7 @@ def create_workflow_animation() -> list[Image.Image]:
     # === Step 2: Architecture ===
     terminal.add_line([])
     type_line(
-        [("@azure-principal-architect", "purple"),
+        [("@architect", "purple"),
          (" - Reviewing architecture...", "dim")]
     )
     add_frames(PAUSE_SHORT)
@@ -380,7 +380,7 @@ def create_workflow_animation() -> list[Image.Image]:
 
     # === Step 4: Implementation ===
     terminal.add_line([])
-    type_line([("@bicep-implement", "purple"),
+    type_line([("@bicep-code", "purple"),
               (" - Generating templates...", "dim")])
     add_frames(PAUSE_SHORT)
 

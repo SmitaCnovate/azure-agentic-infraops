@@ -188,7 +188,7 @@ appInsights.trackPageView();
 
 ### 4. Generate As-Built Documentation
 
-Proceed to Step 7 with the `workload-documentation-generator` agent to create comprehensive as-built documentation.
+Proceed to Step 7 with the `docs` agent to create comprehensive as-built documentation.
 
 ---
 
@@ -217,12 +217,12 @@ az deployment group list \
 
 | Step  | Agent                     | Artifact                          | Status               |
 | ----- | ------------------------- | --------------------------------- | -------------------- |
-| 1     | project-planner           | 01-requirements.md                | ✅ Complete          |
-| 2     | azure-principal-architect | 02-architecture-assessment.md     | ✅ Complete          |
-| 3     | diagram-generator         | 03-des-diagram.png                | ✅ Complete          |
+| 1     | plan           | 01-requirements.md                | ✅ Complete          |
+| 2     | architect | 02-architecture-assessment.md     | ✅ Complete          |
+| 3     | diagram         | 03-des-diagram.png                | ✅ Complete          |
 | 3     | cost-estimate             | 03-des-cost-estimate.md           | ✅ Complete          |
 | 4     | bicep-plan                | 04-implementation-plan.md         | ✅ Complete          |
-| 5     | bicep-implement           | infra/bicep/infraops-static-demo/ | ✅ Complete          |
+| 5     | bicep-code           | infra/bicep/infraops-static-demo/ | ✅ Complete          |
 | **6** | **deploy**                | **06-deployment-summary.md**      | ✅ **This document** |
 | 7     | workload-documentation    | 07-\*.md                          | ⏳ Pending           |
 

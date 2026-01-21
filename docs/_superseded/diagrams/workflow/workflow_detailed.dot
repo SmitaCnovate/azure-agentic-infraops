@@ -42,7 +42,7 @@ digraph DetailedWorkflow {
 
     // Step 2
     step2 [
-        label="② Architect\nazure-principal-architect"
+        label="② Architect\narchitect"
         fillcolor="#FF6B35"
         width="2.4"
         height="0.6"
@@ -57,8 +57,8 @@ digraph DetailedWorkflow {
         style="filled,rounded,dashed"
     ]
     
-    opt3a [label="📊 -des diagram\ndiagram-generator" fillcolor="#8b5cf6" fontsize="10"]
-    opt3b [label="📝 -des ADR\nadr-generator" fillcolor="#14b8a6" fontsize="10"]
+    opt3a [label="📊 -des diagram\ndiagram" fillcolor="#8b5cf6" fontsize="10"]
+    opt3b [label="📝 -des ADR\nadr" fillcolor="#14b8a6" fontsize="10"]
 
     // Step 4
     step4 [
@@ -72,7 +72,7 @@ digraph DetailedWorkflow {
 
     // Step 5
     step5 [
-        label="⑤ Generate Code\nbicep-implement"
+        label="⑤ Generate Code\nbicep-code"
         fillcolor="#ec4899"
         width="2.0"
         height="0.6"
@@ -95,8 +95,8 @@ digraph DetailedWorkflow {
         style="filled,rounded,dashed"
     ]
     
-    opt7a [label="📊 -ab diagram\ndiagram-generator" fillcolor="#8b5cf6" fontsize="10"]
-    opt7b [label="📝 -ab ADR\nadr-generator" fillcolor="#14b8a6" fontsize="10"]
+    opt7a [label="📊 -ab diagram\ndiagram" fillcolor="#8b5cf6" fontsize="10"]
+    opt7b [label="📝 -ab ADR\nadr" fillcolor="#14b8a6" fontsize="10"]
 
     // Main flow - thick colored arrows
     step1 -> step2 [color="#0078D4" penwidth="3"]

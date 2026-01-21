@@ -26,19 +26,19 @@ tools:
   ]
 handoffs:
   - label: Generate Workload Documentation
-    agent: Workload Documentation Generator
+    agent: Docs
     prompt: Generate comprehensive workload documentation for the deployed infrastructure. Include resource inventory, operations runbook, backup/DR plan, and as-built cost estimate (07-ab-cost-estimate.md).
     send: true
   - label: Return to Architect Review
-    agent: Azure Principal Architect
+    agent: Architect
     prompt: Review the deployment results and validate WAF compliance of the deployed infrastructure.
     send: true
   - label: Generate As-Built Diagram
-    agent: Azure Diagram Generator
+    agent: Diagram
     prompt: Generate an as-built architecture diagram documenting the deployed infrastructure. Use '-ab' suffix for as-built diagram.
     send: true
   - label: Fix Deployment Issues
-    agent: Azure Bicep Implementation Specialist
+    agent: Bicep Code
     prompt: The deployment encountered errors. Review the error messages and fix the Bicep templates to resolve the issues. Then retry deployment.
     send: true
 ---
@@ -151,10 +151,10 @@ Include:
 **Step 6** of 7-step workflow:
 
 ```
-project-planner → azure-principal-architect → Design Artifacts → bicep-plan → bicep-implement → [Deploy] → As-Built
+plan → architect → Design Artifacts → bicep-plan → bicep-code → [Deploy] → As-Built
 ```
 
-After deployment, hand off to `Workload Documentation Generator` for as-built documentation.
+After deployment, hand off to `Docs` for as-built documentation.
 </workflow_position>
 
 <stopping_rules>

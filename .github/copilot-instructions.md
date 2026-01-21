@@ -35,23 +35,23 @@ aligned with Azure Well-Architected Framework and Azure Verified Modules.
 ```mermaid
 %%{init: {'theme':'neutral'}}%%
 graph LR
-    P["Project Planner<br/>Step 1"] --> A[azure-principal-architect<br/>Step 2]
+    P["Plan<br/>Step 1"] --> A[Architect<br/>Step 2]
     A --> D["Design Artifacts<br/>Step 3"]
-    D --> B[bicep-plan<br/>Step 4]
-    B --> I[bicep-implement<br/>Step 5]
+    D --> B[Bicep Plan<br/>Step 4]
+    B --> I[Bicep Code<br/>Step 5]
     I --> DEP["Deploy<br/>Step 6"]
-    DEP --> F["As-Built Artifacts<br/>Step 7"]
+    DEP --> F["Docs<br/>Step 7"]
 ```
 
-| Step | Agent                                | Output                          |
-| ---- | ------------------------------------ | ------------------------------- |
-| 1    | `project-planner`                    | `01-requirements.md`            |
-| 2    | `azure-principal-architect`          | `02-architecture-assessment.md` |
-| 3    | `diagram-generator`, `adr-generator` | `03-des-*.md/.py/.png`          |
-| 4    | `bicep-plan`                         | `04-implementation-plan.md`     |
-| 5    | `bicep-implement`                    | `infra/bicep/{project}/`        |
-| 6    | Deploy                               | `06-deployment-summary.md`      |
-| 7    | `workload-documentation-generator`   | `07-*.md`                       |
+| Step | Agent                | Output                          |
+| ---- | -------------------- | ------------------------------- |
+| 1    | `plan`               | `01-requirements.md`            |
+| 2    | `architect`          | `02-architecture-assessment.md` |
+| 3    | `diagram`, `adr`     | `03-des-*.md/.py/.png`          |
+| 4    | `bicep-plan`         | `04-implementation-plan.md`     |
+| 5    | `bicep-code`         | `infra/bicep/{project}/`        |
+| 6    | `deploy`             | `06-deployment-summary.md`      |
+| 7    | `docs`               | `07-*.md`                       |
 
 **How to use agents**: `Ctrl+Alt+I` → select agent from picker → type prompt → wait for approval before next step
 

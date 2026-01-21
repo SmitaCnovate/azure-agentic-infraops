@@ -50,9 +50,9 @@ This guide specifies exactly where to insert images, screenshots, and diagrams i
 
 ```mermaid
 flowchart LR
-    A["@plan<br/>5-10 min"] --> B["azure-principal-architect<br/>10-15 min"]
+    A["@plan<br/>5-10 min"] --> B["architect<br/>10-15 min"]
     B --> C["bicep-plan<br/>5-10 min"]
-    C --> D["bicep-implement<br/>10-15 min"]
+    C --> D["bicep-code<br/>10-15 min"]
 
     style A fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
     style B fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
@@ -124,7 +124,7 @@ flowchart LR
 2. **Agent Selection**
    - Open Chat
    - Click agent dropdown
-   - Show available agents (Plan, azure-principal-architect, etc.)
+   - Show available agents (Plan, architect, etc.)
    - Screenshot with dropdown visible
 
 3. **Plan Agent Output**

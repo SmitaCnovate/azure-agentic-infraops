@@ -131,7 +131,7 @@ At each step, the agent will ask for approval. Reply with `yes` or `approve` to 
 
 ## Step 5: Deploy (Optional)
 
-After `bicep-implement` generates templates:
+After `bicep-code` generates templates:
 
 ```bash
 # Navigate to generated templates

@@ -160,7 +160,7 @@ quadrantChart
 **Use when:**
 
 - Writing Bicep or Terraform templates
-- Working with custom agents (bicep-plan, bicep-implement)
+- Working with custom agents (bicep-plan, bicep-code)
 - Generating modular infrastructure code
 - Architecture design and planning
 

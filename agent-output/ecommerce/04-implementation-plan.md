@@ -319,7 +319,7 @@ graph TD
 > - All diagnostic logging and monitoring configured
 > - Estimated cost: ~$1,826/month in production
 >
-> Reply **"approve"** to proceed to bicep-implement, or provide feedback.
+> Reply **"approve"** to proceed to bicep-code, or provide feedback.
 
 ---
 

@@ -65,7 +65,7 @@ digraph AgenticInfraOps {
         penwidth="2"
         
         architect [
-            label="azure-principal-architect\n(NO CODE)"
+            label="architect\n(NO CODE)"
             fillcolor="#FF6B35"
         ]
     }
@@ -82,12 +82,12 @@ digraph AgenticInfraOps {
         penwidth="2"
         
         diagrams_design [
-            label="📊 diagram-generator\n(-des)"
+            label="📊 diagram\n(-des)"
             fillcolor="#8b5cf6"
         ]
         
         adr_design [
-            label="📝 adr-generator\n(-des)"
+            label="📝 adr\n(-des)"
             fillcolor="#14b8a6"
         ]
     }
@@ -135,7 +135,7 @@ digraph AgenticInfraOps {
         penwidth="2"
         
         bicep_implement [
-            label="bicep-implement\n(code generation)"
+            label="bicep-code\n(code generation)"
             fillcolor="#ec4899"
         ]
     }
@@ -169,12 +169,12 @@ digraph AgenticInfraOps {
         penwidth="2"
         
         diagrams_asbuilt [
-            label="📊 diagram-generator\n(-ab)"
+            label="📊 diagram\n(-ab)"
             fillcolor="#8b5cf6"
         ]
         
         adr_asbuilt [
-            label="📝 adr-generator\n(-ab)"
+            label="📝 adr\n(-ab)"
             fillcolor="#14b8a6"
         ]
     }

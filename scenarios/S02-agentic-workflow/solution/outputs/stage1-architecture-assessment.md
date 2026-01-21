@@ -1,7 +1,7 @@
 # Stage 1 Output: Azure Architecture Assessment - Contoso Healthcare Patient Portal
 
 **Date:** 2025-11-18  
-**Agent Used:** `azure-principal-architect`  
+**Agent Used:** `architect`  
 **Scenario:** HIPAA-compliant patient portal for Contoso Healthcare Inc.
 
 ---

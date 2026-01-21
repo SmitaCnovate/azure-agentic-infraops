@@ -77,7 +77,7 @@ The **Project Planner** agent will:
 
 ## Step 2: Architecture Assessment
 
-After approval, the workflow continues to `azure-principal-architect`.
+After approval, the workflow continues to `architect`.
 
 ### What Happens
 
@@ -158,7 +158,7 @@ The `bicep-plan` agent creates the implementation plan.
 
 ## Step 5: Bicep Code Generation
 
-The `bicep-implement` agent generates the actual code.
+The `bicep-code` agent generates the actual code.
 
 ### What Happens
 
@@ -228,8 +228,8 @@ After deployment, you can generate documentation.
 
 ### Options
 
-- **Generate as-built diagram**: `@diagram-generator generate as-built diagram`
-- **Create ADR**: `@adr-generator document the network topology decision`
+- **Generate as-built diagram**: `@diagram generate as-built diagram`
+- **Create ADR**: `@adr document the network topology decision`
 - **Skip**: This step is optional
 
 ---

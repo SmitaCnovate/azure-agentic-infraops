@@ -83,9 +83,9 @@ Please help me:
 4. Recommend which specialized agents to use for each phase
 
 I'm using a agentic workflow - please help me understand when to use:
-- azure-principal-architect (WAF assessment)
+- architect (WAF assessment)
 - bicep-plan (implementation planning)
-- bicep-implement (code generation)
+- bicep-code (code generation)
 - adr_generator (decision documentation - optional)
 ```
 
@@ -160,14 +160,14 @@ This file can be:
 Click **"Hand off to implementation agent"** or manually:
 
 1. Press `Ctrl+Alt+I`
-2. Select `azure-principal-architect`
+2. Select `architect`
 3. The plan context carries forward automatically
 
 ---
 
 ## Stage 1: Azure Principal Architect
 
-**Agent:** `azure-principal-architect`  
+**Agent:** `architect`  
 **Objective:** Get architecture recommendations with WAF assessment and cost estimates
 
 ### Discovery Questions (Ask Before/During)
@@ -424,7 +424,7 @@ After creating the plan, hand off to the Bicep Implementation Specialist to gene
 
 ## Stage 4: Bicep Implementation Specialist
 
-**Agent:** `bicep-implement`  
+**Agent:** `bicep-code`  
 **Objective:** Generate near-production-ready Bicep templates using progressive implementation
 
 ### Discovery Questions (Ask Before/During)

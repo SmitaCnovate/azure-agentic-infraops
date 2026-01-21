@@ -504,7 +504,7 @@ See [01-cost-estimate.md](./01-cost-estimate.md)
 ### 10.5 Architecture Decision Records
 
 - No ADRs currently generated for this project
-- Use `adr-generator` agent to create decision records
+- Use `adr` agent to create decision records
 
 ### 10.6 References
 

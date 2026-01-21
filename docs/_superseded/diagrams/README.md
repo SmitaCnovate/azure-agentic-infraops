@@ -13,7 +13,7 @@ This folder contains generated architecture diagrams for various scenarios.
 | [workflow/](workflow/)   | Agent workflow visualizations         | December 2025 |
 
 > **Freshness Note**: Diagrams are regenerated when infrastructure changes. Check the `.py` file timestamp or run
-> the diagram-generator agent to refresh.
+> the diagram agent to refresh.
 
 ## IT Pro Usage
 
@@ -25,7 +25,7 @@ Diagrams help IT Pros explain:
 
 ## About Diagrams
 
-Architecture diagrams are generated using the `diagram-generator` custom agent, which uses the Python
+Architecture diagrams are generated using the `diagram` custom agent, which uses the Python
 [diagrams](https://diagrams.mingrammer.com/) library by mingrammer.
 
 ### File Types
@@ -38,7 +38,7 @@ Architecture diagrams are generated using the `diagram-generator` custom agent, 
 ## Generating New Diagrams
 
 1. Press `Ctrl+Shift+A` in VS Code
-2. Select `diagram-generator`
+2. Select `diagram`
 3. Describe the architecture you want to visualize
 
 The agent will create a Python script and generate the corresponding image.
@@ -47,4 +47,4 @@ The agent will create a Python script and generate the corresponding image.
 
 - [S07 Diagrams as Code](../../scenarios/S07-diagrams-as-code/) - Hands-on scenario for diagram generation
 - [Visual Elements Guide](../presenter/visual-elements-guide.md) - Using diagrams in presentations
-- [Diagram Generator Agent](../../.github/agents/diagram-generator.agent.md) - Agent definition
+- [Diagram Generator Agent](../../.github/agents/diagram.agent.md) - Agent definition

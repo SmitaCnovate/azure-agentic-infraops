@@ -3,7 +3,7 @@
 > **Version**: 1.0  
 > **Date**: 2026-01-20  
 > **Status**: As-Built  
-> **Author**: workload-documentation-generator agent
+> **Author**: docs agent
 
 ---
 
@@ -372,7 +372,7 @@ See [07-ab-cost-estimate.md](07-ab-cost-estimate.md) for detailed cost analysis.
 
 | Version | Date       | Author                           | Changes                        |
 | ------- | ---------- | -------------------------------- | ------------------------------ |
-| 1.0     | 2026-01-20 | workload-documentation-generator | Initial as-built documentation |
+| 1.0     | 2026-01-20 | docs | Initial as-built documentation |
 
 ---
 

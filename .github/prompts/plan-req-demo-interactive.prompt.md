@@ -204,7 +204,7 @@ After creating the requirements doc:
 📄 Created: agent-output/{projectName}/01-requirements.md
 
 NEXT STEPS:
-  Option A: @azure-principal-architect → Full architecture assessment
+  Option A: @architect → Full architecture assessment
   Option B: @bicep-plan → Jump straight to implementation (simple workload)
 
 Which would you like? (A/B)

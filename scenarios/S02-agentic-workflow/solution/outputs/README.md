@@ -16,7 +16,7 @@ These pre-generated outputs serve three purposes:
 
 | File                                | Stage   | Agent                     | Description                                 |
 | ----------------------------------- | ------- | ------------------------- | ------------------------------------------- |
-| `stage1-architecture-assessment.md` | Stage 1 | azure-principal-architect | WAF assessment and service recommendations  |
+| `stage1-architecture-assessment.md` | Stage 1 | architect | WAF assessment and service recommendations  |
 | `stage2-implementation-plan.md`     | Stage 3 | bicep-plan                | Resource breakdown with dependency diagrams |
 
 > **Note:** Stage 0 (Project Planner) and Stage 2 (adr_generator) outputs are not pre-generated because
@@ -72,7 +72,7 @@ scenarios/S02-agentic-workflow/
 1. **Start with** `examples/agentic-workflow-conversation.md` to see how discovery questions work
 2. **Use** `prompts/workflow-prompts.md` as reference when running your own sessions
 3. **Compare** your live outputs against these pre-generated outputs
-4. **Generate** your own Bicep templates using the bicep-implement agent
+4. **Generate** your own Bicep templates using the bicep-code agent
 
 ## Expected Differences
 

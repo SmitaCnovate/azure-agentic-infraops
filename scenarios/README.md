@@ -15,7 +15,7 @@
 > **Modules**: AVM-first for policy-compliant deployments.
 > See [ADR-003](../docs/adr/ADR-003-avm-first-approach.md).
 >
-> **Agent Workflow**: `Project Planner` → `azure-principal-architect` → `bicep-plan` → `bicep-implement`.
+> **Agent Workflow**: `Project Planner` → `architect` → `bicep-plan` → `bicep-code`.
 > See [Workflow Guide](../docs/reference/workflow.md).
 
 ---
@@ -110,10 +110,10 @@ flowchart LR
 | Step | Agent/Phase                 | Type     | Purpose                                   |
 | ---- | --------------------------- | -------- | ----------------------------------------- |
 | 1    | `Project Planner`           | Custom   | Requirements gathering → `01-*`           |
-| 2    | `azure-principal-architect` | Custom   | Azure WAF assessment → `02-*`             |
+| 2    | `architect` | Custom   | Azure WAF assessment → `02-*`             |
 | 3    | Design Artifacts            | Optional | Design diagrams + ADRs (`-des`) → `03-*`  |
 | 4    | `bicep-plan`                | Custom   | Infrastructure planning → `04-*`          |
-| 5    | `bicep-implement`           | Custom   | Generate production-ready Bicep → `05-*`  |
+| 5    | `bicep-code`           | Custom   | Generate production-ready Bicep → `05-*`  |
 | 6    | Deploy                      | Manual   | Deploy to Azure → `06-*`                  |
 | 7    | As-Built Artifacts          | Optional | As-built diagrams + ADRs (`-ab`) → `07-*` |
 

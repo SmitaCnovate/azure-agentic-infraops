@@ -1,5 +1,5 @@
 ---
-name: Workload Documentation Generator
+name: Docs
 description: Generates comprehensive Azure workload documentation by synthesizing outputs from existing agents into customer-deliverable design documents, operational runbooks, and compliance artifacts. Automatically generates as-built cost estimates using Azure Pricing MCP tools based on implemented Bicep templates.
 tools:
   [
@@ -28,16 +28,16 @@ tools:
   ]
 handoffs:
   - label: Return to Architect Review
-    agent: Azure Principal Architect
+    agent: Architect
     prompt: Review the generated documentation for WAF alignment and completeness.
     send: true
   - label: Generate As-Built Diagram
-    agent: Azure Diagram Generator
+    agent: Diagram
     prompt: Generate an as-built architecture diagram to accompany the workload documentation.
     send: true
 ---
 
-# Workload Documentation Generator Agent
+# Docs Agent
 
 > **See [Agent Shared Foundation](_shared/defaults.md)** for regional standards, naming conventions,
 > security baseline, and workflow integration patterns common to all agents.

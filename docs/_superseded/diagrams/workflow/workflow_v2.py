@@ -76,7 +76,7 @@ digraph AgenticInfraOps {{
     // STEP 2: ARCHITECTURE
     // ============================================
     step2 [
-        label="2. Architect\\nazure-principal-architect"
+        label="2. Architect\\narchitect"
         fillcolor="{COLORS['orange']}"
         width="2.4"
     ]
@@ -92,13 +92,13 @@ digraph AgenticInfraOps {{
     ]
     
     step3a [
-        label="📊 -des diagram\\ndiagram-generator"
+        label="📊 -des diagram\\ndiagram"
         fillcolor="{COLORS['purple']}"
         fontsize="9"
     ]
     
     step3b [
-        label="📝 -des ADR\\nadr-generator"
+        label="📝 -des ADR\\nadr"
         fillcolor="{COLORS['teal']}"
         fontsize="9"
     ]
@@ -122,7 +122,7 @@ digraph AgenticInfraOps {{
     // STEP 5: CODE GENERATION
     // ============================================
     step5 [
-        label="5. Generate Code\\nbicep-implement"
+        label="5. Generate Code\\nbicep-code"
         fillcolor="{COLORS['pink']}"
         width="2.0"
     ]
@@ -147,13 +147,13 @@ digraph AgenticInfraOps {{
     ]
     
     step7a [
-        label="📊 -ab diagram\\ndiagram-generator"
+        label="📊 -ab diagram\\ndiagram"
         fillcolor="{COLORS['purple']}"
         fontsize="9"
     ]
     
     step7b [
-        label="📝 -ab ADR\\nadr-generator"
+        label="📝 -ab ADR\\nadr"
         fillcolor="{COLORS['teal']}"
         fontsize="9"
     ]
@@ -296,7 +296,7 @@ digraph DetailedWorkflow {{
 
     // Step 2
     step2 [
-        label="② Architect\\nazure-principal-architect"
+        label="② Architect\\narchitect"
         fillcolor="{COLORS['orange']}"
         width="2.4"
         height="0.6"
@@ -311,8 +311,8 @@ digraph DetailedWorkflow {{
         style="filled,rounded,dashed"
     ]
     
-    opt3a [label="📊 -des diagram\\ndiagram-generator" fillcolor="{COLORS['purple']}" fontsize="10"]
-    opt3b [label="📝 -des ADR\\nadr-generator" fillcolor="{COLORS['teal']}" fontsize="10"]
+    opt3a [label="📊 -des diagram\\ndiagram" fillcolor="{COLORS['purple']}" fontsize="10"]
+    opt3b [label="📝 -des ADR\\nadr" fillcolor="{COLORS['teal']}" fontsize="10"]
 
     // Step 4
     step4 [
@@ -326,7 +326,7 @@ digraph DetailedWorkflow {{
 
     // Step 5
     step5 [
-        label="⑤ Generate Code\\nbicep-implement"
+        label="⑤ Generate Code\\nbicep-code"
         fillcolor="{COLORS['pink']}"
         width="2.0"
         height="0.6"
@@ -349,8 +349,8 @@ digraph DetailedWorkflow {{
         style="filled,rounded,dashed"
     ]
     
-    opt7a [label="📊 -ab diagram\\ndiagram-generator" fillcolor="{COLORS['purple']}" fontsize="10"]
-    opt7b [label="📝 -ab ADR\\nadr-generator" fillcolor="{COLORS['teal']}" fontsize="10"]
+    opt7a [label="📊 -ab diagram\\ndiagram" fillcolor="{COLORS['purple']}" fontsize="10"]
+    opt7b [label="📝 -ab ADR\\nadr" fillcolor="{COLORS['teal']}" fontsize="10"]
 
     // Main flow - thick colored arrows
     step1 -> step2 [color="{COLORS['blue']}" penwidth="3"]

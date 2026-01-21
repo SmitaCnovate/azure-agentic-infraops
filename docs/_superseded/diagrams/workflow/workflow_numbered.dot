@@ -46,7 +46,7 @@ digraph AgenticInfraOps {
     // STEP 2: ARCHITECTURE
     // ============================================
     step2 [
-        label="2. Architect\nazure-principal-architect"
+        label="2. Architect\narchitect"
         fillcolor="#FF6B35"
         width="2.4"
     ]
@@ -62,13 +62,13 @@ digraph AgenticInfraOps {
     ]
     
     step3a [
-        label="📊 -des diagram\ndiagram-generator"
+        label="📊 -des diagram\ndiagram"
         fillcolor="#8b5cf6"
         fontsize="9"
     ]
     
     step3b [
-        label="📝 -des ADR\nadr-generator"
+        label="📝 -des ADR\nadr"
         fillcolor="#14b8a6"
         fontsize="9"
     ]
@@ -92,7 +92,7 @@ digraph AgenticInfraOps {
     // STEP 5: CODE GENERATION
     // ============================================
     step5 [
-        label="5. Generate Code\nbicep-implement"
+        label="5. Generate Code\nbicep-code"
         fillcolor="#ec4899"
         width="2.0"
     ]
@@ -117,13 +117,13 @@ digraph AgenticInfraOps {
     ]
     
     step7a [
-        label="📊 -ab diagram\ndiagram-generator"
+        label="📊 -ab diagram\ndiagram"
         fillcolor="#8b5cf6"
         fontsize="9"
     ]
     
     step7b [
-        label="📝 -ab ADR\nadr-generator"
+        label="📝 -ab ADR\nadr"
         fillcolor="#14b8a6"
         fontsize="9"
     ]

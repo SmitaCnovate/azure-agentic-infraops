@@ -18,8 +18,8 @@ They provide a historical record of why certain design choices were made.
 
 ## Creating New ADRs
 
-Use the `adr-generator` custom agent to create new ADRs:
+Use the `adr` custom agent to create new ADRs:
 
 1. Press `Ctrl+Shift+A` in VS Code
-2. Select `adr-generator`
+2. Select `adr`
 3. Describe the decision you need to document

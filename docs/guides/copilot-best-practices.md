@@ -62,10 +62,10 @@ Review this Bicep module for HIPAA compliance issues.
 
 | Task                       | Use Agent                                                      |
 | -------------------------- | -------------------------------------------------------------- |
-| New infrastructure project | `azure-principal-architect` → `bicep-plan` → `bicep-implement` |
+| New infrastructure project | `architect` → `bicep-plan` → `bicep-code` |
 | Quick code fix             | Inline or Chat                                                 |
-| Architecture review        | `azure-principal-architect`                                    |
-| Generate diagrams          | `diagram-generator`                                            |
+| Architecture review        | `architect`                                    |
+| Generate diagrams          | `diagram`                                            |
 
 ---
 

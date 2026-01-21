@@ -73,7 +73,7 @@ Subscription: {subscriptionName}
 
 Proceed with deployment? (yes/no)
 
-→ 
+→
 ```
 
 ### Step 4: Execute Deployment
@@ -113,7 +113,7 @@ If deployment fails:
 
 1. Capture the full error message
 2. Identify the root cause (quota, naming, permissions, etc.)
-3. Offer to hand off to `@bicep-implement` to fix the templates
+3. Offer to hand off to `@bicep-code` to fix the templates
 4. After fixes, retry deployment from Step 2
 
 ## Next Steps
@@ -122,6 +122,6 @@ After successful deployment, suggest:
 
 > "Deployment complete! Next steps:
 >
-> - `@workload-documentation-generator` → Generate ops runbook and documentation
-> - `@diagram-generator` → Create as-built architecture diagram
-> - `@azure-principal-architect` → Review deployed resources for WAF compliance"
+> - `@docs` → Generate ops runbook and documentation
+> - `@diagram` → Create as-built architecture diagram
+> - `@architect` → Review deployed resources for WAF compliance"

@@ -6,10 +6,10 @@
 ## Workflow Progress
 
 - [x] Step 1: Requirements (@plan)
-- [x] Step 2: Architecture (azure-principal-architect)
+- [x] Step 2: Architecture (architect)
 - [ ] Step 3: Design Artifacts (optional)
 - [x] Step 4: Planning (bicep-plan)
-- [x] Step 5: Implementation (bicep-implement)
+- [x] Step 5: Implementation (bicep-code)
 - [ ] Step 6: Deploy (simulated - see note below)
 - [x] Step 7: As-Built + Workload Documentation ✅
 

@@ -36,7 +36,7 @@ digraph SimpleWorkflow {
     architect [label="azure-principal-\narchitect" fillcolor="#FF6B35"]
     design_artifacts [label="Design\nArtifacts" fillcolor="#8b5cf6" style="filled,rounded,dashed"]
     bicep_plan [label="bicep-plan" fillcolor="#10b981"]
-    bicep_implement [label="bicep-implement" fillcolor="#ec4899"]
+    bicep_implement [label="bicep-code" fillcolor="#ec4899"]
     deploy [label="Deploy" fillcolor="#f4722b"]
     asbuilt_artifacts [label="As-Built\nArtifacts" fillcolor="#06b6d4" style="filled,rounded,dashed"]
     

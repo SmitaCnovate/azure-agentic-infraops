@@ -95,14 +95,14 @@ _30-second animated demo showing the complete 7-step workflow_
 
 | Agent                              | Step | Purpose                                         |
 | ---------------------------------- | ---- | ----------------------------------------------- |
-| `project-planner`                  | 1    | Gather NFRs, constraints, business context      |
-| `azure-principal-architect`        | 2    | WAF assessment, service selection (**NO CODE**) |
-| `diagram-generator`                | 3, 7 | Create architecture diagrams (Python Diagrams)  |
-| `adr-generator`                    | 3, 7 | Document architectural decisions (ADRs)         |
+| `plan`                  | 1    | Gather NFRs, constraints, business context      |
+| `architect`        | 2    | WAF assessment, service selection (**NO CODE**) |
+| `diagram`                | 3, 7 | Create architecture diagrams (Python Diagrams)  |
+| `adr`                    | 3, 7 | Document architectural decisions (ADRs)         |
 | `bicep-plan`                       | 4    | Governance discovery, AVM module selection      |
-| `bicep-implement`                  | 5    | Generate AVM-compliant Bicep code               |
+| `bicep-code`                  | 5    | Generate AVM-compliant Bicep code               |
 | `deploy`                           | 6    | Execute deployments, what-if analysis           |
-| `workload-documentation-generator` | 7    | Create runbooks, inventory, DR plans            |
+| `docs` | 7    | Create runbooks, inventory, DR plans            |
 
 ---
 
@@ -187,7 +187,7 @@ code azure-agentic-infraops
 ## 2. Start the Workflow
 
 1. Press `Ctrl+Alt+I` to open Copilot Chat
-2. Select agent from picker (e.g., `project-planner`)
+2. Select agent from picker (e.g., `plan`)
 3. Describe your requirements
 4. Wait for approval before next step
 

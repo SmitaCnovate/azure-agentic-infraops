@@ -112,7 +112,7 @@ Creates planning documents that specify:
 - Required parameters for each module
 - Dependencies between modules
 
-### bicep-implement Agent
+### bicep-code Agent
 
 Generates Bicep code that:
 
@@ -147,4 +147,4 @@ Generates Bicep code that:
 
 - [.github/agents/\_shared/defaults.md](../../.github/agents/_shared/defaults.md) - Shared AVM references
 - [.github/agents/bicep-plan.agent.md](../../.github/agents/bicep-plan.agent.md) - Planning agent
-- [.github/agents/bicep-implement.agent.md](../../.github/agents/bicep-implement.agent.md) - Implementation agent
+- [.github/agents/bicep-code.agent.md](../../.github/agents/bicep-code.agent.md) - Implementation agent

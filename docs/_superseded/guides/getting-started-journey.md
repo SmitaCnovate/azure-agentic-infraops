@@ -243,9 +243,9 @@ flowchart LR
 | ----------------------------- | ---------------- | -------------------------------------------- |
 | **@plan**                     | Built-in VS Code | Select from Agents dropdown (`Ctrl+Shift+A`) |
 | **adr_generator**             | Custom           | Select from Agents dropdown                  |
-| **azure-principal-architect** | Custom           | Select from Agents dropdown                  |
+| **architect** | Custom           | Select from Agents dropdown                  |
 | **bicep-plan**                | Custom           | Select from Agents dropdown                  |
-| **bicep-implement**           | Custom           | Select from Agents dropdown                  |
+| **bicep-code**           | Custom           | Select from Agents dropdown                  |
 
 > **Note:** The Plan Agent (`@plan`) is a **built-in VS Code feature**, not a custom agent. It generates
 > reusable `*.prompt.md` files and provides automatic handoff buttons.
@@ -314,9 +314,9 @@ pwsh -File validation/validate.ps1
 | --------------------------- | -------- | ----------------------- | ------------------- |
 | `@plan`                     | Built-in | `Ctrl+Shift+A` → Select | Multi-step planning |
 | `adr_generator`             | Custom   | `Ctrl+Shift+A` → Select | Document decisions  |
-| `azure-principal-architect` | Custom   | `Ctrl+Shift+A` → Select | WAF assessment      |
+| `architect` | Custom   | `Ctrl+Shift+A` → Select | WAF assessment      |
 | `bicep-plan`                | Custom   | `Ctrl+Shift+A` → Select | Module design       |
-| `bicep-implement`           | Custom   | `Ctrl+Shift+A` → Select | Code generation     |
+| `bicep-code`           | Custom   | `Ctrl+Shift+A` → Select | Code generation     |
 
 > 📖 **Plan Agent Documentation:** [VS Code Chat Planning](https://code.visualstudio.com/docs/copilot/chat/chat-planning)
 

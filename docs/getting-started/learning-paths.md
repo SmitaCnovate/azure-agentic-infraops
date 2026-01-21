@@ -244,11 +244,11 @@ flowchart LR
 | ----------------------------- | ------ | --------------------------------------- |
 | **Project Planner**           | Custom | Select from agent picker (`Ctrl+Alt+I`) |
 | **adr_generator**             | Custom | Select from agent picker                |
-| **azure-principal-architect** | Custom | Select from agent picker                |
+| **architect** | Custom | Select from agent picker                |
 | **bicep-plan**                | Custom | Select from agent picker                |
-| **bicep-implement**           | Custom | Select from agent picker                |
+| **bicep-code**           | Custom | Select from agent picker                |
 
-> **Note**: This repository uses a custom **Project Planner** agent (`project-planner.agent.md`)
+> **Note**: This repository uses a custom **Project Planner** agent (`plan.agent.md`)
 > specifically designed for Azure infrastructure requirements gathering. VS Code also has a
 > built-in "Plan" agent for general planning tasks.
 
@@ -313,11 +313,11 @@ pwsh -File validation/validate.ps1
 
 | Agent                       | Type   | Access                      | Use For             |
 | --------------------------- | ------ | --------------------------- | ------------------- |
-| `project-planner`           | Custom | Agent picker (`Ctrl+Alt+I`) | Multi-step planning |
+| `plan`           | Custom | Agent picker (`Ctrl+Alt+I`) | Multi-step planning |
 | `adr_generator`             | Custom | Agent picker                | Document decisions  |
-| `azure-principal-architect` | Custom | Agent picker                | WAF assessment      |
+| `architect` | Custom | Agent picker                | WAF assessment      |
 | `bicep-plan`                | Custom | Agent picker                | Module design       |
-| `bicep-implement`           | Custom | Agent picker                | Code generation     |
+| `bicep-code`           | Custom | Agent picker                | Code generation     |
 
 > 📖 **Custom Agents Documentation:** [VS Code Custom Agents](https://code.visualstudio.com/docs/copilot/customization/custom-agents)
 

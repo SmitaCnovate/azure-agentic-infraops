@@ -160,7 +160,7 @@ assessment. I want to validate the service choices before we commit.
 
 ### Agent Transition
 
-**[azure-principal-architect agent auto-selects via handoff]**
+**[architect agent auto-selects via handoff]**
 
 **Jennifer**: Based on the plan we just created, I need a detailed Azure Well-Architected
 Framework assessment for this patient portal. Key requirements:
@@ -176,7 +176,7 @@ Can you assess this against the WAF pillars and recommend specific Azure service
 
 ### Understanding the Architecture
 
-**azure-principal-architect**: I'll assess this healthcare scenario against the Azure
+**architect**: I'll assess this healthcare scenario against the Azure
 Well-Architected Framework. Let me first clarify my understanding and ask a few
 architecture-specific questions:
 
@@ -212,7 +212,7 @@ architecture-specific questions:
 
 ### WAF Assessment Results
 
-**azure-principal-architect**: Thank you. Here's my comprehensive assessment:
+**architect**: Thank you. Here's my comprehensive assessment:
 
 ---
 
@@ -890,7 +890,7 @@ the team. The phased approach aligns with our 12-week timeline. Let's generate t
 
 ### Agent Transition
 
-**[bicep-implement agent auto-selects via handoff]**
+**[bicep-code agent auto-selects via handoff]**
 
 **Jennifer**: Based on the implementation plan, please generate near-production-ready Bicep templates.
 Use modular design with separate files for each resource category. Include:
@@ -901,7 +901,7 @@ Use modular design with separate files for each resource category. Include:
 
 ### Generating Templates
 
-**bicep-implement**: I'll generate the Bicep templates based on the implementation plan.
+**bicep-code**: I'll generate the Bicep templates based on the implementation plan.
 Let me create a modular structure with all security configurations.
 
 ---

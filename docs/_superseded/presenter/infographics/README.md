@@ -60,7 +60,7 @@ Generated files are saved to `./generated/`:
 
 **What it creates:** The core 7-step agent workflow diagram showing:
 
-- @plan → azure-principal-architect → bicep-plan → bicep-implement
+- @plan → architect → bicep-plan → bicep-code
 - Approval gates between each step
 - Optional integrations (MCP, diagrams, ADR)
 - Color-coded steps with descriptions

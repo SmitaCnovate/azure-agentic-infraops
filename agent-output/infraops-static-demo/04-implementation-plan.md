@@ -545,7 +545,7 @@ The architecture is:
 > | `modules/static-web-app.bicep` | Static Web App AVM wrapper |
 > | `deploy.ps1`                   | Deployment automation      |
 >
-> Reply **"approve"** to proceed to bicep-implement, or provide feedback for revisions.
+> Reply **"approve"** to proceed to bicep-code, or provide feedback for revisions.
 
 ---
 

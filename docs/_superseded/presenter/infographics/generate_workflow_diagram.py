@@ -3,7 +3,7 @@
 Agentic InfraOps - 7-Step Agent Workflow Diagram Generator
 
 Creates a professional diagram showing the core agent workflow:
-@plan → azure-principal-architect → bicep-plan → bicep-implement
+@plan → architect → bicep-plan → bicep-code
 
 Requirements:
     pip install matplotlib numpy
@@ -289,14 +289,14 @@ def create_workflow_diagram_dark():
     start_x = 1.0
 
     main_steps = [
-        {'num': '1', 'title': 'Plan', 'agent': 'project-planner',
+        {'num': '1', 'title': 'Plan', 'agent': 'plan',
             'color': DARK_COLORS['cyan']},
         {'num': '2', 'title': 'Architect',
-            'agent': 'azure-principal-architect', 'color': DARK_COLORS['orange']},
+            'agent': 'architect', 'color': DARK_COLORS['orange']},
         {'num': '4', 'title': 'Plan Infrastructure',
             'agent': 'bicep-plan', 'color': DARK_COLORS['green']},
         {'num': '5', 'title': 'Generate Code',
-            'agent': 'bicep-implement', 'color': DARK_COLORS['pink']},
+            'agent': 'bicep-code', 'color': DARK_COLORS['pink']},
     ]
 
     step_positions = {}
@@ -355,7 +355,7 @@ def create_workflow_diagram_dark():
                          facecolor=DARK_COLORS['teal'], edgecolor=DARK_COLORS['teal'],
                          linewidth=2, transform=ax.transData)
     ax.add_patch(box)
-    ax.text(design_diag_x, design_diag_y, '-design diagram\ndiagram-generator',
+    ax.text(design_diag_x, design_diag_y, '-design diagram\ndiagram',
             fontsize=8, color=DARK_COLORS['text'], ha='center', va='center')
 
     # Design ADR box
@@ -366,7 +366,7 @@ def create_workflow_diagram_dark():
                          facecolor=DARK_COLORS['teal'], edgecolor=DARK_COLORS['teal'],
                          linewidth=2, transform=ax.transData)
     ax.add_patch(box)
-    ax.text(design_adr_x, design_adr_y, '-design ADR\nadr-generator',
+    ax.text(design_adr_x, design_adr_y, '-design ADR\nadr',
             fontsize=8, color=DARK_COLORS['text'], ha='center', va='center')
 
     # Dashed lines from Step 2 to design artifacts
@@ -431,7 +431,7 @@ def create_workflow_diagram_dark():
                          facecolor=DARK_COLORS['purple'], edgecolor=DARK_COLORS['purple'],
                          linewidth=2, transform=ax.transData)
     ax.add_patch(box)
-    ax.text(asbuilt_diag_x, asbuilt_diag_y, '-asbuilt diagram\ndiagram-generator',
+    ax.text(asbuilt_diag_x, asbuilt_diag_y, '-asbuilt diagram\ndiagram',
             fontsize=8, color=DARK_COLORS['text'], ha='center', va='center')
 
     # As-built ADR box
@@ -442,7 +442,7 @@ def create_workflow_diagram_dark():
                          facecolor=DARK_COLORS['teal'], edgecolor=DARK_COLORS['teal'],
                          linewidth=2, transform=ax.transData)
     ax.add_patch(box)
-    ax.text(asbuilt_adr_x, asbuilt_adr_y, '-asbuilt ADR\nadr-generator',
+    ax.text(asbuilt_adr_x, asbuilt_adr_y, '-asbuilt ADR\nadr',
             fontsize=8, color=DARK_COLORS['text'], ha='center', va='center')
 
     # Dashed lines from Post-Build to as-built artifacts

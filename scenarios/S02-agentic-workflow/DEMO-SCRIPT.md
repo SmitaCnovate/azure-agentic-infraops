@@ -133,7 +133,7 @@ Please help me:
 
 ### Stage 1: Architecture Design (10:00 - 18:00)
 
-**[Select `azure-principal-architect` from Custom Agents dropdown - `Ctrl+Alt+I`]**
+**[Select `architect` from Custom Agents dropdown - `Ctrl+Alt+I`]**
 
 "Now I'm switching to our **Azure Principal Architect** custom agent. The plan context carries forward automatically."
 
@@ -160,7 +160,7 @@ Design an Azure architecture for the Contoso Healthcare patient portal based on 
 
 **While agent processes (30-60 seconds):**
 
-"The Azure Principal Architect agent is trained on the Azure Well-Architected Framework. It uses the context from our Plan Agent to assess this scenario across 5 pillars: Security, Reliability, Performance, Cost, and Operations."
+"The Architect agent is trained on the Azure Well-Architected Framework. It uses the context from our Plan Agent to assess this scenario across 5 pillars: Security, Reliability, Performance, Cost, and Operations."
 
 **[Agent returns results - scroll through output]**
 
@@ -406,7 +406,7 @@ bicep lint main.bicep
 **Common Questions:**
 
 **Q: What's the difference between Plan Agent and the custom agents?**
-A: Plan Agent is built into VS Code - it researches and plans using read-only tools. Custom agents like `azure-principal-architect` are specialized for specific domains and can generate outputs. Plan researches, custom agents implement.
+A: Plan Agent is built into VS Code - it researches and plans using read-only tools. Custom agents like `architect` are specialized for specific domains and can generate outputs. Plan researches, custom agents implement.
 
 **Q: Can I skip the Plan Agent and go straight to architecture?**
 A: Yes, for simple projects. But for complex multi-step work, Plan Agent ensures you understand requirements before implementation. It often catches issues early.

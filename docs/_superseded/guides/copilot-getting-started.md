@@ -150,10 +150,10 @@ This repository includes custom agents for infrastructure work:
 
 | Agent                       | Purpose                         | When to Use               |
 | --------------------------- | ------------------------------- | ------------------------- |
-| `azure-principal-architect` | Architecture guidance (no code) | Starting a new project    |
+| `architect` | Architecture guidance (no code) | Starting a new project    |
 | `bicep-plan`                | Implementation planning         | After architecture review |
-| `bicep-implement`           | Code generation                 | After plan approval       |
-| `diagram-generator`         | Architecture diagrams           | Documentation             |
+| `bicep-code`           | Code generation                 | After plan approval       |
+| `diagram`         | Architecture diagrams           | Documentation             |
 
 **To invoke an agent:**
 
@@ -164,13 +164,13 @@ This repository includes custom agents for infrastructure work:
 **Example workflow:**
 
 ```
-Step 1: @azure-principal-architect
+Step 1: @architect
 "Design a HIPAA-compliant patient portal with Azure App Service and SQL Database"
 
 Step 2: @bicep-plan
 "Create implementation plan based on the architecture"
 
-Step 3: @bicep-implement
+Step 3: @bicep-code
 "Generate Bicep templates from the plan"
 ```
 

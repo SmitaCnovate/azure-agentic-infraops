@@ -2,8 +2,8 @@
 
 > **Version 5.3.0** | [Back to Scenarios](../README.md)
 >
-> **🤖 Agent Available**: This scenario is also available as the `diagram-generator` agent for integration with
-> the 7-step workflow. See `.github/agents/diagram-generator.agent.md`.
+> **🤖 Agent Available**: This scenario is also available as the `diagram` agent for integration with
+> the 7-step workflow. See `.github/agents/diagram.agent.md`.
 
 ---
 
@@ -50,7 +50,7 @@ By the end of this demo, participants will understand:
 
 | Resource                                                                   | Description                     |
 | -------------------------------------------------------------------------- | ------------------------------- |
-| [Diagram Generator Agent](../../.github/agents/diagram-generator.agent.md) | Agent definition                |
+| [Diagram Generator Agent](../../.github/agents/diagram.agent.md) | Agent definition                |
 | [Diagrams Output](../../docs/diagrams/)                                    | Generated architecture diagrams |
 | [Workflow Guide](../../docs/reference/workflow.md)                         | Seven-step agentic workflow     |
 | [Presenter Toolkit](../../docs/presenter/)                                 | Demo delivery guides            |

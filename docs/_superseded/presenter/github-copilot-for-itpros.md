@@ -227,7 +227,7 @@ Experts skip boilerplate. Mid-level pros produce expert-quality work. Newcomers 
 
 ```
 ┌──────────┐    ┌─────────────────────┐    ┌─────────────┐    ┌─────────────────┐
-│  @plan   │ → │ azure-principal-    │ → │ bicep-plan  │ → │ bicep-implement │
+│  @plan   │ → │ azure-principal-    │ → │ bicep-plan  │ → │ bicep-code │
 │(Built-in)│    │     architect       │    │             │    │                 │
 └──────────┘    └─────────────────────┘    └─────────────┘    └─────────────────┘
    5-10 min         10-15 min               5-10 min           10-15 min
@@ -273,11 +273,11 @@ This is our flagship demo. A real e-commerce platform - Front Door, App Services
 | Step | Agent/Tool                  | Duration  | Key Output           |
 | ---- | --------------------------- | --------- | -------------------- |
 | 1️⃣   | `@plan`                     | 5-10 min  | Implementation plan  |
-| 2️⃣   | `azure-principal-architect` | 10-15 min | WAF assessment       |
+| 2️⃣   | `architect` | 10-15 min | WAF assessment       |
 | 3️⃣   | Azure Pricing MCP           | 5 min     | ~$1,595/mo estimate  |
-| 4️⃣   | `diagram-generator`         | 5 min     | Architecture diagram |
+| 4️⃣   | `diagram`         | 5 min     | Architecture diagram |
 | 5️⃣   | `bicep-plan`                | 10 min    | 4-phase deployment   |
-| 6️⃣   | `bicep-implement`           | 15-20 min | 18 Bicep modules     |
+| 6️⃣   | `bicep-code`           | 15-20 min | 18 Bicep modules     |
 
 <!--
 SPEAKER NOTES:
@@ -300,7 +300,7 @@ Notice steps 3 and 4. The Pricing MCP queries Azure APIs for real costs. We disc
 
 <!--
 SPEAKER NOTES:
-This diagram is generated automatically by the diagram-generator agent using Python's diagrams library. Notice the layered architecture: CDN and WAF in front, app tier, data tier with private endpoints.
+This diagram is generated automatically by the diagram agent using Python's diagrams library. Notice the layered architecture: CDN and WAF in front, app tier, data tier with private endpoints.
 -->
 
 ---
@@ -667,11 +667,11 @@ Four takeaways: efficiency multiplier with real savings, requirements to deploye
 
 ```
 .github/agents/
-├── azure-principal-architect.agent.md
+├── architect.agent.md
 ├── bicep-plan.agent.md
-├── bicep-implement.agent.md
-├── diagram-generator.agent.md
-└── adr-generator.agent.md
+├── bicep-code.agent.md
+├── diagram.agent.md
+└── adr.agent.md
 ```
 
 **Each agent has:** Role constraints, default behaviors, handoff instructions, approval gates

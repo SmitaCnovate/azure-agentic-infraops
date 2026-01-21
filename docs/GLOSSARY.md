@@ -55,7 +55,7 @@ custom agents via the agent picker dropdown.
 ### Custom Agent
 
 A specialized AI assistant defined in `.github/agents/` that focuses on specific tasks. Examples:
-`azure-principal-architect`, `bicep-plan`, `bicep-implement`.
+`architect`, `bicep-plan`, `bicep-code`.
 
 📁 **See**: [.github/agents/](../.github/agents/)
 
@@ -197,8 +197,8 @@ making actual changes. Run with `az deployment group create --what-if`.
 
 ### 7-Step Agentic Workflow
 
-The core Agentic InfraOps workflow: `project-planner` → `azure-principal-architect` → Design Artifacts →
-`bicep-plan` → `bicep-implement` → Deploy → As-Built Artifacts. Each step has an approval gate before proceeding.
+The core Agentic InfraOps workflow: `plan` → `architect` → Design Artifacts →
+`bicep-plan` → `bicep-code` → Deploy → As-Built Artifacts. Each step has an approval gate before proceeding.
 Steps 3 (Design Artifacts) and 7 (As-Built Artifacts) are optional for generating diagrams and ADRs.
 
 📁 **See**: [Workflow Guide](reference/workflow.md)
@@ -206,7 +206,7 @@ Steps 3 (Design Artifacts) and 7 (As-Built Artifacts) are optional for generatin
 ### Project Planner
 
 Custom agent for Azure infrastructure requirements gathering. Starting point for the 7-step workflow.
-Gathers requirements and creates implementation plans. Defined in `project-planner.agent.md`.
+Gathers requirements and creates implementation plans. Defined in `plan.agent.md`.
 
 > **Note**: VS Code includes a built-in "Plan" agent for general planning. This repository uses
 > the custom **Project Planner** agent with Azure-specific instructions and workflow handoffs.

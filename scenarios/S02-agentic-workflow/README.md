@@ -106,19 +106,19 @@ Traditional infrastructure design involves:
 **Usage**: Always start with `Project Planner` for multi-step infrastructure projects.
 The plan ensures all requirements are considered before any code changes.
 
-### Step 2: Azure Principal Architect (`azure-principal-architect`)
+### Step 2: Azure Principal Architect (`architect`)
 
 - **Purpose**: Azure Well-Architected Framework assessment (NO CODE CREATION)
 - **Input**: Business requirements, constraints, technical needs
 - **Output**: WAF scores, service recommendations, cost estimates, HIPAA compliance mapping
 - **Approval Gate**: Review WAF assessment before proceeding
 - **Handoff**: Architecture assessment → Bicep Planning Specialist
-- **Optional**: Generate Architecture Diagram → diagram-generator
+- **Optional**: Generate Architecture Diagram → diagram
 
 ### Step 3: Design Artifacts (Optional)
 
 - **Purpose**: Generate design documentation before implementation
-- **Agents**: `diagram-generator` and `adr-generator`
+- **Agents**: `diagram` and `adr`
 - **Output**: Architecture diagrams with `-des` suffix, ADRs for proposed decisions
 - **Handoff**: Continue to Bicep Planning Specialist
 
@@ -131,7 +131,7 @@ The plan ensures all requirements are considered before any code changes.
 - **Approval Gate**: Review implementation plan before code generation
 - **Handoff**: Implementation plan → Bicep Implementation Specialist
 
-### Step 5: Bicep Implementation Specialist (`bicep-implement`)
+### Step 5: Bicep Implementation Specialist (`bicep-code`)
 
 - **Purpose**: near-production-ready Bicep templates
 - **Input**: Implementation plan
@@ -140,23 +140,23 @@ The plan ensures all requirements are considered before any code changes.
 - **Handoff**: Templates ready for deployment
 - **Regional Default**: `swedencentral` (renewable energy)
 - **Naming Convention**: Generates unique suffixes using `uniqueString()` to prevent resource name collisions
-- **Optional**: Generate Architecture Diagram → diagram-generator
+- **Optional**: Generate Architecture Diagram → diagram
 
 ### Step 7: As-Built Artifacts (Optional)
 
 - **Purpose**: Generate as-built documentation after implementation
-- **Agents**: `diagram-generator` and `adr-generator`
+- **Agents**: `diagram` and `adr`
 - **Output**: Architecture diagrams with `-ab` suffix, ADRs for implemented decisions
 - **Use Case**: Document final state, any deviations from design
 
-### Optional: ADR Generator (`adr-generator`)
+### Optional: ADR Generator (`adr`)
 
 - **Purpose**: Document architectural decisions for enterprise governance
 - **Input**: Architecture discussions, trade-offs, decisions from any step
 - **Output**: Structured ADR in markdown format (saved to `/docs/adr/`)
 - **Use Case**: Document key decisions during workflow (skip for speed-focused demos)
 
-### Optional: Diagram Generator (`diagram-generator`)
+### Optional: Diagram Generator (`diagram`)
 
 - **Purpose**: Generate Python architecture diagrams using `diagrams` library
 - **Input**: Architecture context from Step 2 or Step 4
@@ -216,9 +216,9 @@ The plan ensures all requirements are considered before any code changes.
    | Stage | Agent                       | Duration  | Key Output                               |
    | ----- | --------------------------- | --------- | ---------------------------------------- |
    | 0     | `Project Planner` (custom)  | 5-10 min  | Implementation plan + `*.prompt.md` file |
-   | 1     | `azure-principal-architect` | 10-15 min | WAF assessment + cost estimates          |
+   | 1     | `architect` | 10-15 min | WAF assessment + cost estimates          |
    | 2     | `bicep-plan`                | 5-10 min  | Resource breakdown + Mermaid diagram     |
-   | 3     | `bicep-implement`           | 10-15 min | Modular Bicep templates                  |
+   | 3     | `bicep-code`           | 10-15 min | Modular Bicep templates                  |
    | 4     | Validation & Deployment     | 5-10 min  | `bicep build` + `bicep lint`             |
 
 5. **Pro Tip**: Use the UI handoff controls at the end of each agent's response to seamlessly transition
@@ -284,9 +284,9 @@ The plan becomes a reusable `*.prompt.md` file.
 
 ### Part 1: Architecture Design (10-15 minutes)
 
-**Agent**: `azure-principal-architect`
+**Agent**: `architect`
 
-1. From Plan Agent handoff, or select Azure Principal Architect agent (`Ctrl+Alt+I`)
+1. From Plan Agent handoff, or select Architect agent (`Ctrl+Alt+I`)
 2. The plan context is automatically passed to the architect
 3. Review outputs:
    - WAF scores (Security: 9/10, Reliability: 7/10, etc.)
@@ -314,7 +314,7 @@ The plan becomes a reusable `*.prompt.md` file.
 
 ### Part 3: Bicep Template Generation (15 minutes)
 
-**Agent**: `bicep-implement`
+**Agent**: `bicep-code`
 
 1. Agent auto-selects from handoff
 2. Review generated templates:
@@ -524,7 +524,7 @@ agents handle time-consuming documentation and code generation.
    - See how architecture adjusts
 
 4. **Generate ADR**:
-   - After Stage 1, use ADR Generator agent
+   - After Stage 1, use ADR agent
    - Document decision to use Standard vs. Premium tiers
 
 ## ✅ Success Criteria
@@ -571,7 +571,7 @@ Before starting, gauge your audience:
 | Step 1 (Project Planner) | "Where's the Plan Agent?"     | Show `Ctrl+Alt+I` agent picker                 |
 | Step 2 (Architect)       | "Why no code?"                | Emphasize WAF guidance vs implementation       |
 | Step 4 (bicep-plan)      | "Too much output"             | Use collapsible sections, focus on key modules |
-| Step 5 (bicep-implement) | "Validation errors"           | Expected! Show iterative refinement            |
+| Step 5 (bicep-code) | "Validation errors"           | Expected! Show iterative refinement            |
 | Handoffs                 | "Lost context between agents" | Demonstrate UI handoff buttons                 |
 
 ### Facilitation Tips

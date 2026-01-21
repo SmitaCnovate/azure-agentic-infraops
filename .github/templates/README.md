@@ -8,7 +8,7 @@ that agents must follow when generating workflow documentation.
 | Artifact                        | Template File                            | Producing Agent           |
 | ------------------------------- | ---------------------------------------- | ------------------------- |
 | Step 1: Requirements            | `01-requirements.template.md`            | @plan (built-in)          |
-| Step 2: Architecture Assessment | `02-architecture-assessment.template.md` | azure-principal-architect |
+| Step 2: Architecture Assessment | `02-architecture-assessment.template.md` | architect |
 | Step 4: Implementation Plan     | `04-implementation-plan.template.md`     | bicep-plan                |
 | Step 6: Deployment Summary      | `06-deployment-summary.template.md`      | Deploy Agent              |
 

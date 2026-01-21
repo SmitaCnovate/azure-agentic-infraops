@@ -1,5 +1,5 @@
 ---
-name: ADR Generator
+name: ADR
 description: Expert agent for creating comprehensive Architectural Decision Records (ADRs) with structured formatting optimized for AI consumption and human readability.
 tools:
   [
@@ -23,20 +23,20 @@ tools:
   ]
 handoffs:
   - label: Review Against WAF Pillars
-    agent: Azure Principal Architect
+    agent: Architect
     prompt: Assess the WAF implications of the architectural decision documented above. Evaluate against all 5 pillars (Security, Reliability, Performance, Cost, Operations) and provide specific recommendations.
     send: true
   - label: Generate Implementation Plan
-    agent: Azure Bicep Planning Specialist
+    agent: Bicep Plan
     prompt: Create a detailed implementation plan for the architecture decision documented in the ADR above. Include resource breakdown, dependencies, and implementation tasks.
     send: true
   - label: Generate Architecture Diagram
-    agent: Azure Diagram Generator
+    agent: Diagram
     prompt: Generate a Python architecture diagram to visualize the architectural decision documented in the ADR. Include relevant Azure resources and relationships.
     send: true
 ---
 
-# ADR Generator Agent
+# ADR Agent
 
 > **See [Agent Shared Foundation](_shared/defaults.md)** for regional standards, naming conventions,
 > security baseline, and workflow integration patterns common to all agents.
@@ -65,7 +65,7 @@ All ADRs must consider CAF best practices:
 
 When creating ADRs that impact architecture:
 
-- Reference WAF pillar assessments from Azure Principal Architect
+- Reference WAF pillar assessments from Architect
 - Document trade-offs between WAF pillars (Security, Reliability, Performance, Cost, Operations)
 - Include WAF-specific consequences in the Consequences section
 - Note which WAF pillar is being optimized and what is being sacrificed
@@ -305,12 +305,12 @@ This agent produces artifacts in **Step 3** (design, `-des`) or **Step 7** (as-b
 ```mermaid
 %%{init: {'theme':'neutral'}}%%
 graph TD
-    A[azure-principal-architect<br/>Step 2] --> D{Document decision?}
-    D -->|Yes| ADR[adr-generator<br/>-des suffix]
+    A[architect<br/>Step 2] --> D{Document decision?}
+    D -->|Yes| ADR[adr<br/>-des suffix]
     D -->|No| B[bicep-plan<br/>Step 4]
     ADR --> B
     DEP[Deploy<br/>Step 6] --> F{Final documentation?}
-    F -->|Yes| ADR2[adr-generator<br/>-ab suffix]
+    F -->|Yes| ADR2[adr<br/>-ab suffix]
     F -->|No| Done[Complete]
     ADR2 --> Done
 
@@ -322,11 +322,11 @@ graph TD
 
 | Step | Phase                     | This Agent's Role                           |
 | ---- | ------------------------- | ------------------------------------------- |
-| 1    | project-planner           | —                                           |
-| 2    | azure-principal-architect | Caller (triggers Step 3)                    |
+| 1    | plan           | —                                           |
+| 2    | architect | Caller (triggers Step 3)                    |
 | 3    | **Design Artifacts**      | Generate `-des` ADRs (proposed decisions)   |
 | 4    | bicep-plan                | —                                           |
-| 5    | bicep-implement           | —                                           |
+| 5    | bicep-code           | —                                           |
 | 6    | Deploy                    | Caller (triggers Step 7)                    |
 | 7    | **As-Built Artifacts**    | Generate `-ab` ADRs (implemented decisions) |
 
@@ -339,7 +339,7 @@ Apply the appropriate suffix based on when the ADR is generated:
   - Example: `03-des-adr-0015-database-selection.md`
   - Status: "Proposed" or "Accepted"
   - Represents: Decisions made during architecture phase
-  - Called from: `azure-principal-architect` handoff
+  - Called from: `architect` handoff
 
 - **`-ab`**: As-built ADRs (Step 7 artifacts)
   - Example: `07-ab-adr-0015-database-selection.md`
@@ -349,7 +349,7 @@ Apply the appropriate suffix based on when the ADR is generated:
 
 **Suffix Rules:**
 
-1. When called from `azure-principal-architect` → use `-des` suffix
+1. When called from `architect` → use `-des` suffix
 2. When called after deployment (Step 6) → use `-ab` suffix
 3. When called standalone:
    - Design/proposal/planning language → use `-des`

@@ -125,7 +125,7 @@ Step 4: "Create the main.bicep that ties them together"
 Instead of asking one agent to do everything:
 
 ```markdown
-# Step 1: Architecture (azure-principal-architect)
+# Step 1: Architecture (architect)
 
 "Design a three-tier web application architecture"
 
@@ -133,7 +133,7 @@ Instead of asking one agent to do everything:
 
 "Create an implementation plan for this architecture"
 
-# Step 3: Implementation (bicep-implement)
+# Step 3: Implementation (bicep-code)
 
 "Implement Phase 1: Foundation resources"
 "Implement Phase 2: Security resources"
@@ -482,10 +482,10 @@ resource sqlServer 'Microsoft.Sql/servers@2023-05-01-preview' = {
    ```bash
    ls -la .github/agents/*.agent.md
    # Should see 4 files:
-   # - adr-generator.agent.md
-   # - azure-principal-architect.agent.md
+   # - adr.agent.md
+   # - architect.agent.md
    # - bicep-plan.agent.md
-   # - bicep-implement.agent.md
+   # - bicep-code.agent.md
    ```
 
 3. **Check file syntax**

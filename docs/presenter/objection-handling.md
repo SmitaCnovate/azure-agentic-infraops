@@ -97,7 +97,7 @@ When handling objections, follow this structure:
 
 > "Valid concern—that's why we treat Copilot suggestions like code reviews, not blind acceptance. Importantly,
 > Copilot is trained on best practices and often suggests MORE secure defaults than copy-paste from Stack Overflow.
-> Our scenarios include security scanning (tfsec, Checkov) in the validation workflow."
+> Our scenarios include security scanning (Checkov) in the validation workflow."
 
 **Evidence**:
 
@@ -162,7 +162,7 @@ When handling objections, follow this structure:
 
 - `.github/copilot-instructions.md` - Repository-level customization
 - Custom agents (`.github/agents/`) for workflow-specific guidance
-- Chat modes for different contexts (Terraform, debugging, etc.)
+- Chat modes for different contexts (debugging, infrastructure, etc.)
 - Works with existing VS Code extensions and tools
 
 ### "The suggestions aren't always accurate"

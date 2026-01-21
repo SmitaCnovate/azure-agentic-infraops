@@ -31,14 +31,13 @@ code azure-agentic-infraops
 
 **What's included:**
 
-| Tool            | Version | Purpose                   |
-| --------------- | ------- | ------------------------- |
-| Azure CLI       | Latest  | Azure resource management |
-| Bicep CLI       | Latest  | Infrastructure as Code    |
-| Terraform       | Latest  | Multi-cloud IaC           |
-| PowerShell 7    | Latest  | Automation scripts        |
-| Git             | Latest  | Version control           |
-| tfsec / Checkov | Latest  | Security scanning         |
+| Tool         | Version | Purpose                   |
+| ------------ | ------- | ------------------------- |
+| Azure CLI    | Latest  | Azure resource management |
+| Bicep CLI    | Latest  | Infrastructure as Code    |
+| PowerShell 7 | Latest  | Automation scripts        |
+| Git          | Latest  | Version control           |
+| Checkov      | Latest  | Security scanning         |
 
 ### Option B: Manual Installation
 
@@ -52,7 +51,6 @@ If you can't use Dev Containers, install these tools:
 | Azure CLI           | 2.50+           | `winget install Microsoft.AzureCLI`                     |
 | Bicep CLI           | 0.20+           | Included with Azure CLI                                 |
 | PowerShell          | 7.0+            | `winget install Microsoft.PowerShell`                   |
-| Terraform           | 1.5+            | `winget install Hashicorp.Terraform`                    |
 | Git                 | 2.30+           | `winget install Git.Git`                                |
 
 ---
@@ -99,9 +97,8 @@ Most scenarios use minimal resources, but check these quotas for larger demos:
 | Concept                          | Where You'll Learn                        |
 | -------------------------------- | ----------------------------------------- |
 | Bicep syntax                     | S01 - Bicep Baseline scenario             |
-| Terraform basics                 | S02 - Terraform Baseline scenario         |
 | Copilot prompting                | Every scenario includes effective prompts |
-| Azure Well-Architected Framework | S03 - Agentic Workflow                 |
+| Azure Well-Architected Framework | S02 - Agentic Workflow                    |
 
 ### Not Required
 
@@ -122,9 +119,6 @@ az --version
 # Check Bicep
 bicep --version
 
-# Check Terraform (if using S02)
-terraform --version
-
 # Check PowerShell
 pwsh --version
 
@@ -137,7 +131,6 @@ az account show --query "{Name:name, SubscriptionId:id}" -o table
 ```
 azure-cli                         2.64.0
 bicep                             0.30.0
-Terraform v1.9.0
 PowerShell 7.4.5
 
 Name                    SubscriptionId

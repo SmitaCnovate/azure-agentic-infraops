@@ -18,7 +18,7 @@
 >
 > Agentic InfraOps revolutionizes how IT Pros build Azure environments. Powered by GitHub Copilot
 > and coordinated AI agents, it transforms requirements into architecture diagrams, validated designs,
-> and deploy-ready Bicep/Terraform templates—all aligned with Azure Well-Architected best practices
+> and deploy-ready Bicep templates—all aligned with Azure Well-Architected best practices
 > and Azure Verified Modules. Real-time pricing, compliance checks, and automation included.
 
 📖 **[Quick Start Guide](docs/getting-started/quickstart.md)** |

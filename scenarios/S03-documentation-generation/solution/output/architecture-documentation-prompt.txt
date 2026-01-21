@@ -99,7 +99,7 @@ For each major component, document:
 - Resource right-sizing suggestions
 
 ### 10. Deployment Strategy
-- Infrastructure as Code approach (Bicep/Terraform)
+- Infrastructure as Code approach (Bicep or ARM)
 - CI/CD pipeline design
 - Environment strategy (dev/staging/prod)
 - Deployment validation and rollback

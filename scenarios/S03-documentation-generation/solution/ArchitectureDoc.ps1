@@ -264,7 +264,7 @@ function New-CopilotPrompt {
     $prompt += "- Resource right-sizing suggestions`n`n"
     
     $prompt += "### 10. Deployment Strategy`n"
-    $prompt += "- Infrastructure as Code approach (Bicep/Terraform)`n"
+    $prompt += "- Infrastructure as Code approach (Bicep or ARM)`n"
     $prompt += "- CI/CD pipeline design`n"
     $prompt += "- Environment strategy (dev/staging/prod)`n"
     $prompt += "- Deployment validation and rollback`n`n"

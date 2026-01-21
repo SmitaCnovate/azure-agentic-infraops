@@ -3,10 +3,6 @@
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
 
   "features": {
-    "ghcr.io/devcontainers/features/terraform:1": {
-      "installTFsec": true,
-      "installTerragrunt": false
-    },
     "ghcr.io/devcontainers/features/azure-cli:1": {
       "installBicep": true,
       "version": "latest"
@@ -19,9 +15,6 @@
     },
     "ghcr.io/devcontainers/features/node:1": {
       "version": "lts"
-    },
-    "ghcr.io/devcontainers/features/go:1": {
-      "version": "latest"
     }
   },
 
@@ -39,7 +32,6 @@
         "ms-vscode.vscode-node-azure-pack",
         "ms-azuretools.vscode-azureresourcegroups",
         "ms-azuretools.vscode-bicep",
-        "HashiCorp.terraform",
         "ms-vscode.powershell",
         "bierner.markdown-mermaid",
         "bierner.markdown-preview-github-styles",
@@ -48,7 +40,6 @@
         "ms-vscode.azurecli",
         "ms-azuretools.vscode-azurecontainerapps",
         "ms-azuretools.vscode-azurestaticwebapps",
-        "ms-azuretools.vscode-azureterraform",
         "ms-azuretools.azure-dev",
         "ms-azuretools.vscode-docker",
         "ms-kubernetes-tools.vscode-kubernetes-tools",
@@ -81,14 +72,15 @@
         "[bicep]": {
           "editor.tabSize": 2
         },
-        "[terraform]": {
-          "editor.tabSize": 2
-        },
         "[powershell]": {
           "editor.tabSize": 4
         },
+        "[python]": {
+          "editor.tabSize": 4
+        },
+        "python.analysis.typeCheckingMode": "basic",
         "markdownlint.config": {
-          "extends": "${workspaceFolder}/.markdownlint.json"
+          "extends": "${workspaceFolder}/.markdownlint-cli2.jsonc"
         },
         "markdownlint.run": "onSave"
       }
@@ -103,9 +95,5 @@
     }
   ],
 
-  "remoteUser": "vscode",
-
-  "containerEnv": {
-    "TF_PLUGIN_CACHE_DIR": "/home/vscode/.terraform-cache"
-  }
+  "remoteUser": "vscode"
 }

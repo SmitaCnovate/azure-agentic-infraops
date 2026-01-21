@@ -44,7 +44,7 @@ asking clarifying questions and seeking approval before executing any diagnostic
 Present commands with clear explanations of what they do and potential impact.
 
 **Edit Tool Scope**: The `edit` tool is for diagnostic reports and markdown documentation only.
-Do NOT use `edit` for Bicep, Terraform, or infrastructure code files.
+Do NOT use `edit` for Bicep or infrastructure code files.
 
 **Report Location**: Save all diagnostic reports to `agent-output/{project}/` directory.
 </tool_usage>

@@ -5292,18 +5292,12 @@ a {
                 </tr>
                 <tr>
                   <td>S02</td>
-                  <td>Terraform Baseline</td>
-                  <td>30 min</td>
-                  <td>Beginner</td>
-                </tr>
-                <tr>
-                  <td>S03</td>
                   <td>Agentic Workflow</td>
                   <td>45 min</td>
                   <td>Advanced</td>
                 </tr>
                 <tr>
-                  <td>S04</td>
+                  <td>S03</td>
                   <td>Documentation Generation</td>
                   <td>20 min</td>
                   <td>Beginner</td>
@@ -5484,10 +5478,6 @@ a {
               <li>
                 <strong>&quot;Can I use my own agents?&quot;</strong> - Yes,
                 <code>.agent.md</code> files
-              </li>
-              <li>
-                <strong>&quot;Terraform support?&quot;</strong> - Yes, S02
-                scenario
               </li>
               <li>
                 <strong>&quot;Multi-cloud?&quot;</strong> - Azure-focused,
@@ -5974,7 +5964,7 @@ a {
                         : e.slides || r.children,
                       function (e) {
                         return "SCRIPT" !== e.nodeName;
-                      }
+                      },
                     ),
                     a = {},
                     i = function (e, t) {
@@ -6046,7 +6036,7 @@ a {
           f = `data-${u}`,
           m = (
             e,
-            { protocol: t, host: n, pathname: r, hash: o } = location
+            { protocol: t, host: n, pathname: r, hash: o } = location,
           ) => {
             const a = e.toString();
             return `${t}//${n}${r}${a ? "?" : ""}${a}${o}`;
@@ -6064,7 +6054,7 @@ a {
               n.setter(
                 { ...(window.history.state ?? {}) },
                 "",
-                m(r, n.location)
+                m(r, n.location),
               );
             } catch (e) {
               console.error(e);
@@ -6148,7 +6138,7 @@ a {
                       const a = t < r || (t === r && n <= o);
                       e.setAttribute(
                         `${f}fragment`,
-                        (a ? "" : "in") + "active"
+                        (a ? "" : "in") + "active",
                       );
                       const i = `${f}current-fragment`;
                       t === r && n === o
@@ -6251,7 +6241,7 @@ a {
             window.addEventListener("load", () => {
               for (const t of e.slides) {
                 const e = t.querySelector(
-                  "marp-auto-scaling, [data-auto-scaling], [data-marp-fitting]"
+                  "marp-auto-scaling, [data-auto-scaling], [data-marp-fitting]",
                 );
                 t.setAttribute(`${f}load`, e ? "" : "hideable");
               }
@@ -6370,7 +6360,7 @@ a {
                     n(
                       "page",
                       (n) =>
-                        (n.textContent = `Page ${t + 1} of ${e.slides.length}`)
+                        (n.textContent = `Page ${t + 1} of ${e.slides.length}`),
                     );
                   }),
                   e.on(
@@ -6381,9 +6371,9 @@ a {
                           "next",
                           (n) =>
                             (n.disabled =
-                              t === e.slides.length - 1 && o === r.length - 1)
+                              t === e.slides.length - 1 && o === r.length - 1),
                         ));
-                    }
+                    },
                   ),
                   e.on("marp-active", () => x(t, !1)),
                   e.on("marp-inactive", () => x(t, !0)),
@@ -6393,8 +6383,8 @@ a {
                         E.addEventListener(t + "fullscreenchange", e);
                     })(() =>
                       n("fullscreen", (e) =>
-                        e.classList.toggle("exit", L() && S())
-                      )
+                        e.classList.toggle("exit", L() && S()),
+                      ),
                     ));
               }
             );
@@ -6532,7 +6522,7 @@ a {
                       H(
                         "div",
                         { class: J.nextContainer },
-                        H("iframe", { class: J.next, src: "?view=next" })
+                        H("iframe", { class: J.next, src: "?view=next" }),
                       ),
                       H("div", { class: J.dragbar }),
                       H(
@@ -6549,7 +6539,7 @@ a {
                               tabindex: "-1",
                               title: "Smaller notes font size",
                             },
-                            "Smaller notes font size"
+                            "Smaller notes font size",
                           ),
                           H(
                             "button",
@@ -6558,9 +6548,9 @@ a {
                               tabindex: "-1",
                               title: "Bigger notes font size",
                             },
-                            "Bigger notes font size"
-                          )
-                        )
+                            "Bigger notes font size",
+                          ),
+                        ),
                       ),
                       H(
                         "div",
@@ -6575,7 +6565,7 @@ a {
                               tabindex: "-1",
                               title: "Previous",
                             },
-                            "Previous"
+                            "Previous",
                           ),
                           H("span", { class: J.infoPageText }),
                           H(
@@ -6585,17 +6575,17 @@ a {
                               tabindex: "-1",
                               title: "Next",
                             },
-                            "Next"
-                          )
+                            "Next",
+                          ),
                         ),
                         H("time", { class: J.infoTime, title: "Current time" }),
-                        H("time", { class: J.infoTimer, title: "Timer" })
-                      )
-                    )
+                        H("time", { class: J.infoTimer, title: "Timer" }),
+                      ),
+                    ),
                   ),
                   t
                 );
-              })(e.parent)
+              })(e.parent),
             ),
               ((e) => {
                 let t = !1;
@@ -6611,7 +6601,7 @@ a {
                       (e.clientX / document.documentElement.clientWidth) * 100;
                     r(J.container).style.setProperty(
                       "--bespoke-marp-presenter-split-ratio",
-                      `${Math.max(0, Math.min(100, n))}%`
+                      `${Math.max(0, Math.min(100, n))}%`,
                     );
                   }),
                   r(J.nextContainer).addEventListener("click", () => e.next()));
@@ -6621,14 +6611,14 @@ a {
                     (e, t) =>
                       a.contentWindow?.postMessage(
                         `navigate:${e},${t}`,
-                        "null" === window.origin ? "*" : window.origin
+                        "null" === window.origin ? "*" : window.origin,
                       ));
                 var a;
                 n.addEventListener("load", () => {
                   (r(J.nextContainer).classList.add("active"),
                     o(e.slide(), e.fragmentIndex),
                     e.on("fragment", ({ index: e, fragmentIndex: t }) =>
-                      o(e, t)
+                      o(e, t),
                     ));
                 });
                 const i = document.querySelectorAll(".bespoke-marp-note");
@@ -6638,15 +6628,18 @@ a {
                 }),
                   e.on("activate", () =>
                     i.forEach((t) =>
-                      t.classList.toggle("active", t.dataset.index == e.slide())
-                    )
+                      t.classList.toggle(
+                        "active",
+                        t.dataset.index == e.slide(),
+                      ),
+                    ),
                   ));
                 let s = 0;
                 const c = (e) => {
                     ((s = Math.max(-5, s + e)),
                       r(J.noteContainer).style.setProperty(
                         "--bespoke-marp-note-font-scale",
-                        (1.2 ** s).toFixed(4)
+                        (1.2 ** s).toFixed(4),
                       ));
                   },
                   l = () => c(1),
@@ -6664,7 +6657,7 @@ a {
                     (e) => {
                       ("+" === e.key && l(), "-" === e.key && d());
                     },
-                    !0
+                    !0,
                   ),
                   e.on("activate", ({ index: t }) => {
                     r(J.infoPageText).textContent = `${t + 1} / ${
@@ -6685,7 +6678,7 @@ a {
                       ((m.disabled = 0 === t && 0 === r),
                         (g.disabled =
                           t === e.slides.length - 1 && r === n.length - 1));
-                    }
+                    },
                   ));
                 let p = new Date();
                 const v = () => {
@@ -6708,7 +6701,7 @@ a {
           z = (e) => {
             if (!((e) => e.syncKey && "string" == typeof e.syncKey)(e))
               throw new Error(
-                "The current instance of Bespoke.js is invalid for Marp bespoke presenter plugin."
+                "The current instance of Bespoke.js is invalid for Marp bespoke presenter plugin.",
               );
             (Object.defineProperties(e, {
               openPresenterView: { enumerable: !0, value: G },
@@ -6730,7 +6723,7 @@ a {
           return window.open(
             this.presenterUrl,
             W + this.syncKey,
-            `width=${n},height=${r},menubar=no,toolbar=no`
+            `width=${n},height=${r},menubar=no,toolbar=no`,
           );
         }
         function Q() {
@@ -6752,7 +6745,7 @@ a {
             e.on("activate", (t) => {
               document
                 .querySelectorAll(
-                  ".bespoke-progress-parent > .bespoke-progress-bar"
+                  ".bespoke-progress-parent > .bespoke-progress-bar",
                 )
                 .forEach((n) => {
                   n.style.flexBasis =
@@ -6809,7 +6802,7 @@ a {
                       }
                       return 0;
                     })(),
-                    n
+                    n,
                   );
                 };
               (e.on("fragment", ({ index: e, fragmentIndex: r }) => {
@@ -6822,7 +6815,7 @@ a {
                         t.history
                           ? history.pushState(...e)
                           : history.replaceState(...e),
-                    }
+                    },
                   );
               }),
                 setTimeout(() => {
@@ -6830,7 +6823,7 @@ a {
                     window.addEventListener("hashchange", () =>
                       r(() => {
                         (o({ fragment: !1 }), v({ f: void 0 }));
-                      })
+                      }),
                     ),
                     window.addEventListener("popstate", () => {
                       n || r(() => o());
@@ -6925,7 +6918,7 @@ a {
                 ({ touches: e }) => {
                   r = 1 === e.length ? a(e[0]) : void 0;
                 },
-                ce
+                ce,
               ),
                 o.addEventListener("touchmove", (e) => {
                   if (r)
@@ -6949,7 +6942,7 @@ a {
                       r = void 0;
                     }
                   },
-                  ce
+                  ce,
                 ));
             },
           de = new Map();
@@ -7003,7 +6996,7 @@ a {
                         he(s).then((e) => {
                           ((t[a] = t[a] || {}),
                             (t[a][r] = e ? { ...e, name: s } : void 0));
-                        })
+                        }),
                       );
                     }
                   return Promise.all(n).then(() => t);
@@ -7082,8 +7075,8 @@ a {
               })(
                 ...Array.from(
                   document.querySelectorAll(
-                    "section[data-transition], section[data-transition-back]"
-                  )
+                    "section[data-transition], section[data-transition-back]",
+                  ),
                 ).flatMap((e) =>
                   [e.dataset.transition, e.dataset.transitionBack]
                     .flatMap((e) => {
@@ -7093,13 +7086,13 @@ a {
                         t?.builtinFallback ? `__builtin__${t.name}` : void 0,
                       ];
                     })
-                    .filter((e) => !!e)
-                )
+                    .filter((e) => !!e),
+                ),
               ).then(() => {
                 document.querySelectorAll("style").forEach((e) => {
                   e.innerHTML = e.innerHTML.replace(
                     /--marp-transition-duration:[^;}]*[;}]/g,
-                    (e) => e.slice(0, -1) + "!important" + e.slice(-1)
+                    (e) => e.slice(0, -1) + "!important" + e.slice(-1),
                   );
                 });
               }));
@@ -7145,7 +7138,7 @@ a {
                       let r = e;
                       Le.matches &&
                         (console.warn(
-                          "Use a constant animation to transition because preferring reduced motion by viewer has detected."
+                          "Use a constant animation to transition because preferring reduced motion by viewer has detected.",
                         ),
                         (r = _e));
                       const o = document.getElementById(ke);
@@ -7179,16 +7172,16 @@ a {
                           return (
                             n.push(
                               `::view-transition-old(root){${a(
-                                we(e, { ...t, type: "outgoing" })
+                                we(e, { ...t, type: "outgoing" }),
                               )}}`,
                               `::view-transition-new(root){${a(
-                                we(e, { ...t, type: "incoming" })
-                              )}}`
+                                we(e, { ...t, type: "incoming" }),
+                              )}}`,
                             ),
                             n
                           );
                         })(r, { backward: c(), duration: u.duration }).forEach(
-                          (e) => i.sheet?.insertRule(e)
+                          (e) => i.sheet?.insertRule(e),
                         ));
                       const s = document.documentElement.classList;
                       s.add(Ee);
@@ -7206,7 +7199,7 @@ a {
                       } catch (e) {
                         (console.error(e), d(), f());
                       }
-                    }
+                    },
                   ),
                   !1)
                 );
@@ -7217,7 +7210,7 @@ a {
                 back: !0,
                 cond: (e) =>
                   e.index > 0 && !((e.fragment ?? 1) && n.fragmentIndex > 0),
-              })
+              }),
             ),
               e.on(
                 "next",
@@ -7225,7 +7218,7 @@ a {
                   cond: (t) =>
                     t.index + 1 < e.slides.length &&
                     !(n.fragmentIndex + 1 < n.fragments.length),
-                })
+                }),
               ),
               setTimeout(() => {
                 e.on(
@@ -7235,7 +7228,7 @@ a {
                       const n = e.slide();
                       return t.index !== n && ((t.back = t.index < n), !0);
                     },
-                  })
+                  }),
                 );
               }, 0),
               e.on("fragment", (e) => {
@@ -7298,8 +7291,8 @@ a {
               [[1, 0, 0], C()],
               [[1, 0, 0], Te],
               [[1, 1, 1], $],
-              [[1, 1, 0], Ae]
-            )
+              [[1, 1, 0], Ae],
+            ),
           );
         })();
       })();

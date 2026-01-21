@@ -275,7 +275,6 @@ Explain VNet peering in terms I'd understand coming from traditional networking.
 **Symptoms:**
 
 - `bicep: command not found`
-- `terraform: command not found`
 - `az: command not found`
 
 **Solutions:**
@@ -298,9 +297,6 @@ Explain VNet peering in terms I'd understand coming from traditional networking.
    # Azure CLI + Bicep
    curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
    az bicep install
-
-   # Terraform
-   sudo apt-get update && sudo apt-get install -y terraform
 
    # Graphviz (for diagrams)
    sudo apt-get install -y graphviz

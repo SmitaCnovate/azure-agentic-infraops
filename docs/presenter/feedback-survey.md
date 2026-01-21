@@ -74,7 +74,7 @@ Use these as discussion prompts for smaller groups.
 - [ ] Using GitHub Copilot for infrastructure development
 - [ ] Writing effective prompts for Copilot
 - [ ] Understanding Azure Well-Architected Framework alignment
-- [ ] Working with Bicep/Terraform templates
+- [ ] Working with Bicep templates
 - [ ] Other: **\*\*\*\***\_\_\_\_**\*\*\*\***
 
 **Q5. Before this workshop, how confident were you using AI-assisted tools
@@ -195,7 +195,6 @@ _Open text field_
 (Select all that apply)
 
 - [ ] Advanced Bicep patterns
-- [ ] Terraform with Copilot
 - [ ] CI/CD pipeline integration
 - [ ] Cost optimization with AI
 - [ ] Security and compliance automation

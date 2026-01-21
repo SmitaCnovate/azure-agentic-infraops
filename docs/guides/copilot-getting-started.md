@@ -30,7 +30,7 @@ GitHub Copilot is an AI coding assistant that helps you write code faster and wi
 | ✅ **Writing tests**       | Generate unit tests for Bicep modules           |
 | ✅ **Repetitive code**     | Create similar resource blocks, parameter files |
 | ✅ **Debugging**           | "Why does this Bicep template fail validation?" |
-| ✅ **Explaining code**     | "Explain what this Terraform module does"       |
+| ✅ **Explaining code**     | "Explain what this Bicep module does"           |
 | ✅ **Regular expressions** | Generate complex regex for validation           |
 | ✅ **Boilerplate**         | Scaffold new modules, scripts, README files     |
 

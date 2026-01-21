@@ -365,11 +365,6 @@ I'd recognize from the VMware world?
 What's the difference between Bicep and ARM templates? When would I use one vs the other?
 ```
 
-### If Participant Asks About Terraform
-
-> _"Great question. Terraform is another excellent IaC tool - we cover it in S02. Bicep is
-> Azure-native and sometimes has features before Terraform. Choose based on your team's needs."_
-
 ### If Deployment Fails
 
 Show the error to Copilot:

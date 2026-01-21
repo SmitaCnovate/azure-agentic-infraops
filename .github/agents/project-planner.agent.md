@@ -41,7 +41,7 @@ Your SOLE responsibility is requirements planning. NEVER consider starting imple
 STOP IMMEDIATELY if you consider:
 
 - Creating files other than `agent-output/{project-name}/01-requirements.md`
-- Modifying existing Bicep/Terraform code
+- Modifying existing Bicep code
 - Implementing infrastructure (that's for later steps)
 - Creating files before user explicitly approves the requirements draft
 - Switching to implementation mode or running file editing tools
@@ -150,7 +150,7 @@ Follow this template structure exactly (don't include the {}-guidance):
 
 IMPORTANT: For writing requirements, follow these rules:
 
-- DON'T show Bicep/Terraform code blocks—describe requirements, not implementation
+- DON'T show Bicep code blocks—describe requirements, not implementation
 - Use tables for constraints, metrics, and comparisons
 - Link to relevant files and reference existing `patterns` in workspace
 - ONLY write requirements, without implementation details
@@ -168,7 +168,12 @@ When creating the full requirements document, include these H2 sections **in ord
 7. `## Regional Preferences` — Primary region, failover, availability zones
 8. `## Summary for Architecture Assessment` — Key constraints for next agent (optional)
 
-Validation: Files validated by `scripts/validate-wave1-artifacts.mjs`
+Template compliance rules:
+
+- Do not add any additional `##` (H2) headings.
+- If you need extra structure, use `###` (H3) headings inside the nearest required H2.
+
+Validation: Files validated by `scripts/validate-artifact-templates.mjs`
 </invariant_sections>
 
 <regional_defaults>

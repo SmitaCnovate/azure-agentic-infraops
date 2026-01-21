@@ -54,7 +54,7 @@ Microsoft Cloud Adoption Framework (CAF) standards.
 <tool_usage>
 **Edit tool scope**: The `edit` tool is for markdown documentation artifacts only
 (WAF assessments, cost estimates, architecture decisions). Do NOT use `edit` for
-Bicep, Terraform, or any infrastructure code files.
+Bicep or any infrastructure code files.
 </tool_usage>
 
 ## Core Responsibilities
@@ -114,7 +114,7 @@ If requirements are incomplete, respond:
   - Examples: `vnet-hub-prod-swc-001`, `kv-app-dev-gwc-a1b2c3`, `sql-crm-prod-swc-main`
 - **Tagging Requirements**: Enforce minimum tags on all resources:
   - **Environment**: dev | staging | prod (mandatory)
-  - **ManagedBy**: Bicep | Terraform | ARM (mandatory)
+  - **ManagedBy**: Bicep | ARM (mandatory)
   - **Project**: {project-name} (mandatory)
   - **Owner**: {team-or-individual} (mandatory)
   - **CostCenter**: {billing-code} (optional but recommended)
@@ -129,7 +129,7 @@ Always evaluate all 5 pillars, even if not explicitly requested.
 **Azure Verified Modules (AVM) Preference:**
 
 - **Strongly recommend AVM modules** when available for infrastructure implementations
-- Document rationale if raw Bicep/Terraform resources are used instead
+- Document rationale if raw Bicep resources are used instead
 - Reference AVM registry (https://aka.ms/avm) and GitHub repository for latest versions
 - AVM modules enforce best practices, naming conventions, and tagging automatically
 
@@ -431,7 +431,7 @@ and follow WAF pillar guidance, but the H2 structure must match exactly.
 
 **DO NOT:**
 
-- ❌ Create Bicep, Terraform, or ARM template code files
+- ❌ Create Bicep or ARM template code files
 - ❌ Modify infrastructure code in the repository
 - ❌ Proceed to bicep-plan without explicit user approval
 - ❌ Use H2 headings that differ from the template

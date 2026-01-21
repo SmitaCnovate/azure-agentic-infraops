@@ -18,12 +18,12 @@ but an amplifier of it.
 
 ### What to Avoid
 
-| ❌ Don't Say                             | ✅ Say Instead                                   |
-| ---------------------------------------- | ------------------------------------------------ |
-| "Copilot writes code for you"            | "Copilot accelerates your workflow"              |
-| "You don't need to know Bicep/Terraform" | "Copilot helps you learn best practices faster"  |
-| "It's magic"                             | "It's pattern recognition from your context"     |
-| "It always gets it right"                | "It gives you a strong starting point to refine" |
+| ❌ Don't Say                   | ✅ Say Instead                                   |
+| ------------------------------ | ------------------------------------------------ |
+| "Copilot writes code for you"  | "Copilot accelerates your workflow"              |
+| "You don't need to know Bicep" | "Copilot helps you learn best practices faster"  |
+| "It's magic"                   | "It's pattern recognition from your context"     |
+| "It always gets it right"      | "It gives you a strong starting point to refine" |
 
 ## 📋 Demo Structure (30 Minutes)
 
@@ -64,8 +64,8 @@ but an amplifier of it.
 
 **Validation Steps**:
 
-1. **Syntax Check**: `bicep build main.bicep` or `terraform validate`
-2. **Security Scan**: Show no critical vulnerabilities (tfsec, Checkov)
+1. **Syntax Check**: `bicep build main.bicep`
+2. **Security Scan**: Show no critical vulnerabilities (Checkov)
 3. **Deployment**: `az deployment group create --what-if` to preview changes
 4. **Resource Verification**: Show resources in Azure Portal
 
@@ -88,7 +88,7 @@ but an amplifier of it.
 
 **Best For**: Busy executives, large group introductions
 
-**Use**: S01 (Bicep Baseline) or S02 (Terraform Baseline)
+**Use**: S01 (Bicep Baseline)
 
 **Focus**: Speed and quality—show a complete infrastructure in 10-12 minutes.
 
@@ -167,7 +167,6 @@ cd /workspaces/azure-agentic-infraops
 # F1 → "Dev Containers: Rebuild Container"
 
 # Verify tools
-terraform --version   # Should show 1.5+
 az --version          # Should show 2.50+
 bicep --version       # Should show 0.20+
 pwsh --version        # Should show 7+
@@ -186,17 +185,16 @@ pwsh --version        # Should show 7+
 
 ## 📚 Scenario Quick Reference
 
-| Scenario                  | Duration  | Best For           | Key Demo Points          |
-| ------------------------- | --------- | ------------------ | ------------------------ |
-| S01 - Bicep Baseline      | 15-20 min | Quick demos        | Fast IaC generation      |
-| S02 - Terraform Baseline  | 15-20 min | Multi-cloud teams  | Cross-platform patterns  |
-| S03 - Agentic Workflow | 30-45 min | Deep dives         | Full agent orchestration |
-| S04 - Documentation       | 10-15 min | Doc-heavy teams    | Automated README/ADR     |
-| S05 - Service Validation  | 10-15 min | Testing focus      | Validation scripts       |
-| S06 - Troubleshooting     | 15-20 min | Support teams      | Diagnostic assistance    |
-| S07 - SBOM Generator      | 15-20 min | Security focus     | Supply chain visibility  |
-| S08 - Diagrams as Code    | 10-15 min | Architecture teams | Visual documentation     |
-| S09 - Coding Agent        | 15-20 min | Async workflows    | Issue-to-PR automation   |
+| Scenario                 | Duration  | Best For           | Key Demo Points          |
+| ------------------------ | --------- | ------------------ | ------------------------ |
+| S01 - Bicep Baseline     | 15-20 min | Quick demos        | Fast IaC generation      |
+| S02 - Agentic Workflow   | 30-45 min | Deep dives         | Full agent orchestration |
+| S03 - Documentation      | 10-15 min | Doc-heavy teams    | Automated README/ADR     |
+| S04 - Service Validation | 10-15 min | Testing focus      | Validation scripts       |
+| S05 - Troubleshooting    | 15-20 min | Support teams      | Diagnostic assistance    |
+| S06 - SBOM Generator     | 15-20 min | Security focus     | Supply chain visibility  |
+| S07 - Diagrams as Code   | 10-15 min | Architecture teams | Visual documentation     |
+| S08 - Coding Agent       | 15-20 min | Async workflows    | Issue-to-PR automation   |
 
 ## 🎤 Presenter Tips
 

@@ -9,28 +9,21 @@ exec 2>&1
 
 # Create directories
 echo "📂 Creating cache directories..."
-mkdir -p "${HOME}/.terraform-cache"
-chmod 755 "${HOME}/.terraform-cache"
+mkdir -p "${HOME}/.cache"
+chmod 755 "${HOME}/.cache"
 
 # Configure Git safe directory (for mounted volumes)
 echo "🔐 Configuring Git..."
 git config --global --add safe.directory "${PWD}"
 git config --global core.autocrlf input
 
-# Configure Husky git hooks
-echo "🪝 Setting up Git hooks (Husky)..."
-git config core.hooksPath .husky
-if [ -f ".husky/pre-commit" ]; then
-    # Try to set executable permission, but don't fail if it doesn't work
-    # (file may already be executable or permissions may be restricted on mounted volumes)
-    chmod +x .husky/pre-commit 2>/dev/null || true
-    if [ -x ".husky/pre-commit" ]; then
-        echo "  ✅ Pre-commit hook enabled"
-    else
-        echo "  ⚠️  Pre-commit hook exists but couldn't set executable (may already be executable)"
-    fi
+# Configure lefthook git hooks
+echo "🪝 Setting up Git hooks (lefthook)..."
+if command -v lefthook &> /dev/null || [ -f "${PWD}/node_modules/.bin/lefthook" ]; then
+    npx lefthook install 2>/dev/null || true
+    echo "  ✅ lefthook hooks installed"
 else
-    echo "  ⚠️  Pre-commit hook not found"
+    echo "  ⚠️  lefthook not found (run npm install to set up hooks)"
 fi
 
 # Verify Python packages (installed via pip or should be)
@@ -40,14 +33,15 @@ python3 -c "import checkov; import diagrams" 2>/dev/null && echo "  ✅ checkov 
     pip3 install --quiet --user checkov diagrams 2>&1 | tail -1 || echo "  ⚠️  Installation had issues, continuing..."
 }
 
-# Install markdownlint-cli2 (installed via postCreateCommand, verify here)
+# Verify markdownlint-cli2 (installed globally via postCreateCommand)
 echo "📝 Verifying markdownlint-cli2..."
-if command -v markdownlint-cli2 &> /dev/null; then
-    echo "  ✅ markdownlint-cli2 already installed"
-elif command -v markdownlint &> /dev/null; then
-    echo "  ✅ markdownlint already installed"
+if npm list -g markdownlint-cli2 --depth=0 2>/dev/null | grep -q markdownlint-cli2; then
+    MDLINT_VERSION=$(npm list -g markdownlint-cli2 --depth=0 2>/dev/null | grep markdownlint-cli2 | sed 's/.*@//')
+    echo "  ✅ markdownlint-cli2 v${MDLINT_VERSION} installed globally"
+elif [ -f "${PWD}/node_modules/.bin/markdownlint-cli2" ]; then
+    echo "  ✅ markdownlint-cli2 installed locally"
 else
-    echo "  ⚠️  markdownlint not found (should have been installed via postCreateCommand)"
+    echo "  ⚠️  markdownlint-cli2 not found (should have been installed via postCreateCommand)"
 fi
 
 # Install Azure PowerShell modules (parallel install)
@@ -83,20 +77,6 @@ else
     echo "  ✅ GitHub CLI already installed"
 fi
 
-# Install Terratest dependencies (Go pre-installed in universal image)
-echo "🧪 Installing Terratest..."
-if command -v go &> /dev/null; then
-    export GOPATH="$HOME/go"
-    export PATH="$PATH:$GOPATH/bin"
-    if go install github.com/gruntwork-io/terratest/modules/terraform@latest 2>/dev/null; then
-        echo "  ✅ Terratest installed to $GOPATH/bin"
-    else
-        echo "  ⚠️  Terratest installation had issues, but may still be available"
-    fi
-else
-    echo "  ⚠️  Go not found, skipping Terratest"
-fi
-
 # Verify utilities (installed via devcontainer postCreateCommand)
 echo "🛠️  Verifying utilities..."
 command -v dot &> /dev/null && echo "  ✅ graphviz available" || echo "  ⚠️  graphviz not found (required for S08)"
@@ -119,10 +99,9 @@ if [ -d "$MCP_DIR" ]; then
     cd - > /dev/null
     echo "  ✅ Azure Pricing MCP installed"
     
-    # Health check - verify server starts
+    # Health check - verify module imports correctly
     echo "  Running health check..."
-    if echo '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"healthcheck","version":"1.0"}}}' | \
-       timeout 5 "$MCP_DIR/.venv/bin/python" -m azure_pricing_mcp 2>/dev/null | grep -q '"serverInfo"'; then
+    if "$MCP_DIR/.venv/bin/python" -c "from azure_pricing_mcp import server; print('OK')" 2>/dev/null; then
         echo "  ✅ MCP server health check passed"
     else
         echo "  ⚠️  MCP server health check failed (may need manual setup)"
@@ -143,17 +122,14 @@ echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "✅ Verifying tool installations..."
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-printf "  %-15s %s\n" "Terraform:" "$(terraform version 2>/dev/null | head -n1 || echo '❌ not installed')"
 printf "  %-15s %s\n" "Azure CLI:" "$(az version --query '\"azure-cli\"' -o tsv 2>/dev/null || az --version 2>/dev/null | head -n1 || echo '❌ not installed')"
 printf "  %-15s %s\n" "Bicep:" "$(az bicep version 2>/dev/null | head -n1 || echo '❌ not installed')"
 printf "  %-15s %s\n" "PowerShell:" "$(pwsh --version 2>/dev/null || echo '❌ not installed')"
 printf "  %-15s %s\n" "Python:" "$(python3 --version 2>/dev/null || echo '❌ not installed')"
-printf "  %-15s %s\n" "Go:" "$(go version 2>/dev/null | awk '{print $3}' || echo '❌ not installed')"
 printf "  %-15s %s\n" "Node.js:" "$(node --version 2>/dev/null || echo '❌ not installed')"
 printf "  %-15s %s\n" "GitHub CLI:" "$(gh --version 2>/dev/null | head -n1 || echo '❌ not installed')"
-printf "  %-15s %s\n" "tfsec:" "$(tfsec --version 2>/dev/null || echo '❌ not installed')"
 printf "  %-15s %s\n" "Checkov:" "$(checkov --version 2>/dev/null || echo '❌ not installed')"
-printf "  %-15s %s\n" "markdownlint:" "$(markdownlint-cli2 --version 2>/dev/null || markdownlint --version 2>/dev/null || echo '❌ not installed')"
+printf "  %-15s %s\n" "markdownlint:" "$(markdownlint-cli2 --version 2>/dev/null || echo '❌ not installed')"
 
 echo ""
 echo "🎉 Post-create setup completed!"

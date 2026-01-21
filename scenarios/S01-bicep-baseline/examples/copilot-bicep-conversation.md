@@ -30,12 +30,12 @@ secure network and storage foundation for a new application. Deadline in 2 weeks
 
 Bicep is Azure's domain-specific language (DSL) for deploying Azure resources. Think of it like this:
 
-| VMware Concept | Azure Equivalent |
-|----------------|------------------|
-| vSphere templates | ARM/Bicep templates |
-| PowerCLI scripts | Azure CLI / PowerShell |
-| vCenter configuration | Azure Resource Manager |
-| ESXi host | Azure region/datacenter |
+| VMware Concept        | Azure Equivalent        |
+| --------------------- | ----------------------- |
+| vSphere templates     | ARM/Bicep templates     |
+| PowerCLI scripts      | Azure CLI / PowerShell  |
+| vCenter configuration | Azure Resource Manager  |
+| ESXi host             | Azure region/datacenter |
 
 **Why Bicep over ARM Templates?**
 
@@ -66,15 +66,11 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
 ```
 
 **When to Use Bicep:**
+
 - ✅ Azure-only deployments
 - ✅ You want native Azure integration
 - ✅ Team is learning IaC (cleaner syntax)
 - ✅ You need latest Azure features first
-
-**When to Consider Terraform Instead:**
-- Multi-cloud (Azure + AWS + GCP)
-- Existing Terraform investment
-- Team already knows HCL
 
 For your situation (Azure-only, new to IaC), **Bicep is the right choice**.
 
@@ -114,15 +110,16 @@ For your situation (Azure-only, new to IaC), **Bicep is the right choice**.
 
 **Key Differences from VMware:**
 
-| Aspect | VMware | Azure |
-|--------|--------|-------|
-| **Physical location** | Cluster/Host | Region (e.g., East US, West Europe) |
-| **Logical grouping** | Folders | Resource Groups |
-| **Networking** | vSwitches, Port Groups | VNets, Subnets |
-| **Storage** | Datastores | Storage Accounts |
-| **Templates** | VM Templates | Bicep/ARM Templates |
+| Aspect                | VMware                 | Azure                               |
+| --------------------- | ---------------------- | ----------------------------------- |
+| **Physical location** | Cluster/Host           | Region (e.g., East US, West Europe) |
+| **Logical grouping**  | Folders                | Resource Groups                     |
+| **Networking**        | vSwitches, Port Groups | VNets, Subnets                      |
+| **Storage**           | Datastores             | Storage Accounts                    |
+| **Templates**         | VM Templates           | Bicep/ARM Templates                 |
 
 **When You Deploy Bicep:**
+
 1. Azure Resource Manager receives your template
 2. It validates the configuration
 3. It provisions resources in the specified region
@@ -146,12 +143,12 @@ Would you like to understand the network architecture before we start building?
 
 **VMware to Azure Networking Translation:**
 
-| VMware | Azure | Purpose |
-|--------|-------|---------|
-| Distributed Switch | Virtual Network (VNet) | Network isolation boundary |
-| Port Group | Subnet | Traffic segmentation |
-| NSX Firewall Rules | Network Security Group (NSG) | Layer 4 filtering |
-| VLAN tagging | Subnet addressing | Logical separation |
+| VMware             | Azure                        | Purpose                    |
+| ------------------ | ---------------------------- | -------------------------- |
+| Distributed Switch | Virtual Network (VNet)       | Network isolation boundary |
+| Port Group         | Subnet                       | Traffic segmentation       |
+| NSX Firewall Rules | Network Security Group (NSG) | Layer 4 filtering          |
+| VLAN tagging       | Subnet addressing            | Logical separation         |
 
 **Your Three-Tier Architecture in Azure:**
 
@@ -241,12 +238,14 @@ app-tier (10.0.2.0/24)                    data-tier (10.0.3.0/24)
 4. **Send traffic to a Network Virtual Appliance (NVA)**
 
 **For Your Scenario:**
+
 - Subnets can communicate by default ✅
 - NSGs control WHAT traffic is allowed ✅
 - No custom route tables needed for basic 3-tier ✅
 
 **Security Approach:**
 Instead of routing, you'll use NSGs to control traffic:
+
 - Web tier → App tier: Allowed (specific ports)
 - Web tier → Data tier: **Blocked** (not directly)
 - App tier → Data tier: Allowed (database ports)
@@ -294,15 +293,16 @@ param tags object = {
 
 **What Each Part Means:**
 
-| Syntax | Purpose |
-|--------|---------|
-| `@description()` | Documentation - shows in Azure Portal |
-| `@allowed([])` | Restricts valid values (like an enum) |
-| `param name type` | Declares the parameter with its type |
-| `= defaultValue` | Default if not provided at deployment |
-| `resourceGroup().location` | Built-in function - gets RG's region |
+| Syntax                     | Purpose                               |
+| -------------------------- | ------------------------------------- |
+| `@description()`           | Documentation - shows in Azure Portal |
+| `@allowed([])`             | Restricts valid values (like an enum) |
+| `param name type`          | Declares the parameter with its type  |
+| `= defaultValue`           | Default if not provided at deployment |
+| `resourceGroup().location` | Built-in function - gets RG's region  |
 
 **Why This Matters:**
+
 - Same template works for dev, staging, prod
 - Parameters are validated BEFORE deployment
 - Descriptions help your team understand the template
@@ -367,11 +367,13 @@ resource virtualNetwork 'Microsoft.Network/virtualNetworks@2023-05-01' = {
 
 **The `properties` Object:**
 Every Azure resource has properties specific to its type. For VNets:
+
 - `addressSpace`: The CIDR blocks your VNet owns
 - `subnets`: The subdivisions within your VNet
 
 **Naming Convention:**
 I used `vnet-${environment}-meridian`:
+
 - `vnet-` prefix identifies resource type
 - `${environment}` is string interpolation (like VMware's $variable)
 - Result: `vnet-dev-meridian`, `vnet-prod-meridian`
@@ -445,6 +447,7 @@ resource nsgWeb 'Microsoft.Network/networkSecurityGroups@2023-05-01' = {
 3. If no rule matches, default behavior applies
 
 **The Rule Flow:**
+
 ```
 Inbound Traffic → Port 80?  → YES → Allow (priority 100)
                     │
@@ -478,6 +481,7 @@ subnets: [
 ```
 
 **The Key Pattern:**
+
 - Create NSG as separate resource
 - Reference it by `.id` in the subnet
 - Bicep handles the dependency automatically
@@ -570,6 +574,7 @@ resource nsgData 'Microsoft.Network/networkSecurityGroups@2023-05-01' = {
 ```
 
 **Security Model:**
+
 ```
 Internet → Web Tier (80, 443)
               │
@@ -599,15 +604,16 @@ This is **defense in depth** - if web tier is compromised, attacker can't reach 
 
 **VMware vs Azure Storage:**
 
-| VMware | Azure | Purpose |
-|--------|-------|---------|
-| VMFS Datastore | Managed Disks | VM operating system disks |
-| NFS Datastore | Azure Files (SMB/NFS) | Shared file storage |
-| vSAN Object Storage | Azure Blob Storage | Object/binary data |
-| — | Azure Storage Account | Container for all storage types |
+| VMware              | Azure                 | Purpose                         |
+| ------------------- | --------------------- | ------------------------------- |
+| VMFS Datastore      | Managed Disks         | VM operating system disks       |
+| NFS Datastore       | Azure Files (SMB/NFS) | Shared file storage             |
+| vSAN Object Storage | Azure Blob Storage    | Object/binary data              |
+| —                   | Azure Storage Account | Container for all storage types |
 
 **Azure Storage Account:**
 Think of it as a "storage namespace" that can contain:
+
 - Blob containers (like S3 buckets)
 - File shares (like NFS/SMB shares)
 - Queues (message queuing)
@@ -615,6 +621,7 @@ Think of it as a "storage namespace" that can contain:
 
 **For Your Application:**
 You'll likely need Blob Storage for:
+
 - Application logs
 - User uploads
 - Backup data
@@ -635,13 +642,13 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   kind: 'StorageV2'       // General-purpose v2 (most features)
   properties: {
     accessTier: 'Hot'     // Optimized for frequent access
-    
+
     // Security settings - CRITICAL for production
     supportsHttpsTrafficOnly: true       // No unencrypted HTTP
     minimumTlsVersion: 'TLS1_2'          // Modern encryption only
     allowBlobPublicAccess: false         // No anonymous access
     publicNetworkAccess: 'Disabled'      // Only accessible via private endpoint
-    
+
     // Encryption - data at rest
     encryption: {
       services: {
@@ -656,12 +663,12 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
 
 **Understanding the Key Properties:**
 
-| Property | Value | Why It Matters |
-|----------|-------|---------------|
-| `supportsHttpsTrafficOnly` | true | All traffic encrypted in transit |
-| `minimumTlsVersion` | TLS1_2 | No outdated encryption protocols |
-| `allowBlobPublicAccess` | false | No anonymous access to blobs |
-| `publicNetworkAccess` | Disabled | Must use private endpoint |
+| Property                   | Value    | Why It Matters                   |
+| -------------------------- | -------- | -------------------------------- |
+| `supportsHttpsTrafficOnly` | true     | All traffic encrypted in transit |
+| `minimumTlsVersion`        | TLS1_2   | No outdated encryption protocols |
+| `allowBlobPublicAccess`    | false    | No anonymous access to blobs     |
+| `publicNetworkAccess`      | Disabled | Must use private endpoint        |
 
 ---
 
@@ -672,11 +679,13 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
 **Copilot**: Excellent catch! You have two options for secure access:
 
 **Option 1: Private Endpoint (Recommended)**
+
 - Creates a private IP in your VNet for the storage account
 - Traffic stays on Microsoft's network
 - Most secure option
 
 **Option 2: Service Endpoint**
+
 - Traffic goes over internet but is authenticated
 - Simpler to set up but less secure
 
@@ -706,6 +715,7 @@ resource privateEndpoint 'Microsoft.Network/privateEndpoints@2023-05-01' = {
 ```
 
 **What This Creates:**
+
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │  data-tier subnet (10.0.3.0/24)                             │
@@ -759,13 +769,14 @@ resource blobServices 'Microsoft.Storage/storageAccounts/blobServices@2023-01-01
 
 **Data Protection Layers:**
 
-| Feature | What It Does | Recovery Time |
-|---------|--------------|---------------|
-| Soft Delete | Deleted blobs recoverable | Up to 365 days |
-| Versioning | Keeps all blob versions | Forever (until deleted) |
-| Change Feed | Logs all changes | For audit/compliance |
+| Feature     | What It Does              | Recovery Time           |
+| ----------- | ------------------------- | ----------------------- |
+| Soft Delete | Deleted blobs recoverable | Up to 365 days          |
+| Versioning  | Keeps all blob versions   | Forever (until deleted) |
+| Change Feed | Logs all changes          | For audit/compliance    |
 
 **Comparison to VMware:**
+
 - Soft Delete ≈ Recycle Bin
 - Versioning ≈ Snapshots (but automatic)
 - Change Feed ≈ Storage audit log
@@ -960,6 +971,7 @@ az deployment group create \
 **Copilot**: Great question about team workflow! Here are the best practices:
 
 **1. Use Git for Version Control**
+
 ```
 infrastructure/
 ├── .gitignore
@@ -971,6 +983,7 @@ infrastructure/
 Store your Bicep in Git - every change is tracked, reviewed, and auditable.
 
 **2. Pull Request Workflow**
+
 ```
 feature-branch → Pull Request → Review → Merge to main → Auto-deploy
 ```
@@ -980,6 +993,7 @@ feature-branch → Pull Request → Review → Merge to main → Auto-deploy
 - Nobody deploys directly from their laptop
 
 **3. What-If Before Deployment**
+
 ```bash
 # See what WOULD change before actually deploying
 az deployment group what-if \
@@ -991,6 +1005,7 @@ az deployment group what-if \
 Shows you: Create, Modify, Delete, No change
 
 **4. Environment Progression**
+
 ```
 dev → staging → prod
  │       │        │
@@ -1002,6 +1017,7 @@ dev → staging → prod
 - After validation, deploy to prod
 
 **5. Tagging and Audit**
+
 ```bicep
 var tags = {
   Environment: environment
@@ -1025,17 +1041,17 @@ Every resource shows who/what/when/where it was deployed.
 
 **Concepts Mastered:**
 
-| Topic | Key Takeaway |
-|-------|--------------|
-| **Bicep vs ARM** | Bicep is cleaner syntax that compiles to ARM JSON |
+| Topic                    | Key Takeaway                                                            |
+| ------------------------ | ----------------------------------------------------------------------- |
+| **Bicep vs ARM**         | Bicep is cleaner syntax that compiles to ARM JSON                       |
 | **Azure Resource Model** | Subscription → Resource Group → Resources (like vCenter → Folder → VMs) |
-| **VNets & Subnets** | VNet = Distributed Switch, Subnet = Port Group |
-| **NSGs** | Layer 4 firewall rules, attached to subnets |
-| **Storage Accounts** | Container for Blob, File, Queue, Table storage |
-| **Private Endpoints** | Brings PaaS services into your VNet |
-| **Parameters** | Variables set at deployment time |
-| **Outputs** | Return values for automation and module linking |
-| **Modules** | Reusable, testable components |
+| **VNets & Subnets**      | VNet = Distributed Switch, Subnet = Port Group                          |
+| **NSGs**                 | Layer 4 firewall rules, attached to subnets                             |
+| **Storage Accounts**     | Container for Blob, File, Queue, Table storage                          |
+| **Private Endpoints**    | Brings PaaS services into your VNet                                     |
+| **Parameters**           | Variables set at deployment time                                        |
+| **Outputs**              | Return values for automation and module linking                         |
+| **Modules**              | Reusable, testable components                                           |
 
 **Security Best Practices Applied:**
 
@@ -1229,14 +1245,14 @@ output privateBlobEndpoint string = privateEndpoint.properties.customDnsConfigs[
 
 ## Value Delivered
 
-| Metric | Traditional Approach | Conversation Approach |
-|--------|---------------------|----------------------|
-| **Time to first deployment** | 45-60 minutes | 30 minutes |
-| **Future deployment time** | 30-45 minutes | 10-15 minutes |
-| **Errors encountered** | 3-5 (debugging) | 0-1 |
-| **Understanding gained** | Minimal | Complete |
-| **Can modify independently** | Limited | Yes |
-| **Can teach team** | No | Yes |
+| Metric                       | Traditional Approach | Conversation Approach |
+| ---------------------------- | -------------------- | --------------------- |
+| **Time to first deployment** | 45-60 minutes        | 30 minutes            |
+| **Future deployment time**   | 30-45 minutes        | 10-15 minutes         |
+| **Errors encountered**       | 3-5 (debugging)      | 0-1                   |
+| **Understanding gained**     | Minimal              | Complete              |
+| **Can modify independently** | Limited              | Yes                   |
+| **Can teach team**           | No                   | Yes                   |
 
 **Key Insight**: Elena didn't just get working templates - she learned Azure networking, storage
 security, and Bicep patterns. Her next project will take 60% less time because she understands
@@ -1244,5 +1260,5 @@ the concepts.
 
 ---
 
-*This conversation demonstrates using GitHub Copilot as a learning partner for Azure IaC.
-The goal is understanding, not just code generation.*
+_This conversation demonstrates using GitHub Copilot as a learning partner for Azure IaC.
+The goal is understanding, not just code generation._

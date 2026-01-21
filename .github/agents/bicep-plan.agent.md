@@ -52,7 +52,7 @@ Plans are written to **agent-output/{project-name}/04-implementation-plan.md** i
 
 <tool_usage>
 **Edit tool scope**: The `edit` tool is for markdown documentation artifacts only
-(implementation plans, governance constraints). Do NOT use `edit` for Bicep, Terraform,
+(implementation plans, governance constraints). Do NOT use `edit` for Bicep
 or any infrastructure code files—that is the responsibility of `bicep-implement` agent.
 </tool_usage>
 
@@ -186,7 +186,6 @@ This step prevents deployment failures by identifying policy-enforced requiremen
 3. **Identify blocking policies for planned resources:**
 
    For each resource type in the plan, check for policies affecting:
-
    - Allowed locations/regions
    - Required tags
    - Allowed SKUs
@@ -203,40 +202,9 @@ This step prevents deployment failures by identifying policy-enforced requiremen
 
 **Markdown format (`agent-output/{project-name}/04-governance-constraints.md`):**
 
-```markdown
-# Governance Constraints
-
-_Discovered: {YYYY-MM-DD HH:MM UTC}_
-_Subscription: {subscription-name} ({subscription-id})_
-
-## Active Policy Assignments
-
-| Policy Name                 | Effect | Scope          | Impact on Plan                  |
-| --------------------------- | ------ | -------------- | ------------------------------- |
-| Require TLS 1.2             | Deny   | Subscription   | All resources must use TLS 1.2+ |
-| Azure AD-only for SQL       | Deny   | Resource Group | SQL Server must use AAD auth    |
-| Allowed locations - EU only | Deny   | Subscription   | Only EU regions permitted       |
-
-## Resource-Specific Constraints
-
-### Storage Accounts
-
-- ❌ Public blob access: Denied by policy
-- ✅ HTTPS only: Required
-- ⚠️ Shared key access: May be denied (check org policy)
-
-### SQL Server
-
-- ❌ SQL authentication: Denied by policy
-- ✅ Azure AD-only authentication: Required
-- ✅ TLS 1.2: Required
-
-## Recommendations
-
-1. Use `allowSharedKeyAccess: false` for storage accounts
-2. Use `azureADOnlyAuthentication: true` for SQL servers
-3. Target `swedencentral` or `germanywestcentral` regions only
-```
+- Use the repo template (authoritative): `../templates/04-governance-constraints.template.md`
+- Keep H2 headings aligned to the template (do not add extra `##` headings)
+- Add any additional structure as `###` under the appropriate H2
 
 **JSON format (`agent-output/{project-name}/04-governance-constraints.json`):**
 
@@ -281,17 +249,25 @@ After governance discovery:
 1. **Reference constraints in plan header:**
 
    ```markdown
-   ## Governance Alignment
 
-   This plan complies with governance constraints discovered in
-   `agent-output/{project-name}/04-governance-constraints.md`.
-
-   Key constraints applied:
-
-   - Azure AD-only auth for SQL (policy: "Azure AD-only for SQL")
-   - No public blob access (policy: "Deny public blob access")
-   - TLS 1.2+ required (policy: "Require TLS 1.2")
    ```
+
+### Governance Alignment
+
+Place this as an H3 subsection inside the `## Overview` section.
+
+This plan complies with governance constraints discovered in
+`agent-output/{project-name}/04-governance-constraints.md`.
+
+Key constraints applied:
+
+- Azure AD-only auth for SQL (policy: "Azure AD-only for SQL")
+- No public blob access (policy: "Deny public blob access")
+- TLS 1.2+ required (policy: "Require TLS 1.2")
+
+  ```
+
+  ```
 
 2. **Mark compliant configurations in resource specs:**
 
@@ -322,13 +298,18 @@ After governance discovery:
 - Include all invariant sections: Overview, Resource Inventory, Module Structure, Implementation Tasks, etc.
 - See template for detailed section guidance
 
+Template compliance rules:
+
+- Do not add any additional `##` (H2) headings beyond the template.
+- If you need more structure, use `###` (H3) headings inside the nearest required H2.
+
 ## Implementation plan key elements
 
-## Resources
+Within `## Implementation Tasks`, add the resource/module details under H3 sections.
 
-<!-- Repeat this block for each resource -->
+<!-- Repeat this block for each module or resource task -->
 
-### {resourceName}
+### {taskName}
 
 \\\yaml
 name: <resourceName>
@@ -371,7 +352,7 @@ docs: {URL to Microsoft Docs}
 avm: {module repo URL or commit} # if applicable
 \\\
 
-# Cost Estimation
+### Cost Estimation
 
 **Use Azure Pricing MCP tools for real-time pricing data:**
 

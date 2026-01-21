@@ -12,7 +12,7 @@
 Dev Containers use Docker to create a full-featured development environment inside a container.
 When you open this repository in a Dev Container:
 
-- All required tools are pre-installed (Azure CLI, Bicep, Terraform, PowerShell 7)
+- All required tools are pre-installed (Azure CLI, Bicep, PowerShell 7)
 - VS Code extensions are automatically configured
 - Git credentials are shared from your host machine
 - The environment matches what other team members use
@@ -32,7 +32,6 @@ When you open this repository in a Dev Container:
 │  ┌───────────────────────▼───────────────────────────────┐  │
 │  │  Docker Container (Ubuntu 24.04)                      │  │
 │  │  ├── Azure CLI + Bicep                                │  │
-│  │  ├── Terraform + tfsec                                │  │
 │  │  ├── PowerShell 7+                                    │  │
 │  │  ├── Python 3.12 + diagrams                           │  │
 │  │  ├── Node.js + markdownlint                           │  │
@@ -132,7 +131,6 @@ You need Docker running on your machine. Choose one of these options:
 1. **Install [VS Code](https://code.visualstudio.com/)** if not already installed
 
 2. **Install the Dev Containers extension**:
-
    - Open VS Code
    - Press `Ctrl+Shift+X` to open Extensions
    - Search for "Dev Containers"
@@ -161,7 +159,6 @@ You need Docker running on your machine. Choose one of these options:
    ```
 
 2. **Open in Dev Container**:
-
    - Press `F1` to open Command Palette
    - Type "Dev Containers: Reopen in Container"
    - Press Enter
@@ -295,23 +292,19 @@ The `.devcontainer/devcontainer.json` configures:
 
 ### Pre-installed Tools
 
-| Tool         | Version | Purpose                     |
-| ------------ | ------- | --------------------------- |
-| Azure CLI    | Latest  | Azure resource management   |
-| Bicep CLI    | Latest  | Infrastructure as Code      |
-| Terraform    | Latest  | Multi-cloud IaC             |
-| tfsec        | Latest  | Terraform security scanning |
-| PowerShell 7 | Latest  | Automation scripts          |
-| Python 3.12  | 3.12.x  | Diagrams, scripts           |
-| Node.js      | LTS     | markdownlint, npm scripts   |
-| Go           | Latest  | Tool development            |
-| Graphviz     | Latest  | Diagram rendering           |
+| Tool         | Version | Purpose                   |
+| ------------ | ------- | ------------------------- |
+| Azure CLI    | Latest  | Azure resource management |
+| Bicep CLI    | Latest  | Infrastructure as Code    |
+| PowerShell 7 | Latest  | Automation scripts        |
+| Python 3.12  | 3.12.x  | Diagrams, scripts         |
+| Node.js      | LTS     | markdownlint, npm scripts |
+| Graphviz     | Latest  | Diagram rendering         |
 
 ### VS Code Extensions (Auto-installed)
 
 - GitHub Copilot & Copilot Chat
 - Azure extensions (Bicep, Resource Groups, Container Apps)
-- Terraform extension
 - PowerShell extension
 - Markdown preview and linting
 - Git and GitHub integration
@@ -342,7 +335,6 @@ The container automatically:
    ```
 
 2. **Clear Docker cache and rebuild**:
-
    - Press `F1` → "Dev Containers: Rebuild Container Without Cache"
 
 3. **Check disk space**:
@@ -401,11 +393,9 @@ The container automatically:
 **Solutions**:
 
 1. **Use WSL 2 file system** (Windows):
-
    - Store your code in `\\wsl$\Ubuntu\home\user\` instead of `/mnt/c/`
 
 2. **Clone to container volume**:
-
    - Press `F1` → "Dev Containers: Clone Repository in Container Volume"
 
 3. **Exclude unnecessary folders** from file watching in VS Code settings
@@ -435,7 +425,6 @@ If you cannot use Docker, install tools manually:
    code --install-extension github.copilot
    code --install-extension github.copilot-chat
    code --install-extension ms-azuretools.vscode-bicep
-   code --install-extension hashicorp.terraform
    code --install-extension ms-vscode.powershell
    ```
 
@@ -458,8 +447,8 @@ Add tools to your container by modifying `.devcontainer/devcontainer.json`:
 {
   "features": {
     "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
-    "ghcr.io/devcontainers/features/github-cli:1": {}
-  }
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+  },
 }
 ```
 
@@ -473,8 +462,8 @@ Set environment variables in `.devcontainer/devcontainer.json`:
 {
   "remoteEnv": {
     "AZURE_DEFAULTS_LOCATION": "swedencentral",
-    "MY_CUSTOM_VAR": "value"
-  }
+    "MY_CUSTOM_VAR": "value",
+  },
 }
 ```
 

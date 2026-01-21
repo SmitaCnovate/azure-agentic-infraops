@@ -4,7 +4,7 @@
   "description": "Agentic InfraOps - Azure infrastructure engineered by agents. Verified. Well-Architected. Deployable.",
   "private": true,
   "scripts": {
-    "prepare": "husky",
+    "prepare": "lefthook install",
     "lint:md": "markdownlint-cli2 '**/*.md' '#node_modules'",
     "lint:md:fix": "markdownlint-cli2 --fix '**/*.md' '#node_modules'",
     "lint:cost-estimate-templates": "node scripts/validate-cost-estimate-templates.mjs",
@@ -13,7 +13,7 @@
   "devDependencies": {
     "@commitlint/cli": "^19.0.0",
     "@commitlint/config-conventional": "^19.0.0",
-    "husky": "^9.0.0",
+    "lefthook": "^1.6.0",
     "markdownlint-cli2": "^0.17.0"
   },
   "repository": {
@@ -23,7 +23,6 @@
   "keywords": [
     "azure",
     "bicep",
-    "terraform",
     "github-copilot",
     "infrastructure-as-code",
     "agents",

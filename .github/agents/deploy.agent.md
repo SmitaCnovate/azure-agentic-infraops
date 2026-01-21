@@ -133,6 +133,12 @@ After successful deployment, create:
 
 **Template**: Use [`../templates/06-deployment-summary.template.md`](../templates/06-deployment-summary.template.md)
 
+Template compliance rules:
+
+- Keep the template H2 headings exactly and in order.
+- Do not add any additional `##` (H2) headings.
+- If you need extra structure, use `###` (H3) headings inside the nearest required H2.
+
 Include:
 
 - Deployment timestamp and duration

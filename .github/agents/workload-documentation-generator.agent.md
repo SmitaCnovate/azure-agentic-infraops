@@ -121,13 +121,13 @@ Extract from Bicep templates:
 | Storage    | X     |
 | Networking | X     |
 
-## Resources
+## Resource Listing
 
 | Name   | Type   | SKU   | Location |
 | ------ | ------ | ----- | -------- |
 | {name} | {type} | {sku} | {region} |
 
-## Dependencies
+### Dependencies
 ```
 
 ---
@@ -274,3 +274,9 @@ Before finalizing documentation:
 - [ ] Regional choices documented with rationale
 - [ ] Dependencies clearly mapped
 - [ ] Document index complete and accurate
+
+## Template Compliance (Non-Negotiable)
+
+- For each output file, keep the template H2 headings exactly and in order.
+- Do not add additional `##` (H2) headings beyond the template.
+- Put any extra detail under `###` (H3) headings within the nearest required H2.

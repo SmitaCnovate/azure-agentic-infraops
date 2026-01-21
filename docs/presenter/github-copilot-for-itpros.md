@@ -131,7 +131,7 @@ For IT Pros, start with Individual to prove value, then move to Business for tea
 | If you write...    | Copilot helps you...        |
 | ------------------ | --------------------------- |
 | PowerShell scripts | Generate, debug, optimize   |
-| Bicep/Terraform    | Create, validate, document  |
+| Bicep              | Create, validate, document  |
 | YAML pipelines     | Build CI/CD workflows       |
 | Documentation      | Auto-generate from code     |
 | KQL queries        | Write Log Analytics queries |

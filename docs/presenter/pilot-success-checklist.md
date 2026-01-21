@@ -17,7 +17,7 @@
 ### Baseline Metrics Captured
 
 - [ ] **Current task timing documented** - How long do these tasks take today?
-  - [ ] IaC development (Bicep/Terraform creation)
+  - [ ] IaC development (Bicep creation)
   - [ ] PowerShell/Bash scripting
   - [ ] Troubleshooting time (average per incident)
   - [ ] Documentation time (per document/page)

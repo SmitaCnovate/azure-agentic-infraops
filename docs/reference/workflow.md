@@ -339,7 +339,7 @@ Implementer: [Executes deployment to Azure]
   - 💰 Uses Azure Pricing MCP for SKU pricing context
   - 📊 Can invoke diagram-generator for visualizations (Step 3)
   - 📝 Can invoke adr-generator for decisions (Step 3)
-- **Limitations**: ❌ Cannot create or edit Bicep/Terraform code files
+- **Limitations**: ❌ Cannot create or edit Bicep code files
 - **Documentation**: Creates `02-architecture-assessment.md` only (cost estimates in Step 3)
 
 ### diagram-generator

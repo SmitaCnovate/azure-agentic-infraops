@@ -40,21 +40,7 @@ But today, she's the student—learning Azure IaC for the first time."
 
 ---
 
-### Jordan Martinez (S02 - Terraform Baseline)
-
-> _"Every team does infrastructure differently. My job is to bring order to the chaos."_
-
-- **Background**: Multi-cloud experience, platform engineering focus
-- **Motivation**: Standardize infrastructure patterns across 15 teams
-- **Pain Point**: AWS-centric tooling, need Azure parity
-- **Success Metric**: Reusable modules adopted by all teams
-
-**Demo Hook**: "Jordan isn't choosing between clouds—they're unifying them.
-Same workflow, same quality, whether it's AWS or Azure."
-
----
-
-### Jennifer Chen (S03 - Agentic Workflow)
+### Jennifer Chen (S02 - Agentic Workflow)
 
 > _"My clients pay for architecture, not typing. Every hour I spend on boilerplate
 > is an hour I'm not designing solutions."_

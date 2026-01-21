@@ -26,15 +26,14 @@ These measurements come from the repository's documented scenarios (S01-S11):
 | Scenario                  | Manual Time | With Copilot | Time Saved    | Savings % |
 | ------------------------- | ----------- | ------------ | ------------- | --------- |
 | S01 - Bicep Baseline      | 4-6 hours   | 30-45 min    | 3.5-5.5 hours | 85-90%    |
-| S02 - Terraform Baseline  | 4-6 hours   | 30-45 min    | 3.5-5.5 hours | 85-90%    |
-| S03 - Agentic Workflow    | 18 hours    | 45 min       | 17.25 hours   | 96%       |
-| S04 - E-Commerce Platform | 24 hours    | 60 min       | 23 hours      | 96%       |
-| S05 - Documentation Gen   | 20 hours    | 90 min       | 18.5 hours    | 93%       |
-| S06 - Service Validation  | 4-6 hours   | 30 min       | 3.5-5.5 hours | 85-90%    |
-| S07 - Troubleshooting     | 30 hours    | 5 hours      | 25 hours      | 83%       |
-| S08 - SBOM Generator      | 6 hours     | 75 min       | 4.75 hours    | 79%       |
-| S09 - Diagrams as Code    | 45 min      | 20 min       | 25 min        | 56%       |
-| S10 - Coding Agent        | 8+ hours    | 30 min       | 7.5+ hours    | 94%       |
+| S02 - Agentic Workflow    | 18 hours    | 45 min       | 17.25 hours   | 96%       |
+| S03 - E-Commerce Platform | 24 hours    | 60 min       | 23 hours      | 96%       |
+| S04 - Documentation Gen   | 20 hours    | 90 min       | 18.5 hours    | 93%       |
+| S05 - Service Validation  | 4-6 hours   | 30 min       | 3.5-5.5 hours | 85-90%    |
+| S06 - Troubleshooting     | 30 hours    | 5 hours      | 25 hours      | 83%       |
+| S07 - SBOM Generator      | 6 hours     | 75 min       | 4.75 hours    | 79%       |
+| S08 - Diagrams as Code    | 45 min      | 20 min       | 25 min        | 56%       |
+| S09 - Coding Agent        | 8+ hours    | 30 min       | 7.5+ hours    | 94%       |
 
 📖 **Methodology**: See [Time Savings Evidence](time-savings-evidence.md) for measurement details.
 
@@ -58,7 +57,7 @@ _Based on research, IT Pros typically spend their time as follows. Adjust percen
 
 | Task Category                             | Industry Avg | Your Team % | Hours/Month (per person) |
 | ----------------------------------------- | ------------ | ----------- | ------------------------ |
-| IaC Development (Bicep, Terraform, ARM)   | 25%          | **\_**%     | **\_** hrs               |
+| IaC Development (Bicep, ARM)              | 25%          | **\_**%     | **\_** hrs               |
 | Scripting & Automation (PowerShell, Bash) | 15%          | **\_**%     | **\_** hrs               |
 | Troubleshooting & Debugging               | 20%          | **\_**%     | **\_** hrs               |
 | Documentation                             | 15%          | **\_**%     | **\_** hrs               |

@@ -20,7 +20,7 @@ infrastructure. Combines GitHub Copilot with custom agents for structured workfl
 
 ### AVM (Azure Verified Modules)
 
-Microsoft's official library of pre-built, tested Bicep/Terraform modules that follow Azure best
+Microsoft's official library of pre-built, tested Bicep modules that follow Azure best
 practices. Using AVM modules ensures policy compliance and reduces custom code.
 
 📁 **See**: [ADR-003 AVM-First Approach](adr/ADR-003-avm-first-approach.md)
@@ -66,7 +66,7 @@ A specialized AI assistant defined in `.github/agents/` that focuses on specific
 ### Dev Container
 
 A Docker-based development environment defined in `.devcontainer/`. Provides consistent tooling
-(Azure CLI, Bicep, Terraform, PowerShell) across all machines.
+(Azure CLI, Bicep, PowerShell) across all machines.
 
 🔗 **External**: [VS Code Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers)
 
@@ -90,7 +90,7 @@ and "spoke" VNets contain workloads. Spokes peer with the hub for connectivity.
 
 ### IaC (Infrastructure as Code)
 
-Practice of managing infrastructure through code files (Bicep, Terraform, ARM) rather than manual
+Practice of managing infrastructure through code files (Bicep, ARM) rather than manual
 portal clicks. Enables version control, automation, and repeatability.
 
 ---
@@ -161,12 +161,10 @@ for Agentic InfraOps methodology.
 
 ## T
 
-### Terraform
+### Tags (Azure Resource Tags)
 
-HashiCorp's multi-cloud IaC tool using HCL (HashiCorp Configuration Language). S02 scenario
-demonstrates Terraform with Azure.
-
-🔗 **External**: [Terraform Azure Provider](https://registry.terraform.io/providers/hashicorp/azurerm/)
+Key-value pairs applied to Azure resources for organization, cost tracking, and policy enforcement.
+Required tags in this project: Environment, ManagedBy, Project, Owner.
 
 ---
 

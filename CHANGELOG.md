@@ -5,6 +5,46 @@ All notable changes to **Agentic InfraOps** will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.0.0] - 2026-01-21
+
+### BREAKING CHANGES
+
+- **Terraform support removed** - Project is now Bicep-only
+  - Removed Terraform, tfsec, Terragrunt from dev container
+  - Removed Go tooling (was used for Terratest)
+  - Removed HashiCorp.terraform and Azure Terraform VS Code extensions
+  - Removed all Terraform references from documentation and agents
+  - See `docs/guides/terraform-extension-guide.md` for adding Terraform support back
+
+### Added
+
+- **lefthook** - Replaced deprecated Husky with lefthook for Git hooks
+  - Faster, dependency-free Go binary
+  - Same functionality: pre-commit (markdownlint) and commit-msg (commitlint)
+- **Terraform Extension Guide** - New guide documenting how to add Terraform support
+  - Located at `docs/guides/terraform-extension-guide.md`
+  - Covers dev container, agents, instructions, and CI/CD setup
+- **Pylance type checking** - Added `python.analysis.typeCheckingMode: basic` to dev container
+
+### Changed
+
+- **Markdownlint verification** - Fixed false negative in post-create.sh
+  - Now uses `npm list -g` instead of `command -v` for reliable detection
+- **Markdownlint config** - Consolidated to single `.markdownlint-cli2.jsonc` file
+  - Removed duplicate `.markdownlint.json`
+- **MCP health check** - Fixed unreliable stdio-based check
+  - Now uses Python import verification
+- **Documentation** - Updated 40+ files to remove Terraform references
+  - All agents, guides, scenarios, and presenter materials updated
+
+### Removed
+
+- `.husky/` directory and husky dependency
+- `.markdownlint.json` (duplicate config)
+- Terraform, tfsec, Go version checks from post-create.sh and update-tools.sh
+- Terraform entries from .gitignore and .gitattributes
+- Terraform from package.json keywords
+
 ## [5.3.0] - 2026-01-20
 
 - feat: add Azure Resource Health Diagnostician agent

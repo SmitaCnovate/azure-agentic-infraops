@@ -1,12 +1,11 @@
 name: Update Version Numbers
 
 on:
-  # Trigger when version sources are updated on main
+  # Trigger when VERSION.md is updated on main
   push:
     branches: [main]
     paths:
       - "VERSION.md"
-      - "package.json"
 
   # Manual trigger with version input
   workflow_dispatch:
@@ -42,12 +41,8 @@ jobs:
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
             VERSION="${{ github.event.inputs.version }}"
           else
-            # Extract version from VERSION.md (Current Version: X.Y.Z format)
-            VERSION=$(grep -oP '\*\*Current Version:\*\* \K[0-9]+\.[0-9]+\.[0-9]+' VERSION.md | head -1)
-            # Fallback to package.json if not found
-            if [ -z "$VERSION" ]; then
-              VERSION=$(grep -oP '"version": "\K[0-9]+\.[0-9]+\.[0-9]+' package.json | head -1)
-            fi
+            # Extract version from VERSION.md (first version number found)
+            VERSION=$(grep -oP '## \[\K\d+\.\d+\.\d+' VERSION.md | head -1)
           fi
 
           if [ -z "$VERSION" ]; then
@@ -68,10 +63,7 @@ jobs:
           declare -A FILES=(
             ["README.md"]='s/> \*\*Version [0-9]+\.[0-9]+\.[0-9]+\*\*/> **Version '"$VERSION"'**/'
             ["docs/README.md"]='s/> \*\*Agentic InfraOps v[0-9]+\.[0-9]+\.[0-9]+\*\*/> **Agentic InfraOps v'"$VERSION"'**/'
-            ["docs/guides/getting-started-journey.md"]='s/> \*\*Version [0-9]+\.[0-9]+\.[0-9]+\*\*/> **Version '"$VERSION"'**/'
-            ["docs/presenter/README.md"]='s/> \*\*Version [0-9]+\.[0-9]+\.[0-9]+\*\*/> **Version '"$VERSION"'**/'
-            ["scenarios/README.md"]='s/> \*\*Version [0-9]+\.[0-9]+\.[0-9]+\*\*/> **Version '"$VERSION"'**/'
-            ["infra/bicep/contoso-patient-portal/README.md"]='s/> \*\*Version [0-9]+\.[0-9]+\.[0-9]+\*\*/> **Version '"$VERSION"'**/'
+            ["docs/workflow/WORKFLOW.md"]='s/> \*\*Version [0-9]+\.[0-9]+\.[0-9]+\*\*/> **Version '"$VERSION"'**/'
             [".devcontainer/README.md"]='s/> \*\*Version [0-9]+\.[0-9]+\.[0-9]+\*\*/> **Version '"$VERSION"'**/'
           )
 
@@ -115,10 +107,7 @@ jobs:
             ### Files Updated
             - `README.md`
             - `docs/README.md`
-            - `docs/guides/getting-started-journey.md`
-            - `docs/presenter/README.md`
-            - `scenarios/README.md`
-            - `infra/bicep/contoso-patient-portal/README.md`
+            - `docs/workflow/WORKFLOW.md`
             - `.devcontainer/README.md`
 
             ### Triggered By

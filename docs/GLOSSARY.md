@@ -11,7 +11,7 @@
 A document that captures an important architectural decision along with its context and consequences.
 Used to record "why" decisions were made for future reference.
 
-📁 **See**: [docs/_superseded/adr/](_superseded/adr/)
+📁 **See**: [docs/\_superseded/adr/](_superseded/adr/)
 
 ### Agentic InfraOps
 
@@ -197,19 +197,19 @@ making actual changes. Run with `az deployment group create --what-if`.
 
 ### 7-Step Agentic Workflow
 
-The core Agentic InfraOps workflow: `plan` → `architect` → Design Artifacts →
+The core Agentic InfraOps workflow: `requirements` → `architect` → Design Artifacts →
 `bicep-plan` → `bicep-code` → Deploy → As-Built Artifacts. Each step has an approval gate before proceeding.
 Steps 3 (Design Artifacts) and 7 (As-Built Artifacts) are optional for generating diagrams and ADRs.
 
 📁 **See**: [Workflow Guide](reference/workflow.md)
 
-### Project Planner
+### Requirements Agent
 
 Custom agent for Azure infrastructure requirements gathering. Starting point for the 7-step workflow.
-Gathers requirements and creates implementation plans. Defined in `plan.agent.md`.
+Gathers requirements and creates implementation plans. Defined in `requirements.agent.md`.
 
 > **Note**: VS Code includes a built-in "Plan" agent for general planning. This repository uses
-> the custom **Project Planner** agent with Azure-specific instructions and workflow handoffs.
+> the custom **Requirements** agent with Azure-specific instructions and workflow handoffs.
 
 🔗 **External**: [VS Code Custom Agents](https://code.visualstudio.com/docs/copilot/customization/custom-agents)
 

@@ -1,8 +1,8 @@
 ---
-name: Plan
+name: Requirements
 model: "Claude Opus 4.5"
 description: Researches and captures Azure infrastructure project requirements
-argument-hint: Describe the Azure workload or project you want to plan
+argument-hint: Describe the Azure workload or project you want to gather requirements for
 tools:
   [
     "vscode",
@@ -203,7 +203,7 @@ Validation: Files validated by `scripts/validate-artifact-templates.mjs`
 **Step 1** of 7-step workflow:
 
 ```
-[plan] → architect → Design Artifacts → bicep-plan → bicep-code → Deploy → As-Built
+[requirements] → architect → Design Artifacts → bicep-plan → bicep-code → Deploy → As-Built
 ```
 
 After requirements approval, hand off to `architect` for WAF assessment.

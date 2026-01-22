@@ -165,7 +165,7 @@ const GLOBAL_STRICTNESS = process.env.STRICTNESS;
 
 // Core artifacts validated by agents
 const AGENTS = {
-  "01-requirements.md": ".github/agents/plan.agent.md",
+  "01-requirements.md": ".github/agents/requirements.agent.md",
   "02-architecture-assessment.md":
     ".github/agents/architect.agent.md",
   "04-implementation-plan.md": ".github/agents/bicep-plan.agent.md",

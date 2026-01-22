@@ -5,12 +5,12 @@ that agents must follow when generating workflow documentation.
 
 ## Wave 1: Core Workflow Artifacts
 
-| Artifact                        | Template File                            | Producing Agent           |
-| ------------------------------- | ---------------------------------------- | ------------------------- |
-| Step 1: Requirements            | `01-requirements.template.md`            | @plan (built-in)          |
-| Step 2: Architecture Assessment | `02-architecture-assessment.template.md` | architect |
-| Step 4: Implementation Plan     | `04-implementation-plan.template.md`     | bicep-plan                |
-| Step 6: Deployment Summary      | `06-deployment-summary.template.md`      | Deploy Agent              |
+| Artifact                        | Template File                            | Producing Agent        |
+| ------------------------------- | ---------------------------------------- | ---------------------- |
+| Step 1: Requirements            | `01-requirements.template.md`            | @requirements (custom) |
+| Step 2: Architecture Assessment | `02-architecture-assessment.template.md` | architect              |
+| Step 4: Implementation Plan     | `04-implementation-plan.template.md`     | bicep-plan             |
+| Step 6: Deployment Summary      | `06-deployment-summary.template.md`      | Deploy Agent           |
 
 **Design Cost Estimate** (`03-des-cost-estimate.template.md`) and
 **As-Built Cost Estimate** (`07-ab-cost-estimate.template.md`) are also available,

@@ -124,32 +124,32 @@ graph TB
 
 A comprehensive overview of all agents, their workflow phases, and outputs:
 
-| Agent                                 | Phase | Purpose                            | Creates Code? | Output Files                          | Required |
-| ------------------------------------- | ----- | ---------------------------------- | ------------- | ------------------------------------- | -------- |
-| `plan` (custom)            | 1     | Requirements & NFR gathering       | ❌ No         | `01-requirements.md`                  | ✅ Yes   |
-| `architect`           | 2     | WAF assessment & architecture      | ❌ No         | `02-architecture-assessment.md`       | ✅ Yes   |
-| `diagram`                   | 3, 7  | Python architecture diagrams       | ✅ Yes        | `03-des-diagram.*`, `07-ab-diagram.*` | Optional |
-| `adr`                       | 3, 7  | Architecture Decision Records      | ❌ No         | `03-des-adr-*`, `07-ab-adr-*`         | Optional |
-| `bicep-plan`                          | 4     | Policy discovery & planning        | ❌ No         | `04-implementation-plan.md`           | ✅ Yes   |
-| `bicep-code`                     | 5     | Bicep IaC generation               | ✅ Yes        | `infra/bicep/{project}/`              | ✅ Yes   |
-| `deploy`                              | 6     | Azure deployment orchestration     | ❌ No         | `06-deployment-summary.md`            | ✅ Yes   |
-| `docs`    | 7     | Customer-deliverable docs          | ❌ No         | `07-*.md` (6 files)                   | Optional |
-| `diagnose` | 8     | Post-deployment health diagnostics | ❌ No         | `08-resource-health-report.md`        | Optional |
+| Agent           | Phase | Purpose                            | Creates Code? | Output Files                          | Required |
+| --------------- | ----- | ---------------------------------- | ------------- | ------------------------------------- | -------- |
+| `plan` (custom) | 1     | Requirements & NFR gathering       | ❌ No         | `01-requirements.md`                  | ✅ Yes   |
+| `architect`     | 2     | WAF assessment & architecture      | ❌ No         | `02-architecture-assessment.md`       | ✅ Yes   |
+| `diagram`       | 3, 7  | Python architecture diagrams       | ✅ Yes        | `03-des-diagram.*`, `07-ab-diagram.*` | Optional |
+| `adr`           | 3, 7  | Architecture Decision Records      | ❌ No         | `03-des-adr-*`, `07-ab-adr-*`         | Optional |
+| `bicep-plan`    | 4     | Policy discovery & planning        | ❌ No         | `04-implementation-plan.md`           | ✅ Yes   |
+| `bicep-code`    | 5     | Bicep IaC generation               | ✅ Yes        | `infra/bicep/{project}/`              | ✅ Yes   |
+| `deploy`        | 6     | Azure deployment orchestration     | ❌ No         | `06-deployment-summary.md`            | ✅ Yes   |
+| `docs`          | 7     | Customer-deliverable docs          | ❌ No         | `07-*.md` (6 files)                   | Optional |
+| `diagnose`      | 8     | Post-deployment health diagnostics | ❌ No         | `08-resource-health-report.md`        | Optional |
 
 ### Key Capabilities by Function
 
-| Capability                          | Agents                                    |
-| ----------------------------------- | ----------------------------------------- |
-| Requirements Analysis               | `plan`                         |
+| Capability                          | Agents                    |
+| ----------------------------------- | ------------------------- |
+| Requirements Analysis               | `plan`                    |
 | Architecture Design                 | `architect`               |
 | Cost Estimation (Real-time)         | `architect`, `bicep-plan` |
-| Policy Compliance Discovery         | `bicep-plan`                              |
-| Infrastructure Code                 | `bicep-code`                         |
-| Visualization                       | `diagram`                       |
-| Decision Documentation              | `adr`                           |
-| Deployment Automation               | `deploy`                                  |
-| Operational Documentation           | `docs`        |
-| Health Assessment & Troubleshooting | `diagnose`     |
+| Policy Compliance Discovery         | `bicep-plan`              |
+| Infrastructure Code                 | `bicep-code`              |
+| Visualization                       | `diagram`                 |
+| Decision Documentation              | `adr`                     |
+| Deployment Automation               | `deploy`                  |
+| Operational Documentation           | `docs`                    |
+| Health Assessment & Troubleshooting | `diagnose`                |
 
 ---
 
@@ -164,17 +164,17 @@ A comprehensive overview of all agents, their workflow phases, and outputs:
 
 ### Agent Selection Guide
 
-| I want to...                        | Use Agent                             | Phase |
-| ----------------------------------- | ------------------------------------- | ----- |
-| Gather requirements                 | `plan`                     | 1     |
-| Get architecture guidance           | `architect`           | 2     |
-| Create architecture diagram         | `diagram`                   | 3, 7  |
-| Document a decision                 | `adr`                       | 3, 7  |
-| Plan implementation with governance | `bicep-plan`                          | 4     |
-| Generate Bicep code                 | `bicep-code`                     | 5     |
-| Deploy to Azure                     | `deploy`                              | 6     |
-| Create customer documentation       | `docs`    | 7     |
-| Diagnose resource health            | `diagnose` | 8     |
+| I want to...                        | Use Agent    | Phase |
+| ----------------------------------- | ------------ | ----- |
+| Gather requirements                 | `plan`       | 1     |
+| Get architecture guidance           | `architect`  | 2     |
+| Create architecture diagram         | `diagram`    | 3, 7  |
+| Document a decision                 | `adr`        | 3, 7  |
+| Plan implementation with governance | `bicep-plan` | 4     |
+| Generate Bicep code                 | `bicep-code` | 5     |
+| Deploy to Azure                     | `deploy`     | 6     |
+| Create customer documentation       | `docs`       | 7     |
+| Diagnose resource health            | `diagnose`   | 8     |
 
 ---
 
@@ -375,7 +375,7 @@ This section provides a detailed walkthrough of each phase in the 8-phase workfl
 
 This section provides detailed information about each agent, including purpose, behaviors, example prompts, and outputs.
 
-### plan
+### requirements
 
 > **Phase 1** | Custom requirements gathering agent
 
@@ -383,7 +383,7 @@ This section provides detailed information about each agent, including purpose, 
 and cost constraints. This is a custom agent specifically designed for Azure infrastructure projects.
 
 > **Note**: VS Code includes a built-in "Plan" agent for general planning. This repository uses the custom
-> **Project Planner** agent (`plan.agent.md`) with Azure-specific instructions and workflow handoffs.
+> **Requirements** agent (`requirements.agent.md`) with Azure-specific instructions and workflow handoffs.
 
 **📋 Template**: Use [`.github/prompts/plan-requirements.prompt.md`](../../.github/prompts/plan-requirements.prompt.md)
 
@@ -661,47 +661,47 @@ in rg-myapp-prod. Check availability, performance, and recent errors.
 
 ### By Task
 
-| I want to...                        | Use Agent                             | Phase |
-| ----------------------------------- | ------------------------------------- | ----- |
-| Gather requirements                 | `plan`                     | 1     |
-| Get architecture guidance           | `architect`           | 2     |
-| Create architecture diagram         | `diagram`                   | 3, 7  |
-| Document a decision                 | `adr`                       | 3, 7  |
-| Plan implementation with governance | `bicep-plan`                          | 4     |
-| Generate Bicep code                 | `bicep-code`                     | 5     |
-| Deploy to Azure                     | `deploy`                              | 6     |
-| Create customer documentation       | `docs`    | 7     |
-| Diagnose resource health            | `diagnose` | 8     |
+| I want to...                        | Use Agent    | Phase |
+| ----------------------------------- | ------------ | ----- |
+| Gather requirements                 | `plan`       | 1     |
+| Get architecture guidance           | `architect`  | 2     |
+| Create architecture diagram         | `diagram`    | 3, 7  |
+| Document a decision                 | `adr`        | 3, 7  |
+| Plan implementation with governance | `bicep-plan` | 4     |
+| Generate Bicep code                 | `bicep-code` | 5     |
+| Deploy to Azure                     | `deploy`     | 6     |
+| Create customer documentation       | `docs`       | 7     |
+| Diagnose resource health            | `diagnose`   | 8     |
 
 ### By Workflow Phase
 
-| Phase | Focus Area                  | Primary Agents                                     | Outcome                                  |
-| ----- | --------------------------- | -------------------------------------------------- | ---------------------------------------- |
-| 1     | Requirements                | `plan`                                  | Clear project scope & NFRs               |
-| 2     | Architecture & Costing      | `architect` + Azure Pricing MCP    | WAF-aligned design with real-time costs  |
-| 3     | Design Documentation        | `diagram`, `adr`               | Visual architecture & decisions          |
-| 4     | Governance & Planning       | `bicep-plan`                                       | Policy-compliant implementation plan     |
-| 5     | Code Generation             | `bicep-code`                                  | Production-ready Bicep templates         |
-| 6     | Deployment                  | `deploy`                                           | Live Azure infrastructure                |
-| 7     | As-Built Documentation      | `diagram`, `adr`, `workload-*` | Customer-deliverable documentation       |
-| 8     | Health & Troubleshooting    | `diagnose`              | Health validation & issue resolution     |
+| Phase | Focus Area               | Primary Agents                  | Outcome                                 |
+| ----- | ------------------------ | ------------------------------- | --------------------------------------- |
+| 1     | Requirements             | `requirements`                  | Clear project scope & NFRs              |
+| 2     | Architecture & Costing   | `architect` + Azure Pricing MCP | WAF-aligned design with real-time costs |
+| 3     | Design Documentation     | `diagram`, `adr`                | Visual architecture & decisions         |
+| 4     | Governance & Planning    | `bicep-plan`                    | Policy-compliant implementation plan    |
+| 5     | Code Generation          | `bicep-code`                    | Production-ready Bicep templates        |
+| 6     | Deployment               | `deploy`                        | Live Azure infrastructure               |
+| 7     | As-Built Documentation   | `diagram`, `adr`, `workload-*`  | Customer-deliverable documentation      |
+| 8     | Health & Troubleshooting | `diagnose`                      | Health validation & issue resolution    |
 
 ### By Output Artifact
 
-| Artifact                         | Agent(s)                              | Phase |
-| -------------------------------- | ------------------------------------- | ----- |
-| `01-requirements.md`             | `plan`                     | 1     |
-| `02-architecture-assessment.md`  | `architect`           | 2     |
-| `03-des-diagram.*`               | `diagram`                   | 3     |
-| `03-des-adr-*.md`                | `adr`                       | 3     |
-| `03-des-cost-estimate.md`        | `architect`           | 3     |
-| `04-implementation-plan.md`      | `bicep-plan`                          | 4     |
-| `04-governance-constraints.md`   | `bicep-plan`                          | 4     |
-| `infra/bicep/{project}/`         | `bicep-code`                     | 5     |
-| `06-deployment-summary.md`       | `deploy`                              | 6     |
-| `07-ab-diagram.*`                | `diagram`                   | 7     |
-| `07-*.md` (documentation set)    | `docs`    | 7     |
-| `08-resource-health-report.md`   | `diagnose` | 8     |
+| Artifact                        | Agent(s)       | Phase |
+| ------------------------------- | -------------- | ----- |
+| `01-requirements.md`            | `requirements` | 1     |
+| `02-architecture-assessment.md` | `architect`    | 2     |
+| `03-des-diagram.*`              | `diagram`      | 3     |
+| `03-des-adr-*.md`               | `adr`          | 3     |
+| `03-des-cost-estimate.md`       | `architect`    | 3     |
+| `04-implementation-plan.md`     | `bicep-plan`   | 4     |
+| `04-governance-constraints.md`  | `bicep-plan`   | 4     |
+| `infra/bicep/{project}/`        | `bicep-code`   | 5     |
+| `06-deployment-summary.md`      | `deploy`       | 6     |
+| `07-ab-diagram.*`               | `diagram`      | 7     |
+| `07-*.md` (documentation set)   | `docs`         | 7     |
+| `08-resource-health-report.md`  | `diagnose`     | 8     |
 
 ---
 
@@ -717,7 +717,7 @@ in rg-myapp-prod. Check availability, performance, and recent errors.
 
 All agent definitions are located in `.github/agents/`:
 
-- [plan.agent.md](../../.github/agents/plan.agent.md)
+- [requirements.agent.md](../../.github/agents/requirements.agent.md)
 - [architect.agent.md](../../.github/agents/architect.agent.md)
 - [diagram.agent.md](../../.github/agents/diagram.agent.md)
 - [adr.agent.md](../../.github/agents/adr.agent.md)

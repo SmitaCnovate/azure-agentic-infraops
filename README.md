@@ -54,7 +54,7 @@ configured for the Agentic InfraOps workflow before you dive into the steps belo
 ```mermaid
 %%{init: {'theme':'base', 'themeVariables': {'primaryColor': '#0078D4', 'primaryTextColor': '#ffffff', 'primaryBorderColor': '#005A9E', 'lineColor': '#6B7280', 'secondaryColor': '#00B4AB', 'tertiaryColor': '#8957E5', 'background': '#ffffff', 'mainBkg': '#ffffff', 'nodeBorder': '#005A9E', 'clusterBkg': '#F3F4F6', 'titleColor': '#1F2937', 'edgeLabelBackground': '#ffffff'}}}%%
 graph LR
-    P["🎯 Project Planner<br/>Step 1"]:::plan --> A["🏛️ Azure Architect<br/>Step 2"]:::architect
+    P["🎯 Requirements<br/>Step 1"]:::plan --> A["🏛️ Azure Architect<br/>Step 2"]:::architect
     A --> D3["📊 Design Artifacts<br/>Step 3"]:::artifact
     D3 --> B["📋 Bicep Plan<br/>Step 4"]:::bicep
     B --> I["⚙️ Bicep Implement<br/>Step 5"]:::bicep
@@ -86,7 +86,7 @@ graph LR
 
 | Step | Phase          | Agent                            | Output     |
 | :--: | -------------- | -------------------------------- | ---------- |
-|  1   | Requirements   | Project Planner                  | `01-*`     |
+|  1   | Requirements   | Requirements                     | `01-*`     |
 |  2   | Architecture   | Azure Principal Architect 💰     | `02-*`     |
 |  3   | Design         | Diagram Generator, ADR Generator | `03-des-*` |
 |  4   | Planning       | Bicep Plan 💰                    | `04-*`     |
@@ -111,7 +111,7 @@ graph LR
 | 1️⃣   | **Install Prerequisites** | [Docker Desktop](https://docker.com/products/docker-desktop/) + [VS Code](https://code.visualstudio.com/) + [Copilot][1] |
 | 2️⃣   | **Clone & Open**          | `git clone https://github.com/jonathan-vella/azure-agentic-infraops.git` then `code azure-agentic-infraops`              |
 | 3️⃣   | **Open in Dev Container** | Press `F1` → "Dev Containers: Reopen in Container" (wait ~2 min)                                                         |
-| 4️⃣   | **Open Copilot Chat**     | Press `Ctrl+Alt+I` → Select **Project Planner** from the agent picker dropdown                                           |
+| 4️⃣   | **Open Copilot Chat**     | Press `Ctrl+Alt+I` → Select **Requirements** from the agent picker dropdown                                              |
 | 5️⃣   | **Try It**                | Type: `Create a web app with Azure App Service and SQL Database`                                                         |
 
 <!-- markdownlint-enable MD013 -->

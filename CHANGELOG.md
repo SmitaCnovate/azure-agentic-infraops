@@ -5,6 +5,16 @@ All notable changes to **Agentic InfraOps** will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [7.2.0] - 2026-01-22
+
+### Changed
+
+- **Renamed `@plan` agent to `@requirements`** - Avoids conflict with VS Code's built-in `@plan` agent
+  - Renamed `.github/agents/plan.agent.md` → `.github/agents/requirements.agent.md`
+  - Updated all documentation and workflow references
+  - Custom agent now accessible as `@requirements` in VS Code agent picker
+  - No functional changes to the agent's behavior
+
 ## [7.1.0] - 2026-01-21
 
 - feat: add comprehensive agent testing plan prompt

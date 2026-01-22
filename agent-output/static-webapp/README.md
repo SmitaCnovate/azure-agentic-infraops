@@ -5,7 +5,7 @@
 
 ## Workflow Progress
 
-- [x] Step 1: Requirements (@plan)
+- [x] Step 1: Requirements (@requirements)
 - [x] Step 2: Architecture (architect)
 - [x] Step 3: Design Artifacts (diagram, cost estimate)
 - [x] Step 4: Planning (bicep-plan)

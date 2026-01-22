@@ -62,7 +62,7 @@ Requirements:
 
 ### What Happens
 
-The **Project Planner** agent will:
+The **Requirements** agent will:
 
 1. Analyze your requirements
 2. Create a structured plan
@@ -242,7 +242,7 @@ You've completed your first agentic workflow!
 
 | Concept          | Description                         |
 | ---------------- | ----------------------------------- |
-| Project Planner  | Gathers and structures requirements |
+| Requirements     | Gathers and structures requirements |
 | WAF assessment   | Validates architecture quality      |
 | Module design    | Organizes infrastructure logically  |
 | Bicep generation | Creates production-ready code       |
@@ -276,7 +276,7 @@ If the agent stopped unexpectedly:
 
 1. Check if it's waiting for approval
 2. Reply with `continue` or `approve`
-3. If stuck, restart with **Project Planner** and your original prompt
+3. If stuck, restart with **Requirements** agent and your original prompt
 
 ### Deployment Failed
 

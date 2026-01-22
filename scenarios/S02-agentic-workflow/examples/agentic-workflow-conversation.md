@@ -10,7 +10,7 @@ to design and implement Azure infrastructure for Contoso Healthcare's patient po
 
 ---
 
-## Stage 0: Planning with Project Planner (5-10 minutes)
+## Stage 0: Planning with Requirements Agent (5-10 minutes)
 
 ### Starting the Conversation
 
@@ -19,7 +19,7 @@ appointment scheduling. They have 10,000 patients, $800/month budget, and HIPAA 
 is mandatory. I want to plan this infrastructure project before jumping into architecture
 or code. Can you help me break this down?
 
-**Project Planner Agent**: I'd be happy to help you plan this infrastructure project. Before we dive in,
+**Requirements Agent**: I'd be happy to help you plan this infrastructure project. Before we dive in,
 let me ask a few clarifying questions to ensure we create a comprehensive plan:
 
 **Clarifying Questions:**
@@ -27,19 +27,16 @@ let me ask a few clarifying questions to ensure we create a comprehensive plan:
 1. **Timeline**: What's the target launch date? Is this a hard deadline or flexible?
 
 2. **Team Expertise**: What Azure/IaC experience does the implementation team have?
-
    - Expert (can handle complex patterns)
    - Intermediate (comfortable with managed services)
    - Beginner (need guided approach)
 
 3. **Integration Requirements**: Does this need to integrate with any existing systems?
-
    - Existing EHR/EMR system?
    - Identity provider (Azure AD, existing IdP)?
    - Other internal systems?
 
 4. **Availability Requirements**: What's the acceptable downtime?
-
    - 99.9% (8.76 hours/year) - Standard
    - 99.95% (4.38 hours/year) - High
    - 99.99% (52 minutes/year) - Mission Critical
@@ -54,7 +51,7 @@ let me ask a few clarifying questions to ensure we create a comprehensive plan:
 4. Availability: 99.9% SLA is acceptable
 5. Data: US regions only for HIPAA compliance
 
-**Project Planner Agent**: Thank you for those details. Based on your requirements, here's a
+**Requirements Agent**: Thank you for those details. Based on your requirements, here's a
 structured implementation plan:
 
 ---
@@ -183,19 +180,16 @@ architecture-specific questions:
 **Architecture Discovery Questions:**
 
 1. **Authentication Model**: Should patients authenticate via:
-
    - Azure AD B2C (Microsoft-managed consumer identity)
    - Existing patient portal credentials (federated)
    - Simple email/password with MFA
 
 2. **Data Sensitivity Levels**: What data categories will be stored?
-
    - PHI (Protected Health Information) - requires highest protection
    - PII (Personally Identifiable Information) - names, contact info
    - Non-sensitive (appointment metadata only)
 
 3. **Integration Pattern**: For the EHR REST API:
-
    - Is it exposed to internet or requires VPN/private connection?
    - What authentication does the EHR API use?
    - Expected transaction volume (appointments/day)?

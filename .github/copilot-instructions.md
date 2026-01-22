@@ -35,7 +35,7 @@ aligned with Azure Well-Architected Framework and Azure Verified Modules.
 ```mermaid
 %%{init: {'theme':'neutral'}}%%
 graph LR
-    P["Plan<br/>Step 1"] --> A[Architect<br/>Step 2]
+    R["Requirements<br/>Step 1"] --> A[Architect<br/>Step 2]
     A --> D["Design Artifacts<br/>Step 3"]
     D --> B[Bicep Plan<br/>Step 4]
     B --> I[Bicep Code<br/>Step 5]
@@ -45,7 +45,7 @@ graph LR
 
 | Step | Agent            | Output                          |
 | ---- | ---------------- | ------------------------------- |
-| 1    | `plan`           | `01-requirements.md`            |
+| 1    | `requirements`   | `01-requirements.md`            |
 | 2    | `architect`      | `02-architecture-assessment.md` |
 | 3    | `diagram`, `adr` | `03-des-*.md/.py/.png`          |
 | 4    | `bicep-plan`     | `04-implementation-plan.md`     |

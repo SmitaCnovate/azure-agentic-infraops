@@ -70,9 +70,9 @@ Traditional infrastructure design involves:
 
 ## 🤖 The Seven Steps
 
-### Step 1: Plan Agent (`Project Planner`) - _VS Code Built-in - Start Here_
+### Step 1: Requirements Agent (`@requirements`) - _Custom Agent - Start Here_
 
-> **This is a custom agent**, not a custom agent.
+> **This is a custom agent**, not VS Code's built-in Plan agent.
 > It's designed to research and plan before any code changes are made.
 
 - **Purpose**: Research tasks comprehensively using read-only tools and codebase analysis before implementation
@@ -103,7 +103,7 @@ Traditional infrastructure design involves:
 - "Create infrastructure for a multi-tier web application with Azure App Service and SQL Database"
 - "Implement zone-redundant deployment for existing application"
 
-**Usage**: Always start with `Project Planner` for multi-step infrastructure projects.
+**Usage**: Always start with `@requirements` for multi-step infrastructure projects.
 The plan ensures all requirements are considered before any code changes.
 
 ### Step 2: Azure Principal Architect (`architect`)
@@ -213,13 +213,13 @@ The plan ensures all requirements are considered before any code changes.
 
 4. **Follow the agentic workflow**:
 
-   | Stage | Agent                       | Duration  | Key Output                               |
-   | ----- | --------------------------- | --------- | ---------------------------------------- |
-   | 0     | `Project Planner` (custom)  | 5-10 min  | Implementation plan + `*.prompt.md` file |
-   | 1     | `architect` | 10-15 min | WAF assessment + cost estimates          |
-   | 2     | `bicep-plan`                | 5-10 min  | Resource breakdown + Mermaid diagram     |
-   | 3     | `bicep-code`           | 10-15 min | Modular Bicep templates                  |
-   | 4     | Validation & Deployment     | 5-10 min  | `bicep build` + `bicep lint`             |
+   | Stage | Agent                   | Duration  | Key Output                               |
+   | ----- | ----------------------- | --------- | ---------------------------------------- |
+   | 0     | `Requirements` (custom) | 5-10 min  | Implementation plan + `*.prompt.md` file |
+   | 1     | `architect`             | 10-15 min | WAF assessment + cost estimates          |
+   | 2     | `bicep-plan`            | 5-10 min  | Resource breakdown + Mermaid diagram     |
+   | 3     | `bicep-code`            | 10-15 min | Modular Bicep templates                  |
+   | 4     | Validation & Deployment | 5-10 min  | `bicep build` + `bicep lint`             |
 
 5. **Pro Tip**: Use the UI handoff controls at the end of each agent's response to seamlessly transition
    to the next agent with full context preserved.
@@ -245,7 +245,7 @@ S02-agentic-workflow/
 │   └── templates/
 │       └── [Link to infra/bicep/contoso-patient-portal/]
 └── [Workflow Output: ../../agent-output/contoso-patient-portal/]
-    ├── 00-plan.md                      # Project Planner output
+    ├── 00-plan.md                      # Requirements Agent output
     ├── 01-azure-architect.md           # WAF assessment
     ├── 02-bicep-plan.md                # Implementation plan
     ├── 03-bicep-code-gen.md            # Bicep generation
@@ -254,9 +254,9 @@ S02-agentic-workflow/
 
 ## 🎬 Demo Flow
 
-### Part 0: Planning with VS Code Plan Agent (5-10 minutes)
+### Part 0: Planning with Requirements Agent (5-10 minutes)
 
-**Agent**: `Project Planner` (Custom)
+**Agent**: `@requirements` (Custom)
 
 1. Open Copilot Chat (`Ctrl+Alt+I`)
 2. Select **Plan** from the agents dropdown
@@ -571,7 +571,7 @@ Before starting, gauge your audience:
 | Step 1 (Project Planner) | "Where's the Plan Agent?"     | Show `Ctrl+Alt+I` agent picker                 |
 | Step 2 (Architect)       | "Why no code?"                | Emphasize WAF guidance vs implementation       |
 | Step 4 (bicep-plan)      | "Too much output"             | Use collapsible sections, focus on key modules |
-| Step 5 (bicep-code) | "Validation errors"           | Expected! Show iterative refinement            |
+| Step 5 (bicep-code)      | "Validation errors"           | Expected! Show iterative refinement            |
 | Handoffs                 | "Lost context between agents" | Demonstrate UI handoff buttons                 |
 
 ### Facilitation Tips

@@ -33,12 +33,12 @@ Before you begin, ensure you have:
 
 ## Defaults for IT Pros
 
-| Setting      | Value                                            | Reference                                                         |
-| ------------ | ------------------------------------------------ | ----------------------------------------------------------------- |
-| **Region**   | `swedencentral` (fallback: `germanywestcentral`) | [ADR-004](../_superseded/adr/ADR-004-region-defaults.md)          |
-| **Naming**   | `uniqueString(resourceGroup().id)` suffix        | [Defaults](../reference/defaults.md)                              |
-| **Modules**  | AVM-first approach                               | [ADR-003](../_superseded/adr/ADR-003-avm-first-approach.md)       |
-| **Workflow** | 7-step agent flow                                | [Workflow Guide](../reference/workflow.md)                        |
+| Setting      | Value                                            | Reference                                                   |
+| ------------ | ------------------------------------------------ | ----------------------------------------------------------- |
+| **Region**   | `swedencentral` (fallback: `germanywestcentral`) | [ADR-004](../_superseded/adr/ADR-004-region-defaults.md)    |
+| **Naming**   | `uniqueString(resourceGroup().id)` suffix        | [Defaults](../reference/defaults.md)                        |
+| **Modules**  | AVM-first approach                               | [ADR-003](../_superseded/adr/ADR-003-avm-first-approach.md) |
+| **Workflow** | 7-step agent flow                                | [Workflow Guide](../reference/workflow.md)                  |
 
 ---
 
@@ -115,7 +115,7 @@ The 7-step workflow guides you through:
 ```mermaid
 %%{init: {'theme':'neutral'}}%%
 graph LR
-    A["Project Planner<br/>Step 1"] --> B["architect<br/>Step 2"]
+    A["Requirements<br/>Step 1"] --> B["architect<br/>Step 2"]
     B --> C["Design<br/>Step 3"]
     C --> D["bicep-plan<br/>Step 4"]
     D --> E["implement<br/>Step 5"]

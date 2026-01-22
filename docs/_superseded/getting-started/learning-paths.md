@@ -241,21 +241,21 @@ flowchart LR
 
 **Workflow Components:**
 
-| Agent                         | Type   | Access                                  |
-| ----------------------------- | ------ | --------------------------------------- |
-| **Project Planner**           | Custom | Select from agent picker (`Ctrl+Alt+I`) |
-| **adr_generator**             | Custom | Select from agent picker                |
-| **architect** | Custom | Select from agent picker                |
-| **bicep-plan**                | Custom | Select from agent picker                |
-| **bicep-code**           | Custom | Select from agent picker                |
+| Agent             | Type   | Access                                  |
+| ----------------- | ------ | --------------------------------------- |
+| **Requirements**  | Custom | Select from agent picker (`Ctrl+Alt+I`) |
+| **adr_generator** | Custom | Select from agent picker                |
+| **architect**     | Custom | Select from agent picker                |
+| **bicep-plan**    | Custom | Select from agent picker                |
+| **bicep-code**    | Custom | Select from agent picker                |
 
-> **Note**: This repository uses a custom **Project Planner** agent (`plan.agent.md`)
+> **Note**: This repository uses a custom **Requirements** agent (`requirements.agent.md`)
 > specifically designed for Azure infrastructure requirements gathering. VS Code also has a
 > built-in "Plan" agent for general planning tasks.
 
 **How to use:**
 
-1. **Start with Project Planner** - Select from agent picker (`Ctrl+Alt+I`)
+1. **Start with Requirements Agent** - Select from agent picker (`Ctrl+Alt+I`)
 2. **Describe your project** - e.g., "HIPAA-compliant patient portal"
 3. **Follow agent handoffs** - Each agent suggests the next step via buttons
 4. **Review outputs** - Plan files, ADRs, architecture docs, Bicep code
@@ -312,13 +312,13 @@ pwsh -File validation/validate.ps1
 
 ### Agent Quick Access
 
-| Agent                       | Type   | Access                      | Use For             |
-| --------------------------- | ------ | --------------------------- | ------------------- |
-| `plan`           | Custom | Agent picker (`Ctrl+Alt+I`) | Multi-step planning |
-| `adr_generator`             | Custom | Agent picker                | Document decisions  |
-| `architect` | Custom | Agent picker                | WAF assessment      |
-| `bicep-plan`                | Custom | Agent picker                | Module design       |
-| `bicep-code`           | Custom | Agent picker                | Code generation     |
+| Agent           | Type   | Access                      | Use For             |
+| --------------- | ------ | --------------------------- | ------------------- |
+| `plan`          | Custom | Agent picker (`Ctrl+Alt+I`) | Multi-step planning |
+| `adr_generator` | Custom | Agent picker                | Document decisions  |
+| `architect`     | Custom | Agent picker                | WAF assessment      |
+| `bicep-plan`    | Custom | Agent picker                | Module design       |
+| `bicep-code`    | Custom | Agent picker                | Code generation     |
 
 > 📖 **Custom Agents Documentation:** [VS Code Custom Agents](https://code.visualstudio.com/docs/copilot/customization/custom-agents)
 

@@ -14,12 +14,12 @@ These pre-generated outputs serve three purposes:
 
 ## Files
 
-| File                                | Stage   | Agent                     | Description                                 |
-| ----------------------------------- | ------- | ------------------------- | ------------------------------------------- |
-| `stage1-architecture-assessment.md` | Stage 1 | architect | WAF assessment and service recommendations  |
-| `stage2-implementation-plan.md`     | Stage 3 | bicep-plan                | Resource breakdown with dependency diagrams |
+| File                                | Stage   | Agent      | Description                                 |
+| ----------------------------------- | ------- | ---------- | ------------------------------------------- |
+| `stage1-architecture-assessment.md` | Stage 1 | architect  | WAF assessment and service recommendations  |
+| `stage2-implementation-plan.md`     | Stage 3 | bicep-plan | Resource breakdown with dependency diagrams |
 
-> **Note:** Stage 0 (Project Planner) and Stage 2 (adr_generator) outputs are not pre-generated because
+> **Note:** Stage 0 (Requirements Agent) and Stage 2 (adr_generator) outputs are not pre-generated because
 > they're highly dependent on the specific conversation flow and clarifying questions asked.
 
 ## When to Use Pre-Generated vs. Live Generation

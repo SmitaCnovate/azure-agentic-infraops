@@ -15,7 +15,7 @@
 > **Modules**: AVM-first for policy-compliant deployments.
 > See [ADR-003](../docs/adr/ADR-003-avm-first-approach.md).
 >
-> **Agent Workflow**: `Project Planner` → `architect` → `bicep-plan` → `bicep-code`.
+> **Agent Workflow**: `Requirements` → `architect` → `bicep-plan` → `bicep-code`.
 > See [Workflow Guide](../docs/reference/workflow.md).
 
 ---
@@ -91,7 +91,7 @@ she's still learning.
 ```mermaid
 %%{init: {'theme':'neutral'}}%%
 flowchart LR
-    A["Project Planner<br/>Step 1"] --> B["Azure Architect<br/>Step 2"]
+    A["Requirements<br/>Step 1"] --> B["Azure Architect<br/>Step 2"]
     B --> C["Design Artifacts<br/>Step 3"]
     C --> D["Bicep Planner<br/>Step 4"]
     D --> E["Bicep Implement<br/>Step 5"]
@@ -107,15 +107,15 @@ flowchart LR
     style F fill:#f3e5f5,stroke:#7b1fa2
 ```
 
-| Step | Agent/Phase                 | Type     | Purpose                                   |
-| ---- | --------------------------- | -------- | ----------------------------------------- |
-| 1    | `Project Planner`           | Custom   | Requirements gathering → `01-*`           |
-| 2    | `architect` | Custom   | Azure WAF assessment → `02-*`             |
-| 3    | Design Artifacts            | Optional | Design diagrams + ADRs (`-des`) → `03-*`  |
-| 4    | `bicep-plan`                | Custom   | Infrastructure planning → `04-*`          |
-| 5    | `bicep-code`           | Custom   | Generate production-ready Bicep → `05-*`  |
-| 6    | Deploy                      | Manual   | Deploy to Azure → `06-*`                  |
-| 7    | As-Built Artifacts          | Optional | As-built diagrams + ADRs (`-ab`) → `07-*` |
+| Step | Agent/Phase        | Type     | Purpose                                   |
+| ---- | ------------------ | -------- | ----------------------------------------- |
+| 1    | `Requirements`     | Custom   | Requirements gathering → `01-*`           |
+| 2    | `architect`        | Custom   | Azure WAF assessment → `02-*`             |
+| 3    | Design Artifacts   | Optional | Design diagrams + ADRs (`-des`) → `03-*`  |
+| 4    | `bicep-plan`       | Custom   | Infrastructure planning → `04-*`          |
+| 5    | `bicep-code`       | Custom   | Generate production-ready Bicep → `05-*`  |
+| 6    | Deploy             | Manual   | Deploy to Azure → `06-*`                  |
+| 7    | As-Built Artifacts | Optional | As-built diagrams + ADRs (`-ab`) → `07-*` |
 
 **Time Comparison**:
 

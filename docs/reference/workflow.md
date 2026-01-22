@@ -13,10 +13,10 @@ This document describes the 7-step agent workflow for Azure infrastructure devel
 3. Type your prompt and submit
 4. Wait for approval before proceeding to the next step
 
-> **Note: Project Planner vs Plan**
+> **Note: Requirements Agent**
 >
 > VS Code includes a built-in **Plan** agent for general planning tasks. This repository uses a custom
-> **Project Planner** agent (`plan.agent.md`) specifically designed for Azure infrastructure
+> **Requirements** agent (`requirements.agent.md`) specifically designed for Azure infrastructure
 > requirements gathering. The custom agent includes Azure-specific instructions, templates, and handoffs
 > to other agents in this 7-step workflow.
 
@@ -28,7 +28,7 @@ This document describes the 7-step agent workflow for Azure infrastructure devel
 %%{init: {'theme':'neutral'}}%%
 graph TB
     subgraph "Step 1: Requirements"
-        P["Project Planner<br/>(custom agent)"]
+        P["Requirements<br/>(custom agent)"]
     end
 
     subgraph "Step 2: Architecture"
@@ -87,19 +87,19 @@ graph TB
 
 ## Workflow Steps
 
-| Step | Agent/Phase                 | Purpose                              | Creates                                   | Required |
-| ---- | --------------------------- | ------------------------------------ | ----------------------------------------- | -------- |
-| 1    | `plan` (custom)  | Gather requirements                  | `01-requirements.md`                      | ✅ Yes   |
-| 2    | `architect` | WAF assessment                       | `02-architecture-assessment.md`           | ✅ Yes   |
-| 3    | Design Artifacts            | Visualize design, document decisions | `03-des-*` diagrams + cost + ADRs         | Optional |
-| 4    | `bicep-plan`                | Implementation planning + governance | `04-*` plan + governance constraints      | ✅ Yes   |
-| 5    | `bicep-code`           | Code generation                      | Bicep templates + `05-*` reference        | ✅ Yes   |
-| 6    | Deploy                      | Deploy to Azure                      | `06-deployment-summary.md`                | ✅ Yes   |
-| 7    | As-Built Artifacts          | Document final state                 | `07-ab-*` diagrams + ADRs + workload docs | Optional |
+| Step | Agent/Phase             | Purpose                              | Creates                                   | Required |
+| ---- | ----------------------- | ------------------------------------ | ----------------------------------------- | -------- |
+| 1    | `requirements` (custom) | Gather requirements                  | `01-requirements.md`                      | ✅ Yes   |
+| 2    | `architect`             | WAF assessment                       | `02-architecture-assessment.md`           | ✅ Yes   |
+| 3    | Design Artifacts        | Visualize design, document decisions | `03-des-*` diagrams + cost + ADRs         | Optional |
+| 4    | `bicep-plan`            | Implementation planning + governance | `04-*` plan + governance constraints      | ✅ Yes   |
+| 5    | `bicep-code`            | Code generation                      | Bicep templates + `05-*` reference        | ✅ Yes   |
+| 6    | Deploy                  | Deploy to Azure                      | `06-deployment-summary.md`                | ✅ Yes   |
+| 7    | As-Built Artifacts      | Document final state                 | `07-ab-*` diagrams + ADRs + workload docs | Optional |
 
-### Step 1: Requirements (Project Planner)
+### Step 1: Requirements (Requirements Agent)
 
-Use the **Project Planner** custom agent to gather comprehensive requirements.
+Use the **Requirements** custom agent to gather comprehensive requirements.
 
 **📋 Requirements Template:** See [`.github/prompts/plan-requirements.prompt.md`](../../.github/prompts/plan-requirements.prompt.md)
 
@@ -132,8 +132,8 @@ See agent definition: [`.github/agents/architect.agent.md`](../../.github/agents
 
 ### Step 3: Design Artifacts (Optional)
 
-| Tool/Agent             | Purpose                         | Output Suffix | Triggered By                        |
-| ---------------------- | ------------------------------- | ------------- | ----------------------------------- |
+| Tool/Agent   | Purpose                         | Output Suffix | Triggered By                        |
+| ------------ | ------------------------------- | ------------- | ----------------------------------- |
 | 📊 `diagram` | Visualize proposed architecture | `-des`        | Ask: "generate diagram"             |
 | 📝 `adr`     | Document design decisions       | `-des`        | Ask: "create ADR for this decision" |
 
@@ -158,8 +158,8 @@ Deploy infrastructure to Azure using generated scripts:
 
 | Tool/Agent                       | Purpose                           | Output Suffix | Triggered By                         |
 | -------------------------------- | --------------------------------- | ------------- | ------------------------------------ |
-| 📊 `diagram`           | Document deployed architecture    | `-ab`         | Ask: "generate as-built diagram"     |
-| 📝 `adr`               | Document implementation decisions | `-ab`         | Ask: "create ADR for implementation" |
+| 📊 `diagram`                     | Document deployed architecture    | `-ab`         | Ask: "generate as-built diagram"     |
+| 📝 `adr`                         | Document implementation decisions | `-ab`         | Ask: "create ADR for implementation" |
 | 📚 `workload-documentation-gen.` | Customer-deliverable docs         | `07-*`        | Ask: "generate workload docs"        |
 
 ---
@@ -251,7 +251,7 @@ If MCP tools are unavailable, agents will use the **MCP Pricing Fallback Chain**
 
 1. Open GitHub Copilot Chat (`Ctrl+Alt+I`)
 2. Click the **Agent** button or press `Ctrl+Shift+A`
-3. Select `@plan` to start with requirements
+3. Select `@requirements` to start with requirements
 4. Follow the agent handoffs through each step
 
 ### Approval Gates
@@ -267,9 +267,9 @@ Each step requires your explicit approval before proceeding:
 ### Example Conversation Flow
 
 ```
-You: @plan Create a HIPAA-compliant patient portal with Azure App Service and SQL Database
+You: @requirements Create a HIPAA-compliant patient portal with Azure App Service and SQL Database
 
-Plan Agent: [Generates requirements plan]
+Requirements Agent: [Generates requirements plan]
            Do you approve this plan?
 
 You: yes
@@ -325,15 +325,15 @@ Implementer: [Executes deployment to Azure]
 
 ## Agent Responsibilities
 
-### @plan (Built-in VS Code Feature)
+### @requirements (Custom Agent)
 
 - **Input**: Natural language requirements
-- **Output**: Structured requirements plan
-- **Limitations**: Cannot access workspace files
+- **Output**: Structured requirements plan (`01-requirements.md`)
+- **Handoff**: To `architect` for WAF assessment
 
 ### architect
 
-- **Input**: Requirements from @plan or user
+- **Input**: Requirements from @requirements or user
 - **Output**: WAF pillar assessment, SKU recommendations (no cost estimates)
 - **Integrations**:
   - 💰 Uses Azure Pricing MCP for SKU pricing context

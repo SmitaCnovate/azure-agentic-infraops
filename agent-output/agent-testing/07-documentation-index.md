@@ -22,25 +22,25 @@
 
 These documents were generated from the following agentic workflow outputs:
 
-| Artifact            | Source                             | Generated  |
-| ------------------- | ---------------------------------- | ---------- |
-| Requirements        | 01-requirements.md                 | 2026-01-22 |
-| WAF Assessment      | 02-architecture-assessment.md      | 2026-01-22 |
-| Cost Estimate       | 03-des-cost-estimate.md            | 2026-01-22 |
-| Implementation Plan | 04-implementation-plan.md          | 2026-01-22 |
-| Bicep Code          | infra/bicep/agent-testing/         | 2026-01-22 |
+| Artifact            | Source                        | Generated  |
+| ------------------- | ----------------------------- | ---------- |
+| Requirements        | 01-requirements.md            | 2026-01-22 |
+| WAF Assessment      | 02-architecture-assessment.md | 2026-01-22 |
+| Cost Estimate       | 03-des-cost-estimate.md       | 2026-01-22 |
+| Implementation Plan | 04-implementation-plan.md     | 2026-01-22 |
+| Bicep Code          | infra/bicep/agent-testing/    | 2026-01-22 |
 
 ---
 
 ## 3. Project Summary
 
-| Attribute          | Value                                        |
-| ------------------ | -------------------------------------------- |
-| **Project Name**   | Agent Testing Framework                      |
-| **Environment**    | Test                                         |
-| **Primary Region** | swedencentral                                |
-| **Compliance**     | N/A (test infrastructure)                    |
-| **Monthly Cost**   | ~$45-55                                      |
+| Attribute          | Value                     |
+| ------------------ | ------------------------- |
+| **Project Name**   | Agent Testing Framework   |
+| **Environment**    | Test                      |
+| **Primary Region** | swedencentral             |
+| **Compliance**     | N/A (test infrastructure) |
+| **Monthly Cost**   | ~$45-55                   |
 
 ---
 

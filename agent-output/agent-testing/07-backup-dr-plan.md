@@ -12,11 +12,11 @@
 
 The Agent Testing Framework is **ephemeral test infrastructure** with a 2-hour TTL. Disaster recovery focuses on **redeployment from IaC** rather than data recovery.
 
-| Metric           | Current              | Target               |
-| ---------------- | -------------------- | -------------------- |
-| **RPO**          | N/A (no persistent)  | N/A                  |
-| **RTO**          | 15 min               | 15 min               |
-| **Availability** | 99% (test)           | 99%                  |
+| Metric           | Current             | Target |
+| ---------------- | ------------------- | ------ |
+| **RPO**          | N/A (no persistent) | N/A    |
+| **RTO**          | 15 min              | 15 min |
+| **Availability** | 99% (test)          | 99%    |
 
 ---
 
@@ -24,19 +24,19 @@ The Agent Testing Framework is **ephemeral test infrastructure** with a 2-hour T
 
 ### 1.1 Recovery Time Objective (RTO)
 
-| Tier      | RTO Target | Services                        |
-| --------- | ---------- | ------------------------------- |
-| Critical  | 15 min     | Full infrastructure redeploy    |
-| Important | 5 min      | Single resource restart         |
-| Standard  | 30 min     | DR region failover              |
+| Tier      | RTO Target | Services                     |
+| --------- | ---------- | ---------------------------- |
+| Critical  | 15 min     | Full infrastructure redeploy |
+| Important | 5 min      | Single resource restart      |
+| Standard  | 30 min     | DR region failover           |
 
 ### 1.2 Recovery Point Objective (RPO)
 
-| Data Type     | RPO Target | Backup Strategy         |
-| ------------- | ---------- | ----------------------- |
-| Test data     | N/A        | No backup (ephemeral)   |
-| SQL Database  | 7 days     | Automated PITR          |
-| Configuration | N/A        | Stored in IaC (Git)     |
+| Data Type     | RPO Target | Backup Strategy       |
+| ------------- | ---------- | --------------------- |
+| Test data     | N/A        | No backup (ephemeral) |
+| SQL Database  | 7 days     | Automated PITR        |
+| Configuration | N/A        | Stored in IaC (Git)   |
 
 ---
 
@@ -64,10 +64,10 @@ az sql db restore \
 
 ### 2.2 Azure Key Vault
 
-| Setting          | Configuration     |
-| ---------------- | ----------------- |
-| Soft Delete      | Disabled          |
-| Purge Protection | Disabled          |
+| Setting          | Configuration |
+| ---------------- | ------------- |
+| Soft Delete      | Disabled      |
+| Purge Protection | Disabled      |
 
 ---
 
@@ -118,31 +118,31 @@ az deployment group create \
 
 ## 5. Communication Plan
 
-| Audience         | Channel       | Template               |
-| ---------------- | ------------- | ---------------------- |
-| Platform Team    | Teams/Slack   | DR Initiation          |
-| Stakeholders     | Email         | Status Update          |
-| On-call Engineer | PagerDuty     | Alert Notification     |
+| Audience         | Channel     | Template           |
+| ---------------- | ----------- | ------------------ |
+| Platform Team    | Teams/Slack | DR Initiation      |
+| Stakeholders     | Email       | Status Update      |
+| On-call Engineer | PagerDuty   | Alert Notification |
 
 ---
 
 ## 6. Roles and Responsibilities
 
-| Role             | Person               | Responsibility           |
-| ---------------- | -------------------- | ------------------------ |
-| DR Coordinator   | platform-engineering | Initiate DR procedures   |
-| Infra Engineer   | platform-engineering | Execute recovery steps   |
-| Communications   | platform-engineering | Status updates           |
+| Role           | Person               | Responsibility         |
+| -------------- | -------------------- | ---------------------- |
+| DR Coordinator | platform-engineering | Initiate DR procedures |
+| Infra Engineer | platform-engineering | Execute recovery steps |
+| Communications | platform-engineering | Status updates         |
 
 ---
 
 ## 7. Dependencies
 
-| Dependency         | Impact if Unavailable        | Mitigation                |
-| ------------------ | ---------------------------- | ------------------------- |
-| Azure CLI          | Cannot deploy                | Use Portal or PowerShell  |
-| GitHub             | Cannot access IaC            | Local clone available     |
-| Entra ID           | Cannot authenticate          | Wait for recovery         |
+| Dependency | Impact if Unavailable | Mitigation               |
+| ---------- | --------------------- | ------------------------ |
+| Azure CLI  | Cannot deploy         | Use Portal or PowerShell |
+| GitHub     | Cannot access IaC     | Local clone available    |
+| Entra ID   | Cannot authenticate   | Wait for recovery        |
 
 ---
 
@@ -170,19 +170,19 @@ az resource list -g rg-agenttest-test-swc -o table
 
 ### 9.1 IaC Recovery Files
 
-| File                                        | Purpose        |
-| ------------------------------------------- | -------------- |
-| `infra/bicep/agent-testing/main.bicep`      | Main template  |
-| `infra/bicep/agent-testing/main.bicepparam` | Parameters     |
-| `infra/bicep/agent-testing/modules/*.bicep` | Resource modules|
+| File                                        | Purpose          |
+| ------------------------------------------- | ---------------- |
+| `infra/bicep/agent-testing/main.bicep`      | Main template    |
+| `infra/bicep/agent-testing/main.bicepparam` | Parameters       |
+| `infra/bicep/agent-testing/modules/*.bicep` | Resource modules |
 
 ### 9.2 Recovery Time Estimates
 
-| Scenario                 | RTO           |
-| ------------------------ | ------------- |
-| Single resource restart  | 2 minutes     |
-| Full redeploy            | 10-15 minutes |
-| DR region deployment     | 15-20 minutes |
+| Scenario                | RTO           |
+| ----------------------- | ------------- |
+| Single resource restart | 2 minutes     |
+| Full redeploy           | 10-15 minutes |
+| DR region deployment    | 15-20 minutes |
 
 ---
 

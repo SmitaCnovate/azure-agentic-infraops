@@ -9,21 +9,21 @@
 
 ## Quick Reference
 
-| Item                | Value                               |
-| ------------------- | ----------------------------------- |
-| **Primary Region**  | swedencentral                       |
-| **Resource Group**  | rg-agenttest-test-swc               |
-| **Support Contact** | platform-engineering                |
-| **Escalation Path** | N/A (test infrastructure)           |
+| Item                | Value                     |
+| ------------------- | ------------------------- |
+| **Primary Region**  | swedencentral             |
+| **Resource Group**  | rg-agenttest-test-swc     |
+| **Support Contact** | platform-engineering      |
+| **Escalation Path** | N/A (test infrastructure) |
 
 ### Critical Resources
 
-| Resource       | Name                               | Resource Group          |
-| -------------- | ---------------------------------- | ----------------------- |
-| App Service    | app-test-agent-testing-swc-chw5en  | rg-agenttest-test-swc   |
-| SQL Server     | sql-test-agent-testing-swc-chw5en  | rg-agenttest-test-swc   |
-| Container Apps | ca-cae-test-agent-testi            | rg-agenttest-test-swc   |
-| Static Web App | stapp-test-agent-testing-weu-chw5en| rg-agenttest-test-swc   |
+| Resource       | Name                                | Resource Group        |
+| -------------- | ----------------------------------- | --------------------- |
+| App Service    | app-test-agent-testing-swc-chw5en   | rg-agenttest-test-swc |
+| SQL Server     | sql-test-agent-testing-swc-chw5en   | rg-agenttest-test-swc |
+| Container Apps | ca-cae-test-agent-testi             | rg-agenttest-test-swc |
+| Static Web App | stapp-test-agent-testing-weu-chw5en | rg-agenttest-test-swc |
 
 ---
 
@@ -50,11 +50,11 @@ az resource list --resource-group rg-agenttest-test-swc \
 
 **Priority Logs to Review:**
 
-| Log Source       | Query Focus                | Action Threshold |
-| ---------------- | -------------------------- | ---------------- |
-| App Service      | HTTP 5xx errors            | >5 per 5 min     |
-| Container Apps   | Failed requests            | >10% failure     |
-| SQL Database     | Connection failures        | Any              |
+| Log Source     | Query Focus         | Action Threshold |
+| -------------- | ------------------- | ---------------- |
+| App Service    | HTTP 5xx errors     | >5 per 5 min     |
+| Container Apps | Failed requests     | >10% failure     |
+| SQL Database   | Connection failures | Any              |
 
 ---
 
@@ -62,19 +62,19 @@ az resource list --resource-group rg-agenttest-test-swc \
 
 ### 2.1 Severity Definitions
 
-| Severity | Definition                       | Response Time |
-| -------- | -------------------------------- | ------------- |
-| P1       | Complete service outage          | 15 min        |
-| P2       | Major functionality degraded     | 1 hour        |
-| P3       | Minor impact, workaround exists  | 4 hours       |
+| Severity | Definition                      | Response Time |
+| -------- | ------------------------------- | ------------- |
+| P1       | Complete service outage         | 15 min        |
+| P2       | Major functionality degraded    | 1 hour        |
+| P3       | Minor impact, workaround exists | 4 hours       |
 
 ### 2.2 Runbooks by Alert
 
-| Alert                | Runbook                     | Owner                |
-| -------------------- | --------------------------- | -------------------- |
-| App Service down     | Restart App Service         | platform-engineering |
-| SQL connection fail  | Check firewall rules        | platform-engineering |
-| Container App crash  | Check logs, restart         | platform-engineering |
+| Alert               | Runbook              | Owner                |
+| ------------------- | -------------------- | -------------------- |
+| App Service down    | Restart App Service  | platform-engineering |
+| SQL connection fail | Check firewall rules | platform-engineering |
+| Container App crash | Check logs, restart  | platform-engineering |
 
 ---
 
@@ -99,29 +99,29 @@ az containerapp revision restart \
 
 ## 4. Maintenance Windows
 
-| Window     | Schedule      | Activities                    |
-| ---------- | ------------- | ----------------------------- |
-| Weekly     | Sunday 02:00  | Review costs, check updates   |
-| Monthly    | 1st Monday    | Security review, optimization |
-| Quarterly  | N/A           | Not applicable (test infra)   |
+| Window    | Schedule     | Activities                    |
+| --------- | ------------ | ----------------------------- |
+| Weekly    | Sunday 02:00 | Review costs, check updates   |
+| Monthly   | 1st Monday   | Security review, optimization |
+| Quarterly | N/A          | Not applicable (test infra)   |
 
 ---
 
 ## 5. Contacts & Escalation
 
-| Role                  | Contact              | Escalation |
-| --------------------- | -------------------- | ---------- |
-| Primary               | platform-engineering | L1         |
-| Infrastructure        | platform-engineering | L2         |
-| Management            | N/A                  | L3         |
+| Role           | Contact              | Escalation |
+| -------------- | -------------------- | ---------- |
+| Primary        | platform-engineering | L1         |
+| Infrastructure | platform-engineering | L2         |
+| Management     | N/A                  | L3         |
 
 ---
 
 ## 6. Change Log
 
-| Date       | Change           | Author    |
-| ---------- | ---------------- | --------- |
-| 2026-01-22 | Initial creation | @docs     |
+| Date       | Change           | Author |
+| ---------- | ---------------- | ------ |
+| 2026-01-22 | Initial creation | @docs  |
 
 ---
 

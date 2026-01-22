@@ -30,13 +30,13 @@ tags: {
 
 ## Security Policies
 
-| Policy           | Requirement                                              |
-| ---------------- | -------------------------------------------------------- |
-| HTTPS Only       | Required (PCI DSS audits if false)                       |
-| TLS Version      | TLS 1.2 minimum                                          |
-| Public Access    | Disabled for storage blob access                         |
-| Managed Identity | Preferred for all services                               |
-| Key Vault        | RBAC authorization enabled, soft delete disabled (test)  |
+| Policy           | Requirement                                             |
+| ---------------- | ------------------------------------------------------- |
+| HTTPS Only       | Required (PCI DSS audits if false)                      |
+| TLS Version      | TLS 1.2 minimum                                         |
+| Public Access    | Disabled for storage blob access                        |
+| Managed Identity | Preferred for all services                              |
+| Key Vault        | RBAC authorization enabled, soft delete disabled (test) |
 
 ## Cost Policies
 
@@ -48,11 +48,11 @@ tags: {
 
 ## Network Policies
 
-| Policy            | Constraint                          |
-| ----------------- | ----------------------------------- |
-| Private Endpoints | Optional for SQL Server             |
-| VNet Integration  | Not configured (test infrastructure)|
-| Public Endpoints  | Allowed for test scenarios          |
+| Policy            | Constraint                           |
+| ----------------- | ------------------------------------ |
+| Private Endpoints | Optional for SQL Server              |
+| VNet Integration  | Not configured (test infrastructure) |
+| Public Endpoints  | Allowed for test scenarios           |
 
 ---
 

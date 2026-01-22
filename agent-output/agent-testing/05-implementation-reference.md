@@ -38,20 +38,20 @@ infra/bicep/agent-testing/
 
 ## Resources Created
 
-| Resource                   | Bicep Type                                    | Module                     |
-| -------------------------- | --------------------------------------------- | -------------------------- |
-| Static Web App (Free)      | Microsoft.Web/staticSites                     | `static-web-app.bicep`     |
-| App Service Plan (B1)      | Microsoft.Web/serverfarms                     | `app-service-plan.bicep`   |
-| App Service                | Microsoft.Web/sites                           | `app-service.bicep`        |
-| Azure SQL Server           | Microsoft.Sql/servers                         | `sql-database.bicep`       |
-| Azure SQL Database (Basic) | Microsoft.Sql/servers/databases               | `sql-database.bicep`       |
-| Key Vault (Standard)       | Microsoft.KeyVault/vaults                     | `key-vault.bicep`          |
-| Storage Account (LRS)      | Microsoft.Storage/storageAccounts             | `storage-account.bicep`    |
-| Container Apps Environment | Microsoft.App/managedEnvironments             | `container-apps-env.bicep` |
-| Container App              | Microsoft.App/containerApps                   | `container-apps-env.bicep` |
-| Service Bus (Basic)        | Microsoft.ServiceBus/namespaces               | `service-bus.bicep`        |
-| Log Analytics Workspace    | Microsoft.OperationalInsights/workspaces      | `container-apps-env.bicep` |
-| Automation Account         | Microsoft.Automation/automationAccounts       | `automation-cleanup.bicep` |
+| Resource                   | Bicep Type                               | Module                     |
+| -------------------------- | ---------------------------------------- | -------------------------- |
+| Static Web App (Free)      | Microsoft.Web/staticSites                | `static-web-app.bicep`     |
+| App Service Plan (B1)      | Microsoft.Web/serverfarms                | `app-service-plan.bicep`   |
+| App Service                | Microsoft.Web/sites                      | `app-service.bicep`        |
+| Azure SQL Server           | Microsoft.Sql/servers                    | `sql-database.bicep`       |
+| Azure SQL Database (Basic) | Microsoft.Sql/servers/databases          | `sql-database.bicep`       |
+| Key Vault (Standard)       | Microsoft.KeyVault/vaults                | `key-vault.bicep`          |
+| Storage Account (LRS)      | Microsoft.Storage/storageAccounts        | `storage-account.bicep`    |
+| Container Apps Environment | Microsoft.App/managedEnvironments        | `container-apps-env.bicep` |
+| Container App              | Microsoft.App/containerApps              | `container-apps-env.bicep` |
+| Service Bus (Basic)        | Microsoft.ServiceBus/namespaces          | `service-bus.bicep`        |
+| Log Analytics Workspace    | Microsoft.OperationalInsights/workspaces | `container-apps-env.bicep` |
+| Automation Account         | Microsoft.Automation/automationAccounts  | `automation-cleanup.bicep` |
 
 ---
 

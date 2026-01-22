@@ -54,12 +54,13 @@ configured for the Agentic InfraOps workflow before you dive into the steps belo
 ```mermaid
 %%{init: {'theme':'base', 'themeVariables': {'primaryColor': '#0078D4', 'primaryTextColor': '#ffffff', 'primaryBorderColor': '#005A9E', 'lineColor': '#6B7280', 'secondaryColor': '#00B4AB', 'tertiaryColor': '#8957E5', 'background': '#ffffff', 'mainBkg': '#ffffff', 'nodeBorder': '#005A9E', 'clusterBkg': '#F3F4F6', 'titleColor': '#1F2937', 'edgeLabelBackground': '#ffffff'}}}%%
 graph LR
-    P["🎯 Requirements<br/>Step 1"]:::plan --> A["🏛️ Azure Architect<br/>Step 2"]:::architect
+    P["🎯 Requirements<br/>Step 1"]:::plan --> A["🏛️ Architect<br/>Step 2"]:::architect
     A --> D3["📊 Design Artifacts<br/>Step 3"]:::artifact
     D3 --> B["📋 Bicep Plan<br/>Step 4"]:::bicep
-    B --> I["⚙️ Bicep Implement<br/>Step 5"]:::bicep
+    B --> I["⚙️ Bicep Code<br/>Step 5"]:::bicep
     I --> DEP["🚀 Deploy<br/>Step 6"]:::deploy
-    DEP --> D7["📄 Workload Docs<br/>Step 7"]:::artifact
+    DEP --> D7["📄 Docs<br/>Step 7"]:::artifact
+    DEP -.->|validate| DX["🔍 Diagnose"]:::diagnose
     MCP["💰 Pricing MCP"]:::pricing -.->|costs| A
     MCP -.->|validation| B
 
@@ -69,32 +70,36 @@ graph LR
     classDef pricing fill:#FF6B35,stroke:#E55A25,color:#fff
     classDef artifact fill:#6B7280,stroke:#4B5563,color:#fff
     classDef deploy fill:#10B981,stroke:#059669,color:#fff
+    classDef diagnose fill:#EF4444,stroke:#DC2626,color:#fff
 ```
 
 <!-- markdownlint-enable MD013 -->
 
 **Agent Legend**
 
-| Color | Phase        | Description                            |
-| :---: | ------------ | -------------------------------------- |
-|  🟣   | Requirements | Gather and refine project requirements |
-|  🔵   | Architecture | WAF assessment and design decisions    |
-|  ⚫   | Design/Docs  | Diagrams, ADRs, and documentation      |
-|  🟢   | Bicep        | Implementation planning and code gen   |
-|  🟠   | Pricing      | Real-time Azure cost estimation (MCP)  |
-|  🟩   | Deployment   | Azure resource provisioning            |
+| Color | Phase        | Description                                  |
+| :---: | ------------ | -------------------------------------------- |
+|  🟣   | Requirements | Gather and refine project requirements       |
+|  🔵   | Architecture | WAF assessment and design decisions          |
+|  ⚫   | Design/Docs  | Diagrams, ADRs, and documentation            |
+|  🟢   | Bicep        | Implementation planning and code gen         |
+|  🟠   | Pricing      | Real-time Azure cost estimation (MCP)        |
+|  🟩   | Deployment   | Azure resource provisioning                  |
+|  🔴   | Diagnose     | Resource health validation & troubleshooting |
 
-| Step | Phase          | Agent                            | Output     |
-| :--: | -------------- | -------------------------------- | ---------- |
-|  1   | Requirements   | Requirements                     | `01-*`     |
-|  2   | Architecture   | Azure Principal Architect 💰     | `02-*`     |
-|  3   | Design         | Diagram Generator, ADR Generator | `03-des-*` |
-|  4   | Planning       | Bicep Plan 💰                    | `04-*`     |
-|  5   | Implementation | Bicep Implement                  | `05-*`     |
-|  6   | Deployment     | Deploy Agent                     | `06-*`     |
-|  7   | Documentation  | Workload Documentation Generator | `07-*`     |
+| Step | Phase          | Agent(s)           | Output     |
+| :--: | -------------- | ------------------ | ---------- |
+|  1   | Requirements   | `@requirements`    | `01-*`     |
+|  2   | Architecture   | `@architect` 💰    | `02-*`     |
+|  3   | Design         | `@diagram`, `@adr` | `03-des-*` |
+|  4   | Planning       | `@bicep-plan` 💰   | `04-*`     |
+|  5   | Implementation | `@bicep-code`      | `05-*`     |
+|  6   | Deployment     | `@deploy`          | `06-*`     |
+|  7   | Documentation  | `@docs`            | `07-*`     |
+|  —   | Validation     | `@diagnose`        | `08-*`     |
 
-> **💰** = Azure Pricing MCP integration. Steps 3 & 7 are optional.
+> **💰** = Azure Pricing MCP integration. Steps 3, 7 & Validation are optional.
+> **9 agents total** for the complete workflow.
 
 </details>
 

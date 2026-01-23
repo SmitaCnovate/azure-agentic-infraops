@@ -39,7 +39,13 @@ code azure-agentic-infraops
 | Bicep CLI    | Latest  | Infrastructure as Code    |
 | PowerShell 7 | Latest  | Automation scripts        |
 | Git          | Latest  | Version control           |
+| GitHub CLI   | Latest  | GitHub operations         |
 | Checkov      | Latest  | Security scanning         |
+
+> **Note**: Credentials persist across container rebuilds:
+>
+> - **Azure CLI**: Mounts your host's credential directory (`~/.azure` or `%USERPROFILE%\.azure`)
+> - **GitHub CLI**: Uses a Docker volume. Run `gh auth login` once inside the container; credentials persist across rebuilds.
 
 ### Option B: Manual Installation
 
@@ -54,6 +60,7 @@ If you can't use Dev Containers, install these tools:
 | Bicep CLI           | 0.20+           | Included with Azure CLI                                 |
 | PowerShell          | 7.0+            | `winget install Microsoft.PowerShell`                   |
 | Git                 | 2.30+           | `winget install Git.Git`                                |
+| GitHub CLI          | 2.40+           | `winget install GitHub.cli` (optional, for auth mount)  |
 
 ---
 

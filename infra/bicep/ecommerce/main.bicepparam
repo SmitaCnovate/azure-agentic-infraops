@@ -12,7 +12,7 @@ using 'main.bicep'
 // ============================================================================
 
 param location = 'swedencentral'
-param environment = 'prod'
+param environment = 'staging'
 param projectName = 'ecommerce'
 param owner = 'platform-team'
 param costCenter = 'CC-ECOM-001'
@@ -20,6 +20,5 @@ param costCenter = 'CC-ECOM-001'
 // ============================================================================
 // SQL Server Azure AD Admin
 // ============================================================================
-// Replace with your Azure AD group object ID
-param sqlAdminGroupObjectId = '00000000-0000-0000-0000-000000000000'
+param sqlAdminGroupObjectId = '2bffaba4-2c0c-4358-9be1-a12b406a9a40'  // Projects team
 param sqlAdminGroupName = 'sql-admins'

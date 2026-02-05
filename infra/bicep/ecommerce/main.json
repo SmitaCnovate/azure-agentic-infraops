@@ -4,8 +4,8 @@
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.39.26.7824",
-      "templateHash": "17363138397035228249"
+      "version": "0.40.2.10011",
+      "templateHash": "17781682620194573752"
     }
   },
   "parameters": {
@@ -168,8 +168,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.39.26.7824",
-              "templateHash": "8218538161187327173"
+              "version": "0.40.2.10011",
+              "templateHash": "18404278084768442205"
             }
           },
           "parameters": {
@@ -558,8 +558,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.39.26.7824",
-              "templateHash": "16354160488631617985"
+              "version": "0.40.2.10011",
+              "templateHash": "9795553950480568199"
             }
           },
           "parameters": {
@@ -708,8 +708,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.39.26.7824",
-              "templateHash": "15858265392775031165"
+              "version": "0.40.2.10011",
+              "templateHash": "12313972351208651591"
             }
           },
           "parameters": {
@@ -849,8 +849,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.39.26.7824",
-              "templateHash": "14035360753471271100"
+              "version": "0.40.2.10011",
+              "templateHash": "814881967090521736"
             }
           },
           "parameters": {
@@ -1016,8 +1016,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.39.26.7824",
-              "templateHash": "1012252089570271406"
+              "version": "0.40.2.10011",
+              "templateHash": "12262659330127376945"
             }
           },
           "parameters": {
@@ -1131,8 +1131,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.39.26.7824",
-              "templateHash": "13900620587942803602"
+              "version": "0.40.2.10011",
+              "templateHash": "17388121011497449376"
             }
           },
           "parameters": {
@@ -1374,8 +1374,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.39.26.7824",
-              "templateHash": "152959494223254315"
+              "version": "0.40.2.10011",
+              "templateHash": "4714763203116897011"
             }
           },
           "parameters": {
@@ -1546,8 +1546,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.39.26.7824",
-              "templateHash": "13454760762584290253"
+              "version": "0.40.2.10011",
+              "templateHash": "5732015268918685285"
             }
           },
           "parameters": {
@@ -1721,8 +1721,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.39.26.7824",
-              "templateHash": "16380908526413650521"
+              "version": "0.40.2.10011",
+              "templateHash": "8862759845216147631"
             }
           },
           "parameters": {
@@ -1914,8 +1914,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.39.26.7824",
-              "templateHash": "12306090700856955172"
+              "version": "0.40.2.10011",
+              "templateHash": "17786552939599432036"
             }
           },
           "parameters": {
@@ -2106,8 +2106,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.39.26.7824",
-              "templateHash": "10266660756948690218"
+              "version": "0.40.2.10011",
+              "templateHash": "14355767715062921709"
             }
           },
           "parameters": {
@@ -2223,8 +2223,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.39.26.7824",
-              "templateHash": "6103886883372392705"
+              "version": "0.40.2.10011",
+              "templateHash": "4265968516165187367"
             }
           },
           "parameters": {
@@ -2396,7 +2396,7 @@
             {
               "type": "Microsoft.Authorization/roleAssignments",
               "apiVersion": "2022-04-01",
-              "scope": "[format('Microsoft.Storage/storageAccounts/{0}', take(variables('storageAccountName'), 24))]",
+              "scope": "[resourceId('Microsoft.Storage/storageAccounts', take(variables('storageAccountName'), 24))]",
               "name": "[guid(resourceId('Microsoft.Storage/storageAccounts', take(variables('storageAccountName'), 24)), resourceId('Microsoft.Web/sites', parameters('functionAppName')), 'b7e6dc6d-f1e8-4753-8033-0f276bb0955b')]",
               "properties": {
                 "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'b7e6dc6d-f1e8-4753-8033-0f276bb0955b')]",
@@ -2411,7 +2411,7 @@
             {
               "type": "Microsoft.Authorization/roleAssignments",
               "apiVersion": "2022-04-01",
-              "scope": "[format('Microsoft.Storage/storageAccounts/{0}', take(variables('storageAccountName'), 24))]",
+              "scope": "[resourceId('Microsoft.Storage/storageAccounts', take(variables('storageAccountName'), 24))]",
               "name": "[guid(resourceId('Microsoft.Storage/storageAccounts', take(variables('storageAccountName'), 24)), resourceId('Microsoft.Web/sites', parameters('functionAppName')), '974c5e8b-45b9-4653-ba55-5f855dd0fb88')]",
               "properties": {
                 "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '974c5e8b-45b9-4653-ba55-5f855dd0fb88')]",
@@ -2426,7 +2426,7 @@
             {
               "type": "Microsoft.Authorization/roleAssignments",
               "apiVersion": "2022-04-01",
-              "scope": "[format('Microsoft.Storage/storageAccounts/{0}', take(variables('storageAccountName'), 24))]",
+              "scope": "[resourceId('Microsoft.Storage/storageAccounts', take(variables('storageAccountName'), 24))]",
               "name": "[guid(resourceId('Microsoft.Storage/storageAccounts', take(variables('storageAccountName'), 24)), resourceId('Microsoft.Web/sites', parameters('functionAppName')), '0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3')]",
               "properties": {
                 "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3')]",
@@ -2518,8 +2518,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.39.26.7824",
-              "templateHash": "8685159396970154469"
+              "version": "0.40.2.10011",
+              "templateHash": "8744787887707961696"
             }
           },
           "parameters": {
@@ -2566,7 +2566,7 @@
             {
               "type": "Microsoft.Authorization/roleAssignments",
               "apiVersion": "2022-04-01",
-              "scope": "[format('Microsoft.KeyVault/vaults/{0}', parameters('keyVaultName'))]",
+              "scope": "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
               "name": "[guid(resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName')), parameters('appServicePrincipalId'), variables('roleDefinitions').keyVaultSecretsUser)]",
               "properties": {
                 "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', variables('roleDefinitions').keyVaultSecretsUser)]",
@@ -2577,7 +2577,7 @@
             {
               "type": "Microsoft.Authorization/roleAssignments",
               "apiVersion": "2022-04-01",
-              "scope": "[format('Microsoft.KeyVault/vaults/{0}', parameters('keyVaultName'))]",
+              "scope": "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
               "name": "[guid(resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName')), parameters('functionAppPrincipalId'), variables('roleDefinitions').keyVaultSecretsUser)]",
               "properties": {
                 "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', variables('roleDefinitions').keyVaultSecretsUser)]",
@@ -2588,7 +2588,7 @@
             {
               "type": "Microsoft.Authorization/roleAssignments",
               "apiVersion": "2022-04-01",
-              "scope": "[format('Microsoft.ServiceBus/namespaces/{0}', parameters('serviceBusName'))]",
+              "scope": "[resourceId('Microsoft.ServiceBus/namespaces', parameters('serviceBusName'))]",
               "name": "[guid(resourceId('Microsoft.ServiceBus/namespaces', parameters('serviceBusName')), parameters('appServicePrincipalId'), variables('roleDefinitions').serviceBusDataSender)]",
               "properties": {
                 "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', variables('roleDefinitions').serviceBusDataSender)]",
@@ -2599,7 +2599,7 @@
             {
               "type": "Microsoft.Authorization/roleAssignments",
               "apiVersion": "2022-04-01",
-              "scope": "[format('Microsoft.ServiceBus/namespaces/{0}', parameters('serviceBusName'))]",
+              "scope": "[resourceId('Microsoft.ServiceBus/namespaces', parameters('serviceBusName'))]",
               "name": "[guid(resourceId('Microsoft.ServiceBus/namespaces', parameters('serviceBusName')), parameters('functionAppPrincipalId'), variables('roleDefinitions').serviceBusDataReceiver)]",
               "properties": {
                 "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', variables('roleDefinitions').serviceBusDataReceiver)]",
@@ -2610,7 +2610,7 @@
             {
               "type": "Microsoft.Authorization/roleAssignments",
               "apiVersion": "2022-04-01",
-              "scope": "[format('Microsoft.Search/searchServices/{0}', parameters('searchServiceName'))]",
+              "scope": "[resourceId('Microsoft.Search/searchServices', parameters('searchServiceName'))]",
               "name": "[guid(resourceId('Microsoft.Search/searchServices', parameters('searchServiceName')), parameters('appServicePrincipalId'), variables('roleDefinitions').searchIndexDataReader)]",
               "properties": {
                 "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', variables('roleDefinitions').searchIndexDataReader)]",
@@ -2653,8 +2653,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.39.26.7824",
-              "templateHash": "9175851544322693317"
+              "version": "0.40.2.10011",
+              "templateHash": "12276453286013484141"
             }
           },
           "parameters": {
@@ -2775,8 +2775,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.39.26.7824",
-              "templateHash": "15436692357119097103"
+              "version": "0.40.2.10011",
+              "templateHash": "4921120749143169712"
             }
           },
           "parameters": {
@@ -2894,8 +2894,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.39.26.7824",
-              "templateHash": "10221683598688132398"
+              "version": "0.40.2.10011",
+              "templateHash": "5123248948797283581"
             }
           },
           "parameters": {
@@ -3044,8 +3044,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.39.26.7824",
-              "templateHash": "10639594977255795848"
+              "version": "0.40.2.10011",
+              "templateHash": "10781393791034345025"
             }
           },
           "parameters": {
@@ -3324,8 +3324,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.39.26.7824",
-              "templateHash": "1570028465679956101"
+              "version": "0.40.2.10011",
+              "templateHash": "9235328980262942547"
             }
           },
           "parameters": {
@@ -3448,8 +3448,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.39.26.7824",
-              "templateHash": "2774116526487205038"
+              "version": "0.40.2.10011",
+              "templateHash": "14860378846846839575"
             }
           },
           "parameters": {
@@ -3506,7 +3506,7 @@
             {
               "type": "Microsoft.Insights/diagnosticSettings",
               "apiVersion": "2021-05-01-preview",
-              "scope": "[format('Microsoft.Web/sites/{0}', parameters('appServiceName'))]",
+              "scope": "[resourceId('Microsoft.Web/sites', parameters('appServiceName'))]",
               "name": "diag-appservice",
               "properties": {
                 "workspaceId": "[parameters('logAnalyticsWorkspaceId')]",
@@ -3543,7 +3543,7 @@
             {
               "type": "Microsoft.Insights/diagnosticSettings",
               "apiVersion": "2021-05-01-preview",
-              "scope": "[format('Microsoft.Web/sites/{0}', parameters('functionAppName'))]",
+              "scope": "[resourceId('Microsoft.Web/sites', parameters('functionAppName'))]",
               "name": "diag-functionapp",
               "properties": {
                 "workspaceId": "[parameters('logAnalyticsWorkspaceId')]",
@@ -3564,7 +3564,7 @@
             {
               "type": "Microsoft.Insights/diagnosticSettings",
               "apiVersion": "2021-05-01-preview",
-              "scope": "[format('Microsoft.KeyVault/vaults/{0}', parameters('keyVaultName'))]",
+              "scope": "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
               "name": "diag-keyvault",
               "properties": {
                 "workspaceId": "[parameters('logAnalyticsWorkspaceId')]",
@@ -3589,7 +3589,7 @@
             {
               "type": "Microsoft.Insights/diagnosticSettings",
               "apiVersion": "2021-05-01-preview",
-              "scope": "[format('Microsoft.Cache/redis/{0}', parameters('redisCacheName'))]",
+              "scope": "[resourceId('Microsoft.Cache/redis', parameters('redisCacheName'))]",
               "name": "diag-redis",
               "properties": {
                 "workspaceId": "[parameters('logAnalyticsWorkspaceId')]",
@@ -3610,7 +3610,7 @@
             {
               "type": "Microsoft.Insights/diagnosticSettings",
               "apiVersion": "2021-05-01-preview",
-              "scope": "[format('Microsoft.ServiceBus/namespaces/{0}', parameters('serviceBusName'))]",
+              "scope": "[resourceId('Microsoft.ServiceBus/namespaces', parameters('serviceBusName'))]",
               "name": "diag-servicebus",
               "properties": {
                 "workspaceId": "[parameters('logAnalyticsWorkspaceId')]",
@@ -3643,7 +3643,7 @@
             {
               "type": "Microsoft.Insights/diagnosticSettings",
               "apiVersion": "2021-05-01-preview",
-              "scope": "[format('Microsoft.Search/searchServices/{0}', parameters('searchServiceName'))]",
+              "scope": "[resourceId('Microsoft.Search/searchServices', parameters('searchServiceName'))]",
               "name": "diag-search",
               "properties": {
                 "workspaceId": "[parameters('logAnalyticsWorkspaceId')]",
@@ -3664,7 +3664,7 @@
             {
               "type": "Microsoft.Insights/diagnosticSettings",
               "apiVersion": "2021-05-01-preview",
-              "scope": "[format('Microsoft.Cdn/profiles/{0}', parameters('frontDoorName'))]",
+              "scope": "[resourceId('Microsoft.Cdn/profiles', parameters('frontDoorName'))]",
               "name": "diag-frontdoor",
               "properties": {
                 "workspaceId": "[parameters('logAnalyticsWorkspaceId')]",

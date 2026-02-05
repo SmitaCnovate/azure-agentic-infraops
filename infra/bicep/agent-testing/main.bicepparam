@@ -25,9 +25,8 @@ param deployScenario2 = true  // API + Database
 param deployScenario3 = true  // Microservices
 
 // Cleanup automation (persistent infrastructure)
-param deployCleanupAutomation = true
+param deployCleanupAutomation = false
 
-// SQL Server credentials
-// IMPORTANT: Override these in CI/CD or use Key Vault reference
-param sqlAdminLogin = 'sqladmin'
-// param sqlAdminPassword = '' // Must be provided at deployment time
+// SQL Server Entra ID Admin (required for Azure AD-only authentication)
+param sqlEntraAdminObjectId = '63f08cc9-e289-4abb-8c51-7da0b4dd9e31'  // smita.ghune@cnovate.io
+param sqlEntraAdminLogin = 'smita.ghune@cnovate.io'

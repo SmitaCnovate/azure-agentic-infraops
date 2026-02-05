@@ -29,15 +29,15 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2023-12-01' = {
   tags: tags
   kind: 'linux'
   sku: {
-    name: 'P1v4'
-    tier: 'PremiumV4'
-    size: 'P1v4'
-    capacity: capacity
+    name: 'B2'
+    tier: 'Basic'
+    size: 'B2'
+    capacity: 1
   }
   properties: {
     reserved: true // Linux
-    zoneRedundant: true // P1v4 supports zone redundancy
-    targetWorkerCount: capacity
+    zoneRedundant: false // Basic tier does not support zone redundancy
+    targetWorkerCount: 1
     targetWorkerSizeId: 0
   }
 }

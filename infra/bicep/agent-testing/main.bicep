@@ -16,6 +16,7 @@ targetScope = 'resourceGroup'
 @allowed(['test'])
 param environment string = 'test'
 
+
 @description('Azure region for resource deployment')
 @allowed([
   'swedencentral'

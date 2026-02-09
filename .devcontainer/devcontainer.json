@@ -60,19 +60,28 @@
         "ms-azuretools.vscode-azurecontainerapps",
         "ms-azuretools.vscode-azurestaticwebapps",
         "ms-azuretools.azure-dev",
-        "ms-azuretools.vscode-docker",
+        "ms-azuretools.vscode-containers",
         "ms-kubernetes-tools.vscode-kubernetes-tools",
         "ms-kubernetes-tools.vscode-aks-tools",
         "github.vscode-github-actions",
         "github.vscode-pull-request-github",
         "ms-azuretools.vscode-azure-github-copilot",
         "ms-vscode.vscode-websearchforcopilot",
-        "teamsdevapp.vscode-ai-foundry",
         "esbenp.prettier-vscode",
         "mechatroner.rainbow-csv",
-        "redhat.vscode-yaml"
+        "redhat.vscode-yaml",
+        "mutantdino.resourcemonitor"
       ],
       "settings": {
+        "chat.customAgentInSubagent.enabled": true,
+        "chat.agentFilesLocations": {
+          ".github/agents": true,
+          ".github/agents/_subagents": true
+        },
+        "chat.agentSkillsLocations": {
+          ".github/skills": true
+        },
+        "chat.useAgentSkills": true,
         "editor.formatOnSave": true,
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.rulers": [120],

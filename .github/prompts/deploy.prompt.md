@@ -1,7 +1,7 @@
 ---
 description: "Deploy Bicep templates to Azure with what-if analysis"
 agent: "Deploy"
-model: "Claude Opus 4.5"
+model: "Claude Opus 4.6"
 tools:
   - execute/runInTerminal
   - read

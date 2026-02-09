@@ -1,236 +1,328 @@
 ---
-description: "Quick demo: Static Web App requirements (interactive wizard)"
+description: "Quick demo: EU ecommerce migration (business-first wizard)"
 agent: "Requirements"
-model: "Claude Opus 4.5"
+model: "Claude Opus 4.6"
 tools:
   - edit/createFile
+  - vscode/askQuestions
 ---
 
-# Static Web App Demo - Interactive Requirements Wizard
+# EU Ecommerce Migration Demo - Business-First Requirements Wizard
 
-Guide the user through a friendly, step-by-step requirements gathering process.
-Ask ONE question at a time, wait for response, then proceed.
+Use the `askQuestions` UI to guide the user through a business-first requirements
+discovery for a mid-size EU retailer migrating their ecommerce platform to Azure.
+Demonstrates how the agent translates business context into technical requirements.
 
 ## Mission
 
-Create a conversational experience that captures essentials for a Static Web App.
-Keep it fast for live demos while making the user feel guided, not interrogated.
+Create a polished UI-driven experience starting from a business-level prompt —
+no Azure jargon upfront. Show how the agent infers architecture from business
+context, asks smart follow-ups for migration scenarios, and presents services
+in business-friendly language.
 
 ## Behavior Rules
 
-1. **ONE question per message** - never ask multiple questions at once
-2. **Wait for response** before proceeding to the next question
-3. **Acknowledge each answer** with a brief confirmation before moving on
-4. **Offer smart defaults** - let users press Enter to accept
-5. **Show progress** - tell user which step they're on
+1. **Use `askQuestions` tool** for ALL questions — present UI pickers, not chat text
+2. **Batch related questions** into single `askQuestions` calls (max 4 per call)
+3. **Start with business** — do NOT mention Azure services until Phase 3
+4. **Acknowledge each batch** with a brief summary showing you understood
+5. **Show progress** — tell user which step they're on
+6. **Infer, don't ask** — recommend the workload pattern instead of asking the user to pick
 
 ---
 
 ## Conversation Flow
 
-### Step 1: Welcome & Project Name
+### Step 1: Business Context (askQuestions)
 
-Start with a friendly greeting:
+Pre-fill for the demo scenario. Use `askQuestions`:
 
-```text
-👋 Let's set up your Static Web App!
-
-I'll ask a few quick questions (4 total), then generate your requirements doc.
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📝 Step 1 of 4: Project Name
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-What would you like to call this project?
-(lowercase, hyphens allowed, e.g., "contoso-portal")
-
-→ Your project name:
+```json
+{
+  "questions": [
+    {
+      "header": "Industry",
+      "question": "What industry is this project for?",
+      "options": [
+        {"label": "Retail / Ecommerce", "recommended": true},
+        {"label": "Healthcare"},
+        {"label": "Financial Services"},
+        {"label": "Technology / SaaS"}
+      ],
+      "allowFreeformInput": true
+    },
+    {
+      "header": "Company Size",
+      "question": "How large is your organization?",
+      "options": [
+        {"label": "Startup / Small (< 50 employees)"},
+        {"label": "Mid-Market (50-500 employees)", "recommended": true},
+        {"label": "Enterprise (500+ employees)"}
+      ]
+    },
+    {
+      "header": "System",
+      "question": "What kind of system do you need?",
+      "options": [
+        {"label": "Online store / ecommerce platform", "recommended": true},
+        {"label": "Customer or employee portal"},
+        {"label": "Company website or marketing site"},
+        {"label": "Business reporting / analytics dashboard"},
+        {"label": "Backend API for mobile or web apps"},
+        {"label": "Automated processing (orders, invoices, notifications)"}
+      ],
+      "allowFreeformInput": true
+    },
+    {
+      "header": "Scenario",
+      "question": "Is this a new project or are you changing an existing system?",
+      "options": [
+        {"label": "New project (greenfield)"},
+        {"label": "Migrating an existing system to Azure", "recommended": true},
+        {"label": "Modernizing / re-architecting an existing system"},
+        {"label": "Extending an existing Azure deployment"}
+      ]
+    }
+  ]
+}
 ```
 
-**STOP and wait for user response.**
+Acknowledge: summarize what you heard in business terms.
 
----
+### Step 2: Migration Follow-Up (askQuestions)
 
-### Step 2: Framework Selection
+Since this is a migration scenario, ask about the current system:
 
-After receiving project name, acknowledge and ask:
-
-```text
-✅ Project: {projectName}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-⚛️ Step 2 of 4: Frontend Framework
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-Which framework are you using?
-
-  1. React (default)
-  2. Vue
-  3. Angular
-  4. Vanilla JS
-  5. Other
-
-→ Enter 1-5 or framework name (press Enter for React):
+```json
+{
+  "questions": [
+    {
+      "header": "Current",
+      "question": "What does your current ecommerce system run on?",
+      "options": [
+        {"label": "On-premises servers (Windows/Linux)", "recommended": true},
+        {"label": "Hosted platform (Shopify, Magento Cloud)"},
+        {"label": "Another cloud (AWS, GCP)"},
+        {"label": "Legacy or custom-built system"}
+      ],
+      "allowFreeformInput": true
+    },
+    {
+      "header": "Pain Points",
+      "question": "What are the main problems driving this change?",
+      "multiSelect": true,
+      "options": [
+        {"label": "Scaling limitations — can't handle growth", "recommended": true},
+        {"label": "High maintenance costs"},
+        {"label": "Security or compliance concerns", "recommended": true},
+        {"label": "Performance issues"},
+        {"label": "End of life / vendor support ending"},
+        {"label": "Need new features the current system can't support"}
+      ]
+    },
+    {
+      "header": "Keep",
+      "question": "What parts of the current system must be preserved?",
+      "multiSelect": true,
+      "options": [
+        {"label": "Existing database and data", "recommended": true},
+        {"label": "Current user accounts and authentication"},
+        {"label": "Third-party integrations", "recommended": true},
+        {"label": "Custom business logic / code"},
+        {"label": "Nothing — complete rebuild is fine"}
+      ]
+    }
+  ]
+}
 ```
 
-**STOP and wait for user response.**
+Acknowledge: explain what migration approach the answers point to.
 
----
+### Step 3: Pattern Inference + Service Recommendation (askQuestions)
 
-### Step 3: GitHub Repository
+Based on "ecommerce" + "migration" + "on-prem", infer N-Tier Web App
+and present the recommendation:
 
-After receiving framework, acknowledge and ask:
-
-```text
-✅ Framework: {framework}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🔗 Step 3 of 4: Source Repository
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-Do you have a GitHub repo for CI/CD?
-
-→ Paste repo URL or press Enter to skip:
+```json
+{
+  "questions": [
+    {
+      "header": "Pattern",
+      "question": "Based on your ecommerce platform, I recommend a **web app with database backend** (N-Tier). Sound right?",
+      "options": [
+        {"label": "Yes, that sounds right", "recommended": true},
+        {"label": "Not quite — let me pick differently"}
+      ]
+    },
+    {
+      "header": "Customers",
+      "question": "How many customers visit your store daily?",
+      "options": [
+        {"label": "Under 100 (small shop)"},
+        {"label": "100-1,000 (growing business)", "recommended": true},
+        {"label": "1,000-10,000 (established retailer)"},
+        {"label": "10,000+ (large-scale retail)"}
+      ]
+    },
+    {
+      "header": "Budget",
+      "question": "Approximate monthly cloud budget?",
+      "options": [
+        {"label": "Under $50/month (testing first)"},
+        {"label": "$200-1,000/month (production)", "recommended": true},
+        {"label": "$1,000+/month (enterprise scale)"}
+      ],
+      "allowFreeformInput": true
+    },
+    {
+      "header": "Data",
+      "question": "What customer data does your store handle?",
+      "multiSelect": true,
+      "options": [
+        {"label": "Personal customer data (names, emails, addresses)", "recommended": true},
+        {"label": "Payment or credit card data", "recommended": true},
+        {"label": "Internal business data"},
+        {"label": "Public product catalog only"}
+      ]
+    }
+  ]
+}
 ```
 
-**STOP and wait for user response.**
+### Step 4: Security & Region (askQuestions)
 
----
+Pre-select based on EU + Retail + payment data:
 
-### Step 4: Budget Confirmation
-
-After receiving repo (or skip), acknowledge and ask:
-
-```text
-✅ Repository: {repoUrl or "Manual deployment"}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-💰 Step 4 of 4: Budget
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-Static Web Apps Standard tier costs ~$9/month + App Insights (~$5-10/month).
-
-→ Monthly budget target? (press Enter for ~$15/month):
+```json
+{
+  "questions": [
+    {
+      "header": "Compliance",
+      "question": "As an EU retailer handling payment data, these frameworks apply. Confirm which you need:",
+      "multiSelect": true,
+      "options": [
+        {"label": "EU data protection (GDPR)", "recommended": true},
+        {"label": "Payment card security (PCI-DSS)", "recommended": true},
+        {"label": "Security controls audit (SOC 2)"},
+        {"label": "None of these apply"}
+      ]
+    },
+    {
+      "header": "Security",
+      "question": "Recommended security measures for ecommerce:",
+      "multiSelect": true,
+      "options": [
+        {"label": "Passwordless service connections (Managed Identity)", "recommended": true},
+        {"label": "Centralized secrets management (Key Vault)", "recommended": true},
+        {"label": "Private database connections (Private Endpoints)", "recommended": true},
+        {"label": "Web application firewall (WAF)", "recommended": true},
+        {"label": "Encrypted connections (TLS 1.2+)", "recommended": true}
+      ]
+    },
+    {
+      "header": "Auth",
+      "question": "How will customers log in to your store?",
+      "options": [
+        {"label": "Customer accounts (Entra ID B2C)", "recommended": true,
+         "description": "For external customer sign-up and login"},
+        {"label": "Company accounts (Entra ID)",
+         "description": "For internal admin users only"},
+        {"label": "Third-party login (social, Okta)"}
+      ]
+    },
+    {
+      "header": "Region",
+      "question": "Where should your store be hosted?",
+      "options": [
+        {"label": "Sweden (EU, GDPR-compliant)", "recommended": true,
+         "description": "Default — sustainable, GDPR-compliant"},
+        {"label": "Netherlands (Western Europe)"},
+        {"label": "Germany (strict data sovereignty)"}
+      ]
+    }
+  ]
+}
 ```
 
-**STOP and wait for user response.**
+### Step 5: Operational Details & Confirmation
 
----
-
-### Step 5: Confirmation & Defaults
-
-After receiving budget, show the complete summary with defaults:
-
-```text
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🎯 Requirements Summary
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-YOUR INPUTS:
-┌─────────────┬──────────────────────────┐
-│ Project     │ {projectName}            │
-│ Framework   │ {framework}              │
-│ Repository  │ {repoUrl or "None"}      │
-│ Budget      │ {budget}/month           │
-└─────────────┴──────────────────────────┘
-
-PRE-CONFIGURED DEFAULTS:
-┌─────────────┬──────────────────────────┬────────────────────────┐
-│ Setting     │ Value                    │ Why                    │
-├─────────────┼──────────────────────────┼────────────────────────┤
-│ Region      │ westeurope               │ Optimal for Static Web │
-│ Environment │ prod                     │ Demo simplicity        │
-│ SKU         │ Standard                 │ Staging + custom DNS   │
-│ SLA         │ 99.9%                    │ Standard tier default  │
-│ Monitoring  │ Application Insights     │ Built-in telemetry     │
-│ Security    │ HTTPS + managed cert     │ Zero-config SSL        │
-└─────────────┴──────────────────────────┴────────────────────────┘
-
-AZURE RESOURCES TO CREATE:
-  • Static Web App (Standard) - hosting with staging slots
-  • Log Analytics Workspace - centralized logging
-  • Application Insights - telemetry and monitoring
-
-TAGS:
-  Environment: prod | Project: {projectName} | ManagedBy: Bicep
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-Does this look correct? (yes/no/edit)
-
-→
+```json
+{
+  "questions": [
+    {
+      "header": "Project",
+      "question": "Project name? (lowercase, hyphens — used for file naming)",
+      "allowFreeformInput": true
+    },
+    {
+      "header": "Environment",
+      "question": "Which environments do you need?",
+      "options": [
+        {"label": "Dev + Production", "recommended": true},
+        {"label": "Dev + Staging + Production"},
+        {"label": "Dev + Test + Staging + Production"}
+      ]
+    },
+    {
+      "header": "Timeline",
+      "question": "Target go-live timeline?",
+      "options": [
+        {"label": "1-3 months", "recommended": true},
+        {"label": "3-6 months"},
+        {"label": "6+ months (phased migration)"}
+      ]
+    }
+  ]
+}
 ```
 
-**STOP and wait for user response.**
+Present a summary table in chat showing all selections, then confirm:
 
----
-
-### Step 6: Handle Confirmation Response
-
-**If "yes" or "y" or Enter:**
-
-```text
-✅ Perfect! Creating requirements document...
+```json
+{
+  "questions": [
+    {
+      "header": "Confirm",
+      "question": "Requirements summary ready. Generate the document?",
+      "options": [
+        {"label": "Yes, generate requirements", "recommended": true},
+        {"label": "Let me change something"},
+        {"label": "Start over"}
+      ]
+    }
+  ]
+}
 ```
 
-Then generate `agent-output/{projectName}/01-requirements.md` with captured data.
+### Step 6: Generate & Handoff
 
-**If "no" or "edit":**
+If confirmed:
 
-```text
-No problem! Which field would you like to change?
-  1. Project name
-  2. Framework
-  3. Repository
-  4. Budget
-  5. Region (default: westeurope)
+1. Generate `agent-output/{projectName}/01-requirements.md` using the standard template
+2. Populate `### Business Context` with industry (Retail), size (Mid-Market),
+   scenario (Migration), migration source, pain points, and success criteria
+3. Populate `### Architecture Pattern` (N-Tier, Balanced tier, migration justification)
+4. Populate `### Recommended Security Controls` (GDPR + PCI-DSS stack)
 
-→ Enter 1-5:
-```
+Present next step options:
 
-Then loop back to the appropriate step.
-
----
-
-### Step 7: Generate & Next Steps
-
-After creating the requirements doc:
-
-```text
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-✨ Done! Requirements captured.
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-📄 Created: agent-output/{projectName}/01-requirements.md
-
-NEXT STEPS:
-  Option A: @architect → Full architecture assessment
-  Option B: @bicep-plan → Jump straight to implementation (simple workload)
-
-Which would you like? (A/B)
-
-→
-```
-
----
-
-## Error Handling
-
-**Invalid project name:**
-
-```text
-⚠️ Project names must be lowercase with hyphens only (no spaces or special chars).
-   Example: "my-demo-app"
-
-→ Try again:
-```
-
-**Empty required field:**
-
-```text
-⚠️ This field is required. Please enter a value.
-
-→
+```json
+{
+  "questions": [
+    {
+      "header": "Next Step",
+      "question": "Requirements captured! What would you like to do next?",
+      "options": [
+        {"label": "Architecture Assessment (@architect)",
+         "description": "Full WAF assessment + cost estimates",
+         "recommended": true},
+        {"label": "Jump to Implementation (@bicep-plan)",
+         "description": "Skip assessment for simple workloads"},
+        {"label": "Review the document first"}
+      ]
+    }
+  ]
+}
 ```
 
 ---
@@ -239,4 +331,4 @@ Which would you like? (A/B)
 
 Generate `agent-output/{projectName}/01-requirements.md` using the standard template
 from `.github/templates/01-requirements.template.md`, populated with user responses
-and pre-configured defaults.
+and demonstrating the business-to-technical translation in every section.

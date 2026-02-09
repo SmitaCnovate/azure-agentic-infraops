@@ -1,109 +1,105 @@
 ---
-description: "Gather Azure workload requirements through structured interview"
+description: "Gather Azure workload requirements through business-first discovery"
 agent: "Requirements"
-model: "Claude Opus 4.5"
+model: "Claude Opus 4.6"
 tools:
   - edit/createFile
   - edit/editFiles
+  - vscode/askQuestions
 ---
 
 # Plan Requirements
 
-Conduct a structured requirements gathering session for a new Azure workload.
-Guide the user through all necessary NFR categories and produce a complete
-`01-requirements.md` artifact.
+Conduct a business-first requirements discovery session for a new Azure workload.
+The user may describe their needs in business terms (industry, company size, what
+they want to achieve) — NOT necessarily in technical Azure terms. Your job is to
+translate business context into infrastructure requirements.
 
 ## Mission
 
-Interview the user to capture comprehensive Azure workload requirements,
-ensuring all critical non-functional requirements (NFRs) are addressed before
-proceeding to architecture assessment.
+Discover and capture comprehensive Azure workload requirements by starting with
+business context, adaptively deepening the conversation based on how much the user
+already knows, inferring technical patterns from business signals, and confirming
+recommendations before generating the artifact.
 
 ## Scope & Preconditions
 
-- User has a project concept but may not have documented requirements
+- User has a business need but may not know Azure services or architecture patterns
+- Support both business-level prompts ("modernize my ecommerce") and technical
+  prompts ("3-tier web app with SQL")
 - Output will be saved to `agent-output/${input:projectName}/01-requirements.md`
 - Follow the template structure from `.github/templates/01-requirements.template.md`
+- Use the Service Recommendation Matrix and Business Domain Signals from `_shared/defaults.md`
 
 ## Inputs
 
-| Variable               | Description                             | Default  |
-| ---------------------- | --------------------------------------- | -------- |
-| `${input:projectName}` | Project name (kebab-case)               | Required |
-| `${input:projectType}` | Web App, API, Data Platform, IoT, AI/ML | Web App  |
+| Variable               | Description                                          | Default  |
+| ---------------------- | ---------------------------------------------------- | -------- |
+| `${input:projectName}` | Project name (kebab-case) — asked in Phase 5         | Required |
+| `${input:businessDesc}` | Describe your business need (or select from guided options) | Required |
 
 ## Workflow
 
-### Step 1: Project Context
+Follow the agent's 5-phase business-first discovery flow:
 
-Ask the user to describe:
+### Phase 1: Business Discovery (Adaptive Depth)
 
-1. **Project name** (lowercase, alphanumeric, hyphens only)
-2. **Business problem** this workload solves
-3. **Target environment** (dev, staging, prod, or all)
-4. **Timeline** (target go-live date)
+Use `askQuestions` UI to gather:
 
-### Step 2: Functional Requirements
+1. **Industry / vertical** — Retail, Healthcare, Finance, etc.
+2. **Company size** — Startup, Mid-Market, Enterprise
+3. **System type** — guided picker (ecommerce, portal, website, analytics, API, automation)
+4. **Scenario** — greenfield, migration, modernization, or extension
 
-Gather information about:
+**Adaptive Round 2** (if needed):
 
-1. **Core capabilities** - What must this workload do?
-2. **User types and load** - Who uses it and how many?
-3. **Integration requirements** - What systems must it connect to?
-4. **Data requirements** - Volume, retention, sensitivity
+- If **migration/modernization**: current platform, pain points, what to preserve
 
-### Step 3: Non-Functional Requirements (NFRs)
+### Phase 2: Workload Pattern Detection (Agent-Inferred)
 
-For each category, prompt the user if not provided:
+The agent infers the workload pattern from business context — do NOT ask the user
+to pick from technical categories like "N-Tier" or "Event-Driven".
 
-| Category         | Key Questions                                                  |
-| ---------------- | -------------------------------------------------------------- |
-| **Availability** | SLA target? RTO? RPO? Maintenance window?                      |
-| **Performance**  | Response time target? Throughput? Concurrent users?            |
-| **Scalability**  | Current vs. 12-month projection for users, data, transactions? |
+1. **Agent recommends** a pattern based on Business Domain Signals
+2. **User confirms** or rejects the recommendation
+3. **Daily users** — in business terms ("How many people use this daily?")
+4. **Budget** — approximate monthly cloud spend
+5. **Data sensitivity** — personal data, payment data, health records, etc.
 
-### Step 4: Compliance & Security
+### Phase 3: Service Recommendations (Business-Friendly)
 
-Identify applicable requirements:
+Based on pattern + budget, use `askQuestions` UI to present:
 
-- **Regulatory**: HIPAA, PCI-DSS, GDPR, SOC 2, ISO 27001, FedRAMP, NIST
-- **Data residency**: Primary region, sovereignty requirements
-- **Security controls**: Authentication, encryption, network isolation
+1. **Service tier options** — business descriptions with Azure names in parentheses
+2. **Availability** — in business terms ("How important is uptime?")
+3. **Recovery** — in business terms ("How fast must you recover?")
+4. **Application layers** (if N-Tier) — business descriptions
 
-### Step 5: Budget
+### Phase 4: Security & Compliance Posture
 
-Capture the user's budget (approximate is fine):
+Use `askQuestions` UI, pre-selecting frameworks based on industry:
 
-- Monthly budget (e.g., ~$50/month)
-- Annual budget (optional)
-- One-time setup budget (optional)
+1. **Compliance frameworks** — pre-checked based on industry from Phase 1
+2. **Security controls** — business-friendly labels with Azure terms in parentheses
+3. **Authentication** — in business terms ("How will people log in?")
+4. **Hosting region** — business-friendly location names
 
-> The Azure Pricing MCP server will generate detailed cost estimates during
-> architecture assessment (Step 2).
+### Phase 5: Operational Details & Draft
 
-### Step 6: Operational Requirements
-
-Document operational needs:
-
-- Monitoring and observability approach
-- Support model (24/7, business hours, best effort)
-- Backup and DR strategy
-
-### Step 7: Regional Preferences
-
-Confirm deployment regions:
-
-- **Primary**: `swedencentral` (default - sustainable, GDPR-compliant)
-- **Secondary**: `germanywestcentral` (for quota or DR)
-- Override reasons if not using defaults
+1. **Project name, environments, timeline** — captured here, not Phase 1
+2. Run research subagent for additional Azure context
+3. Generate `01-requirements.md` with all sections including `### Business Context`
+4. Present draft for review, iterate on feedback
 
 ## Output Expectations
 
 Generate `agent-output/{projectName}/01-requirements.md` with:
 
-1. All sections from the template populated
-2. Clear ✅/⚠️/❌ indicators for requirement completeness
-3. Summary section ready for architecture assessment handoff
+1. All H2 sections from the template populated
+2. `### Business Context` subsection under Project Overview (industry, size, drivers)
+3. `### Architecture Pattern` subsection with inferred workload + service tier
+4. `### Recommended Security Controls` subsection with confirmed controls
+5. Summary section ready for architecture assessment handoff
 
 ### File Structure
 
@@ -117,11 +113,13 @@ agent-output/{projectName}/
 
 Before completing, verify:
 
+- [ ] All 5 discovery phases completed
 - [ ] Project name follows naming convention
-- [ ] At least one functional requirement defined
-- [ ] SLA/RTO/RPO specified (or explicitly marked N/A)
+- [ ] Workload pattern identified and service tier selected
+- [ ] SLA/RTO/RPO specified
+- [ ] Security controls confirmed by user
 - [ ] Compliance requirements identified
-- [ ] Budget provided (approximate OK - MCP generates estimates)
+- [ ] Budget provided
 - [ ] Primary region confirmed
 
 ## Next Steps

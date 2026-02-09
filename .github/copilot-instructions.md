@@ -7,19 +7,80 @@
 Transform Azure infrastructure requirements into deploy-ready Bicep code using coordinated AI agents, aligned with
 Azure Well-Architected Framework (WAF) and Azure Verified Modules (AVM).
 
+## VS Code 1.109+ Agent Orchestration
+
+This project implements the **Conductor pattern** from VS Code 1.109's agent orchestration features.
+The `InfraOps Conductor` agent coordinates the 7-step workflow with mandatory human approval gates.
+
+> **⚠️ REQUIRED SETTING**: Enable custom agents as subagents in your **User Settings**:
+>
+> ```json
+> {
+>   "github.copilot.chat": {
+>     "customAgentInSubagent": {
+>       "enabled": true
+>     }
+>   }
+> }
+> ```
+>
+> Without this, the Conductor cannot delegate to specialized agents.
+
+### Quick Start with Conductor
+
+1. Open VS Code Chat (`Ctrl+Shift+I`)
+2. Select **InfraOps Conductor** from agent dropdown
+3. Describe your Azure infrastructure project
+4. The Conductor guides you through all 7 steps with approval gates
+
+### Agent Invocation Methods
+
+| Method               | Description                           |
+| -------------------- | ------------------------------------- |
+| `Ctrl+Shift+A`       | Agent picker (all agents)             |
+| `InfraOps Conductor` | Master orchestrator (recommended)     |
+| Individual agents    | Direct invocation for specific phases |
+
 ## Agent Workflow (7 Steps)
 
 Agents coordinate through artifact handoffs via `.github/agents/*.agent.md`:
 
 1. **Requirements** (`requirements` agent) → `01-requirements.md`
 2. **Architecture** (`architect` agent) → `02-architecture-assessment.md` + cost estimates via Azure Pricing MCP
-3. **Design Artifacts** (`diagram`, `adr` agents) → `03-des-*.{py,png,md}` (optional)
+3. **Design Artifacts** (`design` agent) → `03-des-*.{py,png,md}` (optional, uses azure-diagrams/azure-adr skills)
 4. **Planning** (`bicep-plan` agent) → `04-implementation-plan.md` + governance constraints
 5. **Implementation** (`bicep-code` agent) → Bicep templates in `infra/bicep/{project}/`
 6. **Deploy** (`deploy` agent) → `06-deployment-summary.md` + resource validation
-7. **As-Built** (`diagram`, `adr`, `docs` agents) → `07-*.md` documentation suite
+7. **As-Built** (`azure-diagrams`, `azure-adr`, `azure-workload-docs` skills) → `07-*.md` documentation suite
 
 **Key Rule**: Each agent saves outputs to `agent-output/{project}/` and passes context via handoff prompts.
+
+### Conductor Approval Gates
+
+The InfraOps Conductor enforces mandatory pause points:
+
+| Gate | After Step   | User Action                         |
+| ---- | ------------ | ----------------------------------- |
+| 1    | Requirements | Confirm requirements complete       |
+| 2    | Architecture | Approve WAF assessment              |
+| 3    | Planning     | Approve implementation plan         |
+| 4    | Pre-Deploy   | Approve lint/what-if/review results |
+| 5    | Post-Deploy  | Verify deployment                   |
+
+### Optional Validation Cycle (Power Users)
+
+**OPTIONAL**: Step 5 can run an early validation cycle for complex deployments.
+
+Most users skip this - Deploy agent (Step 6) runs what-if automatically as preflight.
+
+```
+@bicep-lint-subagent    → Syntax validation (bicep lint, bicep build)
+@bicep-whatif-subagent  → Deployment preview (az deployment what-if)
+@bicep-review-subagent  → Code review (AVM standards, security, naming)
+```
+
+**When to use**: Complex deployments, learning scenarios, power users wanting early feedback  
+**When to skip**: Simple deployments (default), faster workflow
 
 ## Critical Defaults
 
@@ -46,6 +107,7 @@ File-type-specific rules in `.github/instructions/` are applied via `.gitattribu
 | `bicep-code-best-practices.instructions.md` | `**/*.bicep`                 | AVM-first, uniqueSuffix, required tags |
 | `markdown.instructions.md`                  | `**/*.md`                    | Formatting, link style, structure      |
 | `agents-definitions.instructions.md`        | `**/*.agent.md`              | Front matter, tools, handoffs          |
+| `governance-discovery.instructions.md`      | `**/04-governance-*.md`      | ARG query required, discovery source   |
 | `workload-documentation.instructions.md`    | `**/agent-output/**/07-*.md` | As-built documentation                 |
 
 ### Template-First Output Generation
@@ -64,7 +126,7 @@ All agent outputs go to `agent-output/{project}/` with strict naming and H2 stru
 - **01-requirements.md**: Project Overview, Functional Requirements, NFRs, Compliance, Budget, Operational, Regional
 - **02-architecture-assessment.md**: Requirements Validation, Executive Summary, WAF Pillars, SKU Recs, Decisions, Handoff
 - **04-implementation-plan.md**: Overview, Resource Inventory, Module Structure, Tasks, Dependencies, Naming, Security
-- **04-governance-constraints.md**: Azure Policy Compliance, Required Tags, Security, Cost, Network Policies
+- **04-governance-constraints.md**: Discovery Source, Azure Policy Compliance, Required Tags, Security, Cost, Network Policies
 
 See [validation rules](../scripts/validate-artifact-templates.mjs) for all artifacts.
 
@@ -140,18 +202,18 @@ The Azure Pricing MCP server (`.mcp/azure-pricing-mcp/`) integrates with agents 
 ```
 azure-agentic-infraops/
 ├── .github/
-│   ├── agents/                    # 9 agents: requirements, architect, bicep-plan,
-│   │                              # bicep-code, deploy, diagram, adr, docs, diagnose
+│   ├── agents/                    # Agents for core workflow steps
 │   │   ├── _shared/defaults.md    # Regions, tags, CAF naming, AVM standards
+│   │   ├── _subagents/            # Validation subagents (lint, what-if, review)
+│   │   ├── infraops-conductor.agent.md  # Master orchestrator (NEW)
 │   │   ├── requirements.agent.md  # Step 1: Gather infrastructure needs
 │   │   ├── architect.agent.md     # Step 2: WAF assessment + cost estimates
 │   │   ├── bicep-plan.agent.md    # Step 4: Implementation planning
 │   │   ├── bicep-code.agent.md    # Step 5: Bicep code generation
 │   │   ├── deploy.agent.md        # Step 6: Azure deployment
-│   │   ├── diagram.agent.md       # Step 3/7: Architecture diagrams
-│   │   ├── adr.agent.md           # Step 3/7: Architecture Decision Records
-│   │   ├── docs.agent.md          # Step 7: Workload documentation
 │   │   └── diagnose.agent.md      # Troubleshooting helper
+│   ├── skills/                    # 10 reusable skills (azure-diagrams, azure-adr,
+│   │                              # azure-workload-docs, orchestration-helper, etc.)
 │   ├── instructions/              # Rules for specific file types (applied via .gitattributes)
 │   ├── templates/                 # H2 skeleton files for artifact generation
 │   └── copilot-instructions.md    # THIS FILE
@@ -172,7 +234,7 @@ azure-agentic-infraops/
 
 | Category            | Tools                                           |
 | ------------------- | ----------------------------------------------- |
-| **IaC**             | Bicep (primary), Terraform (optional)           |
+| **IaC**             | Bicep (Terraform support planned)               |
 | **Automation**      | PowerShell 7+, Azure CLI 2.50+, Bicep CLI 0.20+ |
 | **Platform**        | Azure (public cloud)                            |
 | **AI**              | GitHub Copilot with custom agents               |
@@ -268,7 +330,15 @@ npm run lint:md
 - Creates WAF assessments aligned with Azure Well-Architected Framework
 - Integrates Azure Pricing MCP for real-time cost estimates
 - Generates `02-architecture-assessment.md` with SKU recommendations
-- Hands off to Bicep Plan or Design Artifacts agents
+- Hands off to Design agent (optional) or Bicep Plan agent
+
+### Design Agent
+
+- Generates design artifacts for architecture documentation (Step 3)
+- Uses `azure-diagrams` skill for Python architecture diagrams
+- Uses `azure-adr` skill for Architecture Decision Records
+- Creates `03-des-diagram.py`, `03-des-diagram.png`, `03-des-adr-*.md`
+- Hands off to Bicep Plan agent for implementation
 
 ### Bicep Plan Agent
 
@@ -292,23 +362,12 @@ npm run lint:md
 - Generates `06-deployment-summary.md` with deployed resource details
 - Validates post-deployment resources
 
-### Diagram Agent
+### Diagnose Agent
 
-- Generates Python architecture diagrams using `diagrams` library
-- Creates `03-des-diagram.py` (design) and `07-ab-diagram.py` (as-built)
-- Produces PNG files for visual documentation
-
-### ADR Agent
-
-- Documents architecture decisions as formal ADRs
-- Creates `03-des-adr-*.md` (design) and `07-ab-adr-*.md` (as-built)
-- Includes WAF trade-offs and decision rationale
-
-### Docs Agent
-
-- Generates comprehensive workload documentation
-- Creates `07-design-document.md`, `07-operations-runbook.md`, and related docs
-- Includes cost summaries, compliance matrices, backup/DR plans
+- Interactive diagnostic agent for Azure resource health assessment
+- Guides users through issue identification and remediation planning
+- Uses approval-first execution for safety
+- Saves diagnostic reports to `agent-output/{project}/`
 
 ---
 

@@ -35,34 +35,6 @@ resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' = {
   })
 }
 
-// Enable audit logging for Key Vault
-resource diagnosticSettings 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
-  name: 'kv-diagnostics'
-  scope: keyVault
-  properties: {
-    logs: [
-      {
-        category: 'AuditEvent'
-        enabled: true
-        retentionPolicy: {
-          enabled: true
-          days: 90
-        }
-      }
-    ]
-    metrics: [
-      {
-        category: 'AllMetrics'
-        enabled: true
-        retentionPolicy: {
-          enabled: true
-          days: 30
-        }
-      }
-    ]
-  }
-}
-
 @description('Key Vault resource ID')
 output keyVaultId string = keyVault.id
 

@@ -9,7 +9,7 @@
       "line_length": 120,
       "heading_line_length": 120,
       "code_block_line_length": 120,
-      "code_blocks": true,
+      "code_blocks": false,
       "tables": false,
       "headings": true,
       "strict": false,
@@ -118,6 +118,10 @@
     "node_modules/**",
     "**/node_modules/**",
 
+    // Temporary working files (gitignored)
+    "Copilot-Processing.md",
+    "tmp/**",
+
     // Python virtual environments
     ".venv/**",
     "venv/**",
@@ -141,17 +145,5 @@
 
     // Agent-generated output (validated by artifact-templates validator)
     "agent-output/**",
-
-    // Scenario demo content (examples, not production code)
-    "scenarios/**/solution/**",
-    "scenarios/**/examples/**",
-    "scenarios/**/sample-app/**",
-    "scenarios/**/prompts/**",
-    "scenarios/**/templates/**",
-    "scenarios/**/scenario/**",
-    "scenarios/**/agents/**",
-    "scenarios/**/validation/**",
-    "scenarios/**/DEMO-SCRIPT.md",
-    "scenarios/S08-sbom-generator/README.md",
   ],
 }

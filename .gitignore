@@ -4,14 +4,18 @@
 .azure/
 local.settings.json
 
+# Copilot session logs
+Copilot-Processing.md
+
 # Bicep
 *.bin
 
 # PowerShell
 *.ps1xml
 
-# VS Code
-.vscode/
+# VS Code - ignore settings but keep shared extensions
+.vscode/*
+!.vscode/extensions.json
 *.code-workspace
 
 # OS
@@ -67,3 +71,4 @@ scratch/
 
 # Extracted sample apps (use .zip files instead to avoid Dependabot alerts)
 scenarios/S06-sbom-generator/sample-app/
+freshness-report.json

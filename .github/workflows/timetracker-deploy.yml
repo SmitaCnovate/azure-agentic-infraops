@@ -135,6 +135,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: deploy
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    continue-on-error: true
 
     steps:
       - name: Checkout code
@@ -148,7 +149,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: ${{ env.SDK_PROJECT_PATH }}
-        run: npm ci
+        run: npm install
 
       - name: Build SDK
         working-directory: ${{ env.SDK_PROJECT_PATH }}

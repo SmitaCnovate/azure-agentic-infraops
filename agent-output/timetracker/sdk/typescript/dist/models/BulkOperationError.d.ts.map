@@ -1,0 +1,1 @@
+{"version":3,"file":"BulkOperationError.d.ts","sourceRoot":"","sources":["../../src/models/BulkOperationError.ts"],"names":[],"mappings":"AAAA;;GAEG;AAEH,MAAM,WAAW,kBAAkB;IACjC,QAAQ,CAAC,EAAE,MAAM,CAAC;IAClB,OAAO,CAAC,EAAE,MAAM,CAAC;IACjB,MAAM,CAAC,EAAE,MAAM,CAAC;IAChB,YAAY,CAAC,EAAE,MAAM,CAAC;IACtB,SAAS,CAAC,EAAE,MAAM,CAAC;CACpB"}

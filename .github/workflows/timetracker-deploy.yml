@@ -146,17 +146,6 @@ jobs:
           node-version: '18'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Debug environment
-        run: |
-          echo "Current working directory: $(pwd)"
-          echo "SDK_PROJECT_PATH: ${{ env.SDK_PROJECT_PATH }}"
-          echo "Expanded path: $(pwd)/${{ env.SDK_PROJECT_PATH }}"
-          echo "Directory listing (workspace root):"
-          ls -la
-          echo ""
-          echo "Directory listing (SDK path):"
-          ls -la "${{ env.SDK_PROJECT_PATH }}" || echo "SDK directory not found"
-
       - name: Install dependencies
         working-directory: ${{ env.SDK_PROJECT_PATH }}
         run: npm ci

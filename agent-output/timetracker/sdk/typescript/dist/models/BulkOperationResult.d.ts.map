@@ -1,0 +1,1 @@
+{"version":3,"file":"BulkOperationResult.d.ts","sourceRoot":"","sources":["../../src/models/BulkOperationResult.ts"],"names":[],"mappings":"AAAA;;GAEG;AAEH,OAAO,EAAE,kBAAkB,EAAE,MAAM,sBAAsB,CAAC;AAE1D,MAAM,WAAW,mBAAmB;IAClC,YAAY,CAAC,EAAE,MAAM,CAAC;IACtB,YAAY,CAAC,EAAE,MAAM,CAAC;IACtB,QAAQ,CAAC,EAAE,kBAAkB,EAAE,CAAC;CACjC"}

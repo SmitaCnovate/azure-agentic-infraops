@@ -1,0 +1,1 @@
+{"version":3,"file":"CreateProjectRequest.d.ts","sourceRoot":"","sources":["../../src/models/CreateProjectRequest.ts"],"names":[],"mappings":"AAAA;;GAEG;AAEH,MAAM,WAAW,oBAAoB;IACnC,WAAW,CAAC,EAAE,MAAM,CAAC;IACrB,QAAQ,CAAC,EAAE,MAAM,CAAC;IAClB,WAAW,CAAC,EAAE,MAAM,CAAC;IACrB,YAAY,CAAC,EAAE,MAAM,CAAC;CACvB"}

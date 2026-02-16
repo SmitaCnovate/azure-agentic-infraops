@@ -1,0 +1,1 @@
+{"version":3,"file":"CreateTimeEntryRequest.d.ts","sourceRoot":"","sources":["../../src/models/CreateTimeEntryRequest.ts"],"names":[],"mappings":"AAAA;;GAEG;AAEH,MAAM,WAAW,sBAAsB;IACrC,MAAM,EAAE,MAAM,CAAC;IACf,SAAS,EAAE,MAAM,CAAC;IAClB,MAAM,EAAE,MAAM,CAAC;IACf,IAAI,EAAE,MAAM,CAAC;IACb,KAAK,EAAE,MAAM,CAAC;CACf"}

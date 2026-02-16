@@ -1,0 +1,1 @@
+{"version":3,"file":"ClientDto.d.ts","sourceRoot":"","sources":["../../src/models/ClientDto.ts"],"names":[],"mappings":"AAAA;;GAEG;AAEH,MAAM,WAAW,SAAS;IACxB,EAAE,CAAC,EAAE,MAAM,CAAC;IACZ,UAAU,CAAC,EAAE,MAAM,CAAC;IACpB,SAAS,CAAC,EAAE,MAAM,CAAC;IACnB,YAAY,CAAC,EAAE,MAAM,CAAC;CACvB"}

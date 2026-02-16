@@ -1,0 +1,1 @@
+{"version":3,"file":"CreateTaskRequest.d.ts","sourceRoot":"","sources":["../../src/models/CreateTaskRequest.ts"],"names":[],"mappings":"AAAA;;GAEG;AAEH,MAAM,WAAW,iBAAiB;IAChC,QAAQ,CAAC,EAAE,MAAM,CAAC;IAClB,SAAS,CAAC,EAAE,MAAM,CAAC;IACnB,WAAW,CAAC,EAAE,MAAM,CAAC;IACrB,UAAU,CAAC,EAAE,MAAM,CAAC;CACrB"}

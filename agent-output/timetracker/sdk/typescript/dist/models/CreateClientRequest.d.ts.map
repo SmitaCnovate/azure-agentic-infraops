@@ -1,0 +1,1 @@
+{"version":3,"file":"CreateClientRequest.d.ts","sourceRoot":"","sources":["../../src/models/CreateClientRequest.ts"],"names":[],"mappings":"AAAA;;GAEG;AAEH,MAAM,WAAW,mBAAmB;IAClC,UAAU,CAAC,EAAE,MAAM,CAAC;IACpB,YAAY,CAAC,EAAE,MAAM,CAAC;IACtB,WAAW,CAAC,EAAE,MAAM,CAAC;CACtB"}

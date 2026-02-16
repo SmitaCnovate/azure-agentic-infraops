@@ -5,7 +5,6 @@ param location string
 param environment string
 param uniqueSuffix string
 param projectName string
-param ownerEmail string
 param tags object
 
 var keyVaultName = 'kv-${take(projectName, 8)}-${environment}-${take(uniqueSuffix, 6)}'

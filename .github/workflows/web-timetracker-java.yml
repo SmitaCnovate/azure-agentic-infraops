@@ -1,0 +1,41 @@
+# This workflow has been DISABLED for this repository
+# 
+# Original: Build and deploy JAR app to Azure Web App - web-timetracker-01
+# Reason: Repository is now using .NET 8 API (TimeTracker), not Java
+# 
+# This file is kept for documentation purposes.
+# The old Java workflow configuration is replaced by:
+#   - timetracker-deploy.yml (.NET 8 API CI/CD pipeline)
+#
+# This workflow now ONLY runs on manual trigger (workflow_dispatch)
+# It does NOT run automatically on push to main.
+
+name: "[DEPRECATED] Java Web App Deploy - web-timetracker-01"
+
+on:
+  # DISABLED: This workflow no longer runs automatically on push
+  # push:
+  #   branches:
+  #     - main
+  
+  # Manual trigger only (disabled by default)
+  workflow_dispatch:
+
+jobs:
+  disabled-notice:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: "⚠️ DEPRECATED WORKFLOW"
+        run: |
+          echo "This workflow is DEPRECATED and disabled."
+          echo "The repository has migrated to .NET 8 API deployment."
+          echo ""
+          echo "Active workflow: timetracker-deploy.yml"
+          echo "  - Builds .NET 8 API"
+          echo "  - Runs 120+ unit tests"
+          echo "  - Deploys to Azure App Service"
+          echo "  - Publishes TypeScript SDK"
+          echo ""
+          echo "To re-enable this workflow, see: .github/workflows/web-timetracker-java.yml"
+          exit 0

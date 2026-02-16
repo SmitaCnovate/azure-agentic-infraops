@@ -3,6 +3,8 @@
  * TypeScript client library for the TimeTracker API
  */
 
+import axios from 'axios';
+
 export interface ApiConfig {
   baseURL: string;
   apiKey?: string;
@@ -22,8 +24,8 @@ export class TimeTrackerClient {
    */
   async health(): Promise<boolean> {
     try {
-      const response = await fetch(`${this.baseURL}/health`);
-      return response.ok;
+      const response = await axios.get(`${this.baseURL}/health`);
+      return response.status === 200;
     } catch {
       return false;
     }

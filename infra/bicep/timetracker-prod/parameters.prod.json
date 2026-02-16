@@ -10,12 +10,6 @@
     },
     "projectName": {
       "value": "timetracker"
-    },
-    "appServiceName": {
-      "value": "app-timetracker-api-prod"
-    },
-    "ownerEmail": {
-      "value": "admin@timetracker.dev"
     }
   }
 }

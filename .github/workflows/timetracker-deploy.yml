@@ -139,8 +139,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          path: ./
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -148,30 +146,41 @@ jobs:
           node-version: '18'
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Debug environment
+        run: |
+          echo "Current working directory: $(pwd)"
+          echo "SDK_PROJECT_PATH: ${{ env.SDK_PROJECT_PATH }}"
+          echo "Expanded path: $(pwd)/${{ env.SDK_PROJECT_PATH }}"
+          echo "Directory listing (workspace root):"
+          ls -la
+          echo ""
+          echo "Directory listing (SDK path):"
+          ls -la "${{ env.SDK_PROJECT_PATH }}" || echo "SDK directory not found"
+
       - name: Install dependencies
-        working-directory: ${{ github.workspace }}/${{ env.SDK_PROJECT_PATH }}
+        working-directory: ${{ env.SDK_PROJECT_PATH }}
         run: npm ci
 
       - name: Build SDK
-        working-directory: ${{ github.workspace }}/${{ env.SDK_PROJECT_PATH }}
+        working-directory: ${{ env.SDK_PROJECT_PATH }}
         run: |
           npm run build
           npm run lint || true
 
       - name: Run SDK tests
-        working-directory: ${{ github.workspace }}/${{ env.SDK_PROJECT_PATH }}
+        working-directory: ${{ env.SDK_PROJECT_PATH }}
         if: always()
         run: npm test || true
 
       - name: Check version
-        working-directory: ${{ github.workspace }}/${{ env.SDK_PROJECT_PATH }}
+        working-directory: ${{ env.SDK_PROJECT_PATH }}
         run: |
           VERSION=$(jq -r '.version' package.json)
           echo "📦 SDK Version: $VERSION"
           echo "PACKAGE_VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Publish to npm
-        working-directory: ${{ github.workspace }}/${{ env.SDK_PROJECT_PATH }}
+        working-directory: ${{ env.SDK_PROJECT_PATH }}
         continue-on-error: true
         run: |
           npm publish

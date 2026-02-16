@@ -1,0 +1,123 @@
+name: Frontend - Deploy to Azure Static Web App
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'agent-output/timetracker/web/**'
+      - '.github/workflows/timetracker-frontend-deploy.yml'
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'agent-output/timetracker/web/**'
+
+env:
+  WEB_PROJECT_PATH: agent-output/timetracker/web
+  AZURE_WEBAPP_NAME: app-timetracker-web-prod
+  RESOURCE_GROUP: rg-timetracker-prod
+  NODE_VERSION: '18.x'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build Frontend
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: ${{ env.WEB_PROJECT_PATH }}/package-lock.json
+
+      - name: Install dependencies
+        working-directory: ${{ env.WEB_PROJECT_PATH }}
+        run: npm ci
+
+      - name: Lint code
+        working-directory: ${{ env.WEB_PROJECT_PATH }}
+        run: npm run lint --if-present
+        continue-on-error: true
+
+      - name: Run tests
+        working-directory: ${{ env.WEB_PROJECT_PATH }}
+        run: npm test -- run --if-present
+        continue-on-error: true
+
+      - name: Build application
+        working-directory: ${{ env.WEB_PROJECT_PATH }}
+        run: npm run build
+        env:
+          VITE_API_URL: https://app-timetracker-api-prod.azurewebsites.net
+          VITE_AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          VITE_AZURE_CLIENT_ID: ${{ secrets.AZURE_WEB_CLIENT_ID }}
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-build
+          path: ${{ env.WEB_PROJECT_PATH }}/dist
+          retention-days: 5
+
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy to Azure
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: frontend-build
+          path: ${{ env.WEB_PROJECT_PATH }}/dist
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy to Azure Static Web App
+        uses: azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          action: 'upload'
+          app_location: ${{ env.WEB_PROJECT_PATH }}/dist
+          skip_app_build: true
+
+      - name: Run health check
+        run: |
+          for i in {1..10}; do
+            echo "Health check attempt $i/10"
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://timetracker-web.azurestaticapps.net/)
+            if [ $STATUS -eq 200 ]; then
+              echo "✅ Health check passed (HTTP $STATUS)"
+              exit 0
+            fi
+            echo "❌ HTTP $STATUS - Retrying in 30 seconds..."
+            sleep 30
+          done
+          echo "❌ Health check failed after 10 attempts"
+          exit 1
+
+      - name: Generate deployment summary
+        if: always()
+        run: |
+          echo "## Frontend Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Property | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Status | ${{ job.status }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Timestamp | $(date -u '+%Y-%m-%d %H:%M:%S UTC') |" >> $GITHUB_STEP_SUMMARY
+          echo "| Commit | ${{ github.sha }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Branch | ${{ github.ref_name }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| URL | https://timetracker-web.azurestaticapps.net/ |" >> $GITHUB_STEP_SUMMARY

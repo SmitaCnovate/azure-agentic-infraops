@@ -36,7 +36,6 @@ jobs:
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
           cache: true
-          cache-dependency-path: '${{ env.API_PROJECT_PATH }}/packages.lock.json'
 
       - name: Restore NuGet packages
         run: dotnet restore "${{ env.API_PROJECT_PATH }}"
@@ -75,7 +74,6 @@ jobs:
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
           cache: true
-          cache-dependency-path: '${{ env.API_PROJECT_PATH }}/packages.lock.json'
 
       - name: Restore NuGet packages
         run: dotnet restore "${{ env.API_PROJECT_PATH }}"
@@ -120,7 +118,6 @@ jobs:
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
           cache: true
-          cache-dependency-path: '${{ env.API_PROJECT_PATH }}/packages.lock.json'
 
       - name: Restore NuGet packages
         run: dotnet restore "${{ env.API_PROJECT_PATH }}"
@@ -265,7 +262,6 @@ jobs:
           node-version: '18'
           registry-url: 'https://registry.npmjs.org'
           cache: 'npm'
-          cache-dependency-path: '${{ env.SDK_PROJECT_PATH }}/package-lock.json'
 
       - name: Install dependencies
         working-directory: ${{ env.SDK_PROJECT_PATH }}

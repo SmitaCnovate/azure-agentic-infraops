@@ -16,6 +16,10 @@ agent-output/
 │   ├── 03-des-cost-estimate.md          # Step 3: Design cost estimate
 │   ├── 03-des-adr-001-{title}.md        # Step 3: Design ADR(s)
 │   ├── 04-implementation-plan.md        # Step 4: Infrastructure plan
+│   ├── 04-dependency-diagram.py          # Step 4: Dependency diagram source
+│   ├── 04-dependency-diagram.png         # Step 4: Dependency diagram image
+│   ├── 04-runtime-diagram.py             # Step 4: Runtime diagram source
+│   ├── 04-runtime-diagram.png            # Step 4: Runtime diagram image
 │   ├── 04-governance-constraints.md     # Step 4: Azure Policy constraints
 │   ├── 05-implementation-reference.md   # Step 5: Link to Bicep code
 │   ├── 06-deployment-summary.md         # Step 6: Deployment summary
@@ -33,15 +37,15 @@ agent-output/
 
 ## Naming Conventions
 
-| Step | Prefix | Artifact Types                                                                          |
-| ---- | ------ | --------------------------------------------------------------------------------------- |
-| 1    | `01-`  | `requirements.md` (saved by architect from @requirements context)                       |
-| 2    | `02-`  | `architecture-assessment.md` (WAF assessment only)                                      |
-| 3    | `03-`  | `des-diagram.*`, `des-cost-estimate.md`, `des-adr-NNN-{title}.md` (design artifacts)    |
-| 4    | `04-`  | `implementation-plan.md`, `governance-constraints.md`                                   |
-| 5    | `05-`  | `implementation-reference.md` (links to `infra/bicep/{project}/`)                       |
-| 6    | `06-`  | `deployment-summary.md`                                                                 |
-| 7    | `07-`  | `ab-diagram.*`, `ab-adr-NNN-*.md`, `documentation-index.md`, `design-document.md`, etc. |
+| Step | Prefix | Artifact Types                                                                                     |
+| ---- | ------ | -------------------------------------------------------------------------------------------------- |
+| 1    | `01-`  | `requirements.md` (saved by architect from @requirements context)                                  |
+| 2    | `02-`  | `architecture-assessment.md` (WAF assessment only)                                                 |
+| 3    | `03-`  | `des-diagram.*`, `des-cost-estimate.md`, `des-adr-NNN-{title}.md` (design artifacts)               |
+| 4    | `04-`  | `implementation-plan.md`, `governance-constraints.md`, `dependency-diagram.*`, `runtime-diagram.*` |
+| 5    | `05-`  | `implementation-reference.md` (links to `infra/bicep/{project}/`)                                  |
+| 6    | `06-`  | `deployment-summary.md`                                                                            |
+| 7    | `07-`  | `ab-diagram.*`, `ab-adr-NNN-*.md`, `documentation-index.md`, `design-document.md`, etc.            |
 
 > **Note**: Step 1 requirements are captured by `@requirements` and saved by `architect`.
 > Step 5 Bicep code lives in `infra/bicep/{project}/`. Step 6 is deployment.
@@ -55,10 +59,17 @@ This name is used to create the project folder and is inherited by all subsequen
 If an `agent-output/{project}/` folder already exists, agents will suggest reusing it
 to continue work on an existing project.
 
-## Auto-Generated Project README
+## Auto-Generated Project README (MANDATORY)
 
-Each project folder contains a `README.md` that serves as an index of all generated artifacts.
-This file is automatically updated by agents as they create new outputs.
+Every project folder **MUST** contain a `README.md` that serves as an index of all generated artifacts.
+
+- The **Requirements agent** (Step 1) creates the initial README from
+  `.github/skills/azure-artifacts/templates/PROJECT-README.template.md`
+- **Every subsequent agent** updates the README when saving their step artifacts
+  (marking their step complete, adding artifact files, updating progress percentage)
+
+If a project is missing its README (e.g., created before this requirement), any agent
+working on that project should create it from the template and backfill completed steps.
 
 ### Template
 
@@ -89,17 +100,18 @@ This file is automatically updated by agents as they create new outputs.
 ## Related Resources
 
 - **Bicep Code**: [`infra/bicep/{project}/`](../../infra/bicep/{project}/)
-- **Scenarios**: [`scenarios/`](../../scenarios/)
+- **Prompt Guide**: [`docs/prompt-guide/`](../../docs/prompt-guide/)
 ```
 
-## Sample Projects
+## Showcase Projects
 
-| Project                                         | Description                                        | Artifacts                                |
-| ----------------------------------------------- | -------------------------------------------------- | ---------------------------------------- |
-| [agent-testing](./agent-testing/)               | Agent validation framework with 16 Azure resources | Full 7-step workflow + health validation |
-| [static-webapp](./static-webapp/)               | Azure Static Web App with Functions backend        | Production-ready SWA pattern             |
-| [ecommerce](./ecommerce/)                       | E-commerce platform architecture                   | Multi-tier with SQL and CDN              |
-| [infraops-static-demo](./infraops-static-demo/) | Demo static web infrastructure                     | Complete workflow example                |
+| Project                                     | Description                                 | Highlights                                       |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------------ |
+| [e2e-conductor-test](./e2e-conductor-test/) | End-to-end Conductor workflow validation    | Full 7-step workflow, ADRs, diagrams, governance |
+| [static-webapp](./static-webapp/)           | Azure Static Web App with Functions backend | Complete example with compliance matrix          |
+
+> **Note**: These are curated showcase projects demonstrating the full workflow.
+> Create your own project folder when starting a new infrastructure project.
 
 ## Legacy Demo Outputs
 

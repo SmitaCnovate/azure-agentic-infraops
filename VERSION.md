@@ -1,14 +1,24 @@
+<a id="top"></a>
+
 # Version Information
 
-**Current Version:** 7.5.0
+**Current Version:** 0.10.0 (pre-release)
 
-**Last Updated:** 2026-02-02
+**Status:** Unreleased — development in progress on `main`
 
-**Build:** d222744
+**Last Content Update:** 2026-03-15
+
+**Build:** quality-improvements
+
+> Consumers tracking stable releases should pin to the most recent tag in
+> [GitHub Releases](https://github.com/jonathan-vella/azure-agentic-infraops/releases)
+> rather than the `Current Version` above.
 
 ## Version History
 
 See [CHANGELOG.md](CHANGELOG.md) for detailed release notes.
+
+<div align="right"><a href="#top"><b>⬆️ Back to Top</b></a></div>
 
 ## Semantic Versioning
 
@@ -18,13 +28,17 @@ This project follows [Semantic Versioning 2.0.0](https://semver.org/):
 - **MINOR** version for new functionality (feat:)
 - **PATCH** version for bug fixes (fix:)
 
+<div align="right"><a href="#top"><b>⬆️ Back to Top</b></a></div>
+
 ## Automated Versioning
 
 Version bumps are automated via GitHub Actions based on [Conventional Commits](https://www.conventionalcommits.org/):
 
-| Commit Type | Version Bump | Example |
-|-------------|--------------|---------|
-| `feat:` | Minor | `feat: add new agent` |
-| `fix:` | Patch | `fix: correct typo` |
-| `feat!:` or `BREAKING CHANGE:` | Major | `feat!: redesign workflow` |
-| `docs:`, `chore:`, etc. | None | `docs: update README` |
+| Commit Type                    | Version Bump | Example                    |
+| ------------------------------ | ------------ | -------------------------- |
+| `feat:`                        | Minor        | `feat: add new agent`      |
+| `fix:`                         | Patch        | `fix: correct typo`        |
+| `feat!:` or `BREAKING CHANGE:` | Major        | `feat!: redesign workflow` |
+| `docs:`, `chore:`, etc.        | None         | `docs: update README`      |
+
+<div align="right"><a href="#top"><b>⬆️ Back to Top</b></a></div>

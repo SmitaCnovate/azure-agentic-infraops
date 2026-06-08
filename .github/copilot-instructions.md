@@ -1,316 +1,158 @@
-# Agentic InfraOps - Copilot Instructions
+# APEX - Copilot Instructions
 
-> **Agentic InfraOps** - Azure infrastructure engineered by agents. Verified. Well-Architected. Deployable.
+> VS Code Copilot-specific orchestration instructions.
+> For general project conventions, build commands, and code style, see the root `AGENTS.md`.
 
-## Core Mission
+## Azure Defaults (canonical)
 
-Transform Azure infrastructure requirements into deploy-ready Bicep code using coordinated AI agents, aligned with
-Azure Well-Architected Framework (WAF) and Azure Verified Modules (AVM).
+This section is the canonical declaration of Azure infrastructure defaults.
+Every skill, agent, and prompt must reference this section — never restate
+the values inline. The IaC-flavoured mirror with CAF naming, AVM modules,
+and reference index lives in
+[`.github/skills/azure-defaults/SKILL.md`](skills/azure-defaults/SKILL.md).
 
-## Agent Workflow (7 Steps)
+### Default Regions
 
-Agents coordinate through artifact handoffs via `.github/agents/*.agent.md`:
+| Service             | Default Region       | Reason                         |
+| ------------------- | -------------------- | ------------------------------ |
+| **All resources**   | `swedencentral`      | EU GDPR-compliant              |
+| **Static Web Apps** | `westeurope`         | Not available in swedencentral |
+| **Failover**        | `germanywestcentral` | EU paired alternative          |
 
-1. **Requirements** (`requirements` agent) → `01-requirements.md`
-2. **Architecture** (`architect` agent) → `02-architecture-assessment.md` + cost estimates via Azure Pricing MCP
-3. **Design Artifacts** (`diagram`, `adr` agents) → `03-des-*.{py,png,md}` (optional)
-4. **Planning** (`bicep-plan` agent) → `04-implementation-plan.md` + governance constraints
-5. **Implementation** (`bicep-code` agent) → Bicep templates in `infra/bicep/{project}/`
-6. **Deploy** (`deploy` agent) → `06-deployment-summary.md` + resource validation
-7. **As-Built** (`diagram`, `adr`, `docs` agents) → `07-*.md` documentation suite
+### Required Tags (Azure Policy Enforced)
 
-**Key Rule**: Each agent saves outputs to `agent-output/{project}/` and passes context via handoff prompts.
+Tag schema is **whatever live Azure Policy enforces** in the target
+subscription. Governance Discovery (Step 3.5) discovers the real
+contract via `discover.py` and writes it to
+`04-governance-constraints.json` (`tag_contract.tags[]`,
+`tag_contract.source: "policy"`); that always wins.
 
-## Critical Defaults
+**Greenfield fallback** (no tag policy found at any inherited scope):
+`environment`, `owner`, `costcenter`, `project` — lowercase, per
+Microsoft's CAF tag-strategy guidance. Citation +
+greenfield decision checklist:
+[`azure-defaults/references/tag-strategy.md`](skills/azure-defaults/references/tag-strategy.md).
 
-Source of truth: [`.github/agents/_shared/defaults.md`](agents/_shared/defaults.md)
+> The PascalCase 4-tag set (`Environment`, `ManagedBy`, `Project`,
+> `Owner`) is a **deprecated convention** retained only for backward
+> compatibility on existing projects whose deployed resources already
+> carry that casing. Do not propagate it to new projects.
 
-| Setting             | Value                                          | Notes                                              |
-| ------------------- | ---------------------------------------------- | -------------------------------------------------- |
-| **Default Region**  | `swedencentral`                                | EU GDPR-compliant; alt: `germanywestcentral`       |
-| **Required Tags**   | `Environment`, `ManagedBy`, `Project`, `Owner` | All resources must include these tags              |
-| **Unique Suffix**   | `uniqueString(resourceGroup().id)` in bicep    | Generate once in `main.bicep`, pass to all modules |
-| **Key Vault Name**  | `kv-{short}-{env}-{suffix}` (≤24 chars)        | Always include suffix to guarantee uniqueness      |
-| **Storage Account** | `st{short}{env}{suffix}` (≤24 chars, no `-`)   | Lowercase+numbers only; no hyphens                 |
-| **SQL Server Auth** | Azure AD-only (`azureADOnlyAuthentication`)    | No SQL auth usernames/passwords                    |
-| **Zone Redundancy** | App Service Plans: P1v4+ only                  | Not S1/P1v2; required for HA                       |
+### Security baseline + AVM mandate
 
-## Architecture Essentials
+Non-negotiable: HTTPS-only, TLS 1.2 minimum, no public blob, public network
+disabled for prod data services, Managed Identity over keys, AVM-first.
+Full rules:
+[`iac-policy-compliance.md`](instructions/references/iac-policy-compliance.md)
+and
+[`iac-security-baseline.md`](instructions/references/iac-security-baseline.md).
 
-### Instruction Files
+### SKU source of truth
 
-File-type-specific rules in `.github/instructions/` are applied via `.gitattributes`:
+Creative SKU decisions (App Service, VM, SQL, Cosmos, AKS pools, Redis,
+APIM, App Gateway, Storage replication) flow through
+`agent-output/{project}/sku-manifest.{json,md}` — never re-derive SKUs
+from artifact prose. Authoring rules:
+[`sku-manifest.instructions.md`](instructions/sku-manifest.instructions.md).
 
-| Instruction File                            | Applies To                   | Key Rules                              |
-| ------------------------------------------- | ---------------------------- | -------------------------------------- |
-| `bicep-code-best-practices.instructions.md` | `**/*.bicep`                 | AVM-first, uniqueSuffix, required tags |
-| `markdown.instructions.md`                  | `**/*.md`                    | Formatting, link style, structure      |
-| `agents-definitions.instructions.md`        | `**/*.agent.md`              | Front matter, tools, handoffs          |
-| `workload-documentation.instructions.md`    | `**/agent-output/**/07-*.md` | As-built documentation                 |
+## Session State — apex-recall
 
-### Template-First Output Generation
-
-Agents MUST follow template structure when generating artifacts:
-
-1. **Read template**: Load `.github/templates/{artifact}.template.md`
-2. **Match H2 headings**: Use exact text and order from template
-3. **Anchor rule**: Add custom sections only AFTER the last required H2
-4. **Attribution**: Include `> Generated by {agent} agent | {YYYY-MM-DD}`
-
-### Artifact Output Structure
-
-All agent outputs go to `agent-output/{project}/` with strict naming and H2 structure:
-
-- **01-requirements.md**: Project Overview, Functional Requirements, NFRs, Compliance, Budget, Operational, Regional
-- **02-architecture-assessment.md**: Requirements Validation, Executive Summary, WAF Pillars, SKU Recs, Decisions, Handoff
-- **04-implementation-plan.md**: Overview, Resource Inventory, Module Structure, Tasks, Dependencies, Naming, Security
-- **04-governance-constraints.md**: Azure Policy Compliance, Required Tags, Security, Cost, Network Policies
-
-See [validation rules](../scripts/validate-artifact-templates.mjs) for all artifacts.
-
-### Handoff Pattern
-
-Each agent defines `handoffs` in its agent definition linking to the next agent with context:
-
-```yaml
-handoffs:
-  - label: "Create WAF Assessment"
-    agent: architect
-    prompt: "Assess the requirements above for WAF alignment..."
-    send: true
-```
-
-Data flows through artifact files + agent context, not via copy-paste.
-
-## Developer Workflows
-
-### Running Agents
-
-`Ctrl+Shift+A` → Select agent → Type prompt → Approve before execution
-
-### Validation
+All session state flows through `apex-recall`. Do not read or write
+`00-session-state.json` directly.
 
 ```bash
-# Lint Bicep templates
-bicep lint infra/bicep/{project}/*.bicep
+# Lifecycle
+apex-recall init <project> --json                                    # new project
+apex-recall show <project> --json                                    # context: step, decisions, findings, artifacts
+apex-recall checkpoint <project> <step> <phase> --json               # after each phase
+apex-recall complete-step <project> <step> --json                    # on step completion
+apex-recall review-audit <project> <step> ... --json                 # after challenger reviews
 
-# Validate artifact structure
-npm run validate
+# Atomic step transition — PREFERRED for moving between steps. Bundles
+# complete-step (with challenger gate) + decide + start-step into one
+# 00-session-state.json write, avoiding partial-update drift.
+apex-recall transition <project> --from-step <s> --to-step <t> \
+    --complete --decision key=value --json
 
-# Lint markdown
-npm run lint:md
+# Decisions + findings
+apex-recall decide <project> --key <k> --value <v> --json
+apex-recall decide <project> --decision "<text>" --rationale "<why>" --json
+apex-recall finding <project> --add "<text>" --json
+
+# Read-only orientation: sessions | files | search '<term>' | decisions (all accept --json)
 ```
 
-### Local Testing
+If `apex-recall` returns useful context, skip redundant file reads.
+If empty/errored, continue normally — it's a convenience, not a blocker.
 
-```bash
-# Set Azure subscription
-az account set --subscription "<sub-id>"
+Canonical `show --json` schema (including the `session.steps` shape and
+jq query templates) lives at
+[`tools/apex-recall/docs/show-schema.md`](../tools/apex-recall/docs/show-schema.md).
+The valid decision-keys registry lives at
+[`tools/apex-recall/docs/decision-keys.md`](../tools/apex-recall/docs/decision-keys.md).
 
-# Preview Bicep deployment (what-if analysis)
-bicep build infra/bicep/{project}/main.bicep
-az deployment group what-if --template-file main.json ...
-```
+## Multi-Step Workflow
 
-### MCP Integration
+The Steps 1–7 + Post-Lessons table is in [AGENTS.md](../AGENTS.md#agent-workflow);
+the machine-readable source is
+[`.github/skills/workflow-engine/templates/workflow-graph.json`](skills/workflow-engine/templates/workflow-graph.json).
+Each step's outputs land in `agent-output/{project}/`; context flows via artifact
+files + handoffs. Reviews are adversarial passes by challenger subagents —
+**default flow is single-pass `comprehensive`** (mandatory at Steps 1, 2, 4;
+Step 3.5 uses `governance-reconciliation`). Multi-pass deep review is **opt-in
+only** via `decisions.review_depth = "deep"` or an explicit `10-Challenger`
+invocation; never auto-fires by complexity tier. Reviews target AI-generated
+creative decisions only (Steps 1, 2, 3.5, 4, with Step 3 ADRs and Step 5 code
+as opt-in).
 
-The Azure Pricing MCP server (`.mcp/azure-pricing-mcp/`) integrates with agents to fetch real-time SKU pricing:
+## Skills
 
-- Used by `architect` agent for cost estimations in WAF assessments
-- Used by `bicep-plan` agent for SKU recommendations
-- Enable in VS Code settings; pre-configured in `.vscode/mcp.json`
+Skills auto-discover via the `description` field in `.github/skills/{name}/SKILL.md`.
+Agents read `SKILL.md` files on demand and load `references/*.md` only when the
+body explicitly points to one. There is one tier — no digest, no minimal.
 
-## Key Files & Directories
+## Chat Triggers
 
-| File/Dir                                  | Purpose                                                     |
-| ----------------------------------------- | ----------------------------------------------------------- |
-| `.github/agents/*.agent.md`               | Agent definitions with front matter (name, tools, handoffs) |
-| `.github/agents/_shared/defaults.md`      | Shared config: regions, tags, naming conventions, security  |
-| `.github/instructions/`                   | File-type rules (Bicep, Markdown, PowerShell, agents, etc.) |
-| `.github/templates/`                      | H2 skeleton files for artifact generation                   |
-| `agent-output/{project}/`                 | Project-scoped artifacts (01-07 sequentially)               |
-| `infra/bicep/{project}/`                  | Bicep module library (main.bicep + modules/)                |
-| `mcp/azure-pricing-mcp/`                  | Azure Pricing MCP server for cost estimation                |
-| `.vscode/mcp.json`                        | MCP server configuration (pre-configured)                   |
-| `scripts/validate-artifact-templates.mjs` | CI validation of artifact H2 structure                      |
-| `scenarios/`                              | Demo scenarios (S01-S08) for workflow examples              |
+- Messages starting with `gh` are GitHub operations (e.g., `gh pr create`,
+  `gh workflow run`, `gh api`). Follow `.github/skills/github-operations/SKILL.md`
+  (`gh` CLI-first, MCP fallback).
 
-## Project Structure
+### GitHub Tool Priority (Mandatory)
 
-```
-azure-agentic-infraops/
-├── .github/
-│   ├── agents/                    # 9 agents: requirements, architect, bicep-plan,
-│   │                              # bicep-code, deploy, diagram, adr, docs, diagnose
-│   │   ├── _shared/defaults.md    # Regions, tags, CAF naming, AVM standards
-│   │   ├── requirements.agent.md  # Step 1: Gather infrastructure needs
-│   │   ├── architect.agent.md     # Step 2: WAF assessment + cost estimates
-│   │   ├── bicep-plan.agent.md    # Step 4: Implementation planning
-│   │   ├── bicep-code.agent.md    # Step 5: Bicep code generation
-│   │   ├── deploy.agent.md        # Step 6: Azure deployment
-│   │   ├── diagram.agent.md       # Step 3/7: Architecture diagrams
-│   │   ├── adr.agent.md           # Step 3/7: Architecture Decision Records
-│   │   ├── docs.agent.md          # Step 7: Workload documentation
-│   │   └── diagnose.agent.md      # Troubleshooting helper
-│   ├── instructions/              # Rules for specific file types (applied via .gitattributes)
-│   ├── templates/                 # H2 skeleton files for artifact generation
-│   └── copilot-instructions.md    # THIS FILE
-├── agent-output/{project}/        # All agent-generated artifacts (01-07)
-├── infra/bicep/                   # Bicep module library
-│   └── {project}/                 # Project-specific templates
-│       ├── main.bicep             # Entry point (generates uniqueSuffix, orchestrates modules)
-│       └── modules/               # Feature modules (networking, compute, data, etc.)
-├── mcp/azure-pricing-mcp/         # Azure Pricing MCP server
-├── scripts/                       # Validation and workflow automation
-│   ├── validate-artifact-templates.mjs  # CI: Artifact H2 validation
-│   ├── validate-cost-estimate-templates.mjs # CI: Cost estimate validation
-│   └── workflow-generator/        # Mermaid → PNG/GIF animation
-└── docs/                          # Repository documentation
-```
+For issues and pull requests, prefer the `gh` CLI over GitHub MCP tools — the
+CLI is always available in this dev container and is the more stable primitive.
+Fall back to MCP only when an operation has no `gh` CLI equivalent (e.g., rich
+PR review thread management or bulk GraphQL queries). In devcontainers,
+do not run `gh auth` commands unless the user explicitly asks for CLI auth
+troubleshooting (`GH_TOKEN` is set via VS Code User Settings →
+`terminal.integrated.env.linux`; shell exports do not propagate reliably).
 
-## Tech Stack
+### Explore Subagent Thoroughness
 
-| Category            | Tools                                           |
-| ------------------- | ----------------------------------------------- |
-| **IaC**             | Bicep (primary), Terraform (optional)           |
-| **Automation**      | PowerShell 7+, Azure CLI 2.50+, Bicep CLI 0.20+ |
-| **Platform**        | Azure (public cloud)                            |
-| **AI**              | GitHub Copilot with custom agents               |
-| **Dev Environment** | VS Code Dev Container (Ubuntu 24.04)            |
+Specify thoroughness explicitly when invoking Explore:
 
-## Critical Patterns
+| Lookup Type                           | Thoroughness | Examples                                                  |
+| ------------------------------------- | ------------ | --------------------------------------------------------- |
+| Single file read, config check        | `quick`      | "What's in azure.yaml?", "Find the main.bicep path"       |
+| Multi-file comparison, pattern search | `medium`     | "How do agents reference skills?", "What modules exist?"  |
+| Deep codebase research                | `thorough`   | "Audit all security patterns", "Full dependency analysis" |
 
-### Azure Verified Modules (AVM)
+Check whether the needed information is already in context from earlier
+file reads before calling Explore.
 
-**Always prefer AVM modules over raw Bicep resources.**
+## Conventions, Key Files & Validation
 
-```bicep
-// Use AVM from public registry
-module keyVault 'br/public:avm/res/key-vault/vault:0.11.0' = {
-  params: { name: kvName, location: location }
-}
-```
+See `AGENTS.md` for all conventions, project structure, key file paths,
+and build/validation commands.
 
-| Resource        | Module Path                                 | Min Version |
-| --------------- | ------------------------------------------- | ----------- |
-| Key Vault       | `br/public:avm/res/key-vault/vault`         | `0.11.0`    |
-| Virtual Network | `br/public:avm/res/network/virtual-network` | `0.5.0`     |
-| Storage Account | `br/public:avm/res/storage/storage-account` | `0.14.0`    |
-| App Service     | `br/public:avm/res/web/site`                | `0.12.0`    |
-| SQL Server      | `br/public:avm/res/sql/server`              | `0.10.0`    |
+**Terminal hygiene**: Never use `mv -i`, `rm -i`, `cp -i`, `read -p`, or any
+prompt-driven shell builtin (incl. inside `bash -c '...'`). Pipe >50-line
+output to a file. See `.github/instructions/no-interactive-shell.instructions.md`
+for the full ruleset; `npm run lint:safe-shell` enforces it on committed
+agent/skill/instruction snippets.
 
-**Full AVM index**: https://aka.ms/avm/index
-
-### Unique Resource Names
-
-```bicep
-// main.bicep - Generate once, pass to ALL modules
-var uniqueSuffix = uniqueString(resourceGroup().id)
-
-module keyVault 'modules/key-vault.bicep' = {
-  params: { uniqueSuffix: uniqueSuffix }
-}
-
-// modules/key-vault.bicep
-param uniqueSuffix string
-var kvName = 'kv-${take(projectName, 8)}-${environment}-${take(uniqueSuffix, 6)}'
-```
-
-### Required Tags on All Resources
-
-```bicep
-tags: {
-  Environment: 'dev'      // dev, staging, prod
-  ManagedBy: 'Bicep'      // or 'Terraform'
-  Project: projectName
-  Owner: owner
-}
-```
-
-### Security Defaults
-
-| Setting                    | Value                             |
-| -------------------------- | --------------------------------- |
-| `supportsHttpsTrafficOnly` | `true`                            |
-| `minimumTlsVersion`        | `'TLS1_2'`                        |
-| `allowBlobPublicAccess`    | `false`                           |
-| Managed Identities         | Preferred over connection strings |
-
-### Azure Policy Compliance
-
-| Policy                    | Solution                          |
-| ------------------------- | --------------------------------- |
-| SQL Azure AD-only auth    | `azureADOnlyAuthentication: true` |
-| Zone redundancy           | Use P1v4+ SKU (not Standard)      |
-| Storage shared key access | Use identity-based connections    |
-
-## Validation Commands
-
-```bash
-# Bicep
-bicep build infra/bicep/{project}/main.bicep
-bicep lint infra/bicep/{project}/main.bicep
-
-# Markdown
-npm run lint:md
-```
-
-## Agent-Specific Guidance
-
-### Requirements Agent
-
-- Captures comprehensive infrastructure needs via `01-requirements.md`
-- Hands off to Architect for WAF assessment
-- Uses `@plan` context for initial requirements gathering
-
-### Architect Agent
-
-- Creates WAF assessments aligned with Azure Well-Architected Framework
-- Integrates Azure Pricing MCP for real-time cost estimates
-- Generates `02-architecture-assessment.md` with SKU recommendations
-- Hands off to Bicep Plan or Design Artifacts agents
-
-### Bicep Plan Agent
-
-- Discovers Azure Policy governance constraints (tag requirements, resource types allowed, etc.)
-- Creates detailed implementation plans in `04-implementation-plan.md`
-- Produces `04-governance-constraints.md` for compliance
-- Hands off to Bicep Code agent for implementation
-
-### Bicep Code Agent
-
-- Generates Bicep modules in `infra/bicep/{project}/`
-- Follows Azure Verified Modules (AVM) standards
-- Ensures unique resource names via suffix pattern
-- Produces `05-implementation-reference.md` with validation status
-- Hands off to Deploy agent
-
-### Deploy Agent
-
-- Executes `bicep build` and `what-if` analysis before deployment
-- Manages Azure authentication and subscription selection
-- Generates `06-deployment-summary.md` with deployed resource details
-- Validates post-deployment resources
-
-### Diagram Agent
-
-- Generates Python architecture diagrams using `diagrams` library
-- Creates `03-des-diagram.py` (design) and `07-ab-diagram.py` (as-built)
-- Produces PNG files for visual documentation
-
-### ADR Agent
-
-- Documents architecture decisions as formal ADRs
-- Creates `03-des-adr-*.md` (design) and `07-ab-adr-*.md` (as-built)
-- Includes WAF trade-offs and decision rationale
-
-### Docs Agent
-
-- Generates comprehensive workload documentation
-- Creates `07-design-document.md`, `07-operations-runbook.md`, and related docs
-- Includes cost summaries, compliance matrices, backup/DR plans
-
----
-
-**Mission**: Azure infrastructure engineered by agents—from requirements to deployed templates,
-aligned with Well-Architected best practices and Azure Verified Modules.
+**Artifact lint delegation**: Agents do not call `npm run lint:artifact-templates`
+or `markdownlint-cli2` directly against `agent-output/**`. The lefthook
+`artifact-validation` pre-commit hook and the `10-Challenger` review own the
+contract. Validator-tracked anti-pattern — see
+[`agent-authoring.instructions.md`](instructions/agent-authoring.instructions.md#no-direct-markdownlint-on-agent-output-rule).

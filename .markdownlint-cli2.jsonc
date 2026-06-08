@@ -1,5 +1,5 @@
 {
-  // Markdownlint configuration for azure-agentic-infraops
+  // Markdownlint configuration for APEX
   // Documentation: https://github.com/DavidAnson/markdownlint
   "config": {
     "default": true,
@@ -9,7 +9,7 @@
       "line_length": 120,
       "heading_line_length": 120,
       "code_block_line_length": 120,
-      "code_blocks": true,
+      "code_blocks": false,
       "tables": false,
       "headings": true,
       "strict": false,
@@ -41,8 +41,8 @@
     // === FORMATTING RULES (disabled for flexibility) ===
 
     // MD009: No trailing spaces
-    // Disabled: Some Markdown editors add trailing spaces for line breaks
-    "MD009": false,
+    // Use <br> for intentional line breaks instead of trailing spaces
+    "MD009": true,
 
     // MD026: No trailing punctuation in headings
     // Disabled: Headings like "Requirements Validation ✅" use emoji
@@ -52,21 +52,18 @@
     // Disabled: Multi-paragraph blockquotes in documentation
     "MD028": false,
 
-    // MD029: Ordered list item prefix (1. 2. 3. vs 1. 1. 1.)
-    // Disabled: Both styles acceptable for maintainability
-    "MD029": false,
+    // MD029: Ordered list item prefix — sequential numbering (1. 2. 3.)
+    "MD029": { "style": "ordered" },
 
     // MD030: Spaces after list markers
     // Disabled: Flexible list formatting
     "MD030": false,
 
     // MD031: Fenced code blocks should be surrounded by blank lines
-    // Disabled: Compact code examples in documentation
-    "MD031": false,
+    "MD031": true,
 
     // MD032: Lists should be surrounded by blank lines
-    // Disabled: Compact list formatting in artifacts
-    "MD032": false,
+    "MD032": true,
 
     // MD036: No emphasis used instead of heading
     // Disabled: **Bold** used for inline emphasis in tables
@@ -84,8 +81,8 @@
     // Disabled: Compact table formatting
     "MD058": false,
 
-    // MD060: Link fragments should be valid
-    // Disabled: Cross-file references may not resolve during linting
+    // MD060: Table column style (spacing around pipes)
+    // Disabled: Mixed table styles across hand-authored and generated content
     "MD060": false,
 
     // === HTML & RAW CONTENT (disabled intentionally) ===
@@ -98,10 +95,23 @@
     // Disabled: URLs in code comments and examples
     "MD034": false,
 
-    // MD040: Fenced code blocks should have a language
-    // Disabled: 127+ violations exist - enable after cleanup sprint
-    // TODO: Fix code blocks without language specifiers, then set to true
-    "MD040": false,
+    // MD035: Horizontal rule style
+    // Disabled: grid cards in docs/ use *** as card separators
+    "MD035": false,
+
+    // === CONSISTENCY RULES (enforced for hand-authored docs) ===
+
+    // MD003: Heading style — enforce ATX style (# headings)
+    "MD003": { "style": "atx" },
+
+    // MD004: Unordered list style — enforce consistent dashes
+    "MD004": { "style": "dash" },
+
+    // MD040: Fenced code blocks should have a language specifier
+    "MD040": true,
+
+    // MD047: Files should end with a single newline character
+    "MD047": true,
 
     // MD051: Link fragments should be valid
     // Disabled: Dynamic links in templates
@@ -118,6 +128,10 @@
     "node_modules/**",
     "**/node_modules/**",
 
+    // Temporary working files (gitignored)
+    "Copilot-Processing.md",
+    "tmp/**",
+
     // Python virtual environments
     ".venv/**",
     "venv/**",
@@ -133,25 +147,63 @@
     "coverage/**",
 
     // Archived content
-    "mcp/azure-pricing-mcp/.archive/**",
+    "tools/mcp-servers/azure-pricing/.archive/**",
 
-    // Presenter/demo content (intentionally less strict)
+    // Vendored MCP server (external fork — not hand-authored)
+    "tools/mcp-servers/drawio/**",
+
+    // Upstream vendored files (not hand-authored)
+    "tools/mcp-servers/azure-pricing/CHANGELOG.md",
+    "tools/mcp-servers/azure-pricing/README.md",
+    "tools/mcp-servers/azure-pricing/CONTRIBUTING.md",
+    "tools/mcp-servers/azure-pricing/INSTALL.md",
+    "tools/mcp-servers/azure-pricing/docs/**",
+
+    // pytest cache (auto-generated, not hand-authored)
+    "tools/mcp-servers/azure-pricing/.pytest_cache/**",
+
+    // Presenter/demo content and planning docs (intentionally less strict)
     "docs/audit-checklists/**",
     "docs/presenter/**",
+    "docs/tf-support/**",
+
+    // Planning prompts (long inline examples, not production code)
+    "tools/apex-prompts/**",
+
+    // Utility scripts with embedded examples
+    "tools/scripts/markdown-prettifiers/**",
 
     // Agent-generated output (validated by artifact-templates validator)
     "agent-output/**",
 
-    // Scenario demo content (examples, not production code)
-    "scenarios/**/solution/**",
-    "scenarios/**/examples/**",
-    "scenarios/**/sample-app/**",
-    "scenarios/**/prompts/**",
-    "scenarios/**/templates/**",
-    "scenarios/**/scenario/**",
-    "scenarios/**/agents/**",
-    "scenarios/**/validation/**",
-    "scenarios/**/DEMO-SCRIPT.md",
-    "scenarios/S08-sbom-generator/README.md",
+    // All skill content is excluded from markdown linting:
+    //  - SKILL.md files are validated structurally by validate:skills-format
+    //    (frontmatter, body sections, cross-references), not by markdownlint.
+    //  - references/ are MCP-fetched or hand-authored long-form prose where
+    //    120-char line-length and other style rules don't apply uniformly.
+    //  - templates/ are example/sample content.
+    //  - SKILL.digest.md / SKILL.minimal.md are auto-generated.
+    //  - Plugin skills imported from VS Code extensions and MCP tools are
+    //    not hand-authored.
+    // When adding a new hand-authored skill whose SKILL.md should be linted,
+    // either narrow this glob or add a targeted include.
+    ".github/skills/**",
+
+    // Archived content (deprecated skills moved out of the active tree).
+    // Read-only history; not subject to lint rules.
+    ".archive/**",
+
+    // E2E test input documents (long-form RFQ/RFP prose, not production docs)
+    "tools/tests/e2e-inputs/**",
+
+    // Test prompt files (long-form examples, not production docs)
+    "tools/tests/prompts/**",
+
+    // Demo walkthrough content (rendered agent output, validated by artifact-templates)
+    "site/src/content/docs/demo/**",
+
+    // Astro Starlight build output (also in .gitignore — belt-and-suspenders)
+    "site/dist/**",
+    "site/.astro/**",
   ],
 }

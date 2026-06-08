@@ -12,7 +12,7 @@ Fixes #
 
 <!-- Mark the appropriate option with an "x" -->
 
-- [ ] 🆕 New scenario (S01-S09 format)
+- [ ] 🆕 New prompt guide section
 - [ ] 🏗️ New infrastructure module (Bicep/Terraform)
 - [ ] 🤖 Agent definition update (.github/agents/)
 - [ ] 📝 Documentation update
@@ -21,11 +21,29 @@ Fixes #
 - [ ] ⚙️ Configuration/workflow change
 - [ ] 💰 MCP server enhancement (azure-pricing-mcp)
 
+## Token / latency impact (Plan 01 Phase 5)
+
+<!--
+Does this PR change input-token budget or per-turn latency for any
+agent or subagent? Default answer is NO — only opt in when you've
+changed agent bodies, skills, instructions, model assignments, or
+review-loop behaviour.
+-->
+
+This change affects input-token budget / per-call latency:
+
+- [ ] YES (provide a magnitude estimate below)
+- [ ] NO
+
+If YES, expected impact:
+
+<!-- e.g. "~30 K input tokens saved per Step 1 (askQuestions batching)" -->
+
 ## Workflow Used
 
 <!-- Which agent workflow was used to create these changes? -->
 
-- [ ] 7-step workflow: `@requirements` → `architect` → `bicep-plan` → `bicep-code`
+- [ ] Multi-step workflow: `@requirements` → `architect` → `iac-planner` → `bicep-code`
 - [ ] Direct implementation (simple change)
 - [ ] Copilot Coding Agent (autonomous)
 - [ ] Manual implementation
@@ -58,6 +76,18 @@ Fixes #
 - [ ] Agent YAML frontmatter validates
 - [ ] MCP server tests pass (`pytest tests/`)
 
+### Draw.io changes (if applicable)
+
+If this PR touches `.github/agents/04-design.agent.md`,
+`.github/skills/drawio/**`, `tools/mcp-servers/drawio/**`,
+`tools/scripts/validate-drawio-files.mjs`,
+`assets/drawio-libraries/azure-icons/**`, or `tools/tests/drawio-{golden,baseline}/**`:
+
+- [ ] Reviewed against [.github/checklists/drawio-uplift-pr-checklist.md](checklists/drawio-uplift-pr-checklist.md)
+- [ ] At least one golden scenario re-run; pre/post side-by-side attached
+      (`node tools/scripts/render-golden-diff.mjs --post=<run-id>`)
+- [ ] `node tools/scripts/run-drawio-quality-bench.mjs` summary attached
+
 ## Well-Architected Framework Alignment
 
 <!-- For infrastructure changes, which WAF pillars were considered? -->
@@ -71,6 +101,13 @@ Fixes #
 ## Pre-Submission Checklist
 
 <!-- Verify all items before requesting review -->
+
+### PR Hygiene
+
+- [ ] PR touches < 50 files (split larger changes into stacked PRs)
+- [ ] All CI checks pass locally (`npm run validate:all`)
+- [ ] Commit messages follow conventional commits format
+- [ ] Review conversations resolved before requesting re-review
 
 ### Code Standards
 

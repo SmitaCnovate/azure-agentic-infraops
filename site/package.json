@@ -1,0 +1,26 @@
+{
+  "name": "azure-agentic-infraops-docs",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "prebuild": "node ../tools/scripts/generate-explorer-graph.mjs",
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "PUBLIC_GIT_SHA=$(git rev-parse --short HEAD 2>/dev/null || echo dev) PUBLIC_BUILD_DATE=$(date -u +%Y-%m-%d) astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.39.3",
+    "@fontsource/ibm-plex-mono": "^5.2.7",
+    "@fontsource/manrope": "^5.2.8",
+    "@fontsource/space-grotesk": "^5.2.10",
+    "astro": "^6.4.4",
+    "rehype-mermaid-lite": "^1.0.0",
+    "sharp": "^0.34.5",
+    "starlight-links-validator": "^0.24.0"
+  },
+  "overrides": {
+    "devalue": "^5.8.1"
+  }
+}
